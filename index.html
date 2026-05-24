@@ -585,22 +585,32 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    padding: 9px 24px;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.7);
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    padding: 12px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
     cursor: default;
-    transition: background 0.15s, color 0.15s;
+    transition: background 0.15s;
   }
-  .idea-item:hover { background: rgba(245,166,35,0.05); color: var(--white); }
+  .idea-item:hover { background: rgba(245,166,35,0.04); }
   .idea-item-dot {
     color: var(--gold);
     font-weight: 900;
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: 3px;
     font-size: 11px;
+  }
+  .idea-item-body { flex: 1; }
+  .idea-item-title {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.82);
+  }
+  .idea-item-how {
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.38);
+    margin-top: 5px;
   }
   .idea-item.hidden { display: none; }
 
@@ -716,7 +726,7 @@
       <ul class="day-items">
         <li><span class="bul" style="color:var(--gold)">▸</span>Post a <span class="hl">30-sec sermon hook clip</span> within 2 hours of service</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Best crowd moments — people, hands raised, congregation shots</li>
-        <li><span class="bul" style="color:var(--gold)">▸</span>Worship highlight: one powerful moment from FTA worship</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Worship highlight: one powerful moment from FOTA worship</li>
         <li><span class="bul" style="color:var(--gold)">▸</span><em>"You missed something powerful today. Don't miss next Sunday."</em></li>
       </ul>
       <div class="day-platforms">
@@ -732,7 +742,7 @@
       <div class="day-type">SERMON<br><span style="color:var(--gold)">REEL</span></div>
       <div class="day-divider"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--gold)">▸</span>Best <span class="hl">30–60 second clip</span> from Sunday's FTA message</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Best <span class="hl">30–60 second clip</span> from Sunday's FOTA message</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Bold text hook burned into the first 2 seconds</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Full captions — 70% of viewers watch on mute</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>End with one punchy question to drive comments</li>
@@ -750,7 +760,7 @@
       <div class="day-type">WORSHIP<br><span style="color:var(--gold)">MOMENT</span></div>
       <div class="day-divider"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--gold)">▸</span>One powerful FTA worship moment — <span class="hl">slow edit, let it breathe</span></li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>One powerful FOTA worship moment — <span class="hl">slow edit, let it breathe</span></li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Hands raised, tears, close-ups — the atmosphere, not the performance</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Overlay a lyric or scripture from the song on screen</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Tag worship leader and musicians</li>
@@ -765,7 +775,7 @@
       <div class="day-accent" style="background:var(--prayer)"></div>
       <div class="day-ghost">WED</div>
       <div class="day-name">Wednesday</div>
-      <div class="day-type">FTA<br><span style="color:var(--gold)">ANNOUNCEMENTS</span></div>
+      <div class="day-type">FOTA<br><span style="color:var(--gold)">ANNOUNCEMENTS</span></div>
       <div class="day-divider"></div>
       <ul class="day-items">
         <li><span class="bul" style="color:var(--gold)">▸</span>What's happening at <span class="hl">Foundation of Truth this week?</span></li>
@@ -786,7 +796,7 @@
       <div class="day-type">WORSHIP<br><span style="color:var(--gold)">RECAP 2</span></div>
       <div class="day-divider"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--gold)">▸</span>Another angle. <span class="hl">Different song</span> from Sunday's FTA service</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Another angle. <span class="hl">Different song</span> from Sunday's FOTA service</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Slower, more cinematic edit than Tuesday's post</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Different moment — altar response, congregation, musicians</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>No text overlay — let the atmosphere carry it</li>
@@ -822,7 +832,7 @@
       <div class="day-type">TRENDY<br><span style="color:var(--gold)">+ HUMAN POST</span></div>
       <div class="day-divider"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--gold)">▸</span>Trending audio + <span class="hl">relatable FTA church life humor</span></li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Trending audio + <span class="hl">relatable FOTA church life humor</span></li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Behind-the-scenes: choir practice, media team setup, prayer team</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Light, human, funny — this breaks the serious content cycle</li>
         <li><span class="bul" style="color:var(--gold)">▸</span>Soft Sunday invite at the end — never hard sell on Saturday</li>
@@ -851,7 +861,7 @@
   </div>
   <div class="week-header">
     <div class="wh-left">
-      <div class="wh-label">June · FTA Father's Day Campaign</div>
+      <div class="wh-label">June · FOTA Father's Day Campaign</div>
       <div class="wh-title">THE WEEK<br><span style="color:var(--fathers)">DADS</span><br>SHOW UP</div>
     </div>
     <div class="wh-theme">Speak to men, sons, daughters and wives — all honoring fathers in Abuja.</div>
@@ -870,7 +880,7 @@
       <div class="day-type">FATHER'S DAY<br><span style="color:var(--fathers)">SUNDAY LIVE</span></div>
       <div class="day-divider" style="background:var(--fathers)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--fathers)">▸</span>Clip of <span class="hl">all FTA fathers standing to be prayed over</span></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Clip of <span class="hl">all FOTA fathers standing to be prayed over</span></li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>"Man of the Year" award moment — post within 30 mins</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Caption: <em>"To every father who showed up — Foundation of Truth sees you."</em></li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Tag 3 fathers challenge in the comments</li>
@@ -885,7 +895,7 @@
       <div class="day-type">MEN'S DOC<br><span style="color:var(--fathers)">DROP 1</span></div>
       <div class="day-divider" style="background:var(--fathers)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--fathers)">▸</span>Episode 1: <em>"Men Who Moved Mountains"</em> — FTA men, raw 60-sec reel</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Episode 1: <em>"Men Who Moved Mountains"</em> — FOTA men, raw 60-sec reel</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Real man from Foundation of Truth — one defining moment of faith</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>No script. No set. Phone quality is fine — <span class="hl">authenticity wins</span></li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Ask: <em>"What moment defined you as a man? Reply below."</em></li>
@@ -900,7 +910,7 @@
       <div class="day-type">"THEN &<br><span style="color:var(--fathers)">NOW" TRIBUTE</span></div>
       <div class="day-divider" style="background:var(--fathers)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--fathers)">▸</span>Post first 3 childhood + current photo tributes from FTA members</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Post first 3 childhood + current photo tributes from FOTA members</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Template: <em>"Then he taught me to [verb]. Now I understand why."</em></li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Ask followers to DM theirs — <span class="hl">feature a new one every day</span></li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>UGC machine — congregation generates your content</li>
@@ -915,7 +925,7 @@
       <div class="day-type">FATHER CODES<br><span style="color:var(--fathers)">PODCAST EP.1</span></div>
       <div class="day-divider" style="background:var(--fathers)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--fathers)">▸</span>Release Ep. 1: <em>"Fatherhood in the Digital Age"</em> — FTA leaders talking</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Release Ep. 1: <em>"Fatherhood in the Digital Age"</em> — FOTA leaders talking</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>60-sec audiogram clip with waveform for Instagram</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Full episode link in bio + WhatsApp broadcast</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Best quote from episode as standalone graphic</li>
@@ -935,7 +945,7 @@
         <li><span class="bul" style="color:var(--fathers)">▸</span>Blog post linked in bio for full text</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Ask: <em>"What would your letter say? Type the first line below."</em></li>
       </ul>
-      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">Facebook</span><span class="plat">FTA Blog</span></div>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">Facebook</span><span class="plat">FOTA Blog</span></div>
     </div>
 
     <div class="day-card">
@@ -945,10 +955,10 @@
       <div class="day-type">MEN'S BRUNCH<br><span style="color:var(--fathers)">INVITE PUSH</span></div>
       <div class="day-divider" style="background:var(--fathers)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--fathers)">▸</span>Leader video: <em>"Men — this Sunday at FTA is for you. Come."</em></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Leader video: <em>"Men — this Sunday at FOTA is for you. Come."</em></li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Event graphic + countdown sticker on Stories</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Drop the "What Kind of Father Are You?" quiz link in bio</li>
-        <li><span class="bul" style="color:var(--fathers)">▸</span>WhatsApp broadcast blast to all FTA groups</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>WhatsApp broadcast blast to all FOTA groups</li>
       </ul>
       <div class="day-platforms"><span class="plat">Instagram Stories</span><span class="plat">WhatsApp</span><span class="plat">Facebook</span></div>
     </div>
@@ -960,7 +970,7 @@
       <div class="day-type">MEN'S DOC<br><span style="color:var(--fathers)">DROP 2 + HYPE</span></div>
       <div class="day-divider" style="background:var(--fathers)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--fathers)">▸</span>Second FTA "Men Who Moved Mountains" episode drops</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Second FOTA "Men Who Moved Mountains" episode drops</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Behind-scenes: church setup for Father's Day Sunday</li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Teaser: <em>"Tomorrow is going to be powerful. Bring your dad."</em></li>
         <li><span class="bul" style="color:var(--fathers)">▸</span>Service time + address reminder — bold graphic</li>
@@ -986,7 +996,7 @@
   </div>
   <div class="week-header">
     <div class="wh-left">
-      <div class="wh-label">Mid-Year · FTA Prayer Conference</div>
+      <div class="wh-label">Mid-Year · FOTA Prayer Conference</div>
       <div class="wh-title">THE WEEK<br><span style="color:var(--prayer)">HEAVEN</span><br>OPENS</div>
     </div>
     <div class="wh-theme">Maximum urgency. Maximum fire. Create holy hunger across Abuja.</div>
@@ -1005,7 +1015,7 @@
       <div class="day-type">CONFERENCE<br><span style="color:var(--prayer)">LAUNCH SUNDAY</span></div>
       <div class="day-divider" style="background:var(--prayer)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--prayer)">▸</span>Pastor announces conference from FTA pulpit — capture everything</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Pastor announces conference from FOTA pulpit — capture everything</li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Post clip: <em>"Unfinished Business begins at Foundation of Truth."</em></li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Drop registration link across all platforms simultaneously</li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Release Day 1 of 21-day prayer challenge on WhatsApp + Stories</li>
@@ -1021,9 +1031,9 @@
       <div class="day-divider" style="background:var(--prayer)"></div>
       <ul class="day-items">
         <li><span class="bul" style="color:var(--prayer)">▸</span>60-sec prayer prompt reel — theme: <span class="hl">Identity in God</span></li>
-        <li><span class="bul" style="color:var(--prayer)">▸</span>Ask followers to post their prayer spot with <span class="hl">#FTAUnfinishedBusiness</span></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Ask followers to post their prayer spot with <span class="hl">#FOTAUnfinishedBusiness</span></li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Prophetic word graphic — dark atmospheric design, bold scripture</li>
-        <li><span class="bul" style="color:var(--prayer)">▸</span>Repost best prayer spot submissions to FTA Stories</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Repost best prayer spot submissions to FOTA Stories</li>
       </ul>
       <div class="day-platforms"><span class="plat">Instagram</span><span class="plat">TikTok</span><span class="plat">Facebook</span></div>
     </div>
@@ -1036,7 +1046,7 @@
       <div class="day-divider" style="background:var(--prayer)"></div>
       <ul class="day-items">
         <li><span class="bul" style="color:var(--prayer)">▸</span>Release first <span class="hl">Midnight Prayers audio</span> — 10-min guided prayer</li>
-        <li><span class="bul" style="color:var(--prayer)">▸</span>Schedule post for 11:58 PM: <em>"Pray with FTA at midnight tonight"</em></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Schedule post for 11:58 PM: <em>"Pray with FOTA at midnight tonight"</em></li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Atmospheric 60-sec promo reel — dark, moody, holy</li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Podcast / Spotify link in bio</li>
       </ul>
@@ -1065,8 +1075,8 @@
       <div class="day-type">PAST<br><span style="color:var(--prayer)">TESTIMONY</span></div>
       <div class="day-divider" style="background:var(--prayer)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--prayer)">▸</span>Post a past FTA prayer conference testimony — <span class="hl">build faith for this one</span></li>
-        <li><span class="bul" style="color:var(--prayer)">▸</span>90-sec video: FTA member speaking directly to camera, no filter</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Post a past FOTA prayer conference testimony — <span class="hl">build faith for this one</span></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>90-sec video: FOTA member speaking directly to camera, no filter</li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Caption: <em>"What God did last time. Come see what He does THIS time."</em></li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Prayer request form link — collect requests before conference</li>
       </ul>
@@ -1096,7 +1106,7 @@
       <div class="day-divider" style="background:var(--prayer)"></div>
       <ul class="day-items">
         <li><span class="bul" style="color:var(--prayer)">▸</span><span class="hl">Stream LIVE</span> on YouTube + Facebook + Instagram at once</li>
-        <li><span class="bul" style="color:var(--prayer)">▸</span>FTA Digital Media team posts real-time highlights every 30 minutes</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>FOTA Digital Media team posts real-time highlights every 30 minutes</li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Capture the altar call — most powerful clip of the entire event</li>
         <li><span class="bul" style="color:var(--prayer)">▸</span>Post atmosphere reels — crowd in prayer, fire moments, worship</li>
       </ul>
@@ -1121,10 +1131,10 @@
   </div>
   <div class="week-header">
     <div class="wh-left">
-      <div class="wh-label">August · FTA Teens Camp</div>
+      <div class="wh-label">August · FOTA Teens Camp</div>
       <div class="wh-title">THE WEEK<br><span style="color:var(--teens)">TEENS</span><br>GO WILD</div>
     </div>
-    <div class="wh-theme">Raw. Youth-led. Authentic. Let FTA teens create the content this week.</div>
+    <div class="wh-theme">Raw. Youth-led. Authentic. Let FOTA teens create the content this week.</div>
   </div>
   <div class="flex-overlay">
     <div class="flex-overlay-badge" style="background:var(--teens-bg);color:var(--teens);">Flexible tip</div>
@@ -1140,9 +1150,9 @@
       <div class="day-type">CAMP LAUNCH<br><span style="color:var(--teens)">SUNDAY</span></div>
       <div class="day-divider" style="background:var(--teens)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--teens)">▸</span>FTA teens officially announced in service — capture their reactions</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>FOTA teens officially announced in service — capture their reactions</li>
         <li><span class="bul" style="color:var(--teens)">▸</span>High-energy promo reel: past camp footage + this year's "Unfiltered" theme</li>
-        <li><span class="bul" style="color:var(--teens)">▸</span>Countdown graphic: <em>"FTA Camp starts in X days."</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Countdown graphic: <em>"FOTA Camp starts in X days."</em></li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Registration link goes LIVE across all platforms at once</li>
       </ul>
       <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">TikTok</span><span class="plat">WhatsApp</span></div>
@@ -1156,7 +1166,7 @@
       <div class="day-divider" style="background:var(--teens)"></div>
       <ul class="day-items">
         <li><span class="bul" style="color:var(--teens)">▸</span>"Ask A Teen" Ep.1 — <em>What do you wish church understood about you?</em></li>
-        <li><span class="bul" style="color:var(--teens)">▸</span>4–5 FTA teens. Fast cuts. No adults speaking. Just them.</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>4–5 FOTA teens. Fast cuts. No adults speaking. Just them.</li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Raw and unscripted — authenticity is the algorithm</li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Tag teens who appear — they'll share to all their followers</li>
       </ul>
@@ -1170,7 +1180,7 @@
       <div class="day-type">IDENTITY<br><span style="color:var(--teens)">SERIES EP.1</span></div>
       <div class="day-divider" style="background:var(--teens)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--teens)">▸</span>Ep.1: <em>"Who Am I?" — Worth</em> — relatable young FTA leader</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Ep.1: <em>"Who Am I?" — Worth</em> — relatable young FOTA leader</li>
         <li><span class="bul" style="color:var(--teens)">▸</span>5 minutes max. Shot like YouTube, not church.</li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Post 60-sec clip on Reels. Full video link in bio.</li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Caption: <em>"If you've ever felt like you're not enough — this is for you."</em></li>
@@ -1185,12 +1195,12 @@
       <div class="day-type">PARENT<br><span style="color:var(--teens)">CONTENT DAY</span></div>
       <div class="day-divider" style="background:var(--teens)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--teens)">▸</span>Blog: <em>"Why Your Teen Needs FTA Camp This August"</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Blog: <em>"Why Your Teen Needs FOTA Camp This August"</em></li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Facebook-targeted post for Abuja parents — stats on teen faith</li>
-        <li><span class="bul" style="color:var(--teens)">▸</span>Parent testimonial: <em>"What FTA camp did for my child last year"</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Parent testimonial: <em>"What FOTA camp did for my child last year"</em></li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Registration deadline reminder: <span class="hl">Limited spaces. Act now.</span></li>
       </ul>
-      <div class="day-platforms"><span class="plat">Facebook</span><span class="plat">FTA Blog</span><span class="plat">Email Newsletter</span></div>
+      <div class="day-platforms"><span class="plat">Facebook</span><span class="plat">FOTA Blog</span><span class="plat">Email Newsletter</span></div>
     </div>
 
     <div class="day-card">
@@ -1201,9 +1211,9 @@
       <div class="day-divider" style="background:var(--teens)"></div>
       <ul class="day-items">
         <li><span class="bul" style="color:var(--teens)">▸</span>Fast-cut FOMO reel: <em>"This is what you miss if you don't come"</em></li>
-        <li><span class="bul" style="color:var(--teens)">▸</span>Past FTA camp footage — worship, adventures, friends, food, laughs</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Past FOTA camp footage — worship, adventures, friends, food, laughs</li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Trending audio — match the energy of their world</li>
-        <li><span class="bul" style="color:var(--teens)">▸</span>End card: FTA Camp dates + registration link</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>End card: FOTA Camp dates + registration link</li>
       </ul>
       <div class="day-platforms"><span class="plat">TikTok</span><span class="plat">Instagram Reels</span><span class="plat">YouTube Shorts</span></div>
     </div>
@@ -1215,7 +1225,7 @@
       <div class="day-type">CAMP EVE<br><span style="color:var(--teens)">COUNTDOWN</span></div>
       <div class="day-divider" style="background:var(--teens)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--teens)">▸</span>24-hour graphic: <em>"WE LEAVE FOR FTA CAMP TOMORROW."</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>24-hour graphic: <em>"WE LEAVE FOR FOTA CAMP TOMORROW."</em></li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Leader packing video — fun, energetic, relatable</li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Ask: <em>"What are you most excited for? Reply below."</em></li>
         <li><span class="bul" style="color:var(--teens)">▸</span>Final logistics post — location, time, what to bring</li>
@@ -1256,10 +1266,10 @@
   </div>
   <div class="week-header">
     <div class="wh-left">
-      <div class="wh-label">October · FTA Glory to Glory</div>
+      <div class="wh-label">October · FOTA Glory to Glory</div>
       <div class="wh-title">THE WEEK<br><span style="color:var(--glory)">GLORY</span><br>FALLS</div>
     </div>
-    <div class="wh-theme">Cinematic. Celebratory. Epic. The celebration event of the year at FTA.</div>
+    <div class="wh-theme">Cinematic. Celebratory. Epic. The celebration event of the year at FOTA.</div>
   </div>
   <div class="flex-overlay">
     <div class="flex-overlay-badge" style="background:var(--glory-bg);color:var(--glory);">Flexible tip</div>
@@ -1275,7 +1285,7 @@
       <div class="day-type">GLORY WEEK<br><span style="color:var(--glory)">LAUNCH</span></div>
       <div class="day-divider" style="background:var(--glory)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor announces Glory to Glory from FTA pulpit — capture it all</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor announces Glory to Glory from FOTA pulpit — capture it all</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Event promo reel drops: trailer-style, cinematic, epic music</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Begin the <span class="hl">"My God Moment" testimony series</span> — Day 1</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Registration / event details link goes live on all platforms</li>
@@ -1290,7 +1300,7 @@
       <div class="day-type">TESTIMONY<br><span style="color:var(--glory)">FLOOD</span></div>
       <div class="day-divider" style="background:var(--glory)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--glory)">▸</span>Day 2 of <em>"My God Moment"</em> — FTA member video testimony</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Day 2 of <em>"My God Moment"</em> — FOTA member video testimony</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Post as Reel + quote graphic — two pieces of content, one story</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Caption: <em>"2026 has not been quiet at Foundation of Truth."</em></li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Ask followers to submit their God moment — DM or form</li>
@@ -1305,7 +1315,7 @@
       <div class="day-type">YEAR-IN-REVIEW<br><span style="color:var(--glory)">FILM TEASER</span></div>
       <div class="day-divider" style="background:var(--glory)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--glory)">▸</span>60-sec teaser of <em>"2026: The Year God Showed Up at FTA"</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>60-sec teaser of <em>"2026: The Year God Showed Up at FOTA"</em></li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Quick flashes of best moments Jan–September — don't show too much</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Caption: <em>"The full story drops at Glory to Glory. Be in that room."</em></li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Full film plays IN the event — not released online until after</li>
@@ -1320,9 +1330,9 @@
       <div class="day-type">CONFESSIONS<br><span style="color:var(--glory)">CHALLENGE</span></div>
       <div class="day-divider" style="background:var(--glory)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--glory)">▸</span>Launch <em>"Confessions of Faith"</em> UGC challenge — FTA brand hashtag</li>
-        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor records first: bold faith declaration over FTA's next season</li>
-        <li><span class="bul" style="color:var(--glory)">▸</span>Hashtag: <span class="hl">#FTAGloryToGlory</span> — repost every submission</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Launch <em>"Confessions of Faith"</em> UGC challenge — FOTA brand hashtag</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor records first: bold faith declaration over FOTA's next season</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Hashtag: <span class="hl">#FOTAGloryToGlory</span> — repost every submission</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Each repost brings in the submitter's entire follower network</li>
       </ul>
       <div class="day-platforms"><span class="plat">TikTok Challenge</span><span class="plat">Instagram Reels</span><span class="plat">Facebook</span></div>
@@ -1351,9 +1361,9 @@
       <div class="day-divider" style="background:var(--glory)"></div>
       <ul class="day-items">
         <li><span class="bul" style="color:var(--glory)">▸</span>Cinematic final event promo — trailer-style. Maximum impact.</li>
-        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor: <em>"Don't end this season without being in that room at FTA."</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor: <em>"Don't end this season without being in that room at FOTA."</em></li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Final registration / ticket push — create urgency with numbers</li>
-        <li><span class="bul" style="color:var(--glory)">▸</span>WhatsApp + email blast — every FTA member reminded twice</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>WhatsApp + email blast — every FOTA member reminded twice</li>
       </ul>
       <div class="day-platforms"><span class="plat">All Platforms</span><span class="plat">WhatsApp Blast</span><span class="plat">Email</span></div>
     </div>
@@ -1366,7 +1376,7 @@
       <div class="day-divider" style="background:var(--glory)"></div>
       <ul class="day-items">
         <li><span class="bul" style="color:var(--glory)">▸</span><span class="hl">Full multi-camera broadcast</span> — stream on all platforms at once</li>
-        <li><span class="bul" style="color:var(--glory)">▸</span>FTA Digital Media posts live highlights every 30 minutes</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>FOTA Digital Media posts live highlights every 30 minutes</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Year-in-review film plays in venue — release online day after</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Capture the climax moment — altar, worship peak, key declaration</li>
       </ul>
@@ -1391,14 +1401,14 @@
   </div>
   <div class="week-header">
     <div class="wh-left">
-      <div class="wh-label">December · FTA Hymnal Sunday</div>
+      <div class="wh-label">December · FOTA Hymnal Sunday</div>
       <div class="wh-title">THE WEEK<br><span style="color:var(--hymnal)">ANCIENT</span><br>SOUNDS</div>
     </div>
-    <div class="wh-theme">Reverence. Beauty. Heritage. Introduce a new generation to the old paths at FTA.</div>
+    <div class="wh-theme">Reverence. Beauty. Heritage. Introduce a new generation to the old paths at FOTA.</div>
   </div>
   <div class="flex-overlay">
     <div class="flex-overlay-badge" style="background:var(--hymnal-bg);color:var(--hymnal);">Flexible tip</div>
-    <div class="flex-overlay-text">December already rides high on FTA momentum from October's Glory to Glory. <strong>Hymnal Sunday content bridges the year's end with deep reverence.</strong> Tease it from the first week of December. The Sunday itself becomes the year's most shareable worship moment.</div>
+    <div class="flex-overlay-text">December already rides high on FOTA momentum from October's Glory to Glory. <strong>Hymnal Sunday content bridges the year's end with deep reverence.</strong> Tease it from the first week of December. The Sunday itself becomes the year's most shareable worship moment.</div>
   </div>
 
   <div class="days-grid">
@@ -1427,7 +1437,7 @@
       <ul class="day-items">
         <li><span class="bul" style="color:var(--hymnal)">▸</span>60-sec reel: <em>The origin story of a classic hymn</em> — e.g. "Amazing Grace"</li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Who wrote it? Under what circumstances? What suffering or miracle?</li>
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>Pair with FTA choir singing a snippet of that hymn</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Pair with FOTA choir singing a snippet of that hymn</li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>This format is extremely shareable — history + music + faith</li>
       </ul>
       <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">YouTube Shorts</span><span class="plat">TikTok</span></div>
@@ -1440,9 +1450,9 @@
       <div class="day-type">CHOIR<br><span style="color:var(--hymnal)">SPOTLIGHT</span></div>
       <div class="day-divider" style="background:var(--hymnal)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>Feature 2–3 FTA choir members: <em>"Why this hymn means everything to me"</em></li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Feature 2–3 FOTA choir members: <em>"Why this hymn means everything to me"</em></li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>30-second personal story from each — raw, emotional, no script</li>
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>Tag each person — their networks see the FTA brand</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Tag each person — their networks see the FOTA brand</li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Background: slow cinematic clip of Sunday's choir performance</li>
       </ul>
       <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">Facebook</span><span class="plat">Stories</span></div>
@@ -1470,10 +1480,10 @@
       <div class="day-type">GENERATION<br><span style="color:var(--hymnal)">BRIDGE</span></div>
       <div class="day-divider" style="background:var(--hymnal)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>Video: <span class="hl">FTA elder + FTA youth singing the same hymn</span> — side by side</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Video: <span class="hl">FOTA elder + FOTA youth singing the same hymn</span> — side by side</li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Split screen or duet format — visually powerful, deeply shareable</li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Caption: <em>"Different generations. Same God. Same song."</em></li>
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>This single reel can bring in thousands of new eyes on FTA</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>This single reel can bring in thousands of new eyes on FOTA</li>
       </ul>
       <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">TikTok</span><span class="plat">YouTube Shorts</span></div>
     </div>
@@ -1488,7 +1498,7 @@
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Pastor releases the <span class="hl">Prophetic Word heading into 2027</span></li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Professionally shot — best lighting, best audio of the year</li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Release on YouTube + all platforms — this video carries all of January 2027</li>
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>WhatsApp + email blast to all FTA contacts</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>WhatsApp + email blast to all FOTA contacts</li>
       </ul>
       <div class="day-platforms"><span class="plat">YouTube</span><span class="plat">Instagram IGTV</span><span class="plat">WhatsApp Broadcast</span></div>
     </div>
@@ -1500,9 +1510,9 @@
       <div class="day-type">HYMN<br><span style="color:var(--hymnal)">CHALLENGE UGC</span></div>
       <div class="day-divider" style="background:var(--hymnal)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>Launch <span class="hl">#FTAHymnalChallenge</span> — sing or hum your favourite hymn</li>
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>FTA Digital Media team posts first — then challenge the congregation</li>
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>Repost every submission — creates a beautiful flood of FTA UGC</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Launch <span class="hl">#FOTAHymnalChallenge</span> — sing or hum your favourite hymn</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>FOTA Digital Media team posts first — then challenge the congregation</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Repost every submission — creates a beautiful flood of FOTA UGC</li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Compilations of submissions make next week's content automatically</li>
       </ul>
       <div class="day-platforms"><span class="plat">TikTok Challenge</span><span class="plat">Instagram Reels</span><span class="plat">Facebook</span></div>
@@ -1516,7 +1526,7 @@
 ══════════════════════════════════════════════════════════════ -->
 <footer class="footer">
   <div>
-    <div class="footer-year">FTA · 2026</div>
+    <div class="footer-year">FOTA · 2026</div>
     <div class="footer-tagline">Foundation of Truth Assembly · Abuja<br>Digital Media Department</div>
   </div>
   <div class="footer-tagline" style="text-align:right">
@@ -1555,160 +1565,160 @@
 
     <div class="idea-category" data-cat="reels">
       <div class="idea-category-label">📱 Reel Hooks — Opening Lines</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Nobody told me faith would look like this…"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"The day God said no — and I'm grateful He did"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"What they don't show you about church life"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"I used to think prayer was boring until…"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"POV: You finally walked through those doors at FTA"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"This one moment changed everything for our church"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"If you've ever felt like you don't belong in church…"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Nobody told me faith would look like this…"</div><div class="idea-item-how">Speak this line directly to camera or put it as the first text overlay. What follows is a real moment from your week — unexpected, raw, specific. Keep it under 20 seconds before the visual payoff. The hook works because it sounds like the start of a private conversation.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"The day God said no — and I'm grateful He did"</div><div class="idea-item-how">Feature one FOTA member sharing a setback that later became a blessing. Film them seated, close-up, natural light. The contrast between the 'no' and the unexpected outcome is what keeps people watching all the way through.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"What they don't show you about church life"</div><div class="idea-item-how">Film the parts most churches hide — a minister crying in prayer before service, the media team arriving at 6AM, the cleanup crew after a big event. Shoot on a phone, unedited. Raw and unscripted is the point. This format always outperforms polished content.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"I used to think prayer was boring until…"</div><div class="idea-item-how">Record a 30-second personal testimony from a FOTA member about the moment prayer became real to them. No script, no studio — just honest words on camera. Start the video with this line verbatim as either spoken or text-on-screen.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"POV: You finally walked through those doors at FOTA"</div><div class="idea-item-how">Film walking through FOTA's entrance from a first-person perspective. Add warm text overlays describing what someone new would feel at each step. Works best on a Sunday morning with natural crowd movement and energy around you.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"This one moment changed everything for our church"</div><div class="idea-item-how">Use a defining FOTA milestone — a healing, a record attendance, a significant decision. Show footage or photos of that moment on screen. Let the moment carry the emotional weight; the caption handles the context and the invite.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"If you've ever felt like you don't belong in church…"</div><div class="idea-item-how">Open with this hook spoken directly to camera by a FOTA member who genuinely felt this way before joining. They then share how FOTA became home in 30–45 seconds. Tag them when posting — their network will see it and feel called in.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="clips">
       <div class="idea-category-label">🎬 Sermon Clip Angles</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Zoom into the speaker's hands at the key moment</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Cut to audience reaction — tears, nodding, hands up</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Bold text overlay on the single best line of the sermon</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Reverse camera — show the congregation, not the speaker</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Let 3 seconds of silence play before the punchline drops</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>End card: same clip, different hook — post same clip twice, different caption</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Zoom in on the speaker's hands at the key moment</div><div class="idea-item-how">During editing, find the most powerful 3 seconds of the sermon. Cut to a tight shot of the speaker's hands mid-gesture at that exact line. Most teams only shoot the face — hands are an underused angle that adds visual energy and feels cinematic without extra effort.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Cut to audience reaction — tears, nodding, hands raised</div><div class="idea-item-how">Instead of the usual speaker footage, use 10–15 seconds of congregation response as your reel. This social proof is more persuasive than the sermon itself to outsiders. Set someone to capture audience B-roll throughout every service — it's your most valuable secondary footage.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Bold text overlay on the single best sermon line</div><div class="idea-item-how">Pull the strongest one-sentence line from the message. White bold text, black or very blurred background, hold it on screen for 3 seconds. The text IS the hook. You don't need to see the speaker's face at all — the word alone can carry a reel.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Reverse camera — show the congregation, not the speaker</div><div class="idea-item-how">Point a camera toward the crowd during a powerful moment. A room of 200 people fully engaged tells a visitor more than any promo. Position a secondary phone or camera at the back of the hall before service starts. You only need 20 seconds of this footage per week.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Keep the 3-second silence before the punchline</div><div class="idea-item-how">In editing, find the natural pause right before the pastor's best line. Do not cut it. Keep the silence — audiences lean in when there's nothing happening. That 3-second gap creates anticipation that makes the punchline hit significantly harder than if you'd cut straight to it.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Post the same clip twice — different hook, different day</div><div class="idea-item-how">Take your strongest 30-sec clip. Post it once with one caption. Two to three weeks later, post the same clip with a completely different opening caption and hook text. New followers won't have seen it. Old followers engage again. The algorithm treats it as new content.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="graphics">
       <div class="idea-category-label">✍️ Quote Graphics</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Bold white text on solid black — one sentence, no image</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Gold scripture on dark background — minimal, shareable</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Sermon pull quote in large type over blurred crowd photo</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Handwritten-style text overlay on a worship moment still</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Split quote across two carousel slides — build anticipation</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"This week's confession" — bold declaration, plain background</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Bold white text on solid black — one sentence, no image</div><div class="idea-item-how">Open Canva. Set canvas to 1080x1080 or 1080x1350. Pure black background. White text in a bold sans-serif (Bebas Neue, Montserrat Black), at least 70% of the canvas width. One sentence only. No logo, no border. Save as PNG. This minimalist format gets saved and shared more than any designed graphic.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Gold scripture on dark background — minimal, shareable</div><div class="idea-item-how">Choose a scripture that connects directly to Sunday's sermon. Use the FOTA gold (#F5A623) for the verse text on a near-black background. Add only the Bible reference below in smaller, lighter type. People save these for personal devotion — your logo doesn't need to be prominent for this to work for FOTA.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Sermon pull quote over blurred crowd photo</div><div class="idea-item-how">Take a crowd photo from Sunday. Apply a dark overlay in Canva (add a black rectangle, set opacity to 65–75%). Set the quote in large bold type over the overlay. The blurred crowd underneath gives context — viewers know this is a live moment — without distracting from the words.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Handwritten-style text over a worship still</div><div class="idea-item-how">In Canva, search for "Caveat" or "Kalam" fonts — they look handwritten. Place one short phrase (not a full quote) over a close-up worship photo. Keep the text small and personal-feeling. This format feels intimate and human, and consistently gets higher save rates than clean designed graphics.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Split quote across two carousel slides</div><div class="idea-item-how">Write a quote that has a natural two-part structure: setup and punchline. Slide 1 shows only the first half ("Faith isn't the absence of doubt…"). Slide 2 reveals the second half ("…it's moving forward anyway."). People swipe to complete the thought — this drives carousel interaction which Instagram rewards algorithmically.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"This week's confession" — faith declaration post</div><div class="idea-item-how">Based on Sunday's theme, write a short first-person declaration starting with "I confess…" or "I declare…" Post it mid-week as a graphic. Followers screenshot it for personal prayer. This type of content has the highest save rate of any format on Instagram — saves tell the algorithm to push the post to more people.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="bts">
       <div class="idea-category-label">🎥 Behind the Scenes</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Media team setting up cameras before service</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Sound check and worship team warmup — raw, no edits</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Pastor's pre-service prayer backstage</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Volunteers arriving early — set-up time-lapse</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>What happens after the service ends — clean-up, fellowship</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>The media team's week in 60 seconds</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Media team setting up cameras before service</div><div class="idea-item-how">Arrive 30–40 minutes early. Have one team member film setup on a phone: tripods going up, screens calibrating, team praying together before the doors open. Compile into a 45-second reel with a trending audio track. Post Saturday evening as a "get ready with us" piece — it builds anticipation for Sunday.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Sound check and worship team warmup</div><div class="idea-item-how">Ask the worship team leader for permission to film sound check — most will agree. Capture the casual warmth of the team: run-throughs, harmonising, a joke between members. 30–40 seconds is enough. This humanises the worship experience and makes Sunday feel like something people want to be part of.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Pastor's pre-service prayer moment backstage</div><div class="idea-item-how">Ask your pastor if you can capture 20–30 seconds of their quiet time before service — not staged, just them in prayer or preparation. Many pastors agree when they understand the impact. Post within the first 60 minutes of service. It's one of the most powerful "human" content pieces a church can share.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Volunteer arrival time-lapse</div><div class="idea-item-how">Fix a phone on a tripod in the main hall 2 hours before service. Set it to record a time-lapse (or record normally and speed up in editing). 3 hours of setup becomes a 30-second clip of a room transforming from empty to full — one of the most striking visual statements of "something is happening here."</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">After service — clean-up, prayer, fellowship</div><div class="idea-item-how">Most churches only show the polished, in-service moments. Film the post-service 20 minutes: people lingering in conversation, leaders praying with members at the altar, the cleanup crew at work. Real community looks like this — and it's more convincing than any promotional reel.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">The media team's week in 60 seconds</div><div class="idea-item-how">Each week, one media team member captures 6–10 short clips on their phone: editing on a laptop, scouting camera angles, logging footage, team discussion. Compile on Saturday into a 60-second reel with your name and role in the caption. This builds audience investment in the people making the content — and makes the team feel valued too.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="engage">
       <div class="idea-category-label">🔥 Engagement Prompts</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Drop the last worship song that wrecked you 👇"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Tag someone who needs to hear this message today"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"What's your favourite Bible verse? Go."</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Comment your answered prayer from this year"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Share this if God carried you through 2026"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"What would you tell your younger self about faith?"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"First word that comes to mind when you think of FTA?"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Drop the last worship song that wrecked you 👇"</div><div class="idea-item-how">Post a close-up worship moment from Sunday. Ask this question as the final line of your caption. Every reply is a song recommendation you can use for future reels AND a signal to Instagram's algorithm that the post is generating active conversation, pushing it to more people.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Tag someone who needs to hear this today"</div><div class="idea-item-how">Use a sermon clip or quote graphic. End the caption with this CTA. Tagging sends a notification that brings a non-follower to your profile — it's organic reach you can't buy. The more emotionally resonant the content, the higher the tag rate. Pair with your most powerful quotes.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"What's your favourite Bible verse? Go."</div><div class="idea-item-how">Post a clean scripture graphic. End with this two-word CTA. Hundreds of replies = one of your highest-performing posts of the month. Screenshot the best verses from the comments and turn them into next week's quote graphics. Always credit the commenter when you post their verse.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Comment your answered prayer from this year"</div><div class="idea-item-how">Post this as a standalone statement over a worship still or plain background — no clip needed. The comment section becomes a live testimony wall. Screenshot the most powerful ones (with permission) and turn them into individual testimony reels over the following weeks. This one post creates weeks of content.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Share this if God carried you through 2026"</div><div class="idea-item-how">Use a strong worship clip or bold scripture visual. End with this CTA. Shares are the highest-value action on Instagram — they push your post directly into non-followers' feeds. Write the caption so the post works as a standalone piece of content even without context, so it makes sense when someone's friend shares it.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"What would you tell your younger self about faith?"</div><div class="idea-item-how">Use this as a caption question or a Story poll. The replies reveal what your congregation genuinely values. The best answers become source material for blog posts, quote graphics, and reel scripts. Run this question once every 3 months — the answers will be different every time as your community grows.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"First word that comes to mind when you think of FOTA?"</div><div class="idea-item-how">Post a beautiful interior or exterior shot of the church. Ask this question in the caption. The answers are audience perception data AND content — you'll see exactly how people describe your church. Use the most common positive words in your next event promo graphics and bios.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="series">
       <div class="idea-category-label">📺 Mini-Series Concepts</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"5 Things Your Pastor Wishes You Knew" — 5-part reel series</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"First Time at FTA" — interview 5 new members, 60 sec each</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"The Verse That Changed Everything" — one FTA member per episode</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Before and After" — FTA member's life testimony in 90 seconds</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"A Week in the Life" — follow one department for 7 days</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Staff Spotlight" — feature a different FTA team member each week</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"5 Things Your Pastor Wishes You Knew"</div><div class="idea-item-how">Sit with your pastor for 20 minutes with a phone propped up. Ask open-ended questions and let the conversation run. Edit into 5 separate 45-second clips — one per day or one per week. No script needed. Post them as a numbered series so followers know to come back. The conversational tone always outperforms scripted delivery.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"First Time at FOTA" — visitor interview series</div><div class="idea-item-how">Approach recent first-time visitors after their second or third attendance — not the first. Ask two questions: "What brought you?" and "What made you come back?" Film sitting in the main hall with natural light, 60 seconds each. Tag them when you post — they'll share it to their full network, and their friends become your warm audience.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"The Verse That Changed Everything"</div><div class="idea-item-how">One question per episode: "What scripture changed your life and why?" Interview one FOTA member each week after Sunday service. Film on a phone in portrait mode, natural light, a quiet corner of the hall. 45–60 seconds per episode. This series runs indefinitely — every member has a verse, and each one brings a different audience.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Before and After" — testimony reel</div><div class="idea-item-how">Find FOTA members with genuine transformation stories. Structure each episode: 15–20 seconds of "before" (who they were, what they were dealing with), then 40 seconds of "after" (what God did, who they are now). Shoot it like a conversation — no graphics, no overlay. The rawness is the power.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"A Week in the Life" — department focus</div><div class="idea-item-how">Choose one FOTA department each month: ushers, choir, media, children's ministry, prayer team. Ask a member to capture 5–8 candid phone clips throughout their week. Send them to the media team on Friday. Compile into a 90-second reel for Saturday. Rotates every month — keeps content fresh and celebrates every part of the church.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Staff Spotlight" — weekly feature</div><div class="idea-item-how">Three questions, filmed in 5 minutes after service: What's your role at FOTA? What's your favourite FOTA memory? What do you want people to know about your department? Film in a consistent spot each week — same chair, same angle, same lighting. The consistency makes it feel like an official series, not a one-off.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="trending">
       <div class="idea-category-label">📈 Trending Formats</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Expectation vs Reality — church life edition, trending audio</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Green screen: Pastor speaks in front of the scripture text</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Stitch/react to a viral faith or motivation clip</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Rate your church experience 1–10" poll overlay on a reel</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Text-on-screen only reel — no face, no voice, just words</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Slow-mo worship moment with no music — just ambient sound</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Expectation vs Reality — church life edition</div><div class="idea-item-how">Script two brief scenes. First: a playful stereotype of church (expectation). Second: the warm, genuine reality at FOTA. Find a trending audio from your region on Instagram Reels or TikTok — the audio does half the work. This format is one of the most shared in church content because it disarms people who are cynical. Keep it self-aware and funny.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Green screen — speaker inside the scripture</div><div class="idea-item-how">Download CapCut (free). Record your speaker against a plain wall. In CapCut: Add to Timeline → Effects → Remove BG. Import a clean image of the scripture text or a FOTA graphic as the background layer behind them. The speaker appears to stand inside God's Word. The whole process takes under 10 minutes once you've done it once.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Text-on-screen only reel — no filming required</div><div class="idea-item-how">Open CapCut. New project, black background. Write your content in 5–7 short lines, each appearing on its own clip at 1.5–2 seconds each. Add a slow atmospheric music track underneath (YouTube Audio Library has free options). No recording, no face, no equipment. Total production time: 15 minutes. Post on a Tuesday when motivation content peaks.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Slow-motion worship moment, no music</div><div class="idea-item-how">Before service, set your phone to 120fps or 240fps in video settings (on iPhone: Camera → Record Slo-mo). Film 20 seconds of a worship moment. In editing, slow it to 30–40% speed. Remove all original audio — let it play in silence or with a very low ambient room tone underneath. The emotion at slow speed without music is extraordinary. This type of clip gets the most saves.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Stitch or react to a viral faith clip</div><div class="idea-item-how">Find a trending faith or motivation clip on TikTok or Reels. On TikTok, use the Stitch feature to add your response. On Instagram, screen-record the clip and record your reaction on a split screen using CapCut. Your take — agreement, addition, or gentle correction — is the content. Always credit the original creator and add FOTA's perspective at the end.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Rate your church experience 1–10" poll overlay</div><div class="idea-item-how">Post a clip of FOTA's Sunday service atmosphere. In Instagram Stories, add a slider poll sticker: "Rate your church experience this Sunday 🙌" The responses are audience data. Post the results the next day: "You rated us 9.2 — here's what we're doing for 10." Transparency about striving for excellence builds trust.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="seasonal">
       <div class="idea-category-label">📅 Seasonal / Calendar Hooks</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>New Year: "What God said for 2026 — we're living it now"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Valentine's: "How Foundation of Truth defines love"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Easter: "The best news ever told — and we're not stopping"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Back to school: "Youth who pray, thrive. Period."</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Independence Day: "Who made us free? One name."</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Christmas: "Emmanuel — God with us, still. FTA, Abuja."</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">New Year: "What God said for 2026 — we're living it now"</div><div class="idea-item-how">Pull the prophetic word or theme your pastor declared for the year. Create a recap reel in the first week of each new quarter showing how that word is being fulfilled. Use before-and-after moments, testimony clips, and growth numbers. This makes your vision tangible and shows God's faithfulness in real time.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Valentine's: "How Foundation of Truth defines love"</div><div class="idea-item-how">Interview 3–5 FOTA couples — different ages and relationship stages. Ask one question: "How has FOTA shaped how you love?" Edit into a 90-second carousel or reel. Post on February 14th morning. Tag each couple — their networks see FOTA as a place that builds real relationships, not just religion.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Easter: "The best news ever told"</div><div class="idea-item-how">Easter is your highest organic-reach Sunday of the year — more people share faith content this weekend than any other. Prepare a 60-second cinematic recap of a past FOTA Easter service. Post Good Friday evening for maximum reach before the Sunday. Follow with a live service clip posted within 2 hours of Easter Sunday service ending.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Back to school: "Youth who pray, thrive"</div><div class="idea-item-how">In late August, film 5–7 FOTA youth members sharing one thing faith taught them about handling school pressure. Fast cuts, each person gets 8–10 seconds. End with the FOTA teens service time and a "come as you are" invite. This content travels — parents share it to their own networks for their children to see.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Independence Day: "Who made us free?"</div><div class="idea-item-how">On October 1st, post a bold graphic or short clip connecting Nigerian independence with the biblical concept of freedom. Keep it non-political — focus on the spiritual parallel. Caption: "One freedom is given by men. The other lasts forever." This type of culturally-rooted content reaches people far outside your regular audience.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Christmas: "Emmanuel — God with us, still"</div><div class="idea-item-how">Record a cinematic 60-second clip of the FOTA Hymnal Sunday or Christmas service atmosphere. No talking needed — just beautiful footage of the room, the choir, candles, congregation. Let the imagery carry it. Caption: "Emmanuel — God with us, still. FOTA, Abuja." This becomes your most-shared post of December.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="photo">
       <div class="idea-category-label">📸 Photography & Still Content</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Rule of thirds — put the speaker at the side, not the center</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Golden hour exterior shot of the church building — post on a quiet week</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Flat-lay: open Bible, journal, pen, coffee — "This is how Sundays start at FTA"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Convert emotional moments to black and white — increases perceived depth</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Diptych: empty seats before service vs full seats during — one image, two moments</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Close-up of hands in prayer — no face needed, universally relatable</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Choir formation shot from the balcony or a ladder — striking geometry</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Detail shots: mic stand, open Bible on pulpit, baptism pool, candles</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Rule of thirds — speaker at the side, not the centre</div><div class="idea-item-how">Before shooting, mentally divide your viewfinder into a 3x3 grid (or turn on the grid in your camera settings). Place the speaker at one of the four intersection points, not the centre. This single adjustment makes every photo feel intentional and editorial. Pair it with negative space on the other side for text overlays later.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Golden hour exterior shot of the church building</div><div class="idea-item-how">Schedule one team member to arrive 30–40 minutes before sunset on a clear day. Shoot the building facade, entrance, signage, and car park from multiple angles. You get 15–20 minutes of warm, usable light. These images work as backgrounds for announcement graphics, event promotions, and profile highlights for months.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Flat-lay: Bible, journal, pen, coffee</div><div class="idea-item-how">Set up on a wooden surface or clean floor near a window. Natural light only — no flash. Shoot from directly above (stand on a chair or step ladder if needed). Arrange items slightly asymmetrically — too perfect feels staged. Add a short devotional caption. Post Sunday morning before service for maximum saves from people in their own quiet time.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Convert emotional moments to black and white</div><div class="idea-item-how">In Lightroom Mobile, VSCO, or your phone's edit tools: drag Saturation to -100 and increase Contrast slightly. Works best on close-up emotional moments — tears, raised hands, someone deep in prayer. Black and white removes colour distraction and makes the viewer focus entirely on the emotion. These images consistently outperform colour versions of the same shot.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Diptych: empty hall vs full hall mid-service</div><div class="idea-item-how">Take a wide shot of the empty auditorium during setup from the back of the room. Take the exact same angle mid-service when the room is full. Place both images side by side in Canva using a two-column layout. The visual contrast communicates "something powerful happens here" without a single word of explanation.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Hands in prayer — close up, no face needed</div><div class="idea-item-how">Get physically close to praying hands and fill the frame — no face required. Crouch down and shoot slightly upward. Find natural light from a nearby window. This image works as a standalone post, a background for quote overlays, or a template graphic. It is universally relatable across all ages and consistently earns the most saves of any FOTA still image.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Choir formation shot from above</div><div class="idea-item-how">Use the church balcony, a mezzanine level, or a tall ladder to shoot directly downward at the choir in formation. The geometric pattern of robes, faces, and positions creates a visually striking image that performs far beyond normal choir photos. Pair with a short caption about the power of unity. Request this shot during a rehearsal so the choir is relaxed.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Detail shots — mic, Bible, pulpit, baptism pool</div><div class="idea-item-how">The details tell the stories wide shots miss. Before service: mic stand spotlit. During: open, highlighted Bible on the pulpit. After: still baptism pool water reflecting the ceiling lights. These images are your visual breathing room — post them between high-energy reels when you want to slow the pace and create a contemplative moment in your feed.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="captions">
       <div class="idea-category-label">✍️ Caption Formulas That Work</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Hook → Story → CTA: three short lines, nothing more</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Most people think [wrong belief]. But [truth]. Share this if you agree."</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Start with a number: "3 things Sunday's message reminded me of…"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Question first: "When's the last time you felt something like this in church?"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>The confession: "I'll be honest — I almost skipped church this week. Then this happened."</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>The cliffhanger: "We almost didn't share this. But you need to hear it."</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Scripture + personal line + soft invite — 3 sentences, high save rate</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Hook → Story → CTA: three short paragraphs</div><div class="idea-item-how">First paragraph: a bold, specific opening line that stops the scroll. Second paragraph: 2–3 sentences of real story or context — what happened, what was said, what it meant. Third paragraph: one clear action (save this, tag someone, join us Sunday). Line breaks between each paragraph. Nothing else. This structure works for every content type.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Most people think [X]. But [truth]." formula</div><div class="idea-item-how">Identify a common misconception about faith or church life. State it plainly in the first line ("Most people think you have to have it all together to walk into church."). Counter it with truth in the second. End with "Share this if you agree." This caption structure generates comments from both sides of the idea and pushes the algorithm to show it to more people.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Start with a number</div><div class="idea-item-how">Numbers stop the scroll because they promise a clear, time-bound experience. "3 things Sunday's message taught me about rest." Write the number and topic first, then a line break, then the 3 points. The list format tells the reader their time is respected and the content is structured — not a rambling caption. Odd numbers (3, 5, 7) consistently outperform even ones.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Question first</div><div class="idea-item-how">Open with a question your target audience is already asking internally. "When's the last time you left a church service feeling genuinely changed?" They relate immediately. Whatever you post next — a sermon clip, a worship moment — becomes the answer they didn't know they needed. This format works especially well for reels targeting people outside the FOTA community.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">The honest confession opener</div><div class="idea-item-how">Raw honesty dramatically outperforms polished messaging for church social media. Write a first-person admission at the start: "I'll be honest — I almost skipped this week." Then share what happened when they went anyway. Keep the language conversational, not religious. No PR polish. People share things that feel like things they would say themselves — this format does exactly that.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">The cliffhanger opener</div><div class="idea-item-how">Build intrigue before revealing anything. First line only: "We almost didn't share this." Then a line break. Then what? The reader must tap "more" to find out. Works especially well for powerful testimonies or moments the team debated sharing. The hesitation in the caption creates the impression the content is rare and significant — because it is.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Scripture + personal line + soft invite</div><div class="idea-item-how">Three lines, 20 seconds to read, zero pressure. Line 1: paste the verse. Line 2: one sentence of personal application from this week's message — first person, honest. Line 3: "Come experience this with us — Sunday at FOTA, Abuja." The scripture does the heavy lifting. Your personal line adds credibility. The invite is offered, never pushed. This is the lowest-friction invite format that exists.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="hashtags">
       <div class="idea-category-label">#️⃣ Hashtag & Discovery Strategy</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Formula: 3 big tags + 3 medium tags + 3 niche tags per post</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Location tags always: #AbujaChurch #AbujaChristians #AbujaWorship</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Event tags: #FTAGloryToGlory #FTATeensCamp #FTAPrayerConference</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Content type: #ChurchReels #SermonOfTheDay #WorshipMoment #ChurchLife</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Never use only generic tags (#Faith #God #Church) — too competitive, zero reach</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Rotate 3 different hashtag sets to avoid Instagram flagging repetition</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">3 big + 3 medium + 3 niche per post</div><div class="idea-item-how">Big tags (1M+ posts): #Church #Worship #Christianity. Medium tags (100k–1M): #NigeriaChurch #AbujaChristians. Niche tags (under 100k): #FoundationOfTruth #FOTAAbuja #AbujaWorshipService. This three-tier spread gives you reach at multiple levels simultaneously. You can't be found on big tags alone — niche tags are where you actually surface to new relevant eyes.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Location tags — always, every post</div><div class="idea-item-how">Add location-specific tags before every post, even if they're not your primary hashtags: #AbujaChurch #FCTChurch #NigeriaChristians #AbujaWorship. Local discovery is your highest-conversion traffic. Someone in Abuja who searches these tags is dramatically more likely to actually visit FOTA than a global follower. Never skip location tags.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Build a hashtag archive for every FOTA event</div><div class="idea-item-how">Create a dedicated hashtag for every major event: #FOTAGloryToGlory, #FOTATeensCamp2026, #FOTAPrayerConference. Add it to every post related to that event. When someone searches the tag, they find your full event content library — it builds a searchable archive that works long after the event ends and is a powerful tool for promoting next year's edition.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Content-type tags — describe the format</div><div class="idea-item-how">Use tags that describe what kind of content it is: #ChurchReels #SermonOfTheDay #WorshipMoment #ChurchLife #SundayService. These bring in people who regularly consume this type of content — not just people searching for FOTA specifically. Think of them as content genre tags: they connect you to an existing audience that already wants what you make.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Never use only generic tags — they hide you</div><div class="idea-item-how">#Faith, #God, and #Church each have over 100 million posts. Your content is invisible in those pools. They also tell the algorithm nothing specific about your audience. Always mix in location and content-type tags that have under 500,000 posts — that is where you can actually surface to new people who are genuinely interested in what FOTA offers.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Rotate 3 different hashtag sets</div><div class="idea-item-how">Create 3 sets of 9 tags each in a notes document. Rotate between Set A, Set B, and Set C post by post. Instagram's algorithm flags accounts that use the exact same hashtag group repeatedly — it reads as spammy behaviour and suppresses your reach. Rotation keeps your hashtag strategy healthy. Review and refresh your sets every 2 months to drop underperformers.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="audio">
       <div class="idea-category-label">🎙️ Audio & Podcast Content</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>90-sec "Thought for the Week" from the pastor — low effort, high value, repeat weekly</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Unedited 3-minute worship recording — real atmosphere, no production needed</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Morning prayer prompt audio for WhatsApp — 60 seconds, sent every weekday</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"5 Questions With…" an FTA member — phone recording, no studio</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Spoken scripture — one verse, read slowly, ambient music underneath</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Conference session released as a full podcast episode after the event</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">90-second "Thought for the Week" from the pastor</div><div class="idea-item-how">Monday morning, have your pastor record a voice memo on their phone — no studio, no prep. One thought from Sunday's sermon or something fresh that morning. Open Spotify for Podcasters (formerly Anchor) on a phone, import the audio, and publish as an episode within minutes. Share the link on WhatsApp broadcast and in your Instagram bio. Do this every Monday — the consistency compounds.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Unedited 3-minute worship recording</div><div class="idea-item-how">Place a quality microphone — even a Zoom H1 handheld recorder (affordable) — near the worship team during service. Record unedited. After service, trim to the most powerful 3 minutes and upload directly as a podcast episode or YouTube "FOTA Worship Sessions" video. Do not over-produce it. The raw, live atmosphere is the value — it's what streaming music cannot give people.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Daily prayer prompt audio for WhatsApp</div><div class="idea-item-how">Every Sunday evening, write a 60-second prayer script based on that day's message. Monday morning before 7AM, record it on your phone in a quiet room. Send the voice note directly to your WhatsApp broadcast list. Do this Monday–Friday. Your followers will begin to depend on it as a morning ritual. This single habit builds more daily engagement than any other content format.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"5 Questions With…" a FOTA member</div><div class="idea-item-how">After Sunday service, set up two chairs in a quiet corner. Have a list of 5 pre-written questions: background, how they found FOTA, a faith highlight, a challenge they've overcome, and what they'd tell a newcomer. Record on two phones simultaneously (one close, one wide). Edit in CapCut. 15-minute interview becomes a 5-minute episode. Release weekly. Tag the guest — they'll share it.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Spoken scripture audiogram</div><div class="idea-item-how">Choose a verse from Sunday's sermon. Write one line of personal commentary. Open your voice memo app and record both in one take, natural voice, no retakes. Go to Headliner (free online tool) — upload the audio, it generates an audiogram with a waveform animation automatically. Export and post to Instagram Stories or as a Reel. Entire process: under 10 minutes.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Conference session released as a podcast episode</div><div class="idea-item-how">After every major FOTA event, upload the full recorded session to your podcast platform with a simple spoken intro: "You're listening to Foundation of Truth Abuja. This session was recorded live at [event name]." No editing required beyond trimming the start and end. Your conference content now reaches people globally who couldn't attend — and builds anticipation for next year's event.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="community">
       <div class="idea-category-label">👥 Community & UGC Ideas</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"FTA Selfie Sunday" — congregation submits their best Sunday look, you feature the best</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Weekly birthday shoutout — name + photo + one line about them from leadership</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Anniversary spotlight: "This couple met at Foundation of Truth…"</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>First-time visitor story — film them on their second visit, not the first</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"What do you do all week?" — member spotlight across different careers</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Church anniversary challenge — members share their oldest FTA photo</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Where in Abuja are you watching from?" — geotag story, reshare every response</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"FOTA Selfie Sunday" — weekly congregation feature</div><div class="idea-item-how">Post a Stories template every Sunday morning: bright graphic with "Send us your Sunday look! DM us 📸." Use Instagram's Link sticker or DM prompt. Review submissions Sunday evening and feature your 3 favourites in a carousel post tagged with each person's handle. They reshare to their own followers — every Sunday this brings in fresh eyes at zero cost.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Weekly birthday shoutout post</div><div class="idea-item-how">Keep a running birthday list in Google Sheets — collect from membership forms or a signup sheet at the welcome desk. Each week, the media team posts one combined graphic: name, photo (sent by the member), and one line from leadership. Tag their Instagram handle. Members screenshot and reshare automatically. Their entire network sees FOTA. Costs 5 minutes of production time.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Anniversary spotlight — couples who met at FOTA</div><div class="idea-item-how">Ask couples in your congregation how they met at FOTA. Collect their story via a 3-minute voice note interview on WhatsApp. Film them sitting together during a quiet Sunday moment. Edit to 60 seconds. Post on or near their anniversary date if possible. This content has the highest emotional shareability of almost any church content — couples tag each other, family members share it, friends from outside the church see FOTA as a place where real community forms.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">First-time visitor story — film on the second visit</div><div class="idea-item-how">Approach a first-time visitor on their second or third visit — not their first, which can feel intrusive. Ask if they'd share what brought them and what made them come back. Film standing in the foyer with available light, 60 seconds. This is your most powerful evangelism content because it is a real person, with a real story, telling real reasons why FOTA is worth visiting. Tag them when posting.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"What do you do all week?" — career spotlight</div><div class="idea-item-how">Message a FOTA member mid-week: "We'd love to feature you — can we film a 60-second clip after Sunday service?" Ask two questions: what they do professionally, and how faith intersects with their work. Film after service in a quiet spot. Post with their name and profession. This content shows the congregation is diverse, accomplished, and real — not a one-dimensional religious community.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Church history photo challenge</div><div class="idea-item-how">For FOTA's anniversary or a milestone moment, create a unique hashtag (e.g. #FOTAThroughTheYears). Post an announcement asking members to share their oldest FOTA photo using the tag — first service they attended, old event photos, early church days. Repost every submission across Stories and a highlights album. You generate 30+ pieces of community content in one week while building a visual archive of church history.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Where in Abuja are you watching from?" — geotag story</div><div class="idea-item-how">Post an Instagram Story with a location map sticker set to Abuja. Ask: "Where are you watching from?" Reply personally to every response — not just a like, a genuine reply like "God bless you in Gwarinpa!" Each reply triggers a notification that brings them back to your profile. The personalised response turns a passive viewer into someone who feels known by FOTA. Do this once a month.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="growth">
       <div class="idea-category-label">📊 Growth & Posting Tips</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Best posting windows: 7AM, 12PM, and 7PM — pick one per post, be consistent</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Reply to every comment in the first 60 minutes — the algorithm rewards this heavily</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Pin your single best-performing reel to the top of the profile at all times</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Cross-post every reel to TikTok AND YouTube Shorts the same day — triple the reach</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Use Stories to tease every feed post 30 minutes before it goes live</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Save your 5 best-performing captions in a notes doc — remix them monthly</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Go LIVE within 30 minutes of service ending — highest viewer spike of the week</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Post at 7AM, 12PM, or 7PM Abuja time</div><div class="idea-item-how">These windows align with when Abuja followers check their phones: morning commute or quiet time, lunch break, end of the work day. Test all three across three weeks and check Instagram Insights (Professional Dashboard → Content → Reach) to find your specific audience's peak hour. Once you find it, post at the same time every day — consistency trains the algorithm to push your content.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Reply to every comment within the first 60 minutes</div><div class="idea-item-how">Set a phone timer when you post. For the next 60 minutes, open Instagram every 10 minutes and reply to every comment with a genuine, specific response — not just a heart. This signals to Instagram's algorithm that the post is generating real conversation and pushes it to more feeds. The first hour after posting is the single most important window for your post's total reach.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Pin your best-performing reel to your profile</div><div class="idea-item-how">After 48 hours, check your Instagram Insights for which post has the highest Reach that week. Tap the post → three dots (⋮) → Pin to Profile. This reel becomes the first thing every new profile visitor sees. Review and update your pinned post monthly — always have your most impressive current content at the top. New visitors form their entire impression of FOTA from the first 3 posts they see.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Cross-post to TikTok and YouTube Shorts same day</div><div class="idea-item-how">Before uploading to Instagram, save the reel without a watermark using SnapTik (free website — paste the Instagram link, download clean). Upload natively to TikTok, then upload the same file to YouTube Shorts. 5 minutes of extra work per post, and the same 45-second clip can accumulate 3x the total views across three platforms. Never only post on one platform.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Tease every post on Stories 30 minutes before</div><div class="idea-item-how">30 minutes before your main feed post goes live, upload a blurred or cropped preview to Instagram Stories. Add text: "Dropping this in 30 mins — something you need to hear." This alerts your existing followers to go engage early, which boosts the post's initial signals to the algorithm. Strong early engagement in the first hour determines how broadly Instagram distributes your post.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Keep a "What Worked" caption archive</div><div class="idea-item-how">After every post that performs above average, copy the caption into a notes document titled "Captions That Worked — FOTA." Note the date, the post type, and the engagement metric. Review monthly. You'll find repeating patterns — certain opening lines, question types, or formats that consistently outperform. Reuse the structure with new content. Strong caption formulas work indefinitely when the content changes.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Go LIVE within 30 minutes of service ending</div><div class="idea-item-how">Schedule Instagram Live to start 20–30 minutes after service ends while people are still in the building. Walk through the church, show the post-service atmosphere, interview willing members on camera, and pray briefly for viewers who tune in. End with Sunday's key message point in 60 seconds. Live viewership peaks immediately after service when your audience is still in a worship mindset.</div></div></div>
     </div>
 
     <div class="idea-category" data-cat="formats">
       <div class="idea-category-label">🎭 Creative Formats to Try</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Expectation vs Reality — church life edition, use trending audio</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Green screen: pastor speaks directly in front of the scripture text</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Text-on-screen only reel — no face, no voice, just words on black</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Slow-mo worship moment with no music — just room ambience, very powerful</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>"Things I wish someone told me when I first came to FTA" — personal, high saves</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Countdown carousel: "7 reasons to be at FTA this Sunday" — swipe to reveal</div>
-      <div class="idea-item"><span class="idea-item-dot">▸</span>Side-by-side: FTA worship team 3 years ago vs today — shows growth visually</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Expectation vs Reality — church life edition</div><div class="idea-item-how">Script two brief scenes. Scene 1: a funny stereotype of what people expect church to be (stiff, boring, judgemental). Scene 2: the warm, real atmosphere at FOTA. Find a trending audio on Instagram Reels or TikTok — the sound does half the creative work. Keep Scene 1 under 5 seconds; Scene 2 gets the remaining time. This format disarms cynical outsiders better than any straightforward invite ever could.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Green screen — speaker stands inside the scripture</div><div class="idea-item-how">Download CapCut (free). Record your speaker against any plain wall — green not required. In CapCut: tap the clip → Effects → Remove BG. Import a clean image of the scripture text in large type as a new background layer behind the speaker. They appear to stand inside the Word. Render and export. Once you've done it once, the full process takes under 10 minutes. Striking visual with zero equipment cost.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Text-on-screen only reel — no filming needed</div><div class="idea-item-how">Open CapCut. New project, black background. Write a 5–7 line devotional or insight, one line per clip. Set each text clip to appear for 1.5–2 seconds. Add a slow atmospheric music track from YouTube Audio Library (free, search "ambient piano"). Export. No camera, no face, no setup. Production time: 15 minutes. Post on Tuesday — this is when motivational text content performs best across all platforms.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Slow-motion worship — silence or ambient sound only</div><div class="idea-item-how">Before service: go to your phone's camera settings and switch video to 120fps or 240fps (iPhone: Settings → Camera → Record Slo-mo; Android: Camera → Video → choose 120fps). Film 20–30 seconds of a worship moment. In CapCut or iMovie, slow the clip to 30–40% speed. Remove all original audio and add either silence or a very low ambient room tone. The slowed emotion without music creates a profoundly moving clip that earns the most saves of any FOTA format.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">"Things I wish someone told me when I first came to FOTA"</div><div class="idea-item-how">Write a list of 5–7 honest, relatable observations — things that surprised you positively, things that lowered your guard, things that kept you coming back. Record yourself or a FOTA member speaking each item to camera, one hard cut per line — no transitions, no music needed. Post on Tuesday or Wednesday. This format consistently gets the most saves of any list-based reel because people keep it to share with friends they're inviting.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Countdown carousel — 7 reasons to be at FOTA Sunday</div><div class="idea-item-how">In Canva, use portrait format (1080x1350px). Slide 1: bold number and topic ("7 Reasons to Be at FOTA This Sunday"). Slides 2–8: one reason each in large, readable type — keep each to one sentence. Consistent background colour per slide. Final slide: service time, address, and social handle. Export each page separately and upload as a carousel. Instagram's algorithm pushes carousels to non-followers more than any other format — they generate strong reach even from small accounts.</div></div></div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span><div class="idea-item-body"><div class="idea-item-title">Side-by-side then-and-now comparison</div><div class="idea-item-how">Source old FOTA photos or video clips from 3+ years ago — ask long-standing members and church leadership for archive material. In CapCut, create a split screen: old footage on the left, current footage on the right, a thin white line dividing them. No narration. Caption: "Look how far God has brought us." These posts generate the strongest emotional response from established members (who feel proud) and surprise new followers who didn't know the FOTA story.</div></div></div>
     </div>
 
     <div class="idea-no-results" id="noResults">No ideas match that search.</div>
@@ -1733,7 +1743,10 @@
     let anyVisible = false;
 
     items.forEach(item => {
-      const match = !q || item.textContent.toLowerCase().includes(q);
+      const title = item.querySelector('.idea-item-title');
+      const how = item.querySelector('.idea-item-how');
+      const text = ((title ? title.textContent : '') + ' ' + (how ? how.textContent : '')).toLowerCase();
+      const match = !q || text.includes(q);
       item.classList.toggle('hidden', !match);
       if (match) anyVisible = true;
     });
