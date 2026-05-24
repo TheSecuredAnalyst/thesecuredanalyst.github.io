@@ -1,1 +1,0 @@
-# thesecuredanalyst.github.io

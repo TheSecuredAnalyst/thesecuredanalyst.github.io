@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTA Digital Media · Content Schedule 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600;1,700&family=Barlow+Condensed:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0C0C0C;
+    --card-bg: #131313;
+    --card-hover: #191919;
+    --gold: #F5A623;
+    --gold-dim: rgba(245,166,35,0.15);
+    --white: #FFFFFF;
+    --off-white: #E8E4DC;
+    --gray: #666666;
+    --border: rgba(255,255,255,0.055);
+
+    /* Event palette */
+    --fathers:  #4AB8FF;
+    --prayer:   #C17FFF;
+    --teens:    #3FD68F;
+    --glory:    #FF8C42;
+    --hymnal:   #E8C96A;
+
+    /* Month label color per event */
+    --fathers-bg:  rgba(74,184,255,0.08);
+    --prayer-bg:   rgba(193,127,255,0.08);
+    --teens-bg:    rgba(63,214,143,0.08);
+    --glory-bg:    rgba(255,140,66,0.08);
+    --hymnal-bg:   rgba(232,201,106,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    font-family: 'Barlow', sans-serif;
+    color: var(--white);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Grain overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9000;
+  }
+
+  /* ═══════════════════ MASTHEAD ═══════════════════ */
+  .masthead {
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    min-height: 64px;
+  }
+  .masthead-church {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 20px 0;
+  }
+  .masthead-church strong {
+    color: var(--gold);
+    font-weight: 800;
+  }
+  .masthead-dept {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 6px 14px;
+    border-radius: 3px;
+  }
+
+  /* ═══════════════════ HERO ═══════════════════ */
+  .hero {
+    padding: 72px 40px 56px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px, 20vw, 280px);
+    color: rgba(255,255,255,0.018);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 10px;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 11vw, 150px);
+    line-height: 0.88;
+    letter-spacing: 3px;
+    position: relative;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(14px, 2.5vw, 22px);
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    margin-top: 18px;
+    position: relative;
+  }
+
+  /* ═══════════════════ EVENT STRIP ═══════════════════ */
+  .event-strip {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .event-strip::-webkit-scrollbar { display: none; }
+  .event-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .event-pill-icon { font-size: 16px; }
+  .event-pill-info {}
+  .event-pill-month {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+  .event-pill-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ═══════════════════ FLEXIBLE NOTICE ═══════════════════ */
+  .flex-notice {
+    padding: 14px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(245,166,35,0.04);
+  }
+  .flex-notice-icon { font-size: 14px; opacity: 0.7; }
+  .flex-notice-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  .flex-notice-text strong { color: var(--gold); }
+
+  /* ═══════════════════ TABS ═══════════════════ */
+  .tabs-wrap {
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(12,12,12,0.97);
+    backdrop-filter: blur(12px);
+  }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+  .tabs {
+    display: flex;
+    width: max-content;
+    min-width: 100%;
+  }
+  .tab {
+    padding: 18px 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    cursor: pointer;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: none;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab:hover { color: rgba(255,255,255,0.7); }
+  .tab.active { border-bottom-color: var(--gold); color: var(--white); }
+  .tab .tab-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ═══════════════════ SCHEDULE VIEW ═══════════════════ */
+  .schedule-view { display: none; }
+  .schedule-view.active { display: block; }
+
+  /* Week Header */
+  .week-header {
+    padding: 52px 40px 36px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .wh-left {}
+  .wh-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .wh-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 7vw, 90px);
+    line-height: 0.88;
+    letter-spacing: 2px;
+  }
+  .wh-theme {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    max-width: 260px;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* Event banner strip */
+  .event-banner {
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .event-banner-icon { font-size: 22px; }
+  .event-banner-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.4;
+  }
+  .event-banner-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+  .event-banner-month {
+    margin-left: auto;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 3px;
+  }
+
+  /* ═══════════════════ DAYS GRID ═══════════════════ */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+  }
+
+  .day-card {
+    background: var(--card-bg);
+    padding: 32px 28px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .day-card:hover { background: var(--card-hover); }
+
+  .day-accent {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .day-ghost {
+    position: absolute;
+    top: -8px; right: 10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 90px;
+    line-height: 1;
+    color: rgba(255,255,255,0.025);
+    pointer-events: none;
+    letter-spacing: 2px;
+  }
+
+  .day-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 5px;
+  }
+
+  .day-type {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .day-divider {
+    width: 32px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .day-items {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  .day-items li {
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.55;
+    padding: 7px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    color: rgba(255,255,255,0.78);
+    border-bottom: 1px solid rgba(255,255,255,0.035);
+  }
+  .day-items li:last-child { border-bottom: none; }
+  .bul { flex-shrink: 0; font-weight: 900; margin-top: 1px; }
+  .hl { font-style: italic; font-weight: 700; }
+
+  .day-platforms {
+    display: flex; flex-wrap: wrap; gap: 5px;
+    margin-top: 18px;
+  }
+  .plat {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .day-tip {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: rgba(245,166,35,0.05);
+    border-left: 2px solid rgba(245,166,35,0.4);
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.45);
+    font-style: italic;
+  }
+
+  /* ═══════════════════ FLEXIBLE OVERLAY ═══════════════════ */
+  .flex-overlay {
+    margin: 0;
+    padding: 24px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .flex-overlay-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .flex-overlay-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+  }
+  .flex-overlay-text strong { color: var(--white); }
+
+  /* ═══════════════════ FOOTER ═══════════════════ */
+  .footer {
+    padding: 60px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-left {}
+  .footer-church {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .footer-dept {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+  .footer-right {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .masthead { padding: 0 20px; }
+    .hero { padding: 52px 20px 40px; }
+    .event-strip { padding: 0; }
+    .week-header { padding: 36px 20px 28px; }
+    .wh-theme { text-align: left; }
+    .event-banner { padding: 16px 20px; }
+    .day-card { padding: 28px 20px 32px; }
+    .flex-overlay { padding: 20px; }
+    .flex-notice { padding: 14px 20px; }
+    .footer { padding: 40px 20px; }
+    .footer-right { text-align: left; }
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .days-grid .day-card {
+    animation: fadeUp 0.45s ease both;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-church">
+    <strong>Foundation of Truth Assembly</strong> &nbsp;·&nbsp; Abuja
+  </div>
+  <div class="masthead-dept">Digital Media Department</div>
+</div>
+
+<!-- ══════════════════════════════════ HERO -->
+<header class="hero">
+  <div class="hero-bg-text">FOTA</div>
+  <div class="hero-eyebrow">Content Strategy · 2025 · FTA Digital Media</div>
+  <h1>POST EVERY<br><em>DAY.</em></h1>
+  <p class="hero-sub">7 Days · 6 Events · Foundation of Truth · Abuja</p>
+</header>
+
+<!-- ══════════════════════════════════ EVENT STRIP -->
+<div class="event-strip">
+  <div class="event-pill">
+    <div class="event-pill-icon">🕊</div>
+    <div class="event-pill-info">
+      <div class="event-pill-month">June</div>
+      <div class="event-pill-name" style="color:var(--fathers)">Father's Day</div>
+    </div>
+  </div>
+  <div class="event-pill">
+    <div class="event-pill-icon">🔥</div>
+    <div class="event-pill-info">
+      <div class="event-pill-month">Mid-Year</div>
+      <div class="event-pill-name" style="color:var(--prayer)">Prayer Conference</div>
+    </div>
+  </div>
+  <div class="event-pill">
+    <div class="event-pill-icon">🌿</div>
+    <div class="event-pill-info">
+      <div class="event-pill-month">August</div>
+      <div class="event-pill-name" style="color:var(--teens)">Teens Camp</div>
+    </div>
+  </div>
+  <div class="event-pill">
+    <div class="event-pill-icon">👑</div>
+    <div class="event-pill-info">
+      <div class="event-pill-month">October</div>
+      <div class="event-pill-name" style="color:var(--glory)">Glory to Glory</div>
+    </div>
+  </div>
+  <div class="event-pill">
+    <div class="event-pill-icon">🎵</div>
+    <div class="event-pill-info">
+      <div class="event-pill-month">December</div>
+      <div class="event-pill-name" style="color:var(--hymnal)">Hymnal Sunday</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ FLEXIBLE NOTICE -->
+<div class="flex-notice">
+  <div class="flex-notice-icon">⚡</div>
+  <div class="flex-notice-text">
+    <strong>Flexible System:</strong> Run the Regular Week engine every week. Swap in any Event Week whenever that event arrives — no rebuilding needed.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showWeek('regular',this)">
+      <span class="tab-dot" style="background:var(--gold)"></span> Regular Week
+    </button>
+    <button class="tab" onclick="showWeek('fathers',this)">
+      <span class="tab-dot" style="background:var(--fathers)"></span> 🕊 June · Father's Day
+    </button>
+    <button class="tab" onclick="showWeek('prayer',this)">
+      <span class="tab-dot" style="background:var(--prayer)"></span> 🔥 Mid-Year · Prayer Conf
+    </button>
+    <button class="tab" onclick="showWeek('teens',this)">
+      <span class="tab-dot" style="background:var(--teens)"></span> 🌿 August · Teens Camp
+    </button>
+    <button class="tab" onclick="showWeek('glory',this)">
+      <span class="tab-dot" style="background:var(--glory)"></span> 👑 October · Glory to Glory
+    </button>
+    <button class="tab" onclick="showWeek('hymnal',this)">
+      <span class="tab-dot" style="background:var(--hymnal)"></span> 🎵 December · Hymnal Sunday
+    </button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     REGULAR WEEK
+══════════════════════════════════════════════════════════════ -->
+<div id="week-regular" class="schedule-view active">
+  <div class="week-header">
+    <div class="wh-left">
+      <div class="wh-label">Foundation of Truth Assembly · Every Week</div>
+      <div class="wh-title">THE WEEKLY<br><span style="color:var(--gold)">ENGINE</span></div>
+    </div>
+    <div class="wh-theme">One sermon. Seven days of content. Maximum reach from every Sunday.</div>
+  </div>
+
+  <div class="flex-overlay">
+    <div class="flex-overlay-badge" style="background:var(--gold-dim);color:var(--gold);">How it works</div>
+    <div class="flex-overlay-text">
+      This is your <strong>default weekly schedule</strong> — run it every week of the year. When an event week arrives, simply <strong>switch to that tab</strong> and run that schedule instead. Afterwards, return here. The engine never stops.
+    </div>
+  </div>
+
+  <div class="days-grid">
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--gold)"></div>
+      <div class="day-ghost">SUN</div>
+      <div class="day-name">Sunday</div>
+      <div class="day-type">SERVICE<br><span style="color:var(--gold)">RECAP</span></div>
+      <div class="day-divider"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--gold)">▸</span>Post a <span class="hl">30-sec sermon hook clip</span> within 2 hours of service</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Best crowd moments — people, hands raised, congregation shots</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Worship highlight: one powerful moment from FTA worship</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span><em>"You missed something powerful today. Don't miss next Sunday."</em></li>
+      </ul>
+      <div class="day-platforms">
+        <span class="plat">Instagram Reels</span><span class="plat">Facebook</span><span class="plat">YouTube Shorts</span><span class="plat">WhatsApp Status</span>
+      </div>
+      <div class="day-tip">💡 Post while people are still in the parking lot. Recency is the algorithm.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:#FF6B6B"></div>
+      <div class="day-ghost">MON</div>
+      <div class="day-name">Monday</div>
+      <div class="day-type">SERMON<br><span style="color:var(--gold)">REEL</span></div>
+      <div class="day-divider"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--gold)">▸</span>Best <span class="hl">30–60 second clip</span> from Sunday's FTA message</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Bold text hook burned into the first 2 seconds</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Full captions — 70% of viewers watch on mute</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>End with one punchy question to drive comments</li>
+      </ul>
+      <div class="day-platforms">
+        <span class="plat">Instagram Reels</span><span class="plat">TikTok</span><span class="plat">YouTube Shorts</span>
+      </div>
+      <div class="day-tip">💡 Monday is the #1 motivation-content day. The algorithm rewards early posting.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--fathers)"></div>
+      <div class="day-ghost">TUE</div>
+      <div class="day-name">Tuesday</div>
+      <div class="day-type">WORSHIP<br><span style="color:var(--gold)">MOMENT</span></div>
+      <div class="day-divider"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--gold)">▸</span>One powerful FTA worship moment — <span class="hl">slow edit, let it breathe</span></li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Hands raised, tears, close-ups — the atmosphere, not the performance</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Overlay a lyric or scripture from the song on screen</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Tag worship leader and musicians</li>
+      </ul>
+      <div class="day-platforms">
+        <span class="plat">Instagram Reels</span><span class="plat">Facebook Video</span><span class="plat">Stories</span>
+      </div>
+      <div class="day-tip">💡 Worship content gets the highest save rate — people replay during personal prayer time.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--prayer)"></div>
+      <div class="day-ghost">WED</div>
+      <div class="day-name">Wednesday</div>
+      <div class="day-type">FTA<br><span style="color:var(--gold)">ANNOUNCEMENTS</span></div>
+      <div class="day-divider"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--gold)">▸</span>What's happening at <span class="hl">Foundation of Truth this week?</span></li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Bible study, prayer night, youth service, special programmes</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Graphic post + short video invite from a leader</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Clear CTA: <em>"Register / DM us / Show up this week!"</em></li>
+      </ul>
+      <div class="day-platforms">
+        <span class="plat">Instagram Stories</span><span class="plat">Facebook</span><span class="plat">WhatsApp Broadcast</span>
+      </div>
+      <div class="day-tip">💡 Mid-week is when Abuja members are planning their week. Strike on Wednesday.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--teens)"></div>
+      <div class="day-ghost">THU</div>
+      <div class="day-name">Thursday</div>
+      <div class="day-type">WORSHIP<br><span style="color:var(--gold)">RECAP 2</span></div>
+      <div class="day-divider"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--gold)">▸</span>Another angle. <span class="hl">Different song</span> from Sunday's FTA service</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Slower, more cinematic edit than Tuesday's post</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Different moment — altar response, congregation, musicians</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>No text overlay — let the atmosphere carry it</li>
+      </ul>
+      <div class="day-platforms">
+        <span class="plat">Instagram Reels</span><span class="plat">YouTube Shorts</span><span class="plat">TikTok</span>
+      </div>
+      <div class="day-tip">💡 Two worship posts/week doubles your reach in the spiritually hungry segment.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--glory)"></div>
+      <div class="day-ghost">FRI</div>
+      <div class="day-name">Friday</div>
+      <div class="day-type">SERMON<br><span style="color:var(--gold)">RECAP 2</span></div>
+      <div class="day-divider"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--gold)">▸</span>Return to Sunday's message — <span class="hl">different point, new clip</span></li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Fresh hook, fresh angle, different takeaway</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Always end Friday: <em>"Join us <span class="hl">this Sunday</span> at Foundation of Truth"</em></li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Drop a question to drive comment engagement</li>
+      </ul>
+      <div class="day-platforms">
+        <span class="plat">Instagram Reels</span><span class="plat">Facebook</span><span class="plat">YouTube Shorts</span>
+      </div>
+      <div class="day-tip">💡 Friday mood = highest church invite receptivity. People are open and planning.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--hymnal)"></div>
+      <div class="day-ghost">SAT</div>
+      <div class="day-name">Saturday</div>
+      <div class="day-type">TRENDY<br><span style="color:var(--gold)">+ HUMAN POST</span></div>
+      <div class="day-divider"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--gold)">▸</span>Trending audio + <span class="hl">relatable FTA church life humor</span></li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Behind-the-scenes: choir practice, media team setup, prayer team</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Light, human, funny — this breaks the serious content cycle</li>
+        <li><span class="bul" style="color:var(--gold)">▸</span>Soft Sunday invite at the end — never hard sell on Saturday</li>
+      </ul>
+      <div class="day-platforms">
+        <span class="plat">TikTok</span><span class="plat">Instagram Reels</span><span class="plat">Stories</span>
+      </div>
+      <div class="day-tip">💡 Saturday builds the human brand. Abuja people follow humans, not institutions.</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     FATHER'S DAY WEEK — JUNE
+══════════════════════════════════════════════════════════════ -->
+<div id="week-fathers" class="schedule-view">
+  <div class="event-banner" style="background:var(--fathers-bg);">
+    <div class="event-banner-icon">🕊</div>
+    <div>
+      <div class="event-banner-label">Replace Regular Week With This</div>
+      <div class="event-banner-name" style="color:var(--fathers)">Father's Day Week · "Rooted & Rising"</div>
+    </div>
+    <div class="event-banner-month" style="background:var(--fathers-bg);color:var(--fathers);">JUNE</div>
+  </div>
+  <div class="week-header">
+    <div class="wh-left">
+      <div class="wh-label">June · FTA Father's Day Campaign</div>
+      <div class="wh-title">THE WEEK<br><span style="color:var(--fathers)">DADS</span><br>SHOW UP</div>
+    </div>
+    <div class="wh-theme">Speak to men, sons, daughters and wives — all honoring fathers in Abuja.</div>
+  </div>
+  <div class="flex-overlay">
+    <div class="flex-overlay-badge" style="background:var(--fathers-bg);color:var(--fathers);">Flexible tip</div>
+    <div class="flex-overlay-text">Run this schedule the <strong>week of Father's Day Sunday</strong>. The week before, use Regular Week but seed Father's Day teasers on Wednesday–Saturday.</div>
+  </div>
+
+  <div class="days-grid">
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--fathers)"></div>
+      <div class="day-ghost">SUN</div>
+      <div class="day-name">Sunday</div>
+      <div class="day-type">FATHER'S DAY<br><span style="color:var(--fathers)">SUNDAY LIVE</span></div>
+      <div class="day-divider" style="background:var(--fathers)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Clip of <span class="hl">all FTA fathers standing to be prayed over</span></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>"Man of the Year" award moment — post within 30 mins</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Caption: <em>"To every father who showed up — Foundation of Truth sees you."</em></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Tag 3 fathers challenge in the comments</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">Facebook Live Clip</span><span class="plat">WhatsApp</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--fathers)"></div>
+      <div class="day-ghost">MON</div>
+      <div class="day-name">Monday</div>
+      <div class="day-type">MEN'S DOC<br><span style="color:var(--fathers)">DROP 1</span></div>
+      <div class="day-divider" style="background:var(--fathers)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Episode 1: <em>"Men Who Moved Mountains"</em> — FTA men, raw 60-sec reel</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Real man from Foundation of Truth — one defining moment of faith</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>No script. No set. Phone quality is fine — <span class="hl">authenticity wins</span></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Ask: <em>"What moment defined you as a man? Reply below."</em></li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">TikTok</span><span class="plat">YouTube Shorts</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--fathers)"></div>
+      <div class="day-ghost">TUE</div>
+      <div class="day-name">Tuesday</div>
+      <div class="day-type">"THEN &<br><span style="color:var(--fathers)">NOW" TRIBUTE</span></div>
+      <div class="day-divider" style="background:var(--fathers)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Post first 3 childhood + current photo tributes from FTA members</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Template: <em>"Then he taught me to [verb]. Now I understand why."</em></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Ask followers to DM theirs — <span class="hl">feature a new one every day</span></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>UGC machine — congregation generates your content</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Feed</span><span class="plat">Facebook</span><span class="plat">Stories</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--fathers)"></div>
+      <div class="day-ghost">WED</div>
+      <div class="day-name">Wednesday</div>
+      <div class="day-type">FATHER CODES<br><span style="color:var(--fathers)">PODCAST EP.1</span></div>
+      <div class="day-divider" style="background:var(--fathers)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Release Ep. 1: <em>"Fatherhood in the Digital Age"</em> — FTA leaders talking</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>60-sec audiogram clip with waveform for Instagram</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Full episode link in bio + WhatsApp broadcast</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Best quote from episode as standalone graphic</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Spotify/Podcast</span><span class="plat">Instagram Stories</span><span class="plat">WhatsApp</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--fathers)"></div>
+      <div class="day-ghost">THU</div>
+      <div class="day-name">Thursday</div>
+      <div class="day-type">"A LETTER TO<br><span style="color:var(--fathers)">MY FATHER"</span></div>
+      <div class="day-divider" style="background:var(--fathers)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--fathers)">▸</span>First open letter published — one to a <span class="hl">living dad</span>, one to a dad gone</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>60-sec voice-over reel — letter read aloud over photos</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Blog post linked in bio for full text</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Ask: <em>"What would your letter say? Type the first line below."</em></li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">Facebook</span><span class="plat">FTA Blog</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--fathers)"></div>
+      <div class="day-ghost">FRI</div>
+      <div class="day-name">Friday</div>
+      <div class="day-type">MEN'S BRUNCH<br><span style="color:var(--fathers)">INVITE PUSH</span></div>
+      <div class="day-divider" style="background:var(--fathers)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Leader video: <em>"Men — this Sunday at FTA is for you. Come."</em></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Event graphic + countdown sticker on Stories</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Drop the "What Kind of Father Are You?" quiz link in bio</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>WhatsApp broadcast blast to all FTA groups</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Stories</span><span class="plat">WhatsApp</span><span class="plat">Facebook</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--fathers)"></div>
+      <div class="day-ghost">SAT</div>
+      <div class="day-name">Saturday</div>
+      <div class="day-type">MEN'S DOC<br><span style="color:var(--fathers)">DROP 2 + HYPE</span></div>
+      <div class="day-divider" style="background:var(--fathers)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Second FTA "Men Who Moved Mountains" episode drops</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Behind-scenes: church setup for Father's Day Sunday</li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Teaser: <em>"Tomorrow is going to be powerful. Bring your dad."</em></li>
+        <li><span class="bul" style="color:var(--fathers)">▸</span>Service time + address reminder — bold graphic</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">TikTok</span><span class="plat">WhatsApp Status</span></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PRAYER CONFERENCE — MID-YEAR
+══════════════════════════════════════════════════════════════ -->
+<div id="week-prayer" class="schedule-view">
+  <div class="event-banner" style="background:var(--prayer-bg);">
+    <div class="event-banner-icon">🔥</div>
+    <div>
+      <div class="event-banner-label">Replace Regular Week With This</div>
+      <div class="event-banner-name" style="color:var(--prayer)">Mid-Year Prayer Conference · "Unfinished Business"</div>
+    </div>
+    <div class="event-banner-month" style="background:var(--prayer-bg);color:var(--prayer);">MID-YEAR</div>
+  </div>
+  <div class="week-header">
+    <div class="wh-left">
+      <div class="wh-label">Mid-Year · FTA Prayer Conference</div>
+      <div class="wh-title">THE WEEK<br><span style="color:var(--prayer)">HEAVEN</span><br>OPENS</div>
+    </div>
+    <div class="wh-theme">Maximum urgency. Maximum fire. Create holy hunger across Abuja.</div>
+  </div>
+  <div class="flex-overlay">
+    <div class="flex-overlay-badge" style="background:var(--prayer-bg);color:var(--prayer);">Flexible tip</div>
+    <div class="flex-overlay-text">Start the <strong>21-Day Prayer Challenge</strong> three weeks before conference week. Each day, release a prayer prompt. Conference week is when all that momentum explodes. <strong>Keep running testimonies for 4 weeks after.</strong></div>
+  </div>
+
+  <div class="days-grid">
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--prayer)"></div>
+      <div class="day-ghost">SUN</div>
+      <div class="day-name">Sunday</div>
+      <div class="day-type">CONFERENCE<br><span style="color:var(--prayer)">LAUNCH SUNDAY</span></div>
+      <div class="day-divider" style="background:var(--prayer)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Pastor announces conference from FTA pulpit — capture everything</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Post clip: <em>"Unfinished Business begins at Foundation of Truth."</em></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Drop registration link across all platforms simultaneously</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Release Day 1 of 21-day prayer challenge on WhatsApp + Stories</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">All Platforms</span><span class="plat">WhatsApp Broadcast</span><span class="plat">Email</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--prayer)"></div>
+      <div class="day-ghost">MON</div>
+      <div class="day-name">Monday</div>
+      <div class="day-type">PRAYER<br><span style="color:var(--prayer)">CHALLENGE + WORD</span></div>
+      <div class="day-divider" style="background:var(--prayer)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--prayer)">▸</span>60-sec prayer prompt reel — theme: <span class="hl">Identity in God</span></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Ask followers to post their prayer spot with <span class="hl">#FTAUnfinishedBusiness</span></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Prophetic word graphic — dark atmospheric design, bold scripture</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Repost best prayer spot submissions to FTA Stories</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram</span><span class="plat">TikTok</span><span class="plat">Facebook</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--prayer)"></div>
+      <div class="day-ghost">TUE</div>
+      <div class="day-name">Tuesday</div>
+      <div class="day-type">MIDNIGHT<br><span style="color:var(--prayer)">PRAYER DROP</span></div>
+      <div class="day-divider" style="background:var(--prayer)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Release first <span class="hl">Midnight Prayers audio</span> — 10-min guided prayer</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Schedule post for 11:58 PM: <em>"Pray with FTA at midnight tonight"</em></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Atmospheric 60-sec promo reel — dark, moody, holy</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Podcast / Spotify link in bio</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Podcast</span><span class="plat">WhatsApp Audio</span><span class="plat">Instagram Stories</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--prayer)"></div>
+      <div class="day-ghost">WED</div>
+      <div class="day-name">Wednesday</div>
+      <div class="day-type">SPEAKER<br><span style="color:var(--prayer)">REVEAL</span></div>
+      <div class="day-divider" style="background:var(--prayer)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Bold graphic reveal — speaker name + title only. Let anticipation build.</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>60-sec clip of speaker's past preaching — let the anointing sell it</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Registration countdown: <span class="hl">X spots remaining / X days left</span></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Repost prayer challenge submissions — show community momentum</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Feed</span><span class="plat">Facebook</span><span class="plat">WhatsApp</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--prayer)"></div>
+      <div class="day-ghost">THU</div>
+      <div class="day-name">Thursday</div>
+      <div class="day-type">PAST<br><span style="color:var(--prayer)">TESTIMONY</span></div>
+      <div class="day-divider" style="background:var(--prayer)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Post a past FTA prayer conference testimony — <span class="hl">build faith for this one</span></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>90-sec video: FTA member speaking directly to camera, no filter</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Caption: <em>"What God did last time. Come see what He does THIS time."</em></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Prayer request form link — collect requests before conference</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">YouTube</span><span class="plat">Facebook</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--prayer)"></div>
+      <div class="day-ghost">FRI</div>
+      <div class="day-name">Friday</div>
+      <div class="day-type">CONFERENCE<br><span style="color:var(--prayer)">EVE PUSH</span></div>
+      <div class="day-divider" style="background:var(--prayer)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Dramatic countdown graphic: <em>"Tomorrow. 7PM. Foundation of Truth, Abuja."</em></li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Pastor personal video — raw, urgent, straight from the heart</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Conference anthem snippet — 30-sec hook to create atmosphere</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Final registration blast — WhatsApp + email</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">All Platforms</span><span class="plat">WhatsApp</span><span class="plat">Email Blast</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--prayer)"></div>
+      <div class="day-ghost">SAT</div>
+      <div class="day-name">Saturday</div>
+      <div class="day-type">LIVE<br><span style="color:var(--prayer)">CONFERENCE DAY</span></div>
+      <div class="day-divider" style="background:var(--prayer)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--prayer)">▸</span><span class="hl">Stream LIVE</span> on YouTube + Facebook + Instagram at once</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>FTA Digital Media team posts real-time highlights every 30 minutes</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Capture the altar call — most powerful clip of the entire event</li>
+        <li><span class="bul" style="color:var(--prayer)">▸</span>Post atmosphere reels — crowd in prayer, fire moments, worship</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">YouTube Live</span><span class="plat">Facebook Live</span><span class="plat">Instagram Live</span></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     TEENS CAMP — AUGUST
+══════════════════════════════════════════════════════════════ -->
+<div id="week-teens" class="schedule-view">
+  <div class="event-banner" style="background:var(--teens-bg);">
+    <div class="event-banner-icon">🌿</div>
+    <div>
+      <div class="event-banner-label">Replace Regular Week With This</div>
+      <div class="event-banner-name" style="color:var(--teens)">Teens Camp Week · "Unfiltered"</div>
+    </div>
+    <div class="event-banner-month" style="background:var(--teens-bg);color:var(--teens);">AUGUST</div>
+  </div>
+  <div class="week-header">
+    <div class="wh-left">
+      <div class="wh-label">August · FTA Teens Camp</div>
+      <div class="wh-title">THE WEEK<br><span style="color:var(--teens)">TEENS</span><br>GO WILD</div>
+    </div>
+    <div class="wh-theme">Raw. Youth-led. Authentic. Let FTA teens create the content this week.</div>
+  </div>
+  <div class="flex-overlay">
+    <div class="flex-overlay-badge" style="background:var(--teens-bg);color:var(--teens);">Flexible tip</div>
+    <div class="flex-overlay-text">Run the <strong>30-day hype countdown</strong> from one month out (regular week Wednesday/Saturday slots). This event week is camp week itself. Release the <strong>afterfilm 2 weeks after</strong> camp — not immediately.</div>
+  </div>
+
+  <div class="days-grid">
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--teens)"></div>
+      <div class="day-ghost">SUN</div>
+      <div class="day-name">Sunday</div>
+      <div class="day-type">CAMP LAUNCH<br><span style="color:var(--teens)">SUNDAY</span></div>
+      <div class="day-divider" style="background:var(--teens)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--teens)">▸</span>FTA teens officially announced in service — capture their reactions</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>High-energy promo reel: past camp footage + this year's "Unfiltered" theme</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Countdown graphic: <em>"FTA Camp starts in X days."</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Registration link goes LIVE across all platforms at once</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">TikTok</span><span class="plat">WhatsApp</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--teens)"></div>
+      <div class="day-ghost">MON</div>
+      <div class="day-name">Monday</div>
+      <div class="day-type">VOX POP<br><span style="color:var(--teens)">EPISODE 1</span></div>
+      <div class="day-divider" style="background:var(--teens)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--teens)">▸</span>"Ask A Teen" Ep.1 — <em>What do you wish church understood about you?</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>4–5 FTA teens. Fast cuts. No adults speaking. Just them.</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Raw and unscripted — authenticity is the algorithm</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Tag teens who appear — they'll share to all their followers</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">TikTok</span><span class="plat">Instagram Reels</span><span class="plat">YouTube Shorts</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--teens)"></div>
+      <div class="day-ghost">TUE</div>
+      <div class="day-name">Tuesday</div>
+      <div class="day-type">IDENTITY<br><span style="color:var(--teens)">SERIES EP.1</span></div>
+      <div class="day-divider" style="background:var(--teens)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--teens)">▸</span>Ep.1: <em>"Who Am I?" — Worth</em> — relatable young FTA leader</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>5 minutes max. Shot like YouTube, not church.</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Post 60-sec clip on Reels. Full video link in bio.</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Caption: <em>"If you've ever felt like you're not enough — this is for you."</em></li>
+      </ul>
+      <div class="day-platforms"><span class="plat">YouTube</span><span class="plat">Instagram Reels</span><span class="plat">TikTok</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--teens)"></div>
+      <div class="day-ghost">WED</div>
+      <div class="day-name">Wednesday</div>
+      <div class="day-type">PARENT<br><span style="color:var(--teens)">CONTENT DAY</span></div>
+      <div class="day-divider" style="background:var(--teens)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--teens)">▸</span>Blog: <em>"Why Your Teen Needs FTA Camp This August"</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Facebook-targeted post for Abuja parents — stats on teen faith</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Parent testimonial: <em>"What FTA camp did for my child last year"</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Registration deadline reminder: <span class="hl">Limited spaces. Act now.</span></li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Facebook</span><span class="plat">FTA Blog</span><span class="plat">Email Newsletter</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--teens)"></div>
+      <div class="day-ghost">THU</div>
+      <div class="day-name">Thursday</div>
+      <div class="day-type">FOMO<br><span style="color:var(--teens)">HYPE REEL</span></div>
+      <div class="day-divider" style="background:var(--teens)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--teens)">▸</span>Fast-cut FOMO reel: <em>"This is what you miss if you don't come"</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Past FTA camp footage — worship, adventures, friends, food, laughs</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Trending audio — match the energy of their world</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>End card: FTA Camp dates + registration link</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">TikTok</span><span class="plat">Instagram Reels</span><span class="plat">YouTube Shorts</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--teens)"></div>
+      <div class="day-ghost">FRI</div>
+      <div class="day-name">Friday</div>
+      <div class="day-type">CAMP EVE<br><span style="color:var(--teens)">COUNTDOWN</span></div>
+      <div class="day-divider" style="background:var(--teens)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--teens)">▸</span>24-hour graphic: <em>"WE LEAVE FOR FTA CAMP TOMORROW."</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Leader packing video — fun, energetic, relatable</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Ask: <em>"What are you most excited for? Reply below."</em></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Final logistics post — location, time, what to bring</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Stories</span><span class="plat">TikTok</span><span class="plat">WhatsApp</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--teens)"></div>
+      <div class="day-ghost">SAT</div>
+      <div class="day-name">Saturday</div>
+      <div class="day-type">LIVE CAMP<br><span style="color:var(--teens)">DIARY</span></div>
+      <div class="day-divider" style="background:var(--teens)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--teens)">▸</span>Teen volunteers post raw behind-the-scenes <span class="hl">every 2–3 hours</span></li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Arrival, first worship, group shots, candid moments, food</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Abuja parents watching — emotional connection builds church trust</li>
+        <li><span class="bul" style="color:var(--teens)">▸</span>Non-attending teens feel FOMO — <span class="hl">next year's registrations start now</span></li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Stories</span><span class="plat">TikTok LIVE</span><span class="plat">Facebook</span></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     GLORY TO GLORY — OCTOBER
+══════════════════════════════════════════════════════════════ -->
+<div id="week-glory" class="schedule-view">
+  <div class="event-banner" style="background:var(--glory-bg);">
+    <div class="event-banner-icon">👑</div>
+    <div>
+      <div class="event-banner-label">Replace Regular Week With This</div>
+      <div class="event-banner-name" style="color:var(--glory)">Glory to Glory · "Still Standing, Still Rising"</div>
+    </div>
+    <div class="event-banner-month" style="background:var(--glory-bg);color:var(--glory);">OCTOBER</div>
+  </div>
+  <div class="week-header">
+    <div class="wh-left">
+      <div class="wh-label">October · FTA Glory to Glory</div>
+      <div class="wh-title">THE WEEK<br><span style="color:var(--glory)">GLORY</span><br>FALLS</div>
+    </div>
+    <div class="wh-theme">Cinematic. Celebratory. Epic. The celebration event of the year at FTA.</div>
+  </div>
+  <div class="flex-overlay">
+    <div class="flex-overlay-badge" style="background:var(--glory-bg);color:var(--glory);">Flexible tip</div>
+    <div class="flex-overlay-text">Run testimony drops <strong>throughout October</strong> — one per day or every 2 days. The <strong>year-in-review film</strong> can cover January–September (released at the event). This then feeds into December's Hymnal Sunday momentum.</div>
+  </div>
+
+  <div class="days-grid">
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--glory)"></div>
+      <div class="day-ghost">SUN</div>
+      <div class="day-name">Sunday</div>
+      <div class="day-type">GLORY WEEK<br><span style="color:var(--glory)">LAUNCH</span></div>
+      <div class="day-divider" style="background:var(--glory)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor announces Glory to Glory from FTA pulpit — capture it all</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Event promo reel drops: trailer-style, cinematic, epic music</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Begin the <span class="hl">"My God Moment" testimony series</span> — Day 1</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Registration / event details link goes live on all platforms</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">Facebook</span><span class="plat">YouTube</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--glory)"></div>
+      <div class="day-ghost">MON</div>
+      <div class="day-name">Monday</div>
+      <div class="day-type">TESTIMONY<br><span style="color:var(--glory)">FLOOD</span></div>
+      <div class="day-divider" style="background:var(--glory)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--glory)">▸</span>Day 2 of <em>"My God Moment"</em> — FTA member video testimony</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Post as Reel + quote graphic — two pieces of content, one story</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Caption: <em>"2025 has not been quiet at Foundation of Truth."</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Ask followers to submit their God moment — DM or form</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Feed</span><span class="plat">Facebook</span><span class="plat">YouTube Shorts</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--glory)"></div>
+      <div class="day-ghost">TUE</div>
+      <div class="day-name">Tuesday</div>
+      <div class="day-type">YEAR-IN-REVIEW<br><span style="color:var(--glory)">FILM TEASER</span></div>
+      <div class="day-divider" style="background:var(--glory)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--glory)">▸</span>60-sec teaser of <em>"2025: The Year God Showed Up at FTA"</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Quick flashes of best moments Jan–September — don't show too much</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Caption: <em>"The full story drops at Glory to Glory. Be in that room."</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Full film plays IN the event — not released online until after</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">YouTube</span><span class="plat">Facebook</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--glory)"></div>
+      <div class="day-ghost">WED</div>
+      <div class="day-name">Wednesday</div>
+      <div class="day-type">CONFESSIONS<br><span style="color:var(--glory)">CHALLENGE</span></div>
+      <div class="day-divider" style="background:var(--glory)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--glory)">▸</span>Launch <em>"Confessions of Faith"</em> UGC challenge — FTA brand hashtag</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor records first: bold faith declaration over FTA's next season</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Hashtag: <span class="hl">#FTAGloryToGlory</span> — repost every submission</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Each repost brings in the submitter's entire follower network</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">TikTok Challenge</span><span class="plat">Instagram Reels</span><span class="plat">Facebook</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--glory)"></div>
+      <div class="day-ghost">THU</div>
+      <div class="day-name">Thursday</div>
+      <div class="day-type">TESTIMONY<br><span style="color:var(--glory)">DAY 4</span></div>
+      <div class="day-divider" style="background:var(--glory)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--glory)">▸</span>Continue testimony flood — healing, provision, marriage, career</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Mix formats: video, voice note audiogram, quote card</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Event countdown: <em>"X days to Glory to Glory — Foundation of Truth"</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Invite push: <em>"Bring the person who needs to hear a miracle story"</em></li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Feed</span><span class="plat">WhatsApp</span><span class="plat">Facebook</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--glory)"></div>
+      <div class="day-ghost">FRI</div>
+      <div class="day-name">Friday</div>
+      <div class="day-type">GLORY EVENT<br><span style="color:var(--glory)">FINAL INVITE</span></div>
+      <div class="day-divider" style="background:var(--glory)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--glory)">▸</span>Cinematic final event promo — trailer-style. Maximum impact.</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Pastor: <em>"Don't end this season without being in that room at FTA."</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Final registration / ticket push — create urgency with numbers</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>WhatsApp + email blast — every FTA member reminded twice</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">All Platforms</span><span class="plat">WhatsApp Blast</span><span class="plat">Email</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--glory)"></div>
+      <div class="day-ghost">SAT</div>
+      <div class="day-name">Saturday</div>
+      <div class="day-type">GLORY TO GLORY<br><span style="color:var(--glory)">LIVE EVENT</span></div>
+      <div class="day-divider" style="background:var(--glory)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--glory)">▸</span><span class="hl">Full multi-camera broadcast</span> — stream on all platforms at once</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>FTA Digital Media posts live highlights every 30 minutes</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Year-in-review film plays in venue — release online day after</li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Capture the climax moment — altar, worship peak, key declaration</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">YouTube Live</span><span class="plat">Facebook Live</span><span class="plat">Instagram Live</span></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     HYMNAL SUNDAY — DECEMBER
+══════════════════════════════════════════════════════════════ -->
+<div id="week-hymnal" class="schedule-view">
+  <div class="event-banner" style="background:var(--hymnal-bg);">
+    <div class="event-banner-icon">🎵</div>
+    <div>
+      <div class="event-banner-label">Replace Regular Week With This</div>
+      <div class="event-banner-name" style="color:var(--hymnal)">Hymnal Sunday · "Ancient Songs, Living God"</div>
+    </div>
+    <div class="event-banner-month" style="background:var(--hymnal-bg);color:var(--hymnal);">DECEMBER</div>
+  </div>
+  <div class="week-header">
+    <div class="wh-left">
+      <div class="wh-label">December · FTA Hymnal Sunday</div>
+      <div class="wh-title">THE WEEK<br><span style="color:var(--hymnal)">ANCIENT</span><br>SOUNDS</div>
+    </div>
+    <div class="wh-theme">Reverence. Beauty. Heritage. Introduce a new generation to the old paths at FTA.</div>
+  </div>
+  <div class="flex-overlay">
+    <div class="flex-overlay-badge" style="background:var(--hymnal-bg);color:var(--hymnal);">Flexible tip</div>
+    <div class="flex-overlay-text">December already rides high on FTA momentum from October's Glory to Glory. <strong>Hymnal Sunday content bridges the year's end with deep reverence.</strong> Tease it from the first week of December. The Sunday itself becomes the year's most shareable worship moment.</div>
+  </div>
+
+  <div class="days-grid">
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--hymnal)"></div>
+      <div class="day-ghost">SUN</div>
+      <div class="day-name">Sunday</div>
+      <div class="day-type">HYMNAL SUNDAY<br><span style="color:var(--hymnal)">LIVE SERVICE</span></div>
+      <div class="day-divider" style="background:var(--hymnal)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Stream full service LIVE — this is the most shareable Sunday of the year</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Clip the most beautiful hymn moment — congregation fully engaged</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Caption: <em>"Ancient words. Living God. Foundation of Truth, Abuja."</em></li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Post immediately with a hymn lyric graphic — deeply shareable</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">YouTube Live</span><span class="plat">Facebook Live</span><span class="plat">Instagram Reels</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--hymnal)"></div>
+      <div class="day-ghost">MON</div>
+      <div class="day-name">Monday</div>
+      <div class="day-type">HYMN<br><span style="color:var(--hymnal)">STORY SERIES</span></div>
+      <div class="day-divider" style="background:var(--hymnal)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>60-sec reel: <em>The origin story of a classic hymn</em> — e.g. "Amazing Grace"</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Who wrote it? Under what circumstances? What suffering or miracle?</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Pair with FTA choir singing a snippet of that hymn</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>This format is extremely shareable — history + music + faith</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">YouTube Shorts</span><span class="plat">TikTok</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--hymnal)"></div>
+      <div class="day-ghost">TUE</div>
+      <div class="day-name">Tuesday</div>
+      <div class="day-type">CHOIR<br><span style="color:var(--hymnal)">SPOTLIGHT</span></div>
+      <div class="day-divider" style="background:var(--hymnal)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Feature 2–3 FTA choir members: <em>"Why this hymn means everything to me"</em></li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>30-second personal story from each — raw, emotional, no script</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Tag each person — their networks see the FTA brand</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Background: slow cinematic clip of Sunday's choir performance</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">Facebook</span><span class="plat">Stories</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--hymnal)"></div>
+      <div class="day-ghost">WED</div>
+      <div class="day-name">Wednesday</div>
+      <div class="day-type">"DID YOU KNOW?"<br><span style="color:var(--hymnal)">HYMN FACTS</span></div>
+      <div class="day-divider" style="background:var(--hymnal)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Surprising facts about hymns your congregation sang on Sunday</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Carousel post: "5 things you didn't know about [Hymn Name]"</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Educational content performs extremely well in December — people share with family</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>End with: <em>"Which hymn shaped your faith? Drop it below."</em></li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Carousel</span><span class="plat">Facebook</span><span class="plat">WhatsApp</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--hymnal)"></div>
+      <div class="day-ghost">THU</div>
+      <div class="day-name">Thursday</div>
+      <div class="day-type">GENERATION<br><span style="color:var(--hymnal)">BRIDGE</span></div>
+      <div class="day-divider" style="background:var(--hymnal)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Video: <span class="hl">FTA elder + FTA youth singing the same hymn</span> — side by side</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Split screen or duet format — visually powerful, deeply shareable</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Caption: <em>"Different generations. Same God. Same song."</em></li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>This single reel can bring in thousands of new eyes on FTA</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">Instagram Reels</span><span class="plat">TikTok</span><span class="plat">YouTube Shorts</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--hymnal)"></div>
+      <div class="day-ghost">FRI</div>
+      <div class="day-name">Friday</div>
+      <div class="day-type">YEAR-END<br><span style="color:var(--hymnal)">WORD + INVITE</span></div>
+      <div class="day-divider" style="background:var(--hymnal)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Pastor releases the <span class="hl">Prophetic Word heading into 2026</span></li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Professionally shot — best lighting, best audio of the year</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Release on YouTube + all platforms — this video carries all of January</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>WhatsApp + email blast to all FTA contacts</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">YouTube</span><span class="plat">Instagram IGTV</span><span class="plat">WhatsApp Broadcast</span></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-accent" style="background:var(--hymnal)"></div>
+      <div class="day-ghost">SAT</div>
+      <div class="day-name">Saturday</div>
+      <div class="day-type">HYMN<br><span style="color:var(--hymnal)">CHALLENGE UGC</span></div>
+      <div class="day-divider" style="background:var(--hymnal)"></div>
+      <ul class="day-items">
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Launch <span class="hl">#FTAHymnalChallenge</span> — sing or hum your favourite hymn</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>FTA Digital Media team posts first — then challenge the congregation</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Repost every submission — creates a beautiful flood of FTA UGC</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Compilations of submissions make next week's content automatically</li>
+      </ul>
+      <div class="day-platforms"><span class="plat">TikTok Challenge</span><span class="plat">Instagram Reels</span><span class="plat">Facebook</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-left">
+    <div class="footer-church">Foundation of Truth Assembly</div>
+    <div class="footer-dept">Digital Media Department · Abuja</div>
+  </div>
+  <div class="footer-right">
+    Post every day.<br>
+    Build every week.<br>
+    Grow every month.<br>
+    <span style="color:var(--gold)">For the Kingdom.</span>
+  </div>
+</footer>
+
+<script>
+  function showWeek(id, btn) {
+    document.querySelectorAll('.schedule-view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('week-' + id).classList.add('active');
+    btn.classList.add('active');
+
+    // Scroll to top of content
+    document.querySelector('.tabs-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Re-trigger card animations
+    const cards = document.querySelectorAll('#week-' + id + ' .day-card');
+    cards.forEach((card, i) => {
+      card.style.animation = 'none';
+      void card.offsetHeight;
+      card.style.animation = `fadeUp 0.45s ease ${i * 0.06}s both`;
+    });
+  }
+</script>
+
+</body>
+</html>
