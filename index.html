@@ -16,15 +16,14 @@
     --off-white: #E8E4DC;
     --gray: #666666;
     --border: rgba(255,255,255,0.055);
+    --sidebar-w: 248px;
 
-    /* Event palette */
     --fathers:  #4AB8FF;
     --prayer:   #C17FFF;
     --teens:    #3FD68F;
     --glory:    #FF8C42;
     --hymnal:   #E8C96A;
 
-    /* Month label color per event */
     --fathers-bg:  rgba(74,184,255,0.08);
     --prayer-bg:   rgba(193,127,255,0.08);
     --teens-bg:    rgba(63,214,143,0.08);
@@ -42,7 +41,6 @@
     min-height: 100vh;
   }
 
-  /* Grain overlay */
   body::after {
     content: '';
     position: fixed; inset: 0;
@@ -52,187 +50,163 @@
     z-index: 9000;
   }
 
-  /* ═══════════════════ MASTHEAD ═══════════════════ */
-  .masthead {
-    border-bottom: 1px solid var(--border);
-    padding: 0 40px;
+  /* ═══════════════════ APP LAYOUT ═══════════════════ */
+  .app-layout {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    min-height: 64px;
-  }
-  .masthead-church {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gray);
-    padding: 20px 0;
-  }
-  .masthead-church strong {
-    color: var(--gold);
-    font-weight: 800;
-  }
-  .masthead-dept {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 6px 14px;
-    border-radius: 3px;
+    min-height: 100vh;
   }
 
-  /* ═══════════════════ HERO ═══════════════════ */
-  .hero {
-    padding: 72px 40px 56px;
-    text-align: center;
-    position: relative;
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .hero-bg-text {
-    position: absolute;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(100px, 20vw, 280px);
-    color: rgba(255,255,255,0.018);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    pointer-events: none;
-    letter-spacing: 10px;
-  }
-  .hero-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 18px;
-    position: relative;
-  }
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 11vw, 150px);
-    line-height: 0.88;
-    letter-spacing: 3px;
-    position: relative;
-  }
-  .hero h1 em { color: var(--gold); font-style: normal; }
-  .hero-sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(14px, 2.5vw, 22px);
-    font-weight: 600;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
-    margin-top: 18px;
-    position: relative;
-  }
-
-  /* ═══════════════════ EVENT STRIP ═══════════════════ */
-  .event-strip {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .event-strip::-webkit-scrollbar { display: none; }
-  .event-pill {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 24px;
-    border-right: 1px solid var(--border);
+  /* ═══════════════════ SIDEBAR ═══════════════════ */
+  .sidebar {
+    width: var(--sidebar-w);
     flex-shrink: 0;
+    background: #090909;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    z-index: 200;
   }
-  .event-pill-icon { font-size: 16px; }
-  .event-pill-info {}
-  .event-pill-month {
+  .sidebar::-webkit-scrollbar { display: none; }
+
+  .sidebar-logo-wrap {
+    padding: 24px 22px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .sidebar-dept {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.45;
-  }
-  .event-pill-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    margin-top: 10px;
+    line-height: 1.6;
   }
 
-  /* ═══════════════════ FLEXIBLE NOTICE ═══════════════════ */
-  .flex-notice {
-    padding: 14px 40px;
-    border-bottom: 1px solid var(--border);
+  .sidebar-nav { padding: 12px 0; flex: 1; }
+
+  .sidebar-section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 14px 22px 6px;
+    display: block;
+    opacity: 0.5;
+  }
+
+  .sidebar-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: rgba(245,166,35,0.04);
-  }
-  .flex-notice-icon { font-size: 14px; opacity: 0.7; }
-  .flex-notice-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-  }
-  .flex-notice-text strong { color: var(--gold); }
-
-  /* ═══════════════════ TABS ═══════════════════ */
-  .tabs-wrap {
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-    scrollbar-width: none;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(12,12,12,0.97);
-    backdrop-filter: blur(12px);
-  }
-  .tabs-wrap::-webkit-scrollbar { display: none; }
-  .tabs {
-    display: flex;
-    width: max-content;
-    min-width: 100%;
-  }
-  .tab {
-    padding: 18px 24px;
+    gap: 10px;
+    padding: 11px 22px;
+    cursor: pointer;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 12px;
     font-weight: 800;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gray);
-    cursor: pointer;
     border: none;
-    border-bottom: 3px solid transparent;
     background: none;
+    width: 100%;
+    text-align: left;
+    border-left: 3px solid transparent;
+    transition: color 0.18s, background 0.18s, border-left-color 0.18s;
     white-space: nowrap;
-    transition: color 0.2s, border-color 0.2s;
-    display: flex;
+  }
+  .sidebar-item:hover { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.03); }
+  .sidebar-item.active { color: var(--white); background: rgba(245,166,35,0.05); border-left-color: var(--gold); }
+  .sidebar-item.active.ev-fathers { border-left-color: var(--fathers); background: var(--fathers-bg); }
+  .sidebar-item.active.ev-prayer  { border-left-color: var(--prayer);  background: var(--prayer-bg); }
+  .sidebar-item.active.ev-teens   { border-left-color: var(--teens);   background: var(--teens-bg); }
+  .sidebar-item.active.ev-glory   { border-left-color: var(--glory);   background: var(--glory-bg); }
+  .sidebar-item.active.ev-hymnal  { border-left-color: var(--hymnal);  background: var(--hymnal-bg); }
+
+  .s-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .s-icon { font-size: 13px; }
+  .s-label { flex: 1; }
+  .s-month {
+    font-size: 9px; font-weight: 600; letter-spacing: 1px;
+    opacity: 0.4; font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .sidebar-footer {
+    padding: 20px 22px;
+    border-top: 1px solid var(--border);
+  }
+  .sidebar-footer-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+    line-height: 2;
+  }
+  .sidebar-footer-text em { color: var(--gold); font-style: normal; }
+
+  /* ═══════════════════ MOBILE ═══════════════════ */
+  .mobile-topbar {
+    display: none;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 56px;
+    border-bottom: 1px solid var(--border);
+    background: #090909;
+    position: sticky;
+    top: 0;
+    z-index: 300;
   }
-  .tab:hover { color: rgba(255,255,255,0.7); }
-  .tab.active { border-bottom-color: var(--gold); color: var(--white); }
-  .tab .tab-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    flex-shrink: 0;
+  .mobile-logo { height: 34px; width: auto; object-fit: contain; }
+  .mobile-hamburger {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 7px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
   }
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 250;
+  }
+  .sidebar-overlay.visible { display: block; }
+
+  @media (max-width: 768px) {
+    .mobile-topbar { display: flex; }
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      transform: translateX(-100%);
+      transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+      z-index: 300;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .app-layout { display: block; }
+  }
+
+  /* ═══════════════════ MAIN CONTENT ═══════════════════ */
+  .main-content { flex: 1; min-width: 0; }
 
   /* ═══════════════════ SCHEDULE VIEW ═══════════════════ */
   .schedule-view { display: none; }
@@ -240,7 +214,7 @@
 
   /* Week Header */
   .week-header {
-    padding: 52px 40px 36px;
+    padding: 48px 40px 36px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -248,7 +222,6 @@
     flex-wrap: wrap;
     border-bottom: 1px solid var(--border);
   }
-  .wh-left {}
   .wh-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 10px;
@@ -276,7 +249,7 @@
     line-height: 1.5;
   }
 
-  /* Event banner strip */
+  /* Event banner */
   .event-banner {
     padding: 20px 40px;
     display: flex;
@@ -317,7 +290,6 @@
     background: var(--border);
     border-top: 1px solid var(--border);
   }
-
   .day-card {
     background: var(--card-bg);
     padding: 32px 28px 36px;
@@ -326,13 +298,7 @@
     transition: background 0.2s;
   }
   .day-card:hover { background: var(--card-hover); }
-
-  .day-accent {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
-
+  .day-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
   .day-ghost {
     position: absolute;
     top: -8px; right: 10px;
@@ -343,7 +309,6 @@
     pointer-events: none;
     letter-spacing: 2px;
   }
-
   .day-name {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 10px;
@@ -353,7 +318,6 @@
     color: var(--gray);
     margin-bottom: 5px;
   }
-
   .day-type {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(28px, 3.5vw, 40px);
@@ -361,17 +325,8 @@
     letter-spacing: 1px;
     margin-bottom: 20px;
   }
-
-  .day-divider {
-    width: 32px; height: 2px;
-    background: var(--gold);
-    margin-bottom: 18px;
-  }
-
-  .day-items {
-    list-style: none;
-    margin-bottom: 20px;
-  }
+  .day-divider { width: 32px; height: 2px; background: var(--gold); margin-bottom: 18px; }
+  .day-items { list-style: none; margin-bottom: 20px; }
   .day-items li {
     font-size: 13.5px;
     font-weight: 600;
@@ -386,11 +341,7 @@
   .day-items li:last-child { border-bottom: none; }
   .bul { flex-shrink: 0; font-weight: 900; margin-top: 1px; }
   .hl { font-style: italic; font-weight: 700; }
-
-  .day-platforms {
-    display: flex; flex-wrap: wrap; gap: 5px;
-    margin-top: 18px;
-  }
+  .day-platforms { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 18px; }
   .plat {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 9px;
@@ -402,7 +353,6 @@
     border-radius: 2px;
     color: rgba(255,255,255,0.35);
   }
-
   .day-tip {
     margin-top: 16px;
     padding: 12px 14px;
@@ -417,7 +367,6 @@
 
   /* ═══════════════════ FLEXIBLE OVERLAY ═══════════════════ */
   .flex-overlay {
-    margin: 0;
     padding: 24px 40px;
     border-bottom: 1px solid var(--border);
     display: flex;
@@ -447,55 +396,39 @@
 
   /* ═══════════════════ FOOTER ═══════════════════ */
   .footer {
-    padding: 60px 40px;
+    padding: 48px 40px;
     border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 20px;
   }
-  .footer-left {}
-  .footer-church {
+  .footer-year {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    letter-spacing: 2px;
-    color: var(--white);
-    line-height: 1;
-  }
-  .footer-dept {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 13px;
     letter-spacing: 4px;
-    text-transform: uppercase;
     color: var(--gold);
-    margin-top: 6px;
+    margin-bottom: 6px;
   }
-  .footer-right {
+  .footer-tagline {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--gray);
-    text-align: right;
-    line-height: 1.8;
+    color: rgba(255,255,255,0.2);
+    line-height: 1.9;
   }
 
   /* Responsive */
-  @media (max-width: 640px) {
-    .masthead { padding: 0 20px; }
-    .hero { padding: 52px 20px 40px; }
-    .event-strip { padding: 0; }
-    .week-header { padding: 36px 20px 28px; }
+  @media (max-width: 768px) {
+    .week-header { padding: 32px 20px 24px; }
     .wh-theme { text-align: left; }
     .event-banner { padding: 16px 20px; }
     .day-card { padding: 28px 20px 32px; }
     .flex-overlay { padding: 20px; }
-    .flex-notice { padding: 14px 20px; }
-    .footer { padding: 40px 20px; }
-    .footer-right { text-align: left; }
+    .footer { padding: 36px 20px; }
   }
 
   /* Animations */
@@ -503,27 +436,7 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .days-grid .day-card {
-    animation: fadeUp 0.45s ease both;
-  }
-
-  /* ═══════════════════ LOGO ═══════════════════ */
-  .masthead-logo {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-    padding: 0;
-  }
-  .hero-logo {
-    height: 80px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto 28px;
-    position: relative;
-    opacity: 0.92;
-  }
+  .days-grid .day-card { animation: fadeUp 0.45s ease both; }
 
   /* ═══════════════════ FLOATING IDEA DRAWER ═══════════════════ */
   .idea-fab {
@@ -707,90 +620,69 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════ MASTHEAD -->
-<div class="masthead">
-  <img src="logo.jpeg" alt="Foundation of Truth Assembly" class="masthead-logo">
-  <div class="masthead-dept">Digital Media Department</div>
-</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-<!-- ══════════════════════════════════ HERO -->
-<header class="hero">
-  <div class="hero-bg-text">FOTA</div>
-  <img src="logo.jpeg" alt="Foundation of Truth Assembly" class="hero-logo">
-  <div class="hero-eyebrow">Content Strategy · 2026 · FTA Digital Media</div>
-  <h1>POST EVERY<br><em>DAY.</em></h1>
-  <p class="hero-sub">7 Days · 6 Events · Foundation of Truth · Abuja</p>
-</header>
+<div class="app-layout">
 
-<!-- ══════════════════════════════════ EVENT STRIP -->
-<div class="event-strip">
-  <div class="event-pill">
-    <div class="event-pill-icon">🕊</div>
-    <div class="event-pill-info">
-      <div class="event-pill-month">June</div>
-      <div class="event-pill-name" style="color:var(--fathers)">Father's Day</div>
-    </div>
+<!-- ══════════════════════════════════ SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo-wrap">
+    <img src="logo.jpeg" alt="Foundation of Truth Assembly" class="sidebar-logo">
+    <div class="sidebar-dept">Digital Media Dept · Abuja · 2026</div>
   </div>
-  <div class="event-pill">
-    <div class="event-pill-icon">🔥</div>
-    <div class="event-pill-info">
-      <div class="event-pill-month">Mid-Year</div>
-      <div class="event-pill-name" style="color:var(--prayer)">Prayer Conference</div>
-    </div>
-  </div>
-  <div class="event-pill">
-    <div class="event-pill-icon">🌿</div>
-    <div class="event-pill-info">
-      <div class="event-pill-month">August</div>
-      <div class="event-pill-name" style="color:var(--teens)">Teens Camp</div>
-    </div>
-  </div>
-  <div class="event-pill">
-    <div class="event-pill-icon">👑</div>
-    <div class="event-pill-info">
-      <div class="event-pill-month">October</div>
-      <div class="event-pill-name" style="color:var(--glory)">Glory to Glory</div>
-    </div>
-  </div>
-  <div class="event-pill">
-    <div class="event-pill-icon">🎵</div>
-    <div class="event-pill-info">
-      <div class="event-pill-month">December</div>
-      <div class="event-pill-name" style="color:var(--hymnal)">Hymnal Sunday</div>
-    </div>
-  </div>
-</div>
 
-<!-- ══════════════════════════════════ FLEXIBLE NOTICE -->
-<div class="flex-notice">
-  <div class="flex-notice-icon">⚡</div>
-  <div class="flex-notice-text">
-    <strong>Flexible System:</strong> Run the Regular Week engine every week. Swap in any Event Week whenever that event arrives — no rebuilding needed.
-  </div>
-</div>
+  <div class="sidebar-nav">
+    <span class="sidebar-section-label">Weekly Engine</span>
+    <button class="sidebar-item active" onclick="showWeek('regular',this)">
+      <span class="s-dot" style="background:var(--gold)"></span>
+      <span class="s-label">Regular Week</span>
+    </button>
 
-<!-- ══════════════════════════════════ TABS -->
-<div class="tabs-wrap">
-  <div class="tabs">
-    <button class="tab active" onclick="showWeek('regular',this)">
-      <span class="tab-dot" style="background:var(--gold)"></span> Regular Week
+    <span class="sidebar-section-label">Event Weeks</span>
+    <button class="sidebar-item ev-fathers" onclick="showWeek('fathers',this)">
+      <span class="s-icon">🕊</span>
+      <span class="s-label">Father's Day</span>
+      <span class="s-month">June</span>
     </button>
-    <button class="tab" onclick="showWeek('fathers',this)">
-      <span class="tab-dot" style="background:var(--fathers)"></span> 🕊 June · Father's Day
+    <button class="sidebar-item ev-prayer" onclick="showWeek('prayer',this)">
+      <span class="s-icon">🔥</span>
+      <span class="s-label">Prayer Conf</span>
+      <span class="s-month">Mid-Year</span>
     </button>
-    <button class="tab" onclick="showWeek('prayer',this)">
-      <span class="tab-dot" style="background:var(--prayer)"></span> 🔥 Mid-Year · Prayer Conf
+    <button class="sidebar-item ev-teens" onclick="showWeek('teens',this)">
+      <span class="s-icon">🌿</span>
+      <span class="s-label">Teens Camp</span>
+      <span class="s-month">August</span>
     </button>
-    <button class="tab" onclick="showWeek('teens',this)">
-      <span class="tab-dot" style="background:var(--teens)"></span> 🌿 August · Teens Camp
+    <button class="sidebar-item ev-glory" onclick="showWeek('glory',this)">
+      <span class="s-icon">👑</span>
+      <span class="s-label">Glory to Glory</span>
+      <span class="s-month">October</span>
     </button>
-    <button class="tab" onclick="showWeek('glory',this)">
-      <span class="tab-dot" style="background:var(--glory)"></span> 👑 October · Glory to Glory
-    </button>
-    <button class="tab" onclick="showWeek('hymnal',this)">
-      <span class="tab-dot" style="background:var(--hymnal)"></span> 🎵 December · Hymnal Sunday
+    <button class="sidebar-item ev-hymnal" onclick="showWeek('hymnal',this)">
+      <span class="s-icon">🎵</span>
+      <span class="s-label">Hymnal Sunday</span>
+      <span class="s-month">December</span>
     </button>
   </div>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-text">
+      Post every day.<br>
+      Build every week.<br>
+      Grow every month.<br>
+      <em>For the Kingdom.</em>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════ MAIN CONTENT -->
+<main class="main-content">
+
+<!-- Mobile topbar -->
+<div class="mobile-topbar">
+  <img src="logo.jpeg" alt="Foundation of Truth Assembly" class="mobile-logo">
+  <button class="mobile-hamburger" onclick="openSidebar()">☰</button>
 </div>
 
 
@@ -1623,17 +1515,19 @@
      FOOTER
 ══════════════════════════════════════════════════════════════ -->
 <footer class="footer">
-  <div class="footer-left">
-    <div class="footer-church">Foundation of Truth Assembly</div>
-    <div class="footer-dept">Digital Media Department · Abuja</div>
+  <div>
+    <div class="footer-year">FTA · 2026</div>
+    <div class="footer-tagline">Foundation of Truth Assembly · Abuja<br>Digital Media Department</div>
   </div>
-  <div class="footer-right">
-    Post every day.<br>
-    Build every week.<br>
-    Grow every month.<br>
-    <span style="color:var(--gold)">For the Kingdom.</span>
+  <div class="footer-tagline" style="text-align:right">
+    Content Schedule · 6 Events<br>
+    7 Days · Every Week<br>
+    <span style="color:var(--gold);font-weight:800">For the Kingdom.</span>
   </div>
 </footer>
+
+</main><!-- /.main-content -->
+</div><!-- /.app-layout -->
 
 <!-- ══════════════════════════════════════════════════════════════
      FLOATING IDEA DRAWER
@@ -1741,6 +1635,82 @@
       <div class="idea-item"><span class="idea-item-dot">▸</span>Christmas: "Emmanuel — God with us, still. FTA, Abuja."</div>
     </div>
 
+    <div class="idea-category" data-cat="photo">
+      <div class="idea-category-label">📸 Photography & Still Content</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Rule of thirds — put the speaker at the side, not the center</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Golden hour exterior shot of the church building — post on a quiet week</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Flat-lay: open Bible, journal, pen, coffee — "This is how Sundays start at FTA"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Convert emotional moments to black and white — increases perceived depth</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Diptych: empty seats before service vs full seats during — one image, two moments</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Close-up of hands in prayer — no face needed, universally relatable</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Choir formation shot from the balcony or a ladder — striking geometry</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Detail shots: mic stand, open Bible on pulpit, baptism pool, candles</div>
+    </div>
+
+    <div class="idea-category" data-cat="captions">
+      <div class="idea-category-label">✍️ Caption Formulas That Work</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Hook → Story → CTA: three short lines, nothing more</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Most people think [wrong belief]. But [truth]. Share this if you agree."</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Start with a number: "3 things Sunday's message reminded me of…"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Question first: "When's the last time you felt something like this in church?"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>The confession: "I'll be honest — I almost skipped church this week. Then this happened."</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>The cliffhanger: "We almost didn't share this. But you need to hear it."</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Scripture + personal line + soft invite — 3 sentences, high save rate</div>
+    </div>
+
+    <div class="idea-category" data-cat="hashtags">
+      <div class="idea-category-label">#️⃣ Hashtag & Discovery Strategy</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Formula: 3 big tags + 3 medium tags + 3 niche tags per post</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Location tags always: #AbujaChurch #AbujaChristians #AbujaWorship</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Event tags: #FTAGloryToGlory #FTATeensCamp #FTAPrayerConference</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Content type: #ChurchReels #SermonOfTheDay #WorshipMoment #ChurchLife</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Never use only generic tags (#Faith #God #Church) — too competitive, zero reach</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Rotate 3 different hashtag sets to avoid Instagram flagging repetition</div>
+    </div>
+
+    <div class="idea-category" data-cat="audio">
+      <div class="idea-category-label">🎙️ Audio & Podcast Content</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>90-sec "Thought for the Week" from the pastor — low effort, high value, repeat weekly</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Unedited 3-minute worship recording — real atmosphere, no production needed</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Morning prayer prompt audio for WhatsApp — 60 seconds, sent every weekday</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"5 Questions With…" an FTA member — phone recording, no studio</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Spoken scripture — one verse, read slowly, ambient music underneath</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Conference session released as a full podcast episode after the event</div>
+    </div>
+
+    <div class="idea-category" data-cat="community">
+      <div class="idea-category-label">👥 Community & UGC Ideas</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"FTA Selfie Sunday" — congregation submits their best Sunday look, you feature the best</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Weekly birthday shoutout — name + photo + one line about them from leadership</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Anniversary spotlight: "This couple met at Foundation of Truth…"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>First-time visitor story — film them on their second visit, not the first</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"What do you do all week?" — member spotlight across different careers</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Church anniversary challenge — members share their oldest FTA photo</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Where in Abuja are you watching from?" — geotag story, reshare every response</div>
+    </div>
+
+    <div class="idea-category" data-cat="growth">
+      <div class="idea-category-label">📊 Growth & Posting Tips</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Best posting windows: 7AM, 12PM, and 7PM — pick one per post, be consistent</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Reply to every comment in the first 60 minutes — the algorithm rewards this heavily</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Pin your single best-performing reel to the top of the profile at all times</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Cross-post every reel to TikTok AND YouTube Shorts the same day — triple the reach</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Use Stories to tease every feed post 30 minutes before it goes live</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Save your 5 best-performing captions in a notes doc — remix them monthly</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Go LIVE within 30 minutes of service ending — highest viewer spike of the week</div>
+    </div>
+
+    <div class="idea-category" data-cat="formats">
+      <div class="idea-category-label">🎭 Creative Formats to Try</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Expectation vs Reality — church life edition, use trending audio</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Green screen: pastor speaks directly in front of the scripture text</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Text-on-screen only reel — no face, no voice, just words on black</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Slow-mo worship moment with no music — just room ambience, very powerful</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Things I wish someone told me when I first came to FTA" — personal, high saves</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Countdown carousel: "7 reasons to be at FTA this Sunday" — swipe to reveal</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Side-by-side: FTA worship team 3 years ago vs today — shows growth visually</div>
+    </div>
+
     <div class="idea-no-results" id="noResults">No ideas match that search.</div>
 
   </div>
@@ -1781,20 +1751,30 @@
 <script>
   function showWeek(id, btn) {
     document.querySelectorAll('.schedule-view').forEach(v => v.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.sidebar-item').forEach(t => t.classList.remove('active'));
     document.getElementById('week-' + id).classList.add('active');
     btn.classList.add('active');
 
-    // Scroll to top of content
-    document.querySelector('.tabs-wrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    document.querySelector('.main-content').scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Re-trigger card animations
     const cards = document.querySelectorAll('#week-' + id + ' .day-card');
     cards.forEach((card, i) => {
       card.style.animation = 'none';
       void card.offsetHeight;
       card.style.animation = `fadeUp 0.45s ease ${i * 0.06}s both`;
     });
+
+    closeSidebar();
+  }
+
+  function openSidebar() {
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('sidebarOverlay').classList.add('visible');
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('visible');
   }
 </script>
 
