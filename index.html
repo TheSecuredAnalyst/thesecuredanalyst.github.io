@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FOTA Digital Media · Content Schedule 2026</title>
+<link rel="icon" type="image/jpeg" href="logo.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600;1,700&family=Barlow+Condensed:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -431,6 +432,19 @@
     .footer { padding: 36px 20px; }
   }
 
+  /* ═══════════════════ TODAY HIGHLIGHT ═══════════════════ */
+  .day-card.today {
+    background: #161410;
+    outline: 1px solid rgba(245,166,35,0.22);
+    outline-offset: -1px;
+  }
+  .day-card.today .day-name::after {
+    content: ' · TODAY';
+    color: var(--gold);
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
   /* Animations */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -682,6 +696,9 @@
       Build every week.<br>
       Grow every month.<br>
       <em>For the Kingdom.</em>
+    </div>
+    <div style="margin-top:16px;font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.1);line-height:2;">
+      Keys: 1–6 switch weeks<br>/ open ideas &nbsp;· &nbsp;Esc close
     </div>
   </div>
 </nav>
@@ -1557,8 +1574,9 @@
     <button class="idea-drawer-close" onclick="closeIdeas()">✕</button>
   </div>
 
-  <div class="idea-search-wrap">
-    <input class="idea-search" type="text" id="ideaSearch" placeholder="Search ideas..." oninput="filterIdeas(this.value)">
+  <div class="idea-search-wrap" style="display:flex;gap:8px;align-items:center;">
+    <input class="idea-search" type="text" id="ideaSearch" placeholder="Search ideas..." oninput="filterIdeas(this.value)" style="flex:1;">
+    <button onclick="surpriseMe()" title="Random idea" style="flex-shrink:0;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.3);color:var(--gold);border-radius:3px;padding:10px 12px;font-size:14px;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(245,166,35,0.2)'" onmouseout="this.style.background='rgba(245,166,35,0.1)'">✨</button>
   </div>
 
   <div class="idea-drawer-body" id="ideaBody">
@@ -1758,7 +1776,51 @@
 
     document.getElementById('noResults').classList.toggle('visible', !anyVisible);
   }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeIdeas(); });
+  // ── Surprise Me ──────────────────────────────────────────
+  function surpriseMe() {
+    filterIdeas('');
+    document.getElementById('ideaSearch').value = '';
+    const items = [...document.querySelectorAll('.idea-item')];
+    const pick = items[Math.floor(Math.random() * items.length)];
+    pick.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    pick.style.background = 'rgba(245,166,35,0.12)';
+    setTimeout(() => { pick.style.background = ''; }, 1800);
+  }
+
+  // ── Today highlight (Regular Week only) ──────────────────
+  (function markToday() {
+    const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    const today = days[new Date().getDay()];
+    document.querySelectorAll('#week-regular .day-card').forEach(card => {
+      const name = card.querySelector('.day-ghost');
+      if (name && name.textContent.trim().toLowerCase() === today.slice(0,3)) {
+        card.classList.add('today');
+      }
+    });
+  })();
+
+  // ── Keyboard shortcuts ────────────────────────────────────
+  const weekKeys = ['regular','fathers','prayer','teens','glory','hymnal'];
+  document.addEventListener('keydown', e => {
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+    if (e.key === 'Escape') {
+      closeIdeas();
+      closeSidebar();
+      return;
+    }
+    if (e.key === '/' && !document.getElementById('ideaDrawer').classList.contains('open')) {
+      e.preventDefault();
+      openIdeas();
+      return;
+    }
+    const n = parseInt(e.key);
+    if (n >= 1 && n <= 6) {
+      const btn = document.querySelectorAll('.sidebar-item')[n - 1];
+      if (btn) btn.click();
+    }
+  });
 </script>
 
 <script>
