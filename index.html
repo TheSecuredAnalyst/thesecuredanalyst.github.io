@@ -506,22 +506,218 @@
   .days-grid .day-card {
     animation: fadeUp 0.45s ease both;
   }
+
+  /* ═══════════════════ LOGO ═══════════════════ */
+  .masthead-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    padding: 0;
+  }
+  .hero-logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 28px;
+    position: relative;
+    opacity: 0.92;
+  }
+
+  /* ═══════════════════ FLOATING IDEA DRAWER ═══════════════════ */
+  .idea-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 8000;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 24px rgba(245,166,35,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .idea-fab:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,166,35,0.45); }
+  .idea-fab-icon { font-size: 15px; }
+
+  .idea-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 8500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .idea-drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+  .idea-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(440px, 100vw);
+    background: #111111;
+    border-left: 1px solid var(--border);
+    z-index: 9000;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    overflow: hidden;
+  }
+  .idea-drawer.open { transform: translateX(0); }
+
+  .idea-drawer-header {
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .idea-drawer-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .idea-drawer-title span { color: var(--gold); }
+  .idea-drawer-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 6px;
+  }
+  .idea-drawer-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--gray);
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .idea-drawer-close:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+
+  .idea-search-wrap {
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .idea-search {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 14px;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .idea-search::placeholder { color: var(--gray); }
+  .idea-search:focus { border-color: rgba(245,166,35,0.5); }
+
+  .idea-drawer-body {
+    overflow-y: auto;
+    flex: 1;
+    padding: 0 0 40px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.1) transparent;
+  }
+
+  .idea-category {
+    padding: 22px 24px 4px;
+  }
+  .idea-category-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .idea-category-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .idea-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    cursor: default;
+    transition: background 0.15s, color 0.15s;
+  }
+  .idea-item:hover { background: rgba(245,166,35,0.05); color: var(--white); }
+  .idea-item-dot {
+    color: var(--gold);
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 11px;
+  }
+  .idea-item.hidden { display: none; }
+
+  .idea-no-results {
+    padding: 40px 24px;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: none;
+  }
+  .idea-no-results.visible { display: block; }
 </style>
 </head>
 <body>
 
 <!-- ══════════════════════════════════ MASTHEAD -->
 <div class="masthead">
-  <div class="masthead-church">
-    <strong>Foundation of Truth Assembly</strong> &nbsp;·&nbsp; Abuja
-  </div>
+  <img src="logo.jpeg" alt="Foundation of Truth Assembly" class="masthead-logo">
   <div class="masthead-dept">Digital Media Department</div>
 </div>
 
 <!-- ══════════════════════════════════ HERO -->
 <header class="hero">
   <div class="hero-bg-text">FOTA</div>
-  <div class="hero-eyebrow">Content Strategy · 2025 · FTA Digital Media</div>
+  <img src="logo.jpeg" alt="Foundation of Truth Assembly" class="hero-logo">
+  <div class="hero-eyebrow">Content Strategy · 2026 · FTA Digital Media</div>
   <h1>POST EVERY<br><em>DAY.</em></h1>
   <p class="hero-sub">7 Days · 6 Events · Foundation of Truth · Abuja</p>
 </header>
@@ -1175,7 +1371,7 @@
   </div>
   <div class="flex-overlay">
     <div class="flex-overlay-badge" style="background:var(--glory-bg);color:var(--glory);">Flexible tip</div>
-    <div class="flex-overlay-text">Run testimony drops <strong>throughout October</strong> — one per day or every 2 days. The <strong>year-in-review film</strong> can cover January–September (released at the event). This then feeds into December's Hymnal Sunday momentum.</div>
+    <div class="flex-overlay-text">Run testimony drops <strong>throughout October</strong> — one per day or every 2 days. The <strong>year-in-review film</strong> can cover January–September 2026 (released at the event). This then feeds into December's Hymnal Sunday momentum.</div>
   </div>
 
   <div class="days-grid">
@@ -1204,7 +1400,7 @@
       <ul class="day-items">
         <li><span class="bul" style="color:var(--glory)">▸</span>Day 2 of <em>"My God Moment"</em> — FTA member video testimony</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Post as Reel + quote graphic — two pieces of content, one story</li>
-        <li><span class="bul" style="color:var(--glory)">▸</span>Caption: <em>"2025 has not been quiet at Foundation of Truth."</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>Caption: <em>"2026 has not been quiet at Foundation of Truth."</em></li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Ask followers to submit their God moment — DM or form</li>
       </ul>
       <div class="day-platforms"><span class="plat">Instagram Feed</span><span class="plat">Facebook</span><span class="plat">YouTube Shorts</span></div>
@@ -1217,7 +1413,7 @@
       <div class="day-type">YEAR-IN-REVIEW<br><span style="color:var(--glory)">FILM TEASER</span></div>
       <div class="day-divider" style="background:var(--glory)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--glory)">▸</span>60-sec teaser of <em>"2025: The Year God Showed Up at FTA"</em></li>
+        <li><span class="bul" style="color:var(--glory)">▸</span>60-sec teaser of <em>"2026: The Year God Showed Up at FTA"</em></li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Quick flashes of best moments Jan–September — don't show too much</li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Caption: <em>"The full story drops at Glory to Glory. Be in that room."</em></li>
         <li><span class="bul" style="color:var(--glory)">▸</span>Full film plays IN the event — not released online until after</li>
@@ -1397,9 +1593,9 @@
       <div class="day-type">YEAR-END<br><span style="color:var(--hymnal)">WORD + INVITE</span></div>
       <div class="day-divider" style="background:var(--hymnal)"></div>
       <ul class="day-items">
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>Pastor releases the <span class="hl">Prophetic Word heading into 2026</span></li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Pastor releases the <span class="hl">Prophetic Word heading into 2027</span></li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>Professionally shot — best lighting, best audio of the year</li>
-        <li><span class="bul" style="color:var(--hymnal)">▸</span>Release on YouTube + all platforms — this video carries all of January</li>
+        <li><span class="bul" style="color:var(--hymnal)">▸</span>Release on YouTube + all platforms — this video carries all of January 2027</li>
         <li><span class="bul" style="color:var(--hymnal)">▸</span>WhatsApp + email blast to all FTA contacts</li>
       </ul>
       <div class="day-platforms"><span class="plat">YouTube</span><span class="plat">Instagram IGTV</span><span class="plat">WhatsApp Broadcast</span></div>
@@ -1438,6 +1634,149 @@
     <span style="color:var(--gold)">For the Kingdom.</span>
   </div>
 </footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FLOATING IDEA DRAWER
+══════════════════════════════════════════════════════════════ -->
+<button class="idea-fab" onclick="openIdeas()">
+  <span class="idea-fab-icon">💡</span> Idea Bank
+</button>
+
+<div class="idea-drawer-overlay" id="ideaOverlay" onclick="closeIdeas()"></div>
+
+<div class="idea-drawer" id="ideaDrawer">
+  <div class="idea-drawer-header">
+    <div>
+      <div class="idea-drawer-title">IDEA <span>BANK</span></div>
+      <div class="idea-drawer-subtitle">Grab any idea. Post it today.</div>
+    </div>
+    <button class="idea-drawer-close" onclick="closeIdeas()">✕</button>
+  </div>
+
+  <div class="idea-search-wrap">
+    <input class="idea-search" type="text" id="ideaSearch" placeholder="Search ideas..." oninput="filterIdeas(this.value)">
+  </div>
+
+  <div class="idea-drawer-body" id="ideaBody">
+
+    <div class="idea-category" data-cat="reels">
+      <div class="idea-category-label">📱 Reel Hooks — Opening Lines</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Nobody told me faith would look like this…"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"The day God said no — and I'm grateful He did"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"What they don't show you about church life"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"I used to think prayer was boring until…"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"POV: You finally walked through those doors at FTA"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"This one moment changed everything for our church"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"If you've ever felt like you don't belong in church…"</div>
+    </div>
+
+    <div class="idea-category" data-cat="clips">
+      <div class="idea-category-label">🎬 Sermon Clip Angles</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Zoom into the speaker's hands at the key moment</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Cut to audience reaction — tears, nodding, hands up</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Bold text overlay on the single best line of the sermon</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Reverse camera — show the congregation, not the speaker</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Let 3 seconds of silence play before the punchline drops</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>End card: same clip, different hook — post same clip twice, different caption</div>
+    </div>
+
+    <div class="idea-category" data-cat="graphics">
+      <div class="idea-category-label">✍️ Quote Graphics</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Bold white text on solid black — one sentence, no image</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Gold scripture on dark background — minimal, shareable</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Sermon pull quote in large type over blurred crowd photo</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Handwritten-style text overlay on a worship moment still</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Split quote across two carousel slides — build anticipation</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"This week's confession" — bold declaration, plain background</div>
+    </div>
+
+    <div class="idea-category" data-cat="bts">
+      <div class="idea-category-label">🎥 Behind the Scenes</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Media team setting up cameras before service</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Sound check and worship team warmup — raw, no edits</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Pastor's pre-service prayer backstage</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Volunteers arriving early — set-up time-lapse</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>What happens after the service ends — clean-up, fellowship</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>The media team's week in 60 seconds</div>
+    </div>
+
+    <div class="idea-category" data-cat="engage">
+      <div class="idea-category-label">🔥 Engagement Prompts</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Drop the last worship song that wrecked you 👇"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Tag someone who needs to hear this message today"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"What's your favourite Bible verse? Go."</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Comment your answered prayer from this year"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Share this if God carried you through 2026"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"What would you tell your younger self about faith?"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"First word that comes to mind when you think of FTA?"</div>
+    </div>
+
+    <div class="idea-category" data-cat="series">
+      <div class="idea-category-label">📺 Mini-Series Concepts</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"5 Things Your Pastor Wishes You Knew" — 5-part reel series</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"First Time at FTA" — interview 5 new members, 60 sec each</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"The Verse That Changed Everything" — one FTA member per episode</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Before and After" — FTA member's life testimony in 90 seconds</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"A Week in the Life" — follow one department for 7 days</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Staff Spotlight" — feature a different FTA team member each week</div>
+    </div>
+
+    <div class="idea-category" data-cat="trending">
+      <div class="idea-category-label">📈 Trending Formats</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Expectation vs Reality — church life edition, trending audio</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Green screen: Pastor speaks in front of the scripture text</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Stitch/react to a viral faith or motivation clip</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>"Rate your church experience 1–10" poll overlay on a reel</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Text-on-screen only reel — no face, no voice, just words</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Slow-mo worship moment with no music — just ambient sound</div>
+    </div>
+
+    <div class="idea-category" data-cat="seasonal">
+      <div class="idea-category-label">📅 Seasonal / Calendar Hooks</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>New Year: "What God said for 2026 — we're living it now"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Valentine's: "How Foundation of Truth defines love"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Easter: "The best news ever told — and we're not stopping"</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Back to school: "Youth who pray, thrive. Period."</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Independence Day: "Who made us free? One name."</div>
+      <div class="idea-item"><span class="idea-item-dot">▸</span>Christmas: "Emmanuel — God with us, still. FTA, Abuja."</div>
+    </div>
+
+    <div class="idea-no-results" id="noResults">No ideas match that search.</div>
+
+  </div>
+</div>
+
+<script>
+  function openIdeas() {
+    document.getElementById('ideaDrawer').classList.add('open');
+    document.getElementById('ideaOverlay').classList.add('open');
+    document.getElementById('ideaSearch').focus();
+  }
+  function closeIdeas() {
+    document.getElementById('ideaDrawer').classList.remove('open');
+    document.getElementById('ideaOverlay').classList.remove('open');
+  }
+  function filterIdeas(query) {
+    const q = query.toLowerCase().trim();
+    const items = document.querySelectorAll('.idea-item');
+    const cats = document.querySelectorAll('.idea-category');
+    let anyVisible = false;
+
+    items.forEach(item => {
+      const match = !q || item.textContent.toLowerCase().includes(q);
+      item.classList.toggle('hidden', !match);
+      if (match) anyVisible = true;
+    });
+
+    cats.forEach(cat => {
+      const visibleInCat = [...cat.querySelectorAll('.idea-item')].some(i => !i.classList.contains('hidden'));
+      cat.style.display = visibleInCat ? '' : 'none';
+    });
+
+    document.getElementById('noResults').classList.toggle('visible', !anyVisible);
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeIdeas(); });
+</script>
 
 <script>
   function showWeek(id, btn) {
