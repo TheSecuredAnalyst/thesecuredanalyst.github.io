@@ -1186,7 +1186,7 @@ function updateGlobalProgress() {
   function saveProgress() {
     const state = {};
     document.querySelectorAll('.check-item').forEach(el => {
-      devState[el.id] = el.classList.contains('done');
+      state[el.id] = el.classList.contains('done');
     });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     showToast('Progress Saved ✓');
@@ -1240,7 +1240,7 @@ const _origSave = saveProgress;
 function saveProgress() {
   const state = {};
   document.querySelectorAll('.check-item').forEach(el => {
-    devState[el.id] = el.classList.contains('done');
+    state[el.id] = el.classList.contains('done');
   });
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   showToast('Progress Saved ✓');
