@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afolakemi — June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#b5446e;--rose-light:#e8a0bc;--rose-pale:#fdf0f5;--gold:#c9963a;--gold-light:#f0d9a8;--dark:#1a0f14;--mid:#5c3a4a;--soft:#8a6070;--bg:#fefafc;--white:#ffffff;--border:#e8d5de;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#fefafc;color:var(--dark);min-height:100vh;}
+nav{background:var(--dark);padding:0 24px;display:flex;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(26,15,20,0.3);}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--rose-light);letter-spacing:2px;padding:14px 0;margin-right:auto;font-style:italic;}
+.nav-brand span{color:var(--gold-light);font-style:normal;font-weight:600;}
+nav a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:18px 16px;border-bottom:2px solid transparent;transition:all .2s;}
+nav a:hover,nav a.active{color:var(--rose-light);border-bottom-color:var(--rose);}
+.section{display:none;min-height:calc(100vh - 56px);}
+.section.active{display:block;}
+/* HOME */
+.home-wrap{min-height:calc(100vh - 56px);background:linear-gradient(145deg,var(--dark) 0%,#3a1428 60%,#1a0f14 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px;position:relative;overflow:hidden;}
+.home-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(181,68,110,0.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(201,150,58,0.1) 0%,transparent 50%);pointer-events:none;}
+.home-inner{max-width:680px;position:relative;}
+.home-verse{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--rose-light);line-height:1.6;margin-bottom:8px;}
+.home-ref{font-size:0.75rem;letter-spacing:2px;color:var(--gold-light);text-transform:uppercase;margin-bottom:40px;}
+.home-name{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:300;color:var(--white);letter-spacing:4px;margin-bottom:8px;}
+.home-month{font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--soft);margin-bottom:36px;}
+.home-posture{background:rgba(181,68,110,0.12);border:1px solid rgba(181,68,110,0.3);border-radius:12px;padding:22px 28px;color:var(--rose-light);font-size:0.95rem;line-height:1.7;margin-bottom:36px;}
+.home-posture strong{color:var(--gold-light);}
+.home-pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:36px;}
+.pillar{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;text-align:left;}
+.pillar-icon{font-size:1.3rem;margin-bottom:6px;}
+.pillar-label{font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);}
+.pillar-val{font-size:0.88rem;color:rgba(255,255,255,0.8);margin-top:2px;}
+.home-prog{background:rgba(255,255,255,0.06);border-radius:12px;padding:18px 22px;}
+.hp-label{font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);margin-bottom:10px;}
+.hp-bar{background:rgba(255,255,255,0.1);border-radius:99px;height:8px;overflow:hidden;margin-bottom:8px;}
+.hp-fill{background:linear-gradient(90deg,var(--rose),var(--gold));height:100%;border-radius:99px;transition:width .5s ease;width:0%;}
+.hp-meta{display:flex;justify-content:space-between;font-size:0.75rem;color:var(--soft);}
+/* MAP */
+.map-wrap{padding:40px 24px;max-width:900px;margin:0 auto;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--rose);margin-bottom:4px;}
+.sec-sub{font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-bottom:32px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:24px;box-shadow:0 2px 12px rgba(181,68,110,0.06);}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--rose);margin-bottom:16px;}
+.tbl{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.tbl th{background:var(--rose-pale);color:var(--rose);padding:8px 12px;text-align:left;font-weight:500;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;}
+.tbl td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--mid);}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl td:first-child{color:var(--rose);font-weight:500;white-space:nowrap;width:130px;}
+.badge{display:inline-block;background:var(--rose-pale);color:var(--rose);font-size:0.65rem;padding:2px 8px;border-radius:99px;font-weight:500;margin-left:4px;}
+.badge.gold{background:var(--gold-light);color:#7a5a1a;}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;}
+.fi{background:var(--rose-pale);border-radius:10px;padding:14px;border-left:3px solid var(--rose);}
+.fi-l{font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--soft);}
+.fi-v{font-size:0.88rem;color:var(--dark);margin-top:4px;font-weight:500;}
+.goals{list-style:none;}
+.goals li{padding:10px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--mid);}
+.goals li:last-child{border-bottom:none;}
+.goals li::before{content:'✦';color:var(--rose);font-size:0.7rem;margin-top:2px;flex-shrink:0;}
+/* CHECKLIST */
+.cl-wrap{padding:40px 24px;max-width:860px;margin:0 auto;}
+.cl-prog{background:var(--border);border-radius:99px;height:6px;margin:14px 0;}
+.cl-prog-fill{background:linear-gradient(90deg,var(--rose),var(--gold));height:100%;border-radius:99px;transition:width .4s;width:0%;}
+.cl-meta{display:flex;justify-content:space-between;font-size:0.73rem;color:var(--soft);}
+.week-tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap;}
+.wt{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:0.76rem;font-weight:500;cursor:pointer;color:var(--soft);transition:all .2s;}
+.wt.active{background:var(--rose);color:var(--white);border-color:var(--rose);}
+.wp{display:none;}
+.wp.active{display:block;}
+.cl-grp{margin-bottom:18px;}
+.cl-grp-t{font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose);margin-bottom:10px;font-weight:600;}
+.cli{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--white);border:1px solid var(--border);border-radius:8px;margin-bottom:6px;cursor:pointer;transition:all .2s;}
+.cli:hover{border-color:var(--rose-light);}
+.cli.done{background:var(--rose-pale);border-color:var(--rose-light);}
+.cli.done .cl-txt{text-decoration:line-through;color:var(--soft);}
+.cl-chk{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s;}
+.cli.done .cl-chk{background:var(--rose);border-color:var(--rose);color:var(--white);}
+.cl-txt{font-size:0.85rem;color:var(--dark);}
+.cl-tag{font-size:0.65rem;background:var(--rose-pale);color:var(--rose);padding:1px 6px;border-radius:99px;margin-left:6px;font-weight:500;}
+.cl-tag.gold{background:var(--gold-light);color:#7a5a1a;}
+.cl-acts{display:flex;gap:10px;margin-top:14px;}
+.cl-btn{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:8px 18px;font-size:0.78rem;cursor:pointer;color:var(--soft);transition:all .2s;}
+.cl-btn:hover{border-color:var(--rose);color:var(--rose);}
+.cl-btn.primary{background:var(--rose);color:var(--white);border-color:var(--rose);}
+/* DEV */
+.dev-wrap{padding:40px 24px;max-width:860px;margin:0 auto;}
+.dev-prog{background:var(--border);border-radius:99px;height:6px;margin:12px 0 6px;}
+.dev-prog-fill{background:linear-gradient(90deg,var(--rose),var(--gold));height:100%;border-radius:99px;transition:width .4s;}
+.dev-meta{display:flex;justify-content:space-between;font-size:0.73rem;color:var(--soft);margin-bottom:18px;}
+.dev-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.dfb{background:var(--white);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:0.75rem;cursor:pointer;color:var(--soft);transition:all .2s;}
+.dfb.active{background:var(--rose);color:var(--white);border-color:var(--rose);}
+.dev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
+.dc{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;text-align:center;}
+.dc:hover{border-color:var(--rose);box-shadow:0 4px 16px rgba(181,68,110,0.1);}
+.dc.completed{background:var(--rose-pale);border-color:var(--rose-light);}
+.dc.locked{opacity:0.4;pointer-events:none;}
+.dc-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--rose);}
+.dc.completed .dc-num{color:var(--gold);}
+.dc-theme{font-size:0.63rem;letter-spacing:0.5px;color:var(--soft);margin-top:2px;}
+.dc-chk{font-size:0.85rem;margin-top:6px;}
+.dev-back{background:none;border:none;color:var(--rose);font-size:0.82rem;cursor:pointer;padding:0 0 18px;display:flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif;}
+.dev-ci{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:32px;box-shadow:0 4px 24px rgba(181,68,110,0.08);}
+.dev-dl{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-bottom:8px;}
+.dev-dt{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--dark);margin-bottom:6px;}
+.dev-tag{display:inline-block;background:var(--rose-pale);color:var(--rose);font-size:0.7rem;padding:3px 10px;border-radius:99px;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
+.dev-scr{background:var(--rose-pale);border-left:3px solid var(--rose);border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:22px;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--mid);line-height:1.7;}
+.dev-scr cite{display:block;font-size:0.75rem;font-style:normal;color:var(--rose);margin-top:8px;letter-spacing:1px;}
+.dev-st{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin:22px 0 10px;font-weight:600;}
+.dev-body{font-size:0.9rem;line-height:1.85;color:var(--mid);}
+.dev-body p{margin-bottom:14px;}
+.dev-qs{list-style:none;}
+.dev-qs li{padding:10px 0;border-bottom:1px solid var(--border);font-size:0.87rem;color:var(--mid);display:flex;gap:10px;}
+.dev-qs li:last-child{border-bottom:none;}
+.dev-qs li span{color:var(--rose);font-weight:600;flex-shrink:0;}
+.dev-decl{background:linear-gradient(135deg,var(--dark) 0%,#3a1428 100%);border-radius:10px;padding:18px 22px;color:var(--rose-light);font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.7;margin-bottom:22px;}
+.dev-prayer{font-size:0.87rem;line-height:1.9;color:var(--mid);}
+.dev-cmp{background:var(--rose);color:var(--white);border:none;border-radius:8px;padding:11px 26px;font-size:0.84rem;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:22px;transition:all .2s;}
+.dev-cmp:hover{background:#9e3a5e;}
+.dev-cmp.done{background:var(--gold);cursor:default;}
+.dev-nav{display:flex;gap:12px;margin-top:14px;}
+.dev-nb{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-size:0.8rem;cursor:pointer;color:var(--soft);font-family:'DM Sans',sans-serif;transition:all .2s;flex:1;text-align:center;}
+.dev-nb:hover{border-color:var(--rose);color:var(--rose);}
+.dev-nb:disabled{opacity:0.3;cursor:default;}
+@media(max-width:600px){.home-name{font-size:2.4rem;}.dev-ci{padding:18px;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">Afolakemi <span>· June 2026</span></div>
+  <a href="#" onclick="showS('home')" class="active" id="nav-home">Home</a>
+  <a href="#" onclick="showS('map')" id="nav-map">Map</a>
+  <a href="#" onclick="showS('checklist')" id="nav-checklist">Tracker</a>
+  <a href="#" onclick="showS('devotional')" id="nav-devotional">Devotional</a>
+</nav>
+
+<div class="section active" id="home">
+<div class="home-wrap">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(181,68,110,0.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(201,150,58,0.1) 0%,transparent 50%);pointer-events:none;"></div>
+<div class="home-inner">
+<div class="home-verse">"She is clothed with strength and dignity,<br>and she laughs without fear of the future."</div>
+<div class="home-ref">Proverbs 31:25</div>
+<div class="home-name">Afolakemi</div>
+<div class="home-month">June 2026 · Personal Operating System</div>
+<div class="home-posture">This month I am <strong>rooted, ready, and reaching.</strong><br>I trust God in the waiting. I grow my mind every day.<br>I am available for the role He has already prepared for me.</div>
+<div class="home-pillars">
+<div class="pillar"><div class="pillar-icon">🙏</div><div class="pillar-label">Spiritual</div><div class="pillar-val">30-Day Devotional</div></div>
+<div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-label">Career</div><div class="pillar-val">Job Hunt + GRC Study</div></div>
+<div class="pillar"><div class="pillar-icon">📖</div><div class="pillar-label">Mind</div><div class="pillar-val">Daily Reading & Study</div></div>
+<div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-label">Home</div><div class="pillar-val">Family Anchor</div></div>
+</div>
+<div class="home-prog">
+<div class="hp-label">June Progress</div>
+<div class="hp-bar"><div class="hp-fill" id="hpFill"></div></div>
+<div class="hp-meta"><span id="hpDone">0 tasks done</span><span id="hpPct">0%</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="section" id="map">
+<div class="map-wrap">
+<div class="sec-title">June Map</div>
+<div class="sec-sub">Daily architecture · Month at a glance</div>
+<div class="card"><h3>⏰ Daily Schedule</h3>
+<div style="overflow-x:auto;"><table class="tbl"><thead><tr><th>Time</th><th>Activity</th><th>Notes</th></tr></thead><tbody>
+<tr><td>7:00 – 7:45am</td><td>Bible Reading + Quiet Time</td><td>Before the noise begins</td></tr>
+<tr><td>7:45 – 8:00am</td><td>Morning Prayer</td><td>Short, focused, intentional</td></tr>
+<tr><td>8:00 – 9:00am</td><td>Breakfast & Ready</td><td>Unhurried start</td></tr>
+<tr><td>9:00am – 12:00pm</td><td>Job Search Block <span class="badge">Core</span></td><td>Applications, LinkedIn, research, follow-ups</td></tr>
+<tr><td>12:00 – 1:00pm</td><td>Lunch & Break</td><td>Step away from screen</td></tr>
+<tr><td>1:00 – 2:00pm</td><td>Course Study <span class="badge gold">GRC/NDPR/Ops</span></td><td>Insurance, compliance, admin, operations</td></tr>
+<tr><td>2:00 – 2:30pm</td><td>Personal Reading</td><td>Mind expansion — book of your choice</td></tr>
+<tr><td>2:30 – 8:30pm</td><td>Home, Family & Rest</td><td>Protect this time; let it be full</td></tr>
+<tr><td>8:30 – 9:00pm</td><td>Dinner</td><td>Family table time</td></tr>
+<tr><td>9:00pm</td><td>Prayer + Night Bible</td><td>Close the day with God</td></tr>
+</tbody></table></div></div>
+<div class="card"><h3>🎯 June Focus Areas</h3>
+<div class="fg">
+<div class="fi"><div class="fi-l">Career</div><div class="fi-v">Insurance · GRC · Admin · Operations</div></div>
+<div class="fi"><div class="fi-l">Study</div><div class="fi-v">GRC / NDPR / DPO track</div></div>
+<div class="fi"><div class="fi-l">Mind</div><div class="fi-v">Daily reading — 30 min</div></div>
+<div class="fi"><div class="fi-l">Spirit</div><div class="fi-v">30-day devotional + daily prayer</div></div>
+<div class="fi"><div class="fi-l">Trust</div><div class="fi-v">Fruit of the womb — contending</div></div>
+<div class="fi"><div class="fi-l">Identity</div><div class="fi-v">Proverbs 31 — strength + dignity</div></div>
+</div></div>
+<div class="card"><h3>📋 June Non-Negotiables</h3>
+<ul class="goals">
+<li>Update LinkedIn profile by June 5</li>
+<li>Pick your course (GRC / NDPR / Insurance / Ops) by June 2</li>
+<li>Pick your reading book by June 2</li>
+<li>Submit minimum 3 job applications per week</li>
+<li>Complete 5 course sessions per week</li>
+<li>Read personal book 7 sessions minimum per week (30 min each)</li>
+<li>Complete all 30 devotional days by June 30</li>
+<li>Bible reading + prayer — every single day</li>
+<li>Finish course with certificate by June 28</li>
+<li>Finish reading book by June 30</li>
+</ul></div>
+<div class="card"><h3>✦ June Scorecard</h3>
+<ul class="goals">
+<li>Did I submit 12+ applications total?</li>
+<li>Did I land at least 1 interview or callback?</li>
+<li>Did I complete my course and earn a certificate?</li>
+<li>Did I finish my reading book?</li>
+<li>Did I complete all 30 devotional days?</li>
+<li>Did I keep Bible + prayer every day?</li>
+<li>Am I stronger in who I am than I was June 1?</li>
+</ul></div>
+</div>
+</div>
+
+<div class="section" id="checklist">
+<div class="cl-wrap">
+<h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--rose);">June Tracker</h2>
+<p style="font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-top:2px;">Weekly accountability · Every action counts</p>
+<div class="cl-prog"><div class="cl-prog-fill" id="clFill"></div></div>
+<div class="cl-meta"><span id="clDone">0 of 0 done</span><span id="clPct">0%</span></div>
+<div class="week-tabs">
+<div class="wt active" onclick="clW(0)">Week 1<br><small>Jun 1–7</small></div>
+<div class="wt" onclick="clW(1)">Week 2<br><small>Jun 8–14</small></div>
+<div class="wt" onclick="clW(2)">Week 3<br><small>Jun 15–21</small></div>
+<div class="wt" onclick="clW(3)">Week 4<br><small>Jun 22–28</small></div>
+<div class="wt" onclick="clW(4)">Week 5<br><small>Jun 29–30</small></div>
+</div>
+<div class="wp active" id="wp0">
+<div class="cl-grp"><div class="cl-grp-t">🚨 Week 1 Critical Actions</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Update LinkedIn profile <span class="cl-tag gold">By Jun 5</span></div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Pick your course (GRC / NDPR / Insurance / Ops) <span class="cl-tag gold">By Jun 2</span></div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Pick your reading book <span class="cl-tag gold">By Jun 2</span></div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Submit 3 job applications this week</div></div>
+</div>
+<div class="cl-grp"><div class="cl-grp-t">📿 Spiritual (Daily)</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible Reading + Quiet Time — Mon</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible Reading + Quiet Time — Tue</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible Reading + Quiet Time — Wed</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible Reading + Quiet Time — Thu</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible Reading + Quiet Time — Fri</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible Reading + Quiet Time — Sat</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible Reading + Quiet Time — Sun</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Night Prayer — 7 days</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Devotional Days 1–7 opened</div></div>
+</div>
+<div class="cl-grp"><div class="cl-grp-t">📖 Study & Mind</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Course sessions — 5 this week</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Personal reading — 7 sessions (30 min each)</div></div>
+</div>
+</div>
+<div class="wp" id="wp1">
+<div class="cl-grp"><div class="cl-grp-t">💼 Job Hunt</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Submit 3 job applications this week</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Follow up on Week 1 applications</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Research 2 target companies</div></div>
+</div>
+<div class="cl-grp"><div class="cl-grp-t">📿 Spiritual</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible + Prayer — 7 days</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Devotional Days 8–14 opened</div></div>
+</div>
+<div class="cl-grp"><div class="cl-grp-t">📖 Study & Mind</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Course sessions — 5 this week</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Personal reading — 7 sessions</div></div>
+</div>
+</div>
+<div class="wp" id="wp2">
+<div class="cl-grp"><div class="cl-grp-t">💼 Job Hunt</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Submit 3 job applications this week</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Follow up on all pending applications</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Update CV if needed based on feedback</div></div>
+</div>
+<div class="cl-grp"><div class="cl-grp-t">📿 Spiritual</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible + Prayer — 7 days</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Devotional Days 15–21 opened</div></div>
+</div>
+<div class="cl-grp"><div class="cl-grp-t">📖 Study & Mind</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Course sessions — 5 this week</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Personal reading — 7 sessions</div></div>
+</div>
+</div>
+<div class="wp" id="wp3">
+<div class="cl-grp"><div class="cl-grp-t">🏆 Week 4 Milestones</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Submit 3 job applications this week</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Course certificate earned <span class="cl-tag gold">By Jun 28</span></div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Book finished <span class="cl-tag">By Jun 30</span></div></div>
+</div>
+<div class="cl-grp"><div class="cl-grp-t">📿 Spiritual</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible + Prayer — 7 days</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Devotional Days 22–28 opened</div></div>
+</div>
+<div class="cl-grp"><div class="cl-grp-t">📖 Study & Mind</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Final course sessions — 5 this week</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Personal reading — 7 sessions</div></div>
+</div>
+</div>
+<div class="wp" id="wp4">
+<div class="cl-grp"><div class="cl-grp-t">🎯 June Scorecard</div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">12+ total applications submitted?</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">At least 1 interview or callback received?</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Course certificate complete?</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Book finished?</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">All 30 devotional days done?</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Bible + Prayer — 7 days this week</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Devotional Days 29–30 opened</div></div>
+<div class="cli" onclick="clT(this)"><div class="cl-chk">✓</div><div class="cl-txt">Am I stronger in who I am than June 1?</div></div>
+</div>
+</div>
+<div class="cl-acts">
+<button class="cl-btn" onclick="clReset()">Reset Week</button>
+<button class="cl-btn primary" onclick="clSave()">Save Progress</button>
+</div>
+</div>
+</div>
+
+<div class="section" id="devotional">
+<div class="dev-wrap">
+<div id="aLV">
+<h2 style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--rose);">30-Day Devotional</h2>
+<p style="font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-top:2px;margin-bottom:14px;">Faith · Fruit · Mind · Identity · Encounter</p>
+<div class="dev-prog"><div class="dev-prog-fill" id="aProgBar"></div></div>
+<div class="dev-meta"><span id="aProgLbl">0 of 30 completed</span><span id="aProgPct">0%</span></div>
+<div class="dev-filters">
+<button class="dfb active" onclick="aFlt('all',this)">All 30</button>
+<button class="dfb" onclick="aFlt('Fruit of the Womb',this)">Fruit of the Womb</button>
+<button class="dfb" onclick="aFlt('Mind Expansion',this)">Mind Expansion</button>
+<button class="dfb" onclick="aFlt('Trust in the Wait',this)">Trust in the Wait</button>
+<button class="dfb" onclick="aFlt('Identity',this)">Identity</button>
+<button class="dfb" onclick="aFlt('Encounter',this)">Encounter</button>
+</div>
+<div class="dev-grid" id="aDL"></div>
+</div>
+<div id="aCV" style="display:none;">
+<button class="dev-back" onclick="aBack()">← Back to all days</button>
+<div class="dev-ci" id="aCI"></div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+function showS(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  if(id==='home') uhp();
+}
+// ── Supabase database ────────────────────────────────────
+const sb=supabase.createClient(
+  'https://gzjkgqcikzhjnijgjtqr.supabase.co',
+  'sb_publishable_tDwFEpFb9xSikJ46Mt2ZUQ_nQfaXD5i'
+);
+const SB_ID='hope2026';
+async function sbRead(){try{const{data,error}=await sb.from('state').select('tracker,devotional').eq('id',SB_ID).single();if(error||!data)return null;return data;}catch{return null;}}
+async function sbWrite(data){try{const{error}=await sb.from('state').upsert({id:SB_ID,tracker:data.tracker||{},devotional:data.devotional||{},updated_at:new Date().toISOString()});return!error;}catch{return false;}}
+// ─────────────────────────────────────────────────────────
+
+// CHECKLIST
+const CK='afolakemi_checklist';
+let cst={};let cw=0;
+function clT(el){el.classList.toggle('done');clSave();uhp();}
+function clW(w){cw=w;document.querySelectorAll('.wp').forEach((p,i)=>p.classList.toggle('active',i===w));document.querySelectorAll('.wt').forEach((t,i)=>t.classList.toggle('active',i===w));clLoad();}
+async function clSave(){const items=document.querySelectorAll('.cli');items.forEach((el,i)=>{cst['i'+i]=el.classList.contains('done');});localStorage.setItem(CK,JSON.stringify(cst));sbWrite({tracker:cst,devotional:dst});ucp();}
+async function clLoad(){
+  // 1 — instant from localStorage cache
+  try{cst=JSON.parse(localStorage.getItem(CK)||'{}');}catch(e){cst={};}
+  const items=document.querySelectorAll('.cli');items.forEach((el,i)=>{el.classList.toggle('done',!!cst['i'+i]);});ucp();
+  // 2 — sync from Supabase
+  const d=await sbRead();if(d&&d.tracker){cst=d.tracker;localStorage.setItem(CK,JSON.stringify(cst));items.forEach((el,i)=>{el.classList.toggle('done',!!cst['i'+i]);});ucp();}
+  if(d&&d.devotional){dst=d.devotional;localStorage.setItem(DK,JSON.stringify(dst));aUpd&&aUpd();uhp();}
+}
+function clReset(){if(!confirm('Reset this week?'))return;document.querySelectorAll('#wp'+cw+' .cli').forEach(el=>el.classList.remove('done'));clSave();}
+function ucp(){const a=document.querySelectorAll('.cli');const d=document.querySelectorAll('.cli.done');const p=a.length?Math.round(d.length/a.length*100):0;const f=document.getElementById('clFill');if(f)f.style.width=p+'%';const ld=document.getElementById('clDone');const lp=document.getElementById('clPct');if(ld)ld.textContent=d.length+' of '+a.length+' done';if(lp)lp.textContent=p+'%';}
+function uhp(){const a=document.querySelectorAll('.cli');const d=document.querySelectorAll('.cli.done');const dd=Object.values(dst).filter(v=>v).length;const t=a.length+30;const td=d.length+dd;const p=t?Math.round(td/t*100):0;const f=document.getElementById('hpFill');if(f)f.style.width=p+'%';const dl=document.getElementById('hpDone');const pl=document.getElementById('hpPct');if(dl)dl.textContent=td+' tasks done';if(pl)pl.textContent=p+'%';}
+// DEVOTIONAL
+const DK='afolakemi_dev_state';
+let dst={};
+const AD=[
+{day:1,title:'She Asked and Did Not Stop',theme:'Fruit of the Womb',ref:'1 Samuel 1:10-11',
+scripture:"She was in deep anguish, crying bitterly as she prayed to the Lord. And she made this vow: \"O Lord of Heaven's Armies, if you will look upon my sorrow and answer my prayer and give me a son, then I will give him back to you.\"",
+reflection:"Hannah did not accept silence from heaven as a final answer. She wept, she prayed, she bargained, she pressed — and she did not stop until something moved. This is not a portrait of a woman who lost faith. It is a portrait of a woman who had so much faith she was willing to be undignified in her pursuit of it.\n\nAfolakemi, you are in a season where silence can feel like rejection. But silence is not the same as refusal. God is not indifferent to your desire. He sees the longing. He has seen every morning you woke up and chose to hope again.\n\nHannah's vow is striking: she asked for what she wanted, and she offered back what she received. She was not grasping for something to possess. She was believing for something to steward. Ask yourself: what is your posture toward the thing you are trusting God for? Is it a grip or an open hand?\n\nThere is something holy about pressing. Jesus Himself said, \"Ask, seek, knock.\" The verbs are continuous — keep asking, keep seeking, keep knocking. Hannah models this. She did not knock once. She contended. And God remembered her.\n\nGive yourself permission to press. You do not have to pretend it doesn't matter. Bring the real thing to God — the longing, the questions, the tears — and trust that He meets you there.",
+questions:["What does \"contending in prayer\" actually look like practically for you this week?","Is there a difference between faith and pretending something doesn't hurt? How do you hold both?","What have you vowed to God around this desire? Have you said it aloud?","How do you distinguish between God's silence and God's timing?"],
+declaration:"I contend, and I do not stop. God sees me and He will remember me.",
+prayer:"Lord, I bring You the unfiltered version — not the tidy prayer but the real one. I want what Hannah wanted. I press. I knock. I trust that You hear me and that Your timing is perfect even when it is painful. Amen."},
+
+{day:2,title:'El Roi — The God Who Sees',theme:'Fruit of the Womb',ref:'Genesis 16:13',
+scripture:"Thereafter, Hagar used another name to refer to the Lord, who had spoken to her. She said, \"You are the God who sees me.\" She also said, \"Have I truly seen the One who sees me?\"",
+reflection:"Hagar was not the chosen one. She was not in the room when the promises were made. She was in the wilderness — pregnant, afraid, alone. And yet it is she who gives God this name: El Roi. The God who sees.\n\nAfolakemi, there are seasons where life positions you on the outside. Waiting for a job that hasn't come. Waiting for a child. Watching others move while you stand still. The temptation is to believe you are not being noticed.\n\nBut El Roi is not just a name Hagar gave to a moment. It is a revelation of God's character. He sees into places the narrative hasn't gotten to yet. He sees you in the waiting. He sees what it costs you to get up every morning and try again.\n\nHagar asked, \"Have I truly seen the One who sees me?\" — can a person fully grasp being truly, completely known by God? Probably not. But the miracle is not that we fully grasp it. The miracle is that it is true whether we grasp it or not.\n\nYou are not invisible. El Roi is present in your wilderness, and He does not leave.",
+questions:["Where in your life do you most feel like you are in a wilderness right now?","What does it mean practically to be 'seen' by God in a season of waiting?","How does the name El Roi change the way you approach prayer today?","What would you do differently if you were completely convinced God was watching your faithfulness?"],
+declaration:"El Roi sees me. I am not invisible. My waiting is witnessed.",
+prayer:"God who sees, I need to feel what Hagar felt — that You are here, not far. That You know my name and my need. See me today, and let me see You seeing me. Amen."},
+
+{day:3,title:'A Mind That Is Being Renewed',theme:'Mind Expansion',ref:'Romans 12:2',
+scripture:"Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God's will is — his good, pleasing and perfect will.",
+reflection:"The mind is not a neutral space. It is either being shaped intentionally or it is being defaulted — quietly shaped by fear, comparison, and the relentless pressure of what others think. Paul's instruction is active: be transformed. Not wait to be transformed. Actively participate in the renewing of your mind.\n\nAfolakemi, this month has a study block and a reading block in your schedule. That is not coincidence — it is architecture. You have decided to invest in your mind not because a job requires it, but because you know who you want to be. That decision is itself an act of non-conformity.\n\nRenewing the mind means feeding it things that are bigger than your current fears. Every book you read, every module you complete, every passage you meditate on is a brick in a structure that circumstance cannot easily knock down.\n\nThe result Paul promises is significant: a renewed mind has clarity. It can discern. It is not easily swayed by the wrong opportunity. It knows what it is looking for because it knows who it is.\n\nWhat you put in now will come out in the interview, in the decision, in the room.",
+questions:["What is the biggest lie your mind defaults to when things are slow or uncertain?","What are you feeding your mind that is expanding it versus what is shrinking it?","How does renewing your mind connect to your job search practically?","What would a 'transformed' version of how you think about yourself look like?"],
+declaration:"My mind is being renewed. I am not shaped by fear — I am transformed by truth.",
+prayer:"Lord, I choose to feed my mind on what is true, good, and worthy. Renew what needs to be renewed. Correct what has been shaped by fear. Give me clarity that comes from a mind aligned with Yours. Amen."},
+
+{day:4,title:'Clothed Before the Job Arrives',theme:'Identity',ref:'Proverbs 31:25',
+scripture:"She is clothed with strength and dignity, and she laughs without fear of the future.",
+reflection:"Laughter without fear of the future is not carelessness. It is a posture grounded so deeply in identity that the future loses its power to terrorize. The Proverbs 31 woman is not laughing because everything is perfect. She is laughing because she knows something about herself that circumstances cannot contradict.\n\nAfolakemi, strength and dignity are your clothes for this month. Not a title, not a position, not someone else's approval — not even a job offer. These things are worn before any of that arrives. This is what it means to know who you are in God — it is not contingent on what is currently happening around you.\n\nDignity in the Bible is not about presentation. It is about substance. The settled quality of a person who knows their value is not up for negotiation. You do not need the job offer to have dignity. You do not need confirmation from the doctor to have strength. You are clothed in these things already.\n\nThe laugh is the evidence. When you are truly settled in who you are, fear loses its grip. Not because the future is certain — but because the One who holds the future is certain, and you are in His hands.\n\nEvery time anxiety rises about what's next, return here: you are clothed with strength and dignity. You are not waiting to become someone. You already are.",
+questions:["What does 'putting on strength and dignity' look like on a difficult morning?","Where in your life is your identity currently tied to something that hasn't happened yet?","What would it mean to laugh at the future — not naively, but from settled trust?","What lies about your identity are most active right now? Name them."],
+declaration:"I am clothed with strength and dignity. The future does not frighten me — it belongs to God.",
+prayer:"Father, dress me this morning. When I forget who I am, remind me. When I reach for external confirmation, bring me back to what You have already said about me. I am Yours, and that is enough. Amen."},
+
+{day:5,title:'The Strength That Comes From Waiting',theme:'Trust in the Wait',ref:'Isaiah 40:31',
+scripture:"But those who trust in the Lord will find new strength. They will soar on wings like eagles; they will run and not grow weary; they will walk and not faint.",
+reflection:"Notice the order. It does not begin with soaring — it ends there. It begins with waiting. The word for 'wait' in Hebrew carries hopeful expectation, of actively placing confidence in something. Waiting in the biblical sense is not passive. It is faith in a posture.\n\nAfolakemi, you are in a waiting season professionally. The applications have gone out. The prayers have gone up. And now comes the part nobody signs up for: the actual wait. The temptation is to fill the silence with anxiety, comparison, or frantic activity that substitutes for trust.\n\nBut the promise is for those who wait well. Who do not waste the interval. Who renew their minds, build their skills, tend their relationships, and keep their mornings with God.\n\nSoaring comes after walking. God often builds capacity in the quiet before He releases momentum. The eagle's wings are not for the waiting — they are for what comes after. But they are given to those who stayed faithful in the between.\n\nYou are not wasting this season. Every morning you open your Bible, every application you write, every module you complete — this is not idle time. It is preparation for a soaring that is coming.",
+questions:["What does 'active waiting' versus 'passive resignation' look like for you specifically?","Where are you at risk of filling the waiting with things that drain rather than fill you?","What is this season building in you that could not have been built any other way?","If you knew the breakthrough was 4 weeks away, how would you spend today differently?"],
+declaration:"I wait actively. I trust completely. My strength is being renewed for what is next.",
+prayer:"Lord, I choose to wait on You — not with gritted teeth but with expectation. Renew my strength. Keep me faithful in the between. I trust that what You are building in me now is necessary for where I am going. Amen."},
+
+{day:6,title:'The Persistent Widow',theme:'Encounter',ref:'Luke 18:3-5',
+scripture:"There was a widow in that town who kept coming to him with the plea, 'Grant me justice against my adversary.' For some time he refused. But finally he said to himself, 'Because this widow keeps bothering me, I will see that she gets justice.'",
+reflection:"Jesus tells this parable specifically to teach people to pray and not give up. The widow has no power, no influence, no leverage. What she has is persistence — and eventually, it works even against an unjust judge. If even an unjust human responds to persistent asking, how much more will a loving Father respond to His children who press?\n\nAfolakemi, there are things you have been asking God for that have not yet arrived. The job. The child. The answer. And the temptation in a long wait is to stop asking — to interpret the silence as a no, or as evidence that you are not worth responding to.\n\nThis parable refuses that interpretation. It reframes the silence as an invitation to press harder. The widow's persistence is not manipulation — it is the expression of genuine, unrelenting faith. She believed she deserved justice and that the judge could provide it. She did not stop believing either thing.\n\nCome back to the door today. Come back tomorrow. Bring your full, unfiltered, persistent self. And know that the One on the other side is not unjust. He is a Father who sees, who hears, who will answer.",
+questions:["What have you stopped asking God for because the silence felt like rejection?","How is persistence in prayer different from trying to control outcomes?","What would returning to the 'door' look like for you practically this week?","What does it say about God's character that Jesus tells us not to give up on prayer?"],
+declaration:"I press. I do not stop. My persistence is my faith in action.",
+prayer:"Father, I come back to the door. I bring what I have been afraid to ask again. I refuse to interpret Your silence as Your no. I trust Your love. I press. Amen."},
+
+{day:7,title:'Honest Before God',theme:'Identity',ref:'Ruth 1:20',
+scripture:"'Don't call me Naomi,' she told them. 'Call me Mara, because the Almighty has made my life very bitter.'",
+reflection:"Naomi's honesty is remarkable. She does not perform peace she does not have. She stands before her people and says: this is what this season has done to me. I am bitter. And the story does not condemn her for it. It simply continues — and what follows is Ruth, and Boaz, and redemption, and a great-grandson named David.\n\nYou are allowed to name your reality honestly before God. You do not have to call yourself 'grateful' when you are exhausted. You do not have to pretend the waiting doesn't cost anything. The requirement is not performance — it is honesty followed by continued movement.\n\nAfolakemi, the question this devotional wants to ask gently: what name have you given yourself this season? And is that name from God or from circumstance? Naomi chose Mara — bitter — based on what had happened. But God had already written a different name over her life.\n\nYou are allowed to acknowledge the hard without becoming the hard. You are allowed to feel Mara without being Mara. Because the story God is writing includes chapters you have not read yet — and the name He has written over you is not defined by this season.\n\nWhat name does He say?",
+questions:["What name have you subconsciously given yourself in this season?","How do you tell the difference between honest lament and an identity built on loss?","Naomi kept moving even while bitter. What does that look like for you?","What does God say your name is? What does He call you?"],
+declaration:"My name is not Mara. God is writing a different story, and I am still in the middle of it.",
+prayer:"Lord, I bring my honest name today — whatever I have been calling myself in private. Speak over it. Tell me what You call me. And help me walk in that name even before I feel it. Amen."},
+
+{day:8,title:"Elizabeth's Holy Seclusion",theme:'Fruit of the Womb',ref:'Luke 1:24-25',
+scripture:"After this his wife Elizabeth became pregnant and for five months remained in seclusion. \"The Lord has done this for me,\" she said. \"In these days he has shown his favor and taken away my disgrace among the people.\"",
+reflection:"Elizabeth hid for five months. Not because she was ashamed — but because what was happening was too holy, too fragile, too significant to expose to the noise of public commentary before she had fully received it herself. She needed time to let the miracle settle into her bones.\n\nThere is wisdom in this. Not every answered prayer needs to be announced immediately. Some things need to be protected in their early stages — not because you don't trust others, but because the seed needs soil before it needs sunlight.\n\nAfolakemi, part of this month's work is internal. The renewing of the mind, the contending in prayer, the rebuilding of identity — these are not public activities. They are the quiet, consistent work that happens at 7am and 9pm when nobody is watching.\n\nShe also says: 'The Lord has done this for me.' Personal. Intimate. Not a theological broadcast — a personal testimony. That sense of 'for me' — that God is involved in my specific life, my specific situation — is what this month wants to build in you.\n\nThe Lord is doing something for you. Some of it you cannot see yet. Let it grow in seclusion a little longer.",
+questions:["Are there things God is doing in you right now that you need to protect rather than broadcast?","What does 'the Lord has done this for me' feel like versus 'God is generally good'?","Where is your seclusion — your place of quiet cultivation — this month?","How do you balance hope and discretion while waiting for something?"],
+declaration:"God is doing something personal and holy in my life. I protect what He is growing in me.",
+prayer:"Lord, help me know what to protect and what to share. What You are doing in me is precious. Guard it, grow it, and let me emerge in the fullness of Your time. Amen."},
+
+{day:9,title:'What Your Mouth Reveals',theme:'Mind Expansion',ref:'Proverbs 31:26',
+scripture:"She speaks with wisdom, and faithful instruction is on her tongue.",
+reflection:"Wisdom on the tongue does not happen by accident. It is the overflow of a mind that has been deliberately filled with the right things. The mouth is a downstream indicator of what is upstream in the mind. What you are feeding your mind this month will eventually come out of your mouth.\n\nAfolakemi, the reading block and study block in your schedule matter more than they might seem. You are not just preparing for a job interview — you are shaping the quality of your thinking. The person who reads widely thinks more precisely. The person who studies carefully speaks with more authority.\n\nIf the mouth is a downstream indicator, then what are you currently saying about yourself? About your situation? The words you speak in private — the self-talk, the responses to setbacks — are both revealing the upstream reality of your mind and shaping it. Words are not just outputs. They are also inputs.\n\nSpeak over your own life the way you would speak if you knew how the story ended. Because in Christ, you do know something about how it ends — with restoration, with purpose, with His glory. Let your mouth lead your mind toward that ending.",
+questions:["What do you say about yourself when no one is listening?","How is what you're currently feeding your mind showing up in what comes out of your mouth?","What is one declaration you should be saying daily that you haven't been saying?","How does 'faithful instruction on the tongue' connect to how you treat yourself?"],
+declaration:"I speak with wisdom. My mouth reflects a mind that has been renewed and filled with truth.",
+prayer:"Lord, set a guard over my mouth — not to make me silent, but to make me wise. Let what I say to myself and to others reflect who You are and who You have made me to be. Amen."},
+
+{day:10,title:'The Woman at the Well',theme:'Encounter',ref:'John 4:29',
+scripture:"\"Come, see a man who told me everything I ever did. Could this possibly be the Messiah?\"",
+reflection:"The woman at the well came at noon — when no one else would be there. She was avoiding community, carrying a history she could not escape. And Jesus was waiting there. Not judging. Not preaching. Asking. He begins with: 'Give me a drink.' He puts her in the position of having something to offer before she even knows who He is.\n\nThen He tells her everything she ever did — and she is not destroyed by it. She is set free by it. Because being fully known by someone who fully loves you is not the terror we fear; it is the liberation we need. She runs back to the city she was avoiding and says: come, see.\n\nAfolakemi, there are parts of your story you carry quietly — the things you are hoping people don't look too closely at, the places you feel you don't quite measure up. Jesus meets you exactly there. And He is not standing at that well to condemn.\n\nThis month, come to the well. Bring the full story, not the edited version. Let Him speak to what He already knows. And then let the encounter make you someone who runs back into the city with good news.",
+questions:["What have you been carrying to the 'noon hour' — away from community, alone?","What does it feel like to be fully known by someone who fully loves you?","How does the woman's transformation from hiding to declaring challenge you?","What is the 'living water' you are most thirsty for right now?"],
+declaration:"I come to the well with my full story. Jesus meets me there, knows me, and sets me free.",
+prayer:"Jesus, I come. Not with the tidied-up version but with what is actually happening in me. Meet me at the well. Give me the water that satisfies. And make me brave enough to run back to the city. Amen."},
+
+{day:11,title:'Small Beginnings Are Holy',theme:'Trust in the Wait',ref:'Zechariah 4:10',
+scripture:"\"Do not despise these small beginnings, for the Lord rejoices to see the work begin.\"",
+reflection:"There is cultural pressure to despise small beginnings. To see slow as failure, incomplete as inadequate. The world celebrates the launch — rarely the daily faithfulness that made it possible. Zechariah's word pushes back: God rejoices at the beginning. At the first step. At the unglamorous middle.\n\nAfolakemi, you are in a season of small beginnings. Each application is a small beginning. Each module completed is a small beginning. Each morning you open your Bible is a small beginning. None of these feel like soaring. But God is rejoicing over each one.\n\nThe voice of discouragement will try to convince you that what you are doing is not enough, is not working, is not noticed. Zechariah says the opposite is true. The Lord is specifically watching and specifically rejoicing at the work begin. He is not waiting for the breakthrough to celebrate. He is celebrating the faithfulness right now.\n\nEvery study session is a brick. Every prayer is a brick. Every day you did not give up is a brick. What you are building is solid — and it is being watched by the One who rejoices in beginnings.",
+questions:["What small things are you doing right now that you are tempted to despise?","How would your daily routine change if you believed God rejoiced over every step?","What does faithfulness in the unglamorous middle actually look like for you?","What needs to change about how you measure progress?"],
+declaration:"I do not despise small beginnings. God rejoices over what I am doing today.",
+prayer:"Lord, thank You for rejoicing over the small things. Help me see my faithfulness the way You see it — as significant, as noticed, as celebrated. Keep me from despising the process. Amen."},
+
+{day:12,title:"God Remembered Rachel",theme:'Fruit of the Womb',ref:'Genesis 30:22-23',
+scripture:"Then God remembered Rachel; he listened to her and enabled her to conceive. She became pregnant and gave birth to a son and said, \"God has taken away my disgrace.\"",
+reflection:"'God remembered Rachel.' In Hebrew, 'remembered' is not about cognitive recall — it means God turned His active, saving attention toward a specific person and acted. Rachel had been waiting. And then God remembered — and everything changed.\n\nAfolakemi, your season may feel like waiting for God to remember you. The prayers have gone up. The desire is real. The faith has been maintained. But the pattern in scripture is consistent: the people who received the most profound breakthroughs were often the ones who waited the longest. Hannah. Elizabeth. Sarah. Rachel. Their waiting was not evidence of indifference — it was preparation for a testimony that would outlive them.\n\nRachel says, 'God has taken away my disgrace.' The breakthrough did not just give her a son — it restored her dignity. It rewrote her story.\n\nGod's remembering of you will not just answer the specific prayer. It will restore what the season cost you — the time, the energy, the piece of confidence that the waiting wore down. He gives back abundantly.\n\nTrust the remembering. It is coming.",
+questions:["What would it mean for God to 'remember' you in the specific area you are trusting Him for?","How do you hold onto dignity and identity while waiting for what you feel is missing?","Rachel's breakthrough restored her disgrace. What would restoration look like for you?","What is the testimony that will come out of this season?"],
+declaration:"God remembers me. His active attention is turned toward my situation. Breakthrough is coming.",
+prayer:"God who remembers, I wait for Your intervention. Not just the answer but the full restoration — dignity, joy, testimony. I trust Your timing. Remember me. Amen."},
+
+{day:13,title:'Her Lamp Does Not Go Out',theme:'Identity',ref:'Proverbs 31:18',
+scripture:"She sees that her trading is profitable, and her lamp does not go out at night.",
+reflection:"The lamp that does not go out is a picture of sustained purpose — a life that does not run out of fuel in the dark. The Proverbs 31 woman is not grinding until she collapses. Her lamp stays lit because she tends it. She has developed the internal capacity to sustain what she carries.\n\nAfolakemi, in a season of job hunting, it is possible to run your lamp down to nothing. Sending applications into silence. Managing the home while managing the search while managing the inner life. If you do not tend the lamp deliberately, it will begin to dim.\n\nWhat keeps your lamp lit? The morning Bible reading. The reading block. The 9pm prayer. The week where you take the scorecard seriously. The moment you choose not to compare your timeline to someone else's. These are lamp-tending activities.\n\nThe phrase 'her lamp does not go out' could also be translated as her light stays burning through the night. Night here is the metaphor for seasons of difficulty, obscurity, and waiting. Your lamp is still burning. The season has not put it out. And it will not, as long as you keep tending it.",
+questions:["What specifically tends your lamp — what fills you back up when you are running low?","What drains your lamp most quickly in this season?","How do you protect the internal fuel so you can keep going through the night?","What does a 'lamp that stays lit' look like in your life over the next 30 days?"],
+declaration:"My lamp does not go out. I tend it, I protect it, and it burns through the night.",
+prayer:"Lord, show me how to tend my lamp. Show me what fills me and what drains me. Keep my light burning in this dark season. Amen."},
+
+{day:14,title:'Mary Chose the Better Thing',theme:'Encounter',ref:'Luke 10:41-42',
+scripture:"\"Martha, Martha,\" the Lord answered, \"you are worried and upset about many things, but few things are needed — or indeed only one. Mary has chosen what is better, and it will not be taken from her.\"",
+reflection:"Martha is not wrong to work. The problem is not her industry — it is her anxiety. She is distracted, upset, doing the right things in the wrong spirit. Jesus does not condemn her service. He gently identifies the inner posture — worry and distraction — and contrasts it with Mary's single-minded presence.\n\nAfolakemi, the job search can become a Martha season very quickly. The doing — applying, researching, updating, following up — is good and necessary. But if the doing flows from anxiety rather than groundedness, it will exhaust you and bear less fruit than you expect. You can send fifty applications from a place of panic and get less response than ten sent from settled confidence.\n\nMary's 'better thing' is not inactivity. It is presence. It is choosing to be with Jesus before, during, and after the work. Maintaining access to the one thing that reorients everything else.\n\nThis devotional time is your Mary moment. It will not be taken from you — not by urgency, not by the calendar, not by the pressure of the month. Guard it. And then go do the work with the peace that only proximity to Jesus can produce.",
+questions:["Where is your energy running — anxiety-driven or peace-driven?","How does proximity to Jesus change the quality of the work you do afterward?","What is the 'one thing' you need to protect this month?","How do you know when you have shifted from faithful work to anxious striving?"],
+declaration:"I choose the better thing first. From that place, I do the work. My peace is not taken from me.",
+prayer:"Jesus, I sit at Your feet before I go to the desk. Before the applications, before the study — I choose presence first. Reorient me. Then send me to work. Amen."},
+
+{day:15,title:'The Alabaster Jar',theme:'Encounter',ref:'Mark 14:3',
+scripture:"A woman came with an alabaster jar of very expensive perfume, made of pure nard. She broke the jar and poured the perfume on his head.",
+reflection:"This woman did something that scandalized the room. She broke an irreplaceable jar — worth a year's wages — and poured it on Jesus. It was extravagant, irreversible, and unmistakable. The disciples called it waste. Jesus called it beautiful. He said wherever the gospel is preached, what she did will be told in memory of her.\n\nThe alabaster jar is a picture of surrender that holds nothing back. The jar had to be broken — there was no partial pouring, no careful rationing. Once broken, everything came out. And the fragrance filled the whole room.\n\nAfolakemi, what is in your alabaster jar this month? What have you been holding carefully, protecting from full surrender? Perhaps the dream of what this season is supposed to look like. Perhaps the timeline you had mapped out. Perhaps the pride of needing to have it all together. The invitation is to break the jar.\n\nFull surrender does not mean passivity — it means releasing your grip on the outcome while remaining fully engaged in the process. The woman was not passive. She was the most active person in that room. But her activity flowed from love, not control.\n\nWhat would it look like to break your jar over Jesus this month?",
+questions:["What is in your alabaster jar right now — what are you still holding tightly?","What does full surrender look like in this specific season?","How is the difference between surrender and passivity? How do you hold both?","What would change if you approached this month from abundance rather than scarcity?"],
+declaration:"I break the jar. I hold nothing back. My surrender fills the room with something beautiful.",
+prayer:"Jesus, I pour it out. The timeline, the control, the fear of waste. I break the jar. Take what I offer and call it what You will. Amen."},
+
+{day:16,title:'Bent But Not Broken',theme:'Fruit of the Womb',ref:'Luke 13:12',
+scripture:"When Jesus saw her, he called her forward and said to her, \"Woman, you are set free from your infirmity.\" Then he put his hands on her, and immediately she straightened up and praised God.",
+reflection:"This woman had been bent for eighteen years. And yet she was in the synagogue. She had not stopped showing up to the place where God is worshipped even though her condition had not changed. That is faith worth pausing on.\n\nJesus sees her. He does not wait for her to come to Him — He calls her forward. He speaks before He touches. 'You are set free.' The declaration comes before the physical miracle. She hears her freedom before she feels it.\n\nAfolakemi, this month may feel like an eighteen-year back in some dimensions. Things that have kept you bent — the waiting, the pressure, the repeated disappointments. But you are still in the synagogue. You are still showing up. You are still here.\n\nJesus calls you forward. Not because your condition has changed yet, but because He has decided to address it. Receive the declaration before you feel the miracle. Stand up straight in your spirit even when your circumstances have not yet confirmed it.\n\nThe eighteen years do not get to have the final word. He does.",
+questions:["Where have you been bent — what has kept you from standing at full height?","What does it mean to 'still be in the synagogue' even when your condition hasn't changed?","Jesus declared freedom before the physical healing. What declaration do you need to receive?","What would standing at full height look like in your life right now?"],
+declaration:"I am set free. I stand at full height. The years do not have the final word — He does.",
+prayer:"Jesus, call me forward. Speak over the bent places. Put Your hands on what has been crooked for too long and set it right. I receive freedom before I feel it. Amen."},
+
+{day:17,title:"Joseph's Long Game",theme:'Trust in the Wait',ref:'Genesis 50:20',
+scripture:"\"You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.\"",
+reflection:"Joseph says this after the pit, after the slavery, after the false accusation, after the prison. He has been through more than most can imagine. And at the end of it, he stands before the people who sold him and says: what you meant for evil, God meant for good.\n\nThis declaration requires perspective that only comes from the other side. But Joseph survived to the other side because he kept his character intact in every environment — in the pit, in Potiphar's house, in prison. He did not let any season redefine who he was.\n\nAfolakemi, you are in a season that has elements of Joseph's journey. Waiting. Doing your best with what's in front of you. Trusting a God whose plan you cannot see. The invitation is not to pretend the pit isn't real — it is to remain yourself in it. To keep your character, your faith, your integrity intact across every environment.\n\nThe end of your story is not written by this chapter. The declaration 'God meant it for good' is coming. You do not have to be able to say it yet. Just stay Joseph in the meantime.",
+questions:["What 'pit' season are you currently in or just coming out of?","How do you maintain your character and identity across environments that pressure you to change?","What does it mean to trust 'God intended it for good' before you can see the good?","What is this season preserving or building in you that is necessary for the next chapter?"],
+declaration:"What the enemy meant for harm, God is turning to good. I remain myself in every season.",
+prayer:"Lord, give me Joseph's long-game perspective. Help me remain faithful, dignified, and present in every environment this season takes me through. I trust that You are writing a story I cannot yet read. Amen."},
+
+{day:18,title:'The Peace That Guards',theme:'Mind Expansion',ref:'Philippians 4:7-8',
+scripture:"And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus. Finally — whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable — think about such things.",
+reflection:"Paul's instruction is both protective and prescriptive. He gives a guard — the peace of God, beyond comprehension, stationed at the gates of the heart and mind. And then he gives a curriculum — the things to actively think about. The peace guards. The curriculum builds. Both are necessary.\n\nThe peace Paul describes is not the absence of difficulty. It is a quality of inner life that coexists with difficult circumstances because it comes from a different source. It transcends understanding — you cannot logic your way to it. It comes from a relationship with God maintained through prayer and gratitude, then sustained through deliberate choice about what you think.\n\nAfolakemi, your mind is under pressure this season. The silence from employers. The comparison that comes unbidden. The questions about timing. Into this pressure, Paul's curriculum is a practical strategy. What is true? Think about that. What is lovely? Think about that. Not as escapism — as mind architecture.\n\nYour reading block and study block are part of this architecture. Every good book, every course module, every scripture you meditate on is 'thinking about these things.' The peace that follows is the result of a deliberate practice.",
+questions:["What thoughts have been demanding the most space in your mind this week?","How does deliberately choosing what to think about change the quality of your inner life?","What specifically is 'true, noble, right, pure, lovely, and admirable' in your current situation?","What would it look like to apply Paul's curriculum to your daily thought life?"],
+declaration:"I choose what I think about. I feed my mind on truth and beauty. The peace of God guards me.",
+prayer:"Lord, guard my mind. And show me what to fill it with — what is true, what is lovely, what is from You. Let peace be the climate of my inner life. Amen."},
+
+{day:19,title:"Anna Never Left Her Post",theme:'Trust in the Wait',ref:'Luke 2:37-38',
+scripture:"She never left the temple but worshipped night and day, fasting and praying. Coming up to them at that very moment, she gave thanks to God and spoke about the child to all who were looking forward to the redemption of Jerusalem.",
+reflection:"Anna had been a widow for most of her adult life. She made her life a sustained act of worship. Fasting, praying, seeking — night and day. And after decades of this, she is in exactly the right place at exactly the right moment to see the Messiah.\n\nThe text says she arrived 'at that very moment.' This is not coincidence. This is what happens when you remain faithful in your post for long enough — you are in position when the breakthrough comes.\n\nAfolakemi, faithfulness to your posts — the 7am Bible reading, the 9pm prayer, the study sessions, the job search block — these are your temple. You may not know which day the 'at that very moment' is coming. But if you remain faithful to the posts, you will be in position when it does.\n\nAnna also immediately began to testify. The breakthrough made her a voice. Your breakthrough will not only change your life — it will give you something to say to everyone who is still waiting for theirs.",
+questions:["What are your 'temple posts' — the faithful activities you maintain regardless of outcomes?","How does Anna's story reframe the meaning of a long wait?","What would it mean to be 'in position' when your moment comes?","What testimony is being prepared in you for those who need to hear it later?"],
+declaration:"I stay at my post. I remain faithful to the place. The moment will find me here.",
+prayer:"Lord, I stay. When it feels pointless to maintain the rhythm, I stay. Keep me faithful to my post until the moment arrives. Amen."},
+
+{day:20,title:'Not a Spirit of Fear',theme:'Identity',ref:'2 Timothy 1:7',
+scripture:"For God has not given us a spirit of fear and timidity, but of power, love, and self-discipline.",
+reflection:"Fear is a spirit. Paul is identifying something with a spiritual source that produces timidity, contraction, and retreat. And he is reminding us that this spirit does not come from God. It has no divine mandate. It has no authority over the person who belongs to God.\n\nWhat God gives instead is threefold: power — the capacity to act without being paralyzed. Love — the motivating force that reaches outward even when fear says contract. Self-discipline — the ability to govern yourself, to maintain the schedule, the practice, the standard, even when feeling runs the other direction.\n\nAfolakemi, the spirit of fear shows up in a job search as the hesitation before you send the application. As the qualifier that makes you describe yourself as 'just' — 'I'm just an administrative professional,' 'I've only worked in.' As the comparison that measures your progress against someone else's.\n\nThis is not your spirit. You did not receive this from God. You have received power — the authority to walk into rooms and speak confidently. You have received love and self-discipline. Wear what you were given. Not fear. Power.",
+questions:["Where does the spirit of fear show up most specifically in your current season?","What does 'I was not given fear' mean practically for your job search this week?","How do power, love, and self-discipline each apply to one specific challenge you face now?","What would you do differently this month if you were genuinely not afraid?"],
+declaration:"I was not given fear. I was given power, love, and self-discipline. I walk in what I was given.",
+prayer:"God, I renounce the spirit of fear over my life. I claim what You have actually given me — power to act, love to reach, discipline to persist. I walk in my inheritance today. Amen."},
+
+{day:21,title:'The Father Who Runs',theme:'Encounter',ref:'Luke 15:20',
+scripture:"But while he was still a long way off, his father saw him and was filled with compassion for him; he ran to his son, threw his arms around him and kissed him.",
+reflection:"The father saw him while he was still a long way off. This means the father was looking. He had not moved on. He had not stopped going to the gate and scanning the horizon. When he sees his son, he runs — an undignified act for a robed father in the ancient Near East. He did not care. He ran.\n\nThis is who God is toward you. Not waiting at a distance with arms crossed, requiring you to arrive in perfect condition before the reception begins. Running toward you. From a long way off. Before you have rehearsed your speech. Before you have cleaned up.\n\nAfolakemi, whatever the 'far country' looks like for you — the distance you feel from God in a hard season, the sense that you need to have it together before you approach — this parable blows all of that up. He is at the gate. He is watching. And the moment you turn in His direction, He runs.\n\nTurn. He is running.",
+questions:["Where have you been holding God at arm's length because you haven't 'arrived' yet?","What does it feel like to be run toward rather than made to walk the whole distance?","How does this picture of the father change how you approach God in prayer today?","What 'speech' have you been rehearsing that He doesn't need to hear before the embrace?"],
+declaration:"God is running toward me. I do not have to arrive before He meets me. I turn — He runs.",
+prayer:"Father, I turn. I come while I am still a long way off. Run to me. I don't need to rehearse the speech — just hold me. Amen."},
+
+{day:22,title:'Is Anything Too Hard?',theme:'Fruit of the Womb',ref:'Genesis 18:14',
+scripture:"\"Is anything too hard for the Lord? I will return to you at the appointed time next year, and Sarah will have a son.\"",
+reflection:"Sarah laughed. She was ninety years old and she laughed at the promise. And God responded not with rebuke but with a question: 'Is anything too hard for the Lord?' The answer to that question determines everything about how you live and pray and wait.\n\nSarah's laughter came from a very reasonable assessment of the facts. Everything in her body said it was over. She was reading the evidence and updating her expectation accordingly. And God interrupted that assessment with a question that transcended it.\n\nAfolakemi, there may be things in your situation that look, by reasonable assessment, past their point. A long job search. A season of believing for a child. Timelines that have passed. The temptation is to laugh — not from joy but from the bitterness of impossibility.\n\nBut God's question hangs in the air: Is anything too hard for Me?\n\nSarah did conceive. She bore Isaac — whose name means laughter. The very thing she laughed in disbelief at became the name of the joy that replaced it. Your disbelief does not disqualify the promise. Is anything too hard for the Lord?",
+questions:["What have you assessed as past the point of possibility in your own life?","How do you honestly answer the question 'Is anything too hard for the Lord'?","What would change in your prayer life if you fully believed the answer?","Sarah's laughter of disbelief became Isaac's laughter of joy. What might God rename in your life?"],
+declaration:"Nothing is too hard for the Lord. What I have assessed as impossible is well within His reach.",
+prayer:"Lord, You ask me the question and I answer honestly: No. Nothing is too hard for You. Grow my faith to the size of that answer. Amen."},
+
+{day:23,title:"Ruth's Faithful Yes",theme:'Trust in the Wait',ref:'Ruth 1:16',
+scripture:"\"Where you go I will go, and where you stay I will stay. Your people will be my people and your God my God.\"",
+reflection:"Ruth had every reason to leave. She was a widow. She had no obligation to follow Naomi into a foreign country with no guaranteed future. Orpah made the sensible choice and returned home. Ruth made the faithful choice and stayed.\n\nWhat she was committing to was completely uncertain. She did not know about Boaz. She did not know her name would appear in the lineage of Jesus Christ. She only knew: she would not abandon Naomi. She would go where the faithful thing required.\n\nAfolakemi, loyalty and faithfulness are forms of faith. When you stay committed to the job search even when it's hard. When you stay in the schedule even when you don't feel like it. When you stay in prayer even when the silence is long. This is your Ruth declaration: where You go, I go.\n\nRuth's faithfulness was rewarded not just with a husband but with a story — a story that became part of the greatest story ever told. Your faithfulness to God's process is not going unrecorded. It is being woven into something larger than you can currently see.",
+questions:["Where are you most tempted to make Orpah's choice — the sensible retreat?","What does Ruth's declaration look like as a commitment to God in your current season?","How is faithfulness itself a form of faith?","What do you think God is weaving your faithfulness into that you cannot yet see?"],
+declaration:"I stay. Where God goes, I go. Where He stays, I stay. My faithfulness is my declaration.",
+prayer:"Lord, give me Ruth's resolve. When the sensible thing is to turn back, help me make the faithful choice to stay. I trust that where You are taking me is worth following. Amen."},
+
+{day:24,title:'Taking Thoughts Captive',theme:'Mind Expansion',ref:'2 Corinthians 10:5',
+scripture:"We demolish arguments and every pretension that sets itself up against the knowledge of God, and we take captive every thought to make it obedient to Christ.",
+reflection:"Paul uses military language for the inner life: demolish, take captive. The mind, left unguarded, will run arguments against you — conclusions reached in a hard moment that have since calcified into assumptions. These strongholds set themselves up against the knowledge of God, contradicting what He has said is true.\n\nTaking thoughts captive is an active discipline. It means catching a thought before it runs to its conclusion and asking: is this true? Is this from God? If the answer is no, you do not submit to it. You arrest it. You bring it into the court of truth.\n\nAfolakemi, some thoughts have been running unchallenged. 'The job won't come.' 'I'm behind.' 'Others are moving while I'm standing still.' 'Maybe it's not going to happen.' These are arguments. They set themselves up against the knowledge of God — which says He has plans for you, plans for a future and a hope.\n\nYou have authority over your thought life. You are not a passive recipient of whatever the mind produces. You are a soldier with jurisdiction over inner territory. Take every thought captive. Try it. Release what is true. Demolish what is not.",
+questions:["What arguments have calcified into assumptions in your thinking right now?","What does 'taking a thought captive' actually look like in a practical moment?","Which recurring thought most needs to be demolished this month?","How does your thought life change when you treat it as territory under your authority?"],
+declaration:"I demolish arguments that contradict God's truth. I take every thought captive. My mind is under Christ.",
+prayer:"Lord, give me the authority and discipline to govern my inner life. Show me the strongholds. Give me the tools to demolish them. I take every thought captive and offer it to You. Amen."},
+
+{day:25,title:'Beyond Your Understanding',theme:'Trust in the Wait',ref:'Proverbs 3:5-6',
+scripture:"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+reflection:"'Lean not on your own understanding.' This is not an instruction to stop thinking. It is an instruction to stop treating your current understanding as the ceiling of reality. Your understanding is necessarily limited — you cannot see the full picture. You do not know what God knows about why the timing is what it is.\n\nTrust conditioned on understanding is not trust — it is verification. Real trust operates in the gap between what you know and what you need to know. It submits — bringing desires and plans into alignment with a will that is larger and wiser, even when that will is not yet explained.\n\nAfolakemi, you do not need all the answers to move forward faithfully. You do not need to understand why the timing is what it is. What you need is to submit — in all your ways — and trust that He is making the path straight even when you cannot see it straightening.\n\nThe path is being made straight right now. Not despite the questions, but through the faithfulness you maintain while asking them. You can hold unanswered questions and still walk forward. That is what trust looks like.",
+questions:["What understanding are you currently leaning on that you need to release?","What does trust look like when there is no explanation and no timeline?","Where are you requiring an answer from God before you will submit?","What would 'submitting in all your ways' look like this week?"],
+declaration:"I trust with my whole heart. I lean on God, not on my understanding. My path is being made straight.",
+prayer:"Lord, I release my need to understand first. I submit the questions, the timeline, the explanation. I trust that You are straightening what I cannot yet see. Amen."},
+
+{day:26,title:"Esther's Preparation",theme:'Identity',ref:'Esther 4:14',
+scripture:"\"And who knows whether you have not come to the kingdom for such a time as this?\"",
+reflection:"Esther did not arrive at her moment of purpose unprepared. She had spent twelve months in preparation. When Mordecai came to her with this charge, she had the resources to respond.\n\nThe preparation and the purpose are not separate — the preparation is part of the purpose. Every month of development is 'such a time as this.' You are not waiting for your purpose to begin. You are living in it right now. The study sessions, the applications, the mornings with God — this is Esther's twelve months.\n\nAfolakemi, you have come to this moment in your life for a reason that is larger than the immediate job you are seeking. The skills you are building, the mind you are developing, the character you are forming in this waiting season — these will be the resources you bring to a room that needs exactly what you have.\n\nMordecai's question is for you too: who knows whether you have not come to the kingdom for such a time as this? The answer is that God knows. And He is using this season to make sure you are ready.",
+questions:["What specific preparation is happening in you right now that feels like 'just waiting' but is actually development?","What room or situation might God be preparing you to walk into with what you're building?","How does 'such a time as this' reframe what you are doing daily?","What would you take more seriously about your preparation if you knew the stakes?"],
+declaration:"I am here for such a time as this. My preparation is my purpose. I show up fully.",
+prayer:"Lord, let me see this season through Esther's eyes — not as a waiting room but as a preparation room. Show me the moment I am being prepared for. And make me ready for it. Amen."},
+
+{day:27,title:"The Farmer's Patience",theme:'Trust in the Wait',ref:'James 5:7-8',
+scripture:"Be patient, then, brothers and sisters, until the Lord's coming. See how the farmer waits for the land to yield its valuable crop, patiently waiting for the autumn and spring rains. You too, be patient and stand firm.",
+reflection:"The farmer plants, tends, weeds, watches, waits — and then waits some more. He does not dig up the seed to check if it is germinating. He understands that there is a natural season of growth that cannot be compressed without destroying what is growing.\n\nJames uses this image to describe the posture of a person waiting for God to fulfill a promise. The crop is coming. The rains are coming. But you have to let the season do what the season does. Digging up the seed in impatience does not accelerate the harvest — it destroys it.\n\nAfolakemi, there is a harvest coming in your life. In your career. In your family. In your spirit. It has been planted. The rains are coming. But it requires the kind of patience the farmer has — active, attentive, present, but trusting that growth is happening underground even when nothing is visible above the surface.\n\nStand firm. Not passive resignation but active, immovable commitment to the process. The seed that has been planted in you this month is real. The growth is real. The harvest is coming. Do not dig it up in impatience.",
+questions:["What seeds have been planted in your life that you are tempted to dig up in impatience?","How is the farmer's patience different from giving up?","What does 'standing firm' look like for you when things are slow?","What harvest are you believing for, and what does it require of you in this season?"],
+declaration:"I am patient. I stand firm. The harvest is coming and I do not dig up what God has planted.",
+prayer:"Lord, give me the farmer's patience. The harvest is real. The seeds are real. Help me tend the field without digging up the seed. I stand firm until the rain comes. Amen."},
+
+{day:28,title:'The Mind of Christ',theme:'Mind Expansion',ref:'Philippians 2:5',
+scripture:"In your relationships with one another, have the same mindset as Christ Jesus.",
+reflection:"Paul says: have the mind of Christ. Not admire it from a distance. Have it. The mindset that chose descent over ascent, that chose 'not my will but Yours' in the garden — that mindset, Paul says, is available to you.\n\nThe mind of Christ is characterized primarily by orientation. A complete reorientation of the self toward others, toward God, toward purposes that outlast the moment. Christ emptied Himself of rights He had every right to hold. He laid them down for something better.\n\nAfolakemi, expanding your mind is not only about acquiring information. It is about reorienting your thinking toward the larger story. Toward what God is doing in the world and where you fit in it. Toward the people your role will eventually serve. Toward the contribution that is bigger than the title.\n\nThe books you read, the courses you study — these can be about more than career advancement. They can be about becoming the kind of person who thinks as Christ thought: with others in view, with eternity in view, with the will of God as the operating principle. That is a mind that cannot be exhausted by any job description.",
+questions:["What would it mean practically to have the 'mind of Christ' in your job search?","How does the orientation of Christ's mind — toward others, toward God's purposes — change how you approach your career?","What are you studying this month purely for the love of growth, not just for the credential?","How does the way you think about your future role reflect (or not) the mind of Christ?"],
+declaration:"I have the mind of Christ. My thinking is oriented toward God's purposes and others' good.",
+prayer:"Lord, renew my mind with Yours. Not just knowledge but orientation. Not just information but the posture that looks outward, upward, and forward. Give me Christ's mind for this season. Amen."},
+
+{day:29,title:'He Knows the End',theme:'Encounter',ref:'Isaiah 46:10',
+scripture:"I make known the end from the beginning, from ancient times, what is still to come. I say, 'My purpose will stand, and I will do all that I please.'",
+reflection:"God is not surprised by where you are. He is not recalculating. He knows how this resolves. He knows which door opens, and when, and what is behind it. Your uncertainty is entirely real; His is entirely absent.\n\nTo bring your uncertainty before a God who has no uncertainty — not because He is indifferent to the variables but because He sovereignly governs them — is to bring a shaking thing into contact with something immovable. And some of the shakiness begins to settle.\n\n'My purpose will stand.' This is the declaration of a God who finishes what He starts. Who does not abandon good works. You are one of His good works. The plans He has for you are not contingent on the job market or the timeline that frustrates you. They will stand.\n\nAfolakemi, as you come near the end of this month's devotional, rest here. You have prayed, studied, contended, waited, pressed, and grown. None of it has been outside His sight. None of it outside His plan. He knew the end before you began the month. And the end is good.",
+questions:["What would change about your anxiety if you truly believed God has no uncertainty about your situation?","How does 'My purpose will stand' apply to your specific situation right now?","What does it feel like to bring your uncertainty to a God who has none?","Looking back at this month, where do you see God's hand that you might have missed in the moment?"],
+declaration:"God knows the end from the beginning. His purpose for me stands. I rest in His certainty.",
+prayer:"Lord, I rest in what You already know. You have seen the end. You are not surprised. Your purpose for me stands, and I trust it. Thank You for this month. Amen."},
+
+{day:30,title:'She Laughs at the Days to Come',theme:'Identity',ref:'Proverbs 31:25',
+scripture:"She is clothed with strength and dignity, and she laughs without fear of the future.",
+reflection:"You began this month here and you end here. Not because nothing has changed, but because this is where you are meant to live. Clothed with strength. Clothed with dignity. Not performing these things — wearing them. From the outside, visible, definitive of how you appear to the world.\n\nYou have spent thirty days pressing, waiting, growing, learning, contending, surrendering, and returning. You have kept your morning appointments. You have submitted applications when the silence from previous ones felt discouraging. You have opened this devotional on days when the words felt distant. That is not nothing. That is faithfulness, and faithfulness is the currency of the kingdom.\n\nThe laugh. It is the thing that marks the woman who is settled. Not a laugh of denial — she knows the future is uncertain. Not a laugh of naivety. It is the laugh of a woman who knows that the One who holds the future is a good Father, that His purposes stand, that she is clothed in something no circumstance can take from her.\n\nAfolakemi, this is who you are. Not who you are becoming when the job comes or the child arrives or the season changes. Who you are now. This morning. With everything unresolved and everything hoped for and everything trusted.\n\nYou are clothed with strength and dignity. Laugh at the days to come.",
+questions:["What has this month built in you that was not there on June 1?","What does the laugh of settled faith look and feel like for you specifically?","What are you carrying into July that is different because of this month?","What is the one declaration you want to make over your life as you close June?"],
+declaration:"I am clothed with strength and dignity. I laugh at the days to come. I am ready for July.",
+prayer:"Father, thank You for June. Thank You for every morning You met me. I close this month clothed and laughing — not because everything is resolved, but because You are good and Your purposes stand. I carry this into what comes next. Amen."}
+];
+
+function aDst(){try{const s=JSON.parse(localStorage.getItem(DK)||'{}');AD.forEach(d=>{dst['d'+d.day]=!!s['d'+d.day];});}catch(e){AD.forEach(d=>{dst['d'+d.day]=false;});}}
+function aSds(){localStorage.setItem(DK,JSON.stringify(dst));const tc=JSON.parse(localStorage.getItem(CK)||'{}');sbWrite({tracker:tc,devotional:dst});}
+function aDone(day){return !!dst['d'+day];}
+function aMrk(day){dst['d'+day]=true;aSds();aUpd();uhp();}
+function aUpd(){const done=Object.values(dst).filter(v=>v).length;const pct=Math.round(done/30*100);const b=document.getElementById('aProgBar');if(b)b.style.width=pct+'%';const l=document.getElementById('aProgLbl');if(l)l.textContent=done+' of 30 completed';const p=document.getElementById('aProgPct');if(p)p.textContent=pct+'%';}
+function aFlt(theme,btn){document.querySelectorAll('.dfb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');aRender(theme);}
+function aRender(theme='all'){
+  const g=document.getElementById('aDL');if(!g)return;g.innerHTML='';
+  const today=new Date();const june1=new Date(2026,5,1);const dn=Math.floor((today-june1)/(1000*60*60*24))+1;
+  AD.forEach(d=>{
+    if(theme!=='all'&&d.theme!==theme)return;
+    const done=aDone(d.day);const locked=d.day>dn+1;
+    const c=document.createElement('div');
+    c.className='dc'+(done?' completed':'')+(locked?' locked':'');
+    c.innerHTML='<div class="dc-num">'+d.day+'</div><div class="dc-theme">'+d.theme+'</div><div class="dc-chk">'+(done?'✦':'○')+'</div>';
+    if(!locked)c.onclick=()=>aOpen(d.day);
+    g.appendChild(c);
+  });
+}
+function aOpen(dayNum){
+  const d=AD.find(x=>x.day===dayNum);if(!d)return;
+  const ci=document.getElementById('aCI');const done=aDone(dayNum);
+  const rp=d.reflection.split('\n').filter(p=>p.trim()).map(p=>'<p>'+p+'</p>').join('');
+  const qi=d.questions.map((q,i)=>'<li><span>'+(i+1)+'.</span>'+q+'</li>').join('');
+  ci.innerHTML='<div class="dev-dl">Day '+d.day+' of 30</div>'
+    +'<div class="dev-dt">'+d.title+'</div>'
+    +'<div class="dev-tag">'+d.theme+'</div>'
+    +'<div class="dev-scr">'+d.scripture+'<cite>'+d.ref+'</cite></div>'
+    +'<div class="dev-st">Reflection</div><div class="dev-body">'+rp+'</div>'
+    +'<div class="dev-st">Study Questions</div><ul class="dev-qs">'+qi+'</ul>'
+    +'<div class="dev-st">Declaration</div><div class="dev-decl">'+d.declaration+'</div>'
+    +'<div class="dev-st">Prayer</div><div class="dev-prayer">'+d.prayer+'</div>'
+    +'<button class="dev-cmp'+(done?' done':'')+'" id="aCmpBtn" onclick="aCmp('+dayNum+')" '+(done?'disabled':'')+'>'+(done?'✦ Completed':'Mark as Complete')+'</button>'
+    +'<div class="dev-nav"><button class="dev-nb" onclick="aOpen('+(dayNum-1)+')" '+(dayNum<=1?'disabled':'')+'>← Day '+(dayNum-1)+'</button>'
+    +'<button class="dev-nb" onclick="aOpen('+(dayNum+1)+')" '+(dayNum>=30?'disabled':'')+'>Day '+(dayNum+1)+' →</button></div>';
+  document.getElementById('aLV').style.display='none';
+  document.getElementById('aCV').style.display='block';
+}
+function aCmp(dayNum){aMrk(dayNum);const b=document.getElementById('aCmpBtn');if(b){b.textContent='✦ Completed';b.classList.add('done');b.disabled=true;}aRender();}
+function aBack(){document.getElementById('aLV').style.display='block';document.getElementById('aCV').style.display='none';aRender();}
+document.addEventListener('DOMContentLoaded',function(){aDst();aRender();aUpd();clLoad();ucp();uhp();});
+</script>
+</body>
+</html>
