@@ -533,29 +533,29 @@ textarea{resize:vertical;min-height:90px;line-height:1.65;}
   <div class="row2">
     <div class="field">
       <label class="f-label">Full Name <span class="req">*</span></label>
-      <input type="text" name="fullName" placeholder="Your full name" required>
+      <input type="text" name="fullName" placeholder="Your full name" autocomplete="name" required>
     </div>
     <div class="field">
       <label class="f-label">Preferred Name</label>
-      <input type="text" name="preferredName" placeholder="Nickname / what we call you">
+      <input type="text" name="preferredName" placeholder="Nickname / what we call you" autocomplete="nickname">
     </div>
   </div>
 
   <div class="row2">
     <div class="field">
       <label class="f-label">Phone <span class="req">*</span></label>
-      <input type="tel" name="phone" placeholder="+234 000 000 0000" required>
+      <input type="tel" name="phone" placeholder="+234 000 000 0000" autocomplete="tel" required>
     </div>
     <div class="field">
       <label class="f-label">WhatsApp <span class="f-hint">If different from phone</span></label>
-      <input type="tel" name="whatsapp" placeholder="+234 000 000 0000">
+      <input type="tel" name="whatsapp" placeholder="+234 000 000 0000" autocomplete="tel">
     </div>
   </div>
 
   <div class="row2">
     <div class="field">
       <label class="f-label">Email</label>
-      <input type="email" name="email" placeholder="your@email.com">
+      <input type="email" name="email" placeholder="your@email.com" autocomplete="email">
     </div>
     <div class="field">
       <label class="f-label">Gender</label>
@@ -1230,6 +1230,10 @@ async function submitForm() {
   document.querySelector('.prog-rail').style.display = 'none';
   document.getElementById('successScreen').classList.add('show');
 }
+
+/* ═══ AUTOFILL CATCH ═══ */
+// Browsers don't always fire input/change on autofill — poll cheaply
+setInterval(() => { if(current > 0 && current <= TOTAL) updateNextBtn(); }, 300);
 
 /* ═══ KEYBOARD NAV ═══ */
 document.addEventListener('keydown', e => {
