@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOTA Digital Media · Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+/* ══════════════════════════════════
+   CONFIG BANNER — remove after setup
+══════════════════════════════════ */
+.config-banner{
+  position:fixed;top:0;left:0;right:0;z-index:99999;
+  background:linear-gradient(90deg,#FF6B6B,#FF9F43);
+  color:white;padding:10px 20px;
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.config-banner code{
+  background:rgba(0,0,0,0.25);padding:3px 10px;border-radius:4px;
+  font-family:monospace;font-size:12px;
+}
+.config-banner.hidden{display:none;}
+
+:root{
+  --bg:#07070F;
+  --panel:#0D0D1A;
+  --card:#111120;
+  --card2:#161625;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --gold:#F5A623;
+  --gold2:#FFB940;
+  --white:#FFFFFF;
+  --off:rgba(255,255,255,0.55);
+  --dim:rgba(255,255,255,0.25);
+  --muted:rgba(255,255,255,0.12);
+  --c1:#FF6B6B;--c2:#FF9F43;--c3:#FECA57;
+  --c4:#48DBFB;--c5:#1DD1A1;--c6:#FF9FF3;
+  --c7:#A29BFE;--sidebar:220px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  background:var(--bg);
+  font-family:'Barlow',sans-serif;
+  color:var(--white);
+  overflow:hidden;
+}
+
+/* ══ LOGIN SCREEN ══ */
+.login-screen{
+  position:fixed;inset:0;z-index:9000;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;padding:24px;
+}
+.login-screen.hidden{display:none;}
+
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%,rgba(245,166,35,0.08) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 80% at 80% 80%,rgba(255,107,107,0.07) 0%,transparent 55%);
+  pointer-events:none;
+}
+
+.login-box{
+  position:relative;z-index:1;
+  width:100%;max-width:420px;
+  background:var(--panel);
+  border:1px solid var(--border2);
+  border-radius:20px;
+  padding:40px 36px;
+}
+.login-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:42px;letter-spacing:2px;color:var(--gold);
+  line-height:1;margin-bottom:4px;
+}
+.login-sub{
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);margin-bottom:32px;
+}
+.login-title{
+  font-family:'Syne',sans-serif;
+  font-size:22px;font-weight:800;margin-bottom:6px;
+}
+.login-desc{font-size:13px;color:var(--off);margin-bottom:28px;line-height:1.6;}
+
+.lf-label{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--off);margin-bottom:8px;display:block;
+}
+.lf-input{
+  width:100%;background:rgba(255,255,255,0.06);
+  border:1.5px solid var(--border2);border-radius:10px;
+  padding:13px 16px;font-family:'Barlow',sans-serif;
+  font-size:15px;color:var(--white);outline:none;
+  transition:border-color .2s,box-shadow .2s;margin-bottom:16px;
+}
+.lf-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,166,35,0.1);}
+.lf-input::placeholder{color:rgba(255,255,255,0.2);}
+
+.login-btn{
+  width:100%;padding:14px;border-radius:10px;
+  background:var(--gold);border:none;
+  color:var(--bg);font-family:'Syne',sans-serif;
+  font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;margin-top:4px;
+}
+.login-btn:hover{background:var(--gold2);}
+.login-err{
+  color:var(--c1);font-size:12px;font-weight:600;
+  margin-top:10px;display:none;text-align:center;
+}
+.login-err.show{display:block;}
+
+/* ══ APP SHELL ══ */
+.app{
+  display:none;height:100vh;
+  flex-direction:row;
+}
+.app.show{display:flex;}
+
+/* ══ SIDEBAR ══ */
+.sidebar{
+  width:var(--sidebar);
+  background:var(--panel);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  flex-shrink:0;
+  overflow-y:auto;
+  padding-bottom:20px;
+}
+.sb-logo{
+  padding:24px 20px 20px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:12px;
+}
+.sb-logo-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:2px;color:var(--gold);
+}
+.sb-logo-dept{
+  font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);margin-top:2px;
+}
+
+.sb-section{
+  font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);padding:16px 20px 6px;
+}
+.sb-item{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 20px;
+  font-size:13px;font-weight:600;color:var(--off);
+  cursor:pointer;transition:all .15s;
+  border-radius:0;border-left:3px solid transparent;
+}
+.sb-item:hover{color:var(--white);background:rgba(255,255,255,0.04);}
+.sb-item.active{
+  color:var(--gold);background:rgba(245,166,35,0.08);
+  border-left-color:var(--gold);
+}
+.sb-icon{font-size:16px;flex-shrink:0;width:20px;text-align:center;}
+.sb-badge{
+  margin-left:auto;background:var(--gold);color:var(--bg);
+  font-size:10px;font-weight:800;padding:2px 7px;border-radius:20px;
+}
+
+.sb-bottom{
+  margin-top:auto;padding:16px 20px;
+  border-top:1px solid var(--border);
+}
+.sb-user{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;color:var(--off);
+}
+.sb-avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--c2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:var(--bg);flex-shrink:0;
+}
+.sb-user-name{font-weight:700;color:var(--white);font-size:13px;}
+.sb-logout{
+  margin-top:10px;width:100%;padding:9px;
+  background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.2);
+  color:var(--c1);border-radius:8px;font-size:11px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  transition:all .2s;font-family:'Syne',sans-serif;
+}
+.sb-logout:hover{background:rgba(255,107,107,0.15);}
+
+/* ══ MAIN CONTENT ══ */
+.main{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  background:var(--bg);
+}
+
+/* ══ TOP BAR ══ */
+.topbar{
+  padding:18px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  background:rgba(7,7,15,0.8);backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:100;gap:12px;flex-wrap:wrap;
+}
+.topbar-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px;letter-spacing:2px;color:var(--white);
+}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.search-box{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.06);border:1px solid var(--border2);
+  border-radius:8px;padding:8px 14px;
+}
+.search-box input{
+  background:none;border:none;outline:none;
+  color:var(--white);font-size:13px;font-family:'Barlow',sans-serif;
+  width:180px;
+}
+.search-box input::placeholder{color:var(--dim);}
+
+/* ══ VIEWS ══ */
+.view{display:none;padding:24px 28px;}
+.view.active{display:block;}
+
+/* ══ STAT CARDS ══ */
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:14px;margin-bottom:28px;
+}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:20px;
+  position:relative;overflow:hidden;
+  transition:border-color .2s;
+}
+.stat-card:hover{border-color:var(--border2);}
+.stat-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.sc-0::before{background:var(--gold);}
+.sc-1::before{background:var(--c4);}
+.sc-2::before{background:var(--c5);}
+.sc-3::before{background:var(--c6);}
+.sc-4::before{background:var(--c2);}
+.sc-5::before{background:var(--c1);}
+.stat-icon{font-size:22px;margin-bottom:10px;}
+.stat-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:42px;letter-spacing:1px;line-height:1;
+  color:var(--white);margin-bottom:4px;
+}
+.stat-label{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--dim);
+}
+
+/* ══ SECTION TITLE ══ */
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:2px;color:var(--white);
+  margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.section-title .pill{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;
+  background:rgba(245,166,35,0.15);color:var(--gold);
+}
+
+/* ══ TABLE ══ */
+.table-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;margin-bottom:28px;
+}
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);padding:12px 16px;text-align:left;
+  background:rgba(255,255,255,0.02);
+  border-bottom:1px solid var(--border);
+}
+.tbl td{
+  padding:14px 16px;font-size:13px;
+  border-bottom:1px solid var(--border);
+  vertical-align:middle;
+}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:rgba(255,255,255,0.02);}
+.tbl tr{transition:background .15s;cursor:pointer;}
+
+/* ══ MEMBER AVATAR ══ */
+.m-avatar{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:var(--bg);flex-shrink:0;
+}
+.m-info{display:flex;align-items:center;gap:10px;}
+.m-name{font-weight:700;font-size:14px;}
+.m-role{font-size:11px;color:var(--dim);margin-top:2px;}
+
+/* ══ ROLE BADGE ══ */
+.role-badge{
+  display:inline-block;padding:4px 10px;border-radius:20px;
+  font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+}
+
+/* ══ SKILL BAR ══ */
+.skill-bar-wrap{display:flex;align-items:center;gap:8px;}
+.skill-bar{
+  height:4px;border-radius:2px;flex:1;
+  background:rgba(255,255,255,0.08);overflow:hidden;
+}
+.skill-fill{height:100%;border-radius:2px;background:var(--gold);transition:width .4s;}
+.skill-val{font-size:11px;font-weight:700;color:var(--off);width:20px;text-align:right;}
+
+/* ══ AVAILABILITY DOTS ══ */
+.avail-dots{display:flex;gap:4px;flex-wrap:wrap;}
+.avail-dot{
+  width:24px;height:24px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  background:rgba(255,255,255,0.06);color:var(--dim);
+}
+.avail-dot.on{background:rgba(29,209,161,0.2);color:var(--c5);}
+
+/* ══ MEMBER MODAL ══ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;padding:24px;
+}
+.modal-overlay.show{display:flex;}
+.modal{
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:20px;width:100%;max-width:680px;
+  max-height:85vh;overflow-y:auto;
+  padding:32px;position:relative;
+}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  background:rgba(255,255,255,0.08);border:none;
+  color:var(--off);width:32px;height:32px;border-radius:50%;
+  font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.modal-close:hover{background:rgba(255,107,107,0.2);color:var(--c1);}
+
+.modal-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;}
+.modal-avatar{
+  width:60px;height:60px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;font-weight:900;color:var(--bg);flex-shrink:0;
+}
+.modal-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:32px;letter-spacing:2px;line-height:1;
+}
+.modal-meta{font-size:13px;color:var(--off);margin-top:4px;}
+
+.modal-section{margin-bottom:24px;}
+.modal-section-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;
+  color:var(--dim);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.modal-section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.detail-cell{
+  background:rgba(255,255,255,0.04);border-radius:10px;padding:12px 14px;
+}
+.dc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;}
+.dc-val{font-size:14px;font-weight:600;color:var(--white);}
+
+.role-select{
+  background:rgba(255,255,255,0.06);border:1px solid var(--border2);
+  border-radius:8px;padding:10px 14px;color:var(--white);
+  font-family:'Barlow',sans-serif;font-size:13px;
+  outline:none;width:100%;cursor:pointer;
+  appearance:none;
+}
+.role-select:focus{border-color:var(--gold);}
+.role-select option{background:#1a1428;}
+
+.save-btn{
+  padding:10px 20px;background:var(--gold);
+  border:none;border-radius:8px;color:var(--bg);
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:800;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  transition:all .2s;margin-top:8px;
+}
+.save-btn:hover{background:var(--gold2);}
+
+.text-blob{
+  font-size:13px;line-height:1.7;color:var(--off);
+  background:rgba(255,255,255,0.03);
+  border-radius:10px;padding:14px;
+  border:1px solid var(--border);
+  font-style:italic;
+}
+
+/* ══ BIRTHDAY CARD ══ */
+.bday-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:12px;margin-bottom:28px;
+}
+.bday-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:18px;
+  display:flex;align-items:center;gap:12px;
+  transition:border-color .2s;
+}
+.bday-card.upcoming{border-color:rgba(254,202,87,0.3);background:rgba(254,202,87,0.04);}
+.bday-card.today{border-color:var(--c3);background:rgba(254,202,87,0.1);animation:glow 2s ease-in-out infinite alternate;}
+@keyframes glow{from{box-shadow:0 0 10px rgba(254,202,87,0.2)}to{box-shadow:0 0 30px rgba(254,202,87,0.4)}}
+.bday-icon{font-size:28px;flex-shrink:0;}
+.bday-name{font-weight:700;font-size:14px;}
+.bday-date{font-size:12px;color:var(--dim);margin-top:2px;}
+.bday-tag{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+
+/* ══ EMPTY STATE ══ */
+.empty{
+  text-align:center;padding:60px 20px;color:var(--dim);
+}
+.empty-icon{font-size:48px;margin-bottom:16px;}
+.empty-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;margin-bottom:8px;color:var(--off);}
+.empty-text{font-size:13px;line-height:1.6;}
+
+/* ══ TOAST ══ */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  background:var(--card2);border:1px solid var(--border2);
+  border-radius:12px;padding:14px 20px;
+  font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:10px;
+  transform:translateY(100px);opacity:0;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  max-width:320px;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.success{border-left:3px solid var(--c5);}
+.toast.error{border-left:3px solid var(--c1);}
+
+/* ══ LOADING ══ */
+.loading{
+  display:flex;align-items:center;justify-content:center;
+  padding:60px;gap:12px;color:var(--dim);
+}
+.spinner{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid rgba(255,255,255,0.1);
+  border-top-color:var(--gold);
+  animation:spin 0.8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ══ SKILL OVERVIEW ══ */
+.skill-overview-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:12px;margin-bottom:28px;
+}
+.skill-ov-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:18px;
+}
+.ov-skill-name{font-size:13px;font-weight:700;margin-bottom:12px;}
+.ov-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.ov-name{font-size:11px;color:var(--off);width:100px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ov-bar{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,0.07);overflow:hidden;}
+.ov-fill{height:100%;border-radius:3px;}
+.ov-val{font-size:11px;font-weight:700;color:var(--dim);width:16px;text-align:right;flex-shrink:0;}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:700px){
+  .sidebar{display:none;}
+  .detail-grid{grid-template-columns:1fr;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- CONFIG BANNER -->
+<div class="config-banner" id="configBanner">
+  ⚙️ <strong>Setup Required:</strong> Replace <code>YOUR_SUPABASE_URL</code> and <code>YOUR_SUPABASE_ANON_KEY</code> in the script below with your actual Supabase credentials.
+  <button onclick="document.getElementById('configBanner').classList.add('hidden')" style="margin-left:auto;background:rgba(0,0,0,0.3);border:none;color:white;padding:4px 12px;border-radius:4px;cursor:pointer;font-weight:700;">Dismiss</button>
+</div>
+
+<!-- ══════════════ LOGIN ══════════════ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">FOTA</div>
+    <div class="login-sub">Digital Media · Admin Portal</div>
+    <div class="login-title">Sign In</div>
+    <div class="login-desc">Restricted access. Only authorised FOTA Digital Media admins may log in.</div>
+
+    <label class="lf-label">Email Address</label>
+    <input class="lf-input" type="email" id="loginEmail" placeholder="admin@fota.church" autocomplete="email">
+
+    <label class="lf-label">Password</label>
+    <input class="lf-input" type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+
+    <button class="login-btn" onclick="handleLogin()" id="loginBtn">Sign In →</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- ══════════════ APP ══════════════ -->
+<div class="app" id="app">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-name">FOTA</div>
+      <div class="sb-logo-dept">Digital Media Admin</div>
+    </div>
+
+    <div class="sb-section">Overview</div>
+    <div class="sb-item active" onclick="showView('overview',this)">
+      <span class="sb-icon">📊</span> Dashboard
+    </div>
+    <div class="sb-item" onclick="showView('members',this)">
+      <span class="sb-icon">👥</span> Team Members
+      <span class="sb-badge" id="memberCount">0</span>
+    </div>
+
+    <div class="sb-section">Management</div>
+    <div class="sb-item" onclick="showView('roles',this)">
+      <span class="sb-icon">🎯</span> Role Assignments
+    </div>
+    <div class="sb-item" onclick="showView('skills',this)">
+      <span class="sb-icon">⚡</span> Skills Overview
+    </div>
+    <div class="sb-item" onclick="showView('availability',this)">
+      <span class="sb-icon">📅</span> Availability & Roster
+    </div>
+    <div class="sb-item" onclick="showView('birthdays',this)">
+      <span class="sb-icon">🎂</span> Birthday Calendar
+    </div>
+
+    <div class="sb-section">Reports</div>
+    <div class="sb-item" onclick="showView('submissions',this)">
+      <span class="sb-icon">📋</span> Submissions
+      <span class="sb-badge" id="subCount">0</span>
+    </div>
+
+    <div class="sb-bottom">
+      <div class="sb-user">
+        <div class="sb-avatar" id="userAvatar">A</div>
+        <div>
+          <div class="sb-user-name" id="userName">Admin</div>
+          <div style="font-size:11px;color:var(--dim)">Team Lead</div>
+        </div>
+      </div>
+      <button class="sb-logout" onclick="handleLogout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-title" id="viewTitle">Dashboard</div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="text" id="searchInput" placeholder="Search members..." oninput="handleSearch()">
+        </div>
+        <button onclick="loadAllData()" style="background:rgba(255,255,255,0.06);border:1px solid var(--border2);color:var(--off);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Syne',sans-serif;">↺ Refresh</button>
+      </div>
+    </div>
+
+    <!-- ── OVERVIEW ── -->
+    <div class="view active" id="view-overview">
+      <div class="stat-grid" id="statGrid">
+        <div class="stat-card sc-0"><div class="stat-icon">👥</div><div class="stat-num" id="s-total">—</div><div class="stat-label">Total Members</div></div>
+        <div class="stat-card sc-1"><div class="stat-icon">📋</div><div class="stat-num" id="s-submitted">—</div><div class="stat-label">Forms Submitted</div></div>
+        <div class="stat-card sc-2"><div class="stat-icon">✅</div><div class="stat-num" id="s-assigned">—</div><div class="stat-label">Roles Assigned</div></div>
+        <div class="stat-card sc-3"><div class="stat-icon">📅</div><div class="stat-num" id="s-available">—</div><div class="stat-label">Available Sundays</div></div>
+        <div class="stat-card sc-4"><div class="stat-icon">🎂</div><div class="stat-num" id="s-bday">—</div><div class="stat-label">Birthdays This Month</div></div>
+        <div class="stat-card sc-5"><div class="stat-icon">⚡</div><div class="stat-num" id="s-avgskill">—</div><div class="stat-label">Avg Skill Score</div></div>
+      </div>
+
+      <div class="section-title">Recent Submissions <span class="pill" id="recentPill">Latest 5</span></div>
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr>
+            <th>Member</th><th>Desired Role</th><th>Submitted</th><th>Action</th>
+          </tr></thead>
+          <tbody id="recentBody">
+            <tr><td colspan="4"><div class="loading"><div class="spinner"></div> Loading...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title">Upcoming Birthdays 🎂</div>
+      <div class="bday-grid" id="bdayOverview"></div>
+    </div>
+
+    <!-- ── MEMBERS ── -->
+    <div class="view" id="view-members">
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr>
+            <th>Member</th><th>Phone</th><th>Occupation</th><th>Years at FOTA</th><th>Assigned Role</th><th>Status</th>
+          </tr></thead>
+          <tbody id="membersBody">
+            <tr><td colspan="6"><div class="loading"><div class="spinner"></div> Loading...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── ROLES ── -->
+    <div class="view" id="view-roles">
+      <div class="section-title">Role Assignments <span class="pill">Assign & Update</span></div>
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr>
+            <th>Member</th><th>Desired Role</th><th>Top Skill Avg</th><th>Assigned Role</th><th>Save</th>
+          </tr></thead>
+          <tbody id="rolesBody">
+            <tr><td colspan="5"><div class="loading"><div class="spinner"></div> Loading...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── SKILLS ── -->
+    <div class="view" id="view-skills">
+      <div class="section-title">Skills Overview <span class="pill">Team Averages</span></div>
+      <div class="skill-overview-grid" id="skillsGrid"></div>
+    </div>
+
+    <!-- ── AVAILABILITY ── -->
+    <div class="view" id="view-availability">
+      <div class="section-title">Availability & Roster <span class="pill">Weekly Coverage</span></div>
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr>
+            <th>Member</th><th>Available Days</th><th>Hours/Week</th><th>Sundays</th><th>Events</th>
+          </tr></thead>
+          <tbody id="availBody">
+            <tr><td colspan="5"><div class="loading"><div class="spinner"></div> Loading...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── BIRTHDAYS ── -->
+    <div class="view" id="view-birthdays">
+      <div class="section-title">Birthday Calendar 🎂 <span class="pill">All Year</span></div>
+      <div id="bdayFull"></div>
+    </div>
+
+    <!-- ── SUBMISSIONS ── -->
+    <div class="view" id="view-submissions">
+      <div class="section-title">All Submissions <span class="pill" id="subsPill">0 total</span></div>
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr>
+            <th>Member</th><th>Roles Claimed</th><th>Strength Summary</th><th>Submitted</th><th>View</th>
+          </tr></thead>
+          <tbody id="subsBody">
+            <tr><td colspan="5"><div class="loading"><div class="spinner"></div> Loading...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ══ MEMBER MODAL ══ -->
+<div class="modal-overlay" id="memberModal" onclick="closeModal(event)">
+  <div class="modal" id="modalInner">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL  = 'https://gzjkgqcikzhjnijgjtqr.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_tDwFEpFb9xSikJ46Mt2ZUQ_nQfaXD5i';
+
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let allMembers = [];
+let currentView = 'overview';
+
+/* skill key → friendly name */
+const SKILL_MAP = {
+  camera:'Camera Operation', vedit:'Video Editing', reel:'Reel Editing',
+  colour:'Colour Grading', subs:'Subtitles', live:'Livestream',
+  photo:'Photography', pedit:'Photo Editing', design:'Graphic Design',
+  typo:'Typography', brand:'Brand Consistency', ig:'Instagram',
+  tt:'TikTok', fb:'Facebook', yt:'YouTube', copy:'Copywriting',
+  sched:'Scheduling', stats:'Analytics', dead:'Deadlines',
+  team:'Teamwork', init:'Initiative', fback:'Feedback',
+};
+const SKILL_GROUPS = {
+  '🎥 Video Production': ['camera','vedit','reel','colour','subs','live'],
+  '🎨 Photo & Design':   ['photo','pedit','design','typo','brand'],
+  '📱 Social Media':     ['ig','tt','fb','yt','copy','sched','stats'],
+  '🤝 Team & Character': ['dead','team','init','fback'],
+};
+
+function getSkillAvg(m){
+  const vals = Object.keys(SKILL_MAP).map(k=>m[`skill_${k}`]).filter(v=>v!=null).map(Number);
+  return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+}
+function getAvail(m){
+  const a = m.available_days;
+  if(Array.isArray(a)) return a;
+  if(typeof a === 'string') return a.split(',').map(x=>x.trim()).filter(Boolean);
+  return [];
+}
+
+/* ══ AUTH ══ */
+async function handleLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPass').value;
+  const btn   = document.getElementById('loginBtn');
+  const err   = document.getElementById('loginErr');
+
+  if(!email || !pass){ showErr('Please enter your email and password.'); return; }
+  btn.textContent = 'Signing in...'; btn.disabled = true;
+
+  const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+  if(error){ showErr(error.message); btn.textContent = 'Sign In →'; btn.disabled = false; return; }
+
+  bootApp(data.user);
+}
+
+function showErr(msg){
+  const e = document.getElementById('loginErr');
+  e.textContent = msg; e.classList.add('show');
+}
+
+async function handleLogout(){
+  await sb.auth.signOut();
+  document.getElementById('app').classList.remove('show');
+  document.getElementById('loginScreen').classList.remove('hidden');
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPass').value = '';
+}
+
+async function checkSession(){
+  const { data } = await sb.auth.getSession();
+  if(data.session){ bootApp(data.session.user); }
+}
+
+function bootApp(user){
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('configBanner').classList.add('hidden');
+  document.getElementById('app').classList.add('show');
+  const name = user.email.split('@')[0];
+  document.getElementById('userName').textContent = name;
+  document.getElementById('userAvatar').textContent = name[0].toUpperCase();
+  loadAllData();
+}
+
+/* ══ DATA ══ */
+async function loadAllData(){
+  const { data, error } = await sb
+    .from('team_assessments')
+    .select('*')
+    .order('submitted_at', { ascending: false });
+
+  if(error){ showToast('Error loading data: '+error.message,'error'); return; }
+  allMembers = data || [];
+  renderAll();
+}
+
+function renderAll(){
+  const m = allMembers;
+  document.getElementById('memberCount').textContent = m.length;
+  document.getElementById('subCount').textContent = m.length;
+  document.getElementById('subsPill').textContent = m.length + ' total';
+
+  // Stats
+  document.getElementById('s-total').textContent = m.length;
+  document.getElementById('s-submitted').textContent = m.length;
+  document.getElementById('s-assigned').textContent = m.filter(x=>x.assigned_role).length;
+  document.getElementById('s-available').textContent = m.filter(x=>getAvail(x).includes('sun')).length;
+
+  const now = new Date();
+  document.getElementById('s-bday').textContent = m.filter(x=>x.bday_month && parseInt(x.bday_month)===now.getMonth()+1).length;
+
+  let skillSum = 0, skillCount = 0;
+  m.forEach(mem=>{
+    Object.keys(SKILL_MAP).forEach(k=>{ const v=mem[`skill_${k}`]; if(v){skillSum+=parseInt(v);skillCount++;} });
+  });
+  document.getElementById('s-avgskill').textContent = skillCount ? (skillSum/skillCount).toFixed(1) : '—';
+
+  renderRecent(m.slice(0,5));
+  renderBdayOverview(m);
+  renderMembers(m);
+  renderRoles(m);
+  renderSkills(m);
+  renderAvailability(m);
+  renderBirthdayFull(m);
+  renderSubmissions(m);
+}
+
+/* ══ AVATAR COLOR ══ */
+const avatarColors = ['#48DBFB','#FF9FF3','#FECA57','#1DD1A1','#FF9F43','#A29BFE','#FF6B6B'];
+function avatarColor(i){ return avatarColors[i % avatarColors.length]; }
+function initials(name){ return name ? name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2) : '?'; }
+
+/* ══ RECENT ══ */
+function renderRecent(members){
+  const tb = document.getElementById('recentBody');
+  if(!members.length){ tb.innerHTML = `<tr><td colspan="4"><div class="empty"><div class="empty-icon">📭</div><div class="empty-title">No Submissions Yet</div><div class="empty-text">Share the assessment form with your team.</div></div></td></tr>`; return; }
+  tb.innerHTML = members.map(m=>{
+    const idx = allMembers.indexOf(m);
+    return `<tr onclick="openModal(${idx})">
+      <td><div class="m-info">
+        <div class="m-avatar" style="background:${avatarColor(idx)}">${initials(m.full_name)}</div>
+        <div><div class="m-name">${m.full_name||'—'}</div><div class="m-role">${m.preferred_name||''}</div></div>
+      </div></td>
+      <td>${roleBadge(m.desired_role||'—')}</td>
+      <td style="font-size:12px;color:var(--dim)">${formatDate(m.submitted_at)}</td>
+      <td><button onclick="event.stopPropagation();openModal(${idx})" style="background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--gold);padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">View →</button></td>
+    </tr>`;
+  }).join('');
+}
+
+/* ══ MEMBERS ══ */
+function renderMembers(members){
+  const tb = document.getElementById('membersBody');
+  if(!members.length){ tb.innerHTML = `<tr><td colspan="6"><div class="empty"><div class="empty-icon">👥</div><div class="empty-title">No Members Yet</div></div></td></tr>`; return; }
+  tb.innerHTML = members.map(m=>{
+    const idx = allMembers.indexOf(m);
+    return `<tr onclick="openModal(${idx})">
+      <td><div class="m-info">
+        <div class="m-avatar" style="background:${avatarColor(idx)}">${initials(m.full_name)}</div>
+        <div><div class="m-name">${m.full_name||'—'}</div><div class="m-role">${m.email||''}</div></div>
+      </div></td>
+      <td style="font-size:13px">${m.phone||'—'}</td>
+      <td style="font-size:13px;color:var(--off)">${m.occupation||'—'}</td>
+      <td style="font-size:13px;color:var(--off)">${m.years_at_fota||'—'}</td>
+      <td>${roleBadge(m.assigned_role || m.desired_role || '—')}</td>
+      <td><span style="display:inline-block;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:800;background:${m.assigned_role?'rgba(29,209,161,0.15)':'rgba(255,255,255,0.06)'};color:${m.assigned_role?'var(--c5)':'var(--dim)'}">${m.assigned_role?'Assigned':'Pending'}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+/* ══ ROLES ══ */
+function renderRoles(members){
+  const tb = document.getElementById('rolesBody');
+  if(!members.length){ tb.innerHTML = `<tr><td colspan="5"><div class="empty"><div class="empty-icon">🎯</div><div class="empty-title">No Members Yet</div></div></td></tr>`; return; }
+
+  const roleOptions = ['Videographer','Photographer','Video Editor','Graphic Designer','Social Media Manager','Copywriter','Content Strategist','Analytics','Livestream Operator','Audio Support','Team Lead'];
+
+  tb.innerHTML = members.map(m=>{
+    const idx = allMembers.indexOf(m);
+    const avg = getSkillAvg(m);
+    const opts = roleOptions.map(r=>`<option value="${r}" ${m.assigned_role===r?'selected':''}>${r}</option>`).join('');
+    return `<tr>
+      <td><div class="m-info">
+        <div class="m-avatar" style="background:${avatarColor(idx)};width:28px;height:28px;font-size:12px">${initials(m.full_name)}</div>
+        <div class="m-name" style="font-size:13px">${m.full_name||'—'}</div>
+      </div></td>
+      <td>${roleBadge(m.desired_role||'—')}</td>
+      <td style="font-size:14px;font-weight:700;color:var(--gold)">${avg?avg.toFixed(1):'—'}</td>
+      <td><select class="role-select" id="role-${idx}" style="width:180px">
+        <option value="">— Unassigned —</option>${opts}
+      </select></td>
+      <td><button class="save-btn" onclick="saveRole(${idx})">Save</button></td>
+    </tr>`;
+  }).join('');
+}
+
+async function saveRole(idx){
+  const m = allMembers[idx];
+  if(!m) return;
+  const role = document.getElementById('role-'+idx).value;
+  const { error } = await sb.from('team_assessments').update({ assigned_role: role }).eq('id', m.id);
+  if(error){ showToast('Error: '+error.message,'error'); return; }
+  showToast('Role saved ✓','success');
+  m.assigned_role = role;
+  renderAll();
+}
+
+/* ══ SKILLS ══ */
+function renderSkills(members){
+  const grid = document.getElementById('skillsGrid');
+  if(!members.length){ grid.innerHTML = `<div class="empty"><div class="empty-icon">⚡</div><div class="empty-title">No Data Yet</div></div>`; return; }
+
+  grid.innerHTML = Object.entries(SKILL_GROUPS).map(([grp, keys])=>{
+    const rows = keys.map(k=>{
+      const vals = members.map(m=>m[`skill_${k}`]).filter(v=>v!=null).map(Number);
+      const avg = vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : 0;
+      const pct = (avg/5)*100;
+      const col = avg>=4?'var(--c5)':avg>=3?'var(--gold)':avg>=2?'var(--c2)':'var(--c1)';
+      return `<div class="ov-bar-row">
+        <div class="ov-name" title="${SKILL_MAP[k]}">${SKILL_MAP[k]}</div>
+        <div class="ov-bar"><div class="ov-fill" style="width:${pct}%;background:${col}"></div></div>
+        <div class="ov-val">${avg?avg.toFixed(1):'—'}</div>
+      </div>`;
+    }).join('');
+    return `<div class="skill-ov-card">
+      <div class="ov-skill-name" style="color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase">${grp}</div>
+      ${rows}
+    </div>`;
+  }).join('');
+}
+
+/* ══ AVAILABILITY ══ */
+function renderAvailability(members){
+  const tb = document.getElementById('availBody');
+  if(!members.length){ tb.innerHTML = `<tr><td colspan="5"><div class="empty"><div class="empty-icon">📅</div><div class="empty-title">No Data Yet</div></div></td></tr>`; return; }
+
+  const days = ['mon','tue','wed','thu','fri','sat','sun'];
+  const dayEmojis = {mon:'☀️',tue:'⚡',wed:'🌤',thu:'🔥',fri:'🎉',sat:'🌙',sun:'✝️'};
+  const scMap = {every:'💯 Every Sunday',most:'👍 Most Sundays',sometimes:'🤏 Sometimes',no:'❌ Can\'t'};
+
+  tb.innerHTML = members.map(m=>{
+    const idx = allMembers.indexOf(m);
+    const avail = getAvail(m);
+    const dots = days.map(d=>`<div class="avail-dot ${avail.includes(d)?'on':''}" title="${d}">${dayEmojis[d]||d}</div>`).join('');
+    const sc = scMap[m.sunday_commitment] || m.sunday_commitment || '—';
+    return `<tr onclick="openModal(${idx})">
+      <td><div class="m-info">
+        <div class="m-avatar" style="background:${avatarColor(idx)};width:28px;height:28px;font-size:12px">${initials(m.full_name)}</div>
+        <div class="m-name" style="font-size:13px">${m.full_name||'—'}</div>
+      </div></td>
+      <td><div class="avail-dots">${dots}</div></td>
+      <td style="font-size:13px;color:var(--off)">${m.hours_per_week||'—'}</td>
+      <td style="font-size:12px">${sc}</td>
+      <td style="font-size:12px;color:var(--off)">${m.event_commitment||'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+/* ══ BIRTHDAY OVERVIEW ══ */
+function renderBdayOverview(members){
+  const now = new Date();
+  const thisMonth = now.getMonth()+1;
+  const today = now.getDate();
+
+  const upcoming = members
+    .filter(m=>m.bday_month)
+    .map(m=>({
+      ...m,
+      mo: parseInt(m.bday_month),
+      dy: parseInt(m.bday_day)||1
+    }))
+    .sort((a,b)=>{
+      const am = a.mo < thisMonth ? a.mo+12 : a.mo;
+      const bm = b.mo < thisMonth ? b.mo+12 : b.mo;
+      return am!==bm ? am-bm : a.dy-b.dy;
+    })
+    .slice(0,6);
+
+  const months = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const container = document.getElementById('bdayOverview');
+
+  if(!upcoming.length){ container.innerHTML = '<div class="empty"><div class="empty-icon">🎂</div><div class="empty-title">No birthdays yet</div></div>'; return; }
+
+  container.innerHTML = upcoming.map((m,i)=>{
+    const isToday = m.mo===thisMonth && m.dy===today;
+    const isThisMonth = m.mo===thisMonth;
+    return `<div class="bday-card ${isToday?'today':isThisMonth?'upcoming':''}">
+      <span class="bday-icon">${isToday?'🎉':'🎂'}</span>
+      <div>
+        <div class="bday-name">${m.full_name||'—'}</div>
+        <div class="bday-date">${months[m.mo]} ${m.dy}</div>
+        <div class="bday-tag" style="color:${isToday?'var(--c3)':isThisMonth?'var(--c2)':'var(--dim)'}">${isToday?'Today! 🎊':isThisMonth?'This Month':'Upcoming'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ══ BIRTHDAY FULL ══ */
+function renderBirthdayFull(members){
+  const container = document.getElementById('bdayFull');
+  const months = ['January 🎉','February 💝','March 🌸','April 🌼','May 🌻','June ☀️','July 🔥','August 🌊','September 🍁','October 🎃','November 🌙','December ⛄'];
+  const now = new Date();
+
+  const byMonth = {};
+  members.forEach(m=>{
+    if(!m.bday_month) return;
+    const mo = parseInt(m.bday_month);
+    if(!byMonth[mo]) byMonth[mo] = [];
+    byMonth[mo].push(m);
+  });
+
+  if(!Object.keys(byMonth).length){ container.innerHTML = `<div class="empty"><div class="empty-icon">🎂</div><div class="empty-title">No Birthdays Added Yet</div></div>`; return; }
+
+  // sort months starting from current
+  const sortedMonths = [...Array(12).keys()].map(i=>(i+now.getMonth())%12+1).filter(m=>byMonth[m]);
+
+  container.innerHTML = sortedMonths.map(mo=>{
+    const mems = byMonth[mo].sort((a,b)=>parseInt(a.bday_day||0)-parseInt(b.bday_day||0));
+    return `<div style="margin-bottom:20px;">
+      <div class="section-title" style="font-size:18px;margin-bottom:10px">${months[mo-1]}</div>
+      <div class="bday-grid">${mems.map((m,i)=>{
+        const isToday = mo===now.getMonth()+1 && parseInt(m.bday_day)===now.getDate();
+        return `<div class="bday-card ${isToday?'today':''}">
+          <span class="bday-icon">${isToday?'🎉':'🎂'}</span>
+          <div>
+            <div class="bday-name">${m.full_name||'—'}</div>
+            <div class="bday-date">${m.bday_day ? `${m.bday_day} ${months[mo-1].split(' ')[0]}`:'—'}</div>
+            ${isToday?'<div class="bday-tag" style="color:var(--c3)">Today! 🎊</div>':''}
+          </div>
+        </div>`;
+      }).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ══ SUBMISSIONS ══ */
+function renderSubmissions(members){
+  const tb = document.getElementById('subsBody');
+  if(!members.length){ tb.innerHTML = `<tr><td colspan="5"><div class="empty"><div class="empty-icon">📭</div><div class="empty-title">No Submissions Yet</div></div></td></tr>`; return; }
+  tb.innerHTML = members.map(m=>{
+    const idx = allMembers.indexOf(m);
+    const roles = Array.isArray(m.current_roles) ? m.current_roles.join(', ') : (m.current_roles||'—');
+    const strength = m.greatest_strength ? m.greatest_strength.slice(0,80)+'…' : '—';
+    return `<tr onclick="openModal(${idx})">
+      <td><div class="m-info">
+        <div class="m-avatar" style="background:${avatarColor(idx)}">${initials(m.full_name)}</div>
+        <div><div class="m-name">${m.full_name||'—'}</div><div class="m-role">${m.age_range||''}</div></div>
+      </div></td>
+      <td style="font-size:12px;color:var(--off);max-width:160px">${roles}</td>
+      <td style="font-size:12px;color:var(--off);max-width:200px;font-style:italic">${strength}</td>
+      <td style="font-size:12px;color:var(--dim)">${formatDate(m.submitted_at)}</td>
+      <td><button onclick="event.stopPropagation();openModal(${idx})" style="background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);color:var(--gold);padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Full Profile →</button></td>
+    </tr>`;
+  }).join('');
+}
+
+/* ══ MODAL ══ */
+function openModal(idx){
+  const m = allMembers[idx];
+  if(!m) return;
+
+  const months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+  const bday = m.bday_day && m.bday_month ? `${m.bday_day} ${months[parseInt(m.bday_month)]}` : '—';
+
+  const avail = getAvail(m);
+  const days = ['mon','tue','wed','thu','fri','sat','sun'];
+  const dayEmojis = {mon:'☀️Mon',tue:'⚡Tue',wed:'🌤Wed',thu:'🔥Thu',fri:'🎉Fri',sat:'🌙Sat',sun:'✝️Sun'};
+  const availDots = days.map(d=>`<div class="avail-dot ${avail.includes(d)?'on':''}">${dayEmojis[d]}</div>`).join('');
+
+  const col = avatarColor(idx);
+
+  const skillRows = Object.entries(SKILL_GROUPS).map(([grp, keys])=>{
+    const rows = keys.map(k=>{
+      const v = m[`skill_${k}`];
+      if(v == null) return '';
+      const pct = (v/5)*100;
+      const c = v>=4?'var(--c5)':v>=3?'var(--gold)':v>=2?'var(--c2)':'var(--c1)';
+      return `<div class="ov-bar-row" style="margin-bottom:8px;">
+        <div style="font-size:12px;color:var(--off);width:140px;flex-shrink:0">${SKILL_MAP[k]}</div>
+        <div class="ov-bar" style="flex:1"><div class="ov-fill" style="width:${pct}%;background:${c}"></div></div>
+        <div class="ov-val">${v}/5</div>
+      </div>`;
+    }).join('');
+    return rows ? `<div style="margin-bottom:14px"><div style="font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:8px">${grp}</div>${rows}</div>` : '';
+  }).join('');
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-avatar" style="background:${col}">${initials(m.full_name)}</div>
+      <div>
+        <div class="modal-name">${m.full_name||'—'}</div>
+        <div class="modal-meta">${m.preferred_name?`"${m.preferred_name}" · `:''} ${m.occupation||''} ${m.email?'· '+m.email:''}</div>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Contact & Details</div>
+      <div class="detail-grid">
+        <div class="detail-cell"><div class="dc-label">Phone</div><div class="dc-val">${m.phone||'—'}</div></div>
+        <div class="detail-cell"><div class="dc-label">WhatsApp</div><div class="dc-val">${m.whatsapp||m.phone||'—'}</div></div>
+        <div class="detail-cell"><div class="dc-label">Birthday</div><div class="dc-val">🎂 ${bday}</div></div>
+        <div class="detail-cell"><div class="dc-label">Age Range</div><div class="dc-val">${m.age_range||'—'}</div></div>
+        <div class="detail-cell"><div class="dc-label">Gender</div><div class="dc-val">${m.gender||'—'}</div></div>
+        <div class="detail-cell"><div class="dc-label">Years at FOTA</div><div class="dc-val">${m.years_at_fota||'—'}</div></div>
+        <div class="detail-cell"><div class="dc-label">Other Depts</div><div class="dc-val">${m.other_dept||'None'}</div></div>
+        <div class="detail-cell"><div class="dc-label">Hours/Week</div><div class="dc-val">${m.hours_per_week||'—'}</div></div>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Roles</div>
+      <div class="detail-grid">
+        <div class="detail-cell"><div class="dc-label">Current Roles</div><div class="dc-val" style="font-size:12px">${Array.isArray(m.current_roles)?m.current_roles.join(', '):m.current_roles||'—'}</div></div>
+        <div class="detail-cell"><div class="dc-label">Desired Role</div><div class="dc-val">${roleBadge(m.desired_role||'—')}</div></div>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Assign Role</div>
+      <select class="role-select" id="modal-role-${idx}">
+        <option value="">— Unassigned —</option>
+        ${['Videographer','Photographer','Video Editor','Graphic Designer','Social Media Manager','Copywriter','Content Strategist','Analytics','Livestream Operator','Audio Support','Team Lead'].map(r=>`<option value="${r}" ${m.assigned_role===r?'selected':''}>${r}</option>`).join('')}
+      </select>
+      <button class="save-btn" onclick="saveRoleFromModal(${idx})">Save Role Assignment</button>
+    </div>
+
+    ${skillRows ? `<div class="modal-section"><div class="modal-section-title">Skills Self-Assessment</div>${skillRows}</div>` : ''}
+
+    <div class="modal-section">
+      <div class="modal-section-title">Availability</div>
+      <div class="avail-dots" style="margin-bottom:10px">${availDots}</div>
+      <div style="font-size:12px;color:var(--off)">Sundays: <strong>${m.sunday_commitment||'—'}</strong> &nbsp;·&nbsp; Events: <strong>${m.event_commitment||'—'}</strong></div>
+      ${m.sched_note?`<div class="text-blob" style="margin-top:10px">${m.sched_note}</div>`:''}
+    </div>
+
+    ${m.greatest_strength?`<div class="modal-section"><div class="modal-section-title">Greatest Strength</div><div class="text-blob">${m.greatest_strength}</div></div>`:''}
+    ${m.honest_weakness?`<div class="modal-section"><div class="modal-section-title">Honest Weakness</div><div class="text-blob">${m.honest_weakness}</div></div>`:''}
+    ${m.opportunity?`<div class="modal-section"><div class="modal-section-title">Their Vision for FOTA Digital Media</div><div class="text-blob">${m.opportunity}</div></div>`:''}
+
+    <div style="font-size:11px;color:var(--dim);margin-top:16px;text-align:right">Submitted: ${formatDate(m.submitted_at)}</div>
+  `;
+
+  document.getElementById('memberModal').classList.add('show');
+}
+
+async function saveRoleFromModal(idx){
+  const m = allMembers[idx];
+  if(!m) return;
+  const role = document.getElementById('modal-role-'+idx).value;
+  const { error } = await sb.from('team_assessments').update({ assigned_role: role }).eq('id', m.id);
+  if(error){ showToast('Error: '+error.message,'error'); return; }
+  showToast('Role assigned ✓','success');
+  m.assigned_role = role;
+  renderAll();
+}
+
+function closeModal(e){
+  if(e && e.target !== document.getElementById('memberModal')) return;
+  document.getElementById('memberModal').classList.remove('show');
+}
+
+/* ══ VIEWS ══ */
+const viewTitles = {
+  overview:'Dashboard',members:'Team Members',roles:'Role Assignments',
+  skills:'Skills Overview',availability:'Availability & Roster',
+  birthdays:'Birthday Calendar',submissions:'All Submissions'
+};
+
+function showView(id, el){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  if(el) el.classList.add('active');
+  document.getElementById('viewTitle').textContent = viewTitles[id]||id;
+  currentView = id;
+}
+
+/* ══ SEARCH ══ */
+function handleSearch(){
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  if(!q){ renderAll(); return; }
+  const filtered = allMembers.filter(m=>
+    (m.full_name||'').toLowerCase().includes(q) ||
+    (m.email||'').toLowerCase().includes(q) ||
+    (m.occupation||'').toLowerCase().includes(q) ||
+    (m.desired_role||'').toLowerCase().includes(q)
+  );
+  renderMembers(filtered);
+  renderSubmissions(filtered);
+}
+
+/* ══ ROLE BADGE ══ */
+const roleColors = {
+  'Videographer':'var(--c4)','Photographer':'var(--c6)',
+  'Video Editor':'var(--c2)','Graphic Designer':'var(--c3)',
+  'Social Media Manager':'var(--c5)','Copywriter':'var(--c7)',
+  'Content Strategist':'var(--gold)','Analytics':'var(--c1)',
+  'Livestream Operator':'var(--c4)','Audio Support':'var(--c6)',
+  'Team Lead':'var(--gold)',
+};
+function roleBadge(role){
+  const col = roleColors[role] || 'rgba(255,255,255,0.2)';
+  const bg = col.includes('var') ? col.replace(')',',0.12)').replace('var(','rgba(255,255,255,') : 'rgba(255,255,255,0.08)';
+  return `<span class="role-badge" style="background:${col}18;color:${col};border:1px solid ${col}30">${role}</span>`;
+}
+
+/* ══ UTILS ══ */
+function formatDate(d){
+  if(!d) return '—';
+  return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+}
+
+let toastTimer;
+function showToast(msg, type='success'){
+  const t = document.getElementById('toast');
+  t.textContent = (type==='success'?'✓ ':'✕ ') + msg;
+  t.className = `toast ${type} show`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+/* ══ KEYBOARD ══ */
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape') closeModal();
+  if(e.key==='Enter' && document.getElementById('loginScreen').style.display!=='none') handleLogin();
+});
+document.getElementById('loginPass').addEventListener('keydown',e=>{ if(e.key==='Enter') handleLogin(); });
+
+/* ══ INIT ══ */
+checkSession();
+</script>
+</body>
+</html>
