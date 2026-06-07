@@ -1143,7 +1143,8 @@ function updateProg() {
   const seg = Math.round((1/TOTAL)*100);
   progFill.style.width = Math.min(99, base + Math.round((done/total)*seg)) + '%';
 }
-document.getElementById('mainForm').addEventListener('input', () => { updateProg(); updateNextBtn(); });
+document.addEventListener('input',  () => { updateProg(); updateNextBtn(); });
+document.addEventListener('change', () => { updateProg(); updateNextBtn(); });
 
 /* ═══ VALIDATION ═══ */
 const fv  = n => { const e=document.querySelector(`[name="${n}"]`); return !!(e&&e.value.trim()); };
