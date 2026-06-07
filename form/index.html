@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOTA Digital Media · Who Are You?</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+:root {
+  --bg: #0E0A1A;
+  --white: #FFFFFF;
+  --off: rgba(255,255,255,0.6);
+  --dim: rgba(255,255,255,0.28);
+  --border: rgba(255,255,255,0.1);
+  --surface: rgba(255,255,255,0.05);
+  /* Section accent colors */
+  --ca: #48DBFB;
+  --cb: #FF9FF3;
+  --cc: #FECA57;
+  --cd: #1DD1A1;
+  --ce: #FF9F43;
+  --cf: #A29BFE;
+  --cg: #FF6B6B;
+  --current: #48DBFB;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--bg);
+  font-family:'Syne',sans-serif;
+  color:var(--white);
+  position:relative;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 120% 80% at 15% 10%,rgba(84,160,255,0.12) 0%,transparent 55%),
+    radial-gradient(ellipse 80% 100% at 85% 90%,rgba(255,107,107,0.1) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 60% at 50% 50%,rgba(95,39,205,0.08) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── PROGRESS BAR ── */
+.prog-rail{
+  position:fixed;top:0;left:0;right:0;height:4px;
+  background:rgba(255,255,255,0.07);z-index:1000;
+}
+.prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--current),var(--cb));
+  transition:width 0.6s cubic-bezier(.4,0,.2,1),background 0.6s;
+  box-shadow:0 0 14px var(--current);
+}
+
+/* ── TOP HEADER ── */
+.top-bar{
+  position:fixed;top:4px;left:0;right:0;
+  padding:14px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:900;
+  background:rgba(14,10,26,0.7);
+  backdrop-filter:blur(16px);
+}
+.top-bar-left{
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);
+}
+.top-bar-left strong{color:var(--current);transition:color .4s;}
+.step-counter{
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:13px;font-weight:900;
+  color:var(--dim);letter-spacing:1px;
+}
+.step-counter span{color:var(--current);transition:color .4s;}
+
+/* ── STEP DOTS ── */
+.dot-row{
+  display:flex;gap:6px;align-items:center;
+}
+.dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  border:1.5px solid rgba(255,255,255,0.15);
+  transition:all .35s;cursor:pointer;
+}
+.dot.done{background:rgba(255,255,255,0.35);border-color:rgba(255,255,255,0.35);}
+.dot.active{
+  width:22px;border-radius:10px;
+  background:var(--current);border-color:var(--current);
+  box-shadow:0 0 10px var(--current);
+}
+
+/* ── FLOATERS ── */
+.floaters{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.floater{
+  position:absolute;font-size:clamp(18px,2.5vw,32px);
+  animation:floatAnim 9s ease-in-out infinite;opacity:0.35;
+}
+@keyframes floatAnim{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  33%{transform:translateY(-22px) rotate(7deg);}
+  66%{transform:translateY(12px) rotate(-5deg);}
+}
+
+/* ── SLIDE CONTAINER ── */
+.slides-wrap{
+  position:fixed;inset:0;
+  padding-top:72px;
+  overflow:hidden;
+}
+.slides-track{
+  display:flex;
+  height:100%;
+  transition:transform 0.6s cubic-bezier(.77,0,.18,1);
+  will-change:transform;
+}
+.slide{
+  min-width:100vw;
+  height:100%;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:32px 24px 120px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,0.1) transparent;
+  position:relative;z-index:1;
+}
+.slide-inner{width:100%;max-width:660px;}
+
+/* ── SECTION TAG ── */
+.sec-tag{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 16px;border-radius:100px;
+  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  border:1.5px solid;margin-bottom:20px;
+  color:var(--current);
+  border-color:rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.04);
+}
+.sec-headline{
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:clamp(42px,8vw,88px);
+  font-weight:900;line-height:0.9;letter-spacing:-2px;
+  margin-bottom:14px;color:var(--current);
+}
+.sec-lead{
+  font-family:'Instrument Serif',serif;
+  font-size:17px;font-style:italic;
+  color:var(--off);line-height:1.6;
+  margin-bottom:36px;max-width:500px;
+}
+
+/* ── COVER SLIDE ── */
+.cover-slide{
+  justify-content:center;text-align:center;
+  padding:40px 24px 120px;
+}
+.cover-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;
+  color:var(--ca);margin-bottom:20px;
+}
+.cover-title{
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:clamp(54px,11vw,130px);
+  font-weight:900;line-height:0.9;letter-spacing:-3px;
+  margin-bottom:20px;
+}
+.cover-title .l1{display:block;color:var(--white);}
+.cover-title .l2{
+  display:block;
+  background:linear-gradient(135deg,var(--ca),var(--cb),var(--cc));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cover-sub{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(16px,2.5vw,22px);font-style:italic;
+  color:var(--off);max-width:480px;margin:0 auto 36px;line-height:1.6;
+}
+.cover-meta{
+  font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--dim);margin-bottom:40px;
+}
+
+/* ── START BUTTON ── */
+.start-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,var(--ca),var(--cb));
+  color:var(--bg);
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:16px;font-weight:900;letter-spacing:1px;
+  padding:18px 44px;border-radius:100px;
+  border:none;cursor:pointer;
+  box-shadow:0 20px 60px rgba(72,219,251,0.3);
+  transition:transform .2s,box-shadow .2s;
+}
+.start-btn:hover{transform:translateY(-3px);box-shadow:0 28px 70px rgba(72,219,251,0.45);}
+
+/* ── FIELDS ── */
+.field{margin-bottom:24px;}
+.f-label{
+  display:block;font-size:11px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--off);margin-bottom:9px;
+}
+.f-hint{
+  font-size:11px;font-weight:400;letter-spacing:0;
+  text-transform:none;color:var(--dim);display:block;margin-top:3px;
+}
+.req{color:var(--ce);}
+
+input[type=text],input[type=email],input[type=tel],
+select,textarea{
+  width:100%;
+  background:rgba(255,255,255,0.06);
+  border:1.5px solid rgba(255,255,255,0.12);
+  border-radius:12px;
+  padding:15px 18px;
+  font-family:'Syne',sans-serif;
+  font-size:15px;font-weight:500;
+  color:var(--white);outline:none;appearance:none;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.2);}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--current);
+  background:rgba(255,255,255,0.09);
+  box-shadow:0 0 0 4px rgba(72,219,251,0.08);
+}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  padding-right:42px;cursor:pointer;
+}
+select option{background:#1a1428;color:white;}
+textarea{resize:vertical;min-height:90px;line-height:1.65;}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media(max-width:580px){.row2,.row3{grid-template-columns:1fr;}}
+
+/* ── CHOICES ── */
+.choices{display:grid;gap:9px;}
+.choices.c2{grid-template-columns:1fr 1fr;}
+.choices.c3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:580px){.choices.c2,.choices.c3{grid-template-columns:1fr;}}
+
+.choice{
+  position:relative;padding:13px 15px;
+  border-radius:11px;border:1.5px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.04);
+  cursor:pointer;display:flex;align-items:center;gap:11px;
+  font-size:13.5px;font-weight:600;color:rgba(255,255,255,0.7);
+  transition:all .18s;user-select:none;
+}
+.choice:hover{border-color:rgba(255,255,255,0.28);background:rgba(255,255,255,0.08);color:white;}
+.choice input{
+  width:17px;height:17px;accent-color:var(--current);
+  flex-shrink:0;cursor:pointer;background:none;border:none;
+  box-shadow:none;border-radius:0;padding:0;appearance:auto;
+}
+.choice:has(input:checked){
+  border-color:var(--current);
+  background:rgba(72,219,251,0.07);
+  color:white;
+  box-shadow:0 0 0 1px var(--current) inset,0 6px 24px rgba(72,219,251,0.08);
+}
+.ch-em{font-size:17px;flex-shrink:0;}
+
+/* ── SKILL ROWS ── */
+.skill-group{margin-bottom:32px;}
+.skill-group-title{
+  font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;
+  color:var(--current);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.skill-group-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.07);}
+.skill-row{
+  display:flex;align-items:center;gap:12px;padding:11px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;
+}
+.skill-info{flex:1;min-width:140px;}
+.skill-name{font-size:13.5px;font-weight:700;}
+.skill-desc{font-size:11px;color:var(--dim);margin-top:2px;}
+.rating-btns{display:flex;gap:6px;flex-shrink:0;}
+.rb{
+  width:34px;height:34px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+  color:var(--dim);font-size:12px;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .18s;font-family:'Syne',sans-serif;
+}
+.rb:hover{border-color:var(--current);color:var(--current);background:rgba(72,219,251,0.06);}
+.rb.sel{
+  background:var(--current);border-color:var(--current);
+  color:var(--bg);box-shadow:0 0 14px rgba(72,219,251,0.4);
+  transform:scale(1.12);
+}
+
+/* ── EQUIPMENT ── */
+.equip-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:9px;
+}
+.equip-tile{
+  padding:18px 10px;border-radius:13px;
+  border:1.5px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.04);
+  text-align:center;cursor:pointer;user-select:none;transition:all .18s;
+}
+.equip-tile input{display:none;}
+.et-icon{font-size:26px;margin-bottom:7px;display:block;}
+.et-name{font-size:11px;font-weight:700;color:var(--off);}
+.equip-tile:has(input:checked){
+  border-color:var(--current);background:rgba(72,219,251,0.1);
+}
+.equip-tile:has(input:checked) .et-name{color:white;}
+
+/* ── PLATFORM PILLS ── */
+.plat-wrap{display:flex;flex-wrap:wrap;gap:9px;}
+.pp{
+  padding:11px 18px;border-radius:100px;
+  border:1.5px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+  cursor:pointer;user-select:none;
+  font-size:13px;font-weight:700;
+  display:flex;align-items:center;gap:8px;
+  transition:all .18s;color:rgba(255,255,255,0.7);
+}
+.pp input{display:none;}
+.pp:has(input:checked){color:var(--bg);}
+
+/* ── DAY TILES ── */
+.day-tiles{display:flex;gap:7px;flex-wrap:wrap;}
+.day-tile{
+  flex:1;min-width:56px;padding:14px 6px;border-radius:12px;
+  border:1.5px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.04);text-align:center;
+  cursor:pointer;user-select:none;transition:all .18s;
+}
+.day-tile input{display:none;}
+.dt-icon{font-size:18px;display:block;margin-bottom:5px;}
+.dt-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--dim);}
+.day-tile:has(input:checked){
+  border-color:var(--current);background:rgba(72,219,251,0.12);
+}
+.day-tile:has(input:checked) .dt-label{color:var(--current);}
+
+/* ── BIRTHDAY SPECIAL ── */
+.bday-box{
+  background:rgba(255,255,255,0.04);
+  border:1.5px solid rgba(255,255,255,0.12);
+  border-radius:16px;padding:24px;margin-bottom:8px;
+  position:relative;overflow:hidden;
+}
+.bday-box::before{
+  content:'🎂';position:absolute;right:20px;top:50%;
+  transform:translateY(-50%);font-size:64px;opacity:0.07;
+  pointer-events:none;
+}
+.bday-title{
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:18px;font-weight:900;color:var(--ca);
+  margin-bottom:6px;
+}
+.bday-sub{font-size:12px;color:var(--dim);margin-bottom:16px;}
+
+/* ── PLEDGE ── */
+.pledge{
+  background:rgba(255,255,255,0.04);
+  border:1.5px solid rgba(255,255,255,0.1);
+  border-radius:18px;padding:32px;margin-bottom:28px;
+  position:relative;overflow:hidden;
+}
+.pledge::before{
+  content:'"';position:absolute;top:-24px;left:14px;
+  font-family:'Instrument Serif',serif;font-size:200px;
+  color:rgba(255,255,255,0.03);line-height:1;pointer-events:none;
+}
+.pledge-title{
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:20px;font-weight:900;margin-bottom:14px;
+}
+.pledge-text{
+  font-family:'Instrument Serif',serif;
+  font-size:16px;font-style:italic;color:var(--off);
+  line-height:1.8;position:relative;z-index:1;
+}
+.pledge-text strong{color:white;font-style:normal;}
+.sig-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:28px;}
+@media(max-width:480px){.sig-grid{grid-template-columns:1fr;}}
+.sig-line{border-bottom:1.5px solid rgba(255,255,255,0.2);min-height:44px;}
+.sig-lbl{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-top:6px;}
+
+/* ── NAV BUTTONS ── */
+.nav-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  padding:16px 24px 24px;
+  background:linear-gradient(0deg,rgba(14,10,26,0.98) 60%,transparent);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;z-index:900;
+}
+.btn-back{
+  padding:13px 28px;border-radius:100px;
+  background:rgba(255,255,255,0.07);
+  border:1.5px solid rgba(255,255,255,0.12);
+  color:var(--off);font-family:'Syne',sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:8px;
+}
+.btn-back:hover{background:rgba(255,255,255,0.12);color:white;}
+.btn-back:disabled{opacity:0.3;cursor:not-allowed;}
+
+.btn-next{
+  padding:14px 36px;border-radius:100px;
+  background:var(--current);border:none;
+  color:var(--bg);font-family:'Cabinet Grotesk',sans-serif;
+  font-size:15px;font-weight:900;letter-spacing:0.5px;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 12px 40px rgba(72,219,251,0.3);
+  flex:1;justify-content:center;max-width:300px;
+}
+.btn-next:hover{filter:brightness(1.1);transform:translateY(-2px);}
+.btn-next:disabled{background:rgba(255,255,255,0.1)!important;color:rgba(255,255,255,0.25)!important;box-shadow:none!important;cursor:not-allowed;filter:none!important;transform:none!important;}
+.btn-next:disabled:hover{filter:none;transform:none;}
+
+.btn-submit{
+  padding:16px 36px;border-radius:100px;
+  background:linear-gradient(135deg,var(--ce),var(--cg));
+  border:none;color:white;
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:16px;font-weight:900;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 12px 40px rgba(255,107,107,0.35);
+  flex:1;justify-content:center;max-width:320px;
+}
+.btn-submit:hover{filter:brightness(1.1);transform:translateY(-2px);}
+
+/* ── SUCCESS ── */
+.success-screen{
+  position:fixed;inset:0;
+  background:var(--bg);
+  display:none;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:40px 24px;z-index:9999;
+}
+.success-screen.show{display:flex;}
+.succ-icon{font-size:80px;margin-bottom:24px;animation:bounce 1s ease-in-out infinite alternate;}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-18px)}}
+.succ-title{
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:clamp(48px,10vw,100px);font-weight:900;
+  background:linear-gradient(135deg,var(--ca),var(--cb),var(--cc));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:0.9;margin-bottom:20px;
+}
+.succ-body{
+  font-family:'Instrument Serif',serif;
+  font-size:19px;font-style:italic;
+  color:var(--off);max-width:440px;line-height:1.7;
+}
+
+/* ── CHAR COUNTER ── */
+.char-c{font-size:11px;color:var(--dim);text-align:right;margin-top:5px;}
+
+/* ── SCROLL HINT on cover ── */
+.scroll-hint-cover{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  margin-top:16px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.9}}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS -->
+<div class="prog-rail"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-left">FOTA · <strong id="secLabel">Start</strong></div>
+  <div class="dot-row" id="dotRow"></div>
+  <div class="step-counter">Step <span id="stepNum">0</span> of 7</div>
+</div>
+
+<!-- FLOATERS -->
+<div class="floaters" aria-hidden="true">
+  <span class="floater" style="top:8%;left:5%;animation-delay:0s">🎥</span>
+  <span class="floater" style="top:15%;left:88%;animation-delay:1.5s">✨</span>
+  <span class="floater" style="top:42%;left:3%;animation-delay:3s">📸</span>
+  <span class="floater" style="top:60%;left:92%;animation-delay:.7s">🎨</span>
+  <span class="floater" style="top:72%;left:6%;animation-delay:2s">📱</span>
+  <span class="floater" style="top:88%;left:85%;animation-delay:1s">🔥</span>
+  <span class="floater" style="top:30%;left:96%;animation-delay:4s">🎵</span>
+  <span class="floater" style="top:52%;left:1%;animation-delay:.3s">🌟</span>
+</div>
+
+<!-- SLIDES -->
+<div class="slides-wrap">
+<div class="slides-track" id="track">
+
+<!-- ═══════════════════ SLIDE 0: COVER ═══════════════════ -->
+<div class="slide cover-slide" id="slide-0">
+  <div class="cover-eyebrow">Foundation of Truth Assembly · Abuja</div>
+  <h1 class="cover-title">
+    <span class="l1">Tell us</span>
+    <span class="l2">who you are.</span>
+  </h1>
+  <p class="cover-sub">7 quick sections. Be honest, be bold, be you. This is how we place you where you'll actually thrive.</p>
+  <div class="cover-meta">FOTA Digital Media Department · Team Assessment 2025</div>
+  <button class="start-btn" onclick="goTo(1)">
+    Let's Start ↓
+  </button>
+  <div class="scroll-hint-cover" style="margin-top:40px;">
+    <span>7 sections · takes about 8 minutes</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 1: WHO ARE YOU ═══════════════════ -->
+<div class="slide" id="slide-1">
+<div class="slide-inner">
+  <div class="sec-tag" style="color:var(--ca)">📋 Section A · 1 of 7</div>
+  <h2 class="sec-headline" style="color:var(--ca)">Who<br>Are You?</h2>
+  <p class="sec-lead">The basics. So we actually know who we're working with.</p>
+
+  <div class="row2">
+    <div class="field">
+      <label class="f-label">Full Name <span class="req">*</span></label>
+      <input type="text" name="fullName" placeholder="Your full name" required>
+    </div>
+    <div class="field">
+      <label class="f-label">Preferred Name</label>
+      <input type="text" name="preferredName" placeholder="Nickname / what we call you">
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="field">
+      <label class="f-label">Phone <span class="req">*</span></label>
+      <input type="tel" name="phone" placeholder="+234 000 000 0000" required>
+    </div>
+    <div class="field">
+      <label class="f-label">WhatsApp <span class="f-hint">If different from phone</span></label>
+      <input type="tel" name="whatsapp" placeholder="+234 000 000 0000">
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="field">
+      <label class="f-label">Email</label>
+      <input type="email" name="email" placeholder="your@email.com">
+    </div>
+    <div class="field">
+      <label class="f-label">Gender</label>
+      <select name="gender">
+        <option value="">Select...</option>
+        <option>Male</option><option>Female</option><option>Prefer not to say</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- BIRTHDAY -->
+  <div class="bday-box">
+    <div class="bday-title">🎂 Your Birthday</div>
+    <div class="bday-sub">Day and month is all we need — we just want to celebrate you!</div>
+    <div class="row2">
+      <div class="field">
+        <label class="f-label">Day</label>
+        <select name="bdayDay">
+          <option value="">Pick a day...</option>
+          <script>for(let i=1;i<=31;i++)document.write(`<option value="${i}">${i}</option>`)</script>
+        </select>
+      </div>
+      <div class="field">
+        <label class="f-label">Month</label>
+        <select name="bdayMonth">
+          <option value="">Pick a month...</option>
+          <option value="1">January 🎉</option>
+          <option value="2">February 💝</option>
+          <option value="3">March 🌸</option>
+          <option value="4">April 🌼</option>
+          <option value="5">May 🌻</option>
+          <option value="6">June ☀️</option>
+          <option value="7">July 🔥</option>
+          <option value="8">August 🌊</option>
+          <option value="9">September 🍁</option>
+          <option value="10">October 🎃</option>
+          <option value="11">November 🌙</option>
+          <option value="12">December ⛄</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="field">
+      <label class="f-label">Age Range</label>
+      <select name="ageRange">
+        <option value="">Select...</option>
+        <option>Under 18</option><option>18 – 24</option>
+        <option>25 – 34</option><option>35 – 44</option><option>45+</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">Occupation / Day Job</label>
+      <input type="text" name="occupation" placeholder="Student / Designer / Nurse...">
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="field">
+      <label class="f-label">How long at FOTA?</label>
+      <select name="yearsAtFOTA">
+        <option value="">Select...</option>
+        <option>Less than 1 year</option><option>1 – 2 years</option>
+        <option>3 – 5 years</option><option>6 – 10 years</option><option>Over 10 years</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">Other FOTA departments?</label>
+      <input type="text" name="otherDept" placeholder="Choir / Ushering / None">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ SLIDE 2: YOUR ROLE ═══════════════════ -->
+<div class="slide" id="slide-2">
+<div class="slide-inner">
+  <div class="sec-tag" style="color:var(--cb)">🎬 Section B · 2 of 7</div>
+  <h2 class="sec-headline" style="background:linear-gradient(135deg,var(--cb),var(--cg));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Your<br>Role.</h2>
+  <p class="sec-lead">What have you been doing — and where do you really want to go?</p>
+
+  <div class="field">
+    <label class="f-label">Roles you currently fill on the FOTA Digital Media team
+      <span class="f-hint">Pick everything that fits</span>
+    </label>
+    <div class="choices c3">
+      <label class="choice"><input type="checkbox" name="curRole" value="videographer"><span class="ch-em">🎥</span> Videographer</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="photographer"><span class="ch-em">📸</span> Photographer</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="editor"><span class="ch-em">✂️</span> Video Editor</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="designer"><span class="ch-em">🎨</span> Graphic Designer</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="social"><span class="ch-em">📱</span> Social Media Manager</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="copy"><span class="ch-em">✍️</span> Caption Writer</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="strategy"><span class="ch-em">📋</span> Content Strategist</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="analytics"><span class="ch-em">📊</span> Analytics</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="live"><span class="ch-em">📡</span> Livestream</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="audio"><span class="ch-em">🎙️</span> Audio Support</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="general"><span class="ch-em">🙋</span> General Support</label>
+      <label class="choice"><input type="checkbox" name="curRole" value="unsure"><span class="ch-em">🤷</span> Not sure yet</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="f-label">The ONE role you most want to grow into
+      <span class="f-hint">Your dream seat on this team</span>
+    </label>
+    <div class="choices c3">
+      <label class="choice"><input type="radio" name="desiredRole" value="videographer"><span class="ch-em">🎥</span> Videographer</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="photographer"><span class="ch-em">📸</span> Photographer</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="editor"><span class="ch-em">✂️</span> Video Editor</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="designer"><span class="ch-em">🎨</span> Graphic Designer</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="social"><span class="ch-em">📱</span> Social Manager</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="copy"><span class="ch-em">✍️</span> Copywriter</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="strategy"><span class="ch-em">📋</span> Strategist</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="analytics"><span class="ch-em">📊</span> Analytics</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="live"><span class="ch-em">📡</span> Livestream</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="lead"><span class="ch-em">🧭</span> Team Lead</label>
+      <label class="choice"><input type="radio" name="desiredRole" value="figuring"><span class="ch-em">🔍</span> Still figuring out</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="f-label">Describe in your own words what you've done for FOTA Digital Media
+      <span class="f-hint">Be specific — what did you shoot, design, write, or manage?</span>
+    </label>
+    <textarea name="roleDesc" placeholder="e.g. I've been shooting Sunday services with my phone and editing on CapCut. I also designed a few announcement graphics on Canva for the WhatsApp group..."></textarea>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ SLIDE 3: SKILLS ═══════════════════ -->
+<div class="slide" id="slide-3">
+<div class="slide-inner">
+  <div class="sec-tag" style="color:var(--cc)">⚡ Section C · 3 of 7</div>
+  <h2 class="sec-headline" style="color:var(--cc)">Your<br>Skills.</h2>
+  <p class="sec-lead">Rate yourself honestly. 1 = total beginner, 5 = you could teach it. No shame in the 1s — we all start somewhere.</p>
+
+  <div id="skillsHere"></div>
+
+  <div class="field">
+    <label class="f-label">Tools & Apps you currently use
+      <span class="f-hint">Everything counts — phone apps, desktop, online tools</span>
+    </label>
+    <textarea name="tools" placeholder="e.g. CapCut, Canva, Adobe Premiere, Lightroom, DaVinci Resolve, Buffer, Photoshop..."></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">Equipment you own or have regular access to <span class="f-hint">Tap all that apply</span></label>
+    <div class="equip-grid">
+      <label class="equip-tile"><input type="checkbox" name="equip" value="phone"><span class="et-icon">📱</span><span class="et-name">Good Smartphone</span></label>
+      <label class="equip-tile"><input type="checkbox" name="equip" value="dslr"><span class="et-icon">📷</span><span class="et-name">DSLR / Mirrorless</span></label>
+      <label class="equip-tile"><input type="checkbox" name="equip" value="laptop"><span class="et-icon">💻</span><span class="et-name">Editing Laptop</span></label>
+      <label class="equip-tile"><input type="checkbox" name="equip" value="tripod"><span class="et-icon">🎬</span><span class="et-name">Tripod</span></label>
+      <label class="equip-tile"><input type="checkbox" name="equip" value="mic"><span class="et-icon">🎙️</span><span class="et-name">Microphone</span></label>
+      <label class="equip-tile"><input type="checkbox" name="equip" value="light"><span class="et-icon">💡</span><span class="et-name">Ring Light</span></label>
+      <label class="equip-tile"><input type="checkbox" name="equip" value="gimbal"><span class="et-icon">🎥</span><span class="et-name">Gimbal</span></label>
+      <label class="equip-tile"><input type="checkbox" name="equip" value="drone"><span class="et-icon">🚁</span><span class="et-name">Drone</span></label>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4: PLATFORMS ═══════════════════ -->
+<div class="slide" id="slide-4">
+<div class="slide-inner">
+  <div class="sec-tag" style="color:var(--cd)">🌐 Section D · 4 of 7</div>
+  <h2 class="sec-headline" style="background:linear-gradient(135deg,var(--cd),var(--ca));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Platforms<br>& Online.</h2>
+  <p class="sec-lead">FOTA lives on Instagram, TikTok, Facebook, YouTube, and WhatsApp. Where do YOU live?</p>
+
+  <div class="field">
+    <label class="f-label">Platforms you genuinely know and use well
+      <span class="f-hint">Not just "I have an account" — platforms you actually understand</span>
+    </label>
+    <div class="plat-wrap">
+      <label class="pp" style="--pc:#E1306C"><input type="checkbox" name="plat" value="ig">📸 Instagram</label>
+      <label class="pp" style="--pc:#333"><input type="checkbox" name="plat" value="tt">🎵 TikTok</label>
+      <label class="pp" style="--pc:#1877F2"><input type="checkbox" name="plat" value="fb">👥 Facebook</label>
+      <label class="pp" style="--pc:#FF0000"><input type="checkbox" name="plat" value="yt">▶️ YouTube</label>
+      <label class="pp" style="--pc:#25D366"><input type="checkbox" name="plat" value="wa">💬 WhatsApp</label>
+      <label class="pp" style="--pc:#1DA1F2"><input type="checkbox" name="plat" value="tw">🐦 X / Twitter</label>
+      <label class="pp" style="--pc:#0A66C2"><input type="checkbox" name="plat" value="li">💼 LinkedIn</label>
+      <label class="pp" style="--pc:#8940FA"><input type="checkbox" name="plat" value="pod">🎙️ Podcast</label>
+      <label class="pp" style="--pc:#888"><input type="checkbox" name="plat" value="none">🤷 None yet</label>
+    </div>
+  </div>
+
+  <style>.pp:has(input:checked){background:var(--pc,#1DD1A1)!important;border-color:var(--pc,#1DD1A1)!important;color:white!important;}</style>
+
+  <div class="field">
+    <label class="f-label">Have you managed social media for any organisation?</label>
+    <div class="choices c2">
+      <label class="choice"><input type="radio" name="managedSocial" value="yes-full"><span class="ch-em">✅</span> Yes — I fully ran it</label>
+      <label class="choice"><input type="radio" name="managedSocial" value="contrib"><span class="ch-em">🤝</span> Yes — I contributed</label>
+      <label class="choice"><input type="radio" name="managedSocial" value="personal"><span class="ch-em">🧍</span> Only my personal accounts</label>
+      <label class="choice"><input type="radio" name="managedSocial" value="no"><span class="ch-em">🙅</span> No experience yet</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="f-label">If yes — what did you do, and what happened?
+      <span class="f-hint">Give numbers if you have them — followers gained, posts per week, etc.</span>
+    </label>
+    <textarea name="socialExp" placeholder="e.g. Managed a business page for 8 months, grew from 400 to 2,100 followers. Posted 4x per week, mostly Reels..." style="min-height:80px;"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">How well do you understand social media analytics?
+      <span class="f-hint">Reach, engagement rate, saves, impressions, follower growth</span>
+    </label>
+    <div class="choices c2">
+      <label class="choice"><input type="radio" name="analytics" value="deep"><span class="ch-em">🧠</span> Deeply — I track this</label>
+      <label class="choice"><input type="radio" name="analytics" value="basic"><span class="ch-em">👍</span> Basic understanding</label>
+      <label class="choice"><input type="radio" name="analytics" value="learning"><span class="ch-em">📚</span> Still learning</label>
+      <label class="choice"><input type="radio" name="analytics" value="no"><span class="ch-em">🤷</span> Not at all yet</label>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ SLIDE 5: STRENGTHS ═══════════════════ -->
+<div class="slide" id="slide-5">
+<div class="slide-inner">
+  <div class="sec-tag" style="color:var(--ce)">💪 Section E · 5 of 7</div>
+  <h2 class="sec-headline" style="background:linear-gradient(135deg,var(--ce),var(--cg));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Strengths<br>& Truth.</h2>
+  <p class="sec-lead">The most important section. Be brutally honest. This is how we place you where you'll actually thrive.</p>
+
+  <div class="field">
+    <label class="f-label">Your single greatest strength on this team <span class="req">*</span>
+      <span class="f-hint">Not "I'm hardworking." What do you actually produce or do brilliantly?</span>
+    </label>
+    <textarea name="strength" id="strengthTA" placeholder="e.g. I can shoot and edit a 60-second Reel from raw footage in under 90 minutes. I have a natural eye for what makes someone stop scrolling. I write captions that make people feel something." style="min-height:110px;"></textarea>
+    <div class="char-c" id="sCount">0 characters</div>
+  </div>
+
+  <div class="field">
+    <label class="f-label">One honest weakness you have right now
+      <span class="f-hint">Honesty here helps us support you — not judge you.</span>
+    </label>
+    <textarea name="weakness" placeholder="e.g. I struggle with consistency. I'm great when inspired but I drop off. Or: I can shoot but I can't edit at all. Or: I'm not comfortable on camera so behind-the-scenes suits me better." style="min-height:90px;"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">The skill you most want to develop
+      <span class="f-hint">What would change your contribution if you had it?</span>
+    </label>
+    <textarea name="wantLearn" placeholder="e.g. Proper video editing. How to grow a page from zero. Shooting quality content with just a phone. Understanding analytics." style="min-height:80px;"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">When you're at your absolute best on this team — describe it
+      <span class="f-hint">Real or imagined — a moment where you delivered something great</span>
+    </label>
+    <textarea name="atBest" placeholder="e.g. When I've planned my shot list the day before, I come to church relaxed, capture the right moments, and by Monday we have a Reel people are sharing all week." style="min-height:90px;"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">What has held you back from doing your best so far?
+      <span class="f-hint">Be real. We need to know what's broken to fix it.</span>
+    </label>
+    <textarea name="heldBack" placeholder="e.g. I never knew what was expected of me on a given Sunday. No direction. No equipment. I was doing things alone with no plan." style="min-height:90px;"></textarea>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ SLIDE 6: AVAILABILITY ═══════════════════ -->
+<div class="slide" id="slide-6">
+<div class="slide-inner">
+  <div class="sec-tag" style="color:var(--cf)">📅 Section F · 6 of 7</div>
+  <h2 class="sec-headline" style="color:var(--cf)">Time &<br>Commitment.</h2>
+  <p class="sec-lead">Great content requires consistent people. Let's build a roster that works for your actual life.</p>
+
+  <div class="field">
+    <label class="f-label">Days you're generally available for FOTA Digital Media duties <span class="f-hint">Tap to select</span></label>
+    <div class="day-tiles">
+      <label class="day-tile"><input type="checkbox" name="avail" value="mon"><span class="dt-icon">☀️</span><span class="dt-label">Mon</span></label>
+      <label class="day-tile"><input type="checkbox" name="avail" value="tue"><span class="dt-icon">⚡</span><span class="dt-label">Tue</span></label>
+      <label class="day-tile"><input type="checkbox" name="avail" value="wed"><span class="dt-icon">🌤</span><span class="dt-label">Wed</span></label>
+      <label class="day-tile"><input type="checkbox" name="avail" value="thu"><span class="dt-icon">🔥</span><span class="dt-label">Thu</span></label>
+      <label class="day-tile"><input type="checkbox" name="avail" value="fri"><span class="dt-icon">🎉</span><span class="dt-label">Fri</span></label>
+      <label class="day-tile"><input type="checkbox" name="avail" value="sat"><span class="dt-icon">🌙</span><span class="dt-label">Sat</span></label>
+      <label class="day-tile"><input type="checkbox" name="avail" value="sun"><span class="dt-icon">✝️</span><span class="dt-label">Sun</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="f-label">Realistic hours per week you can commit</label>
+    <div class="choices c3">
+      <label class="choice"><input type="radio" name="hours" value="1-2"><span class="ch-em">⏱</span> 1–2 hrs/wk</label>
+      <label class="choice"><input type="radio" name="hours" value="3-5"><span class="ch-em">⏰</span> 3–5 hrs/wk</label>
+      <label class="choice"><input type="radio" name="hours" value="6-10"><span class="ch-em">🕐</span> 6–10 hrs/wk</label>
+      <label class="choice"><input type="radio" name="hours" value="10+"><span class="ch-em">🔥</span> 10+ hrs/wk</label>
+      <label class="choice"><input type="radio" name="hours" value="varies"><span class="ch-em">🌊</span> Varies by season</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="f-label">Can you commit to EVERY Sunday service as your media duty?</label>
+    <div class="choices c2">
+      <label class="choice"><input type="radio" name="sunCommit" value="every"><span class="ch-em">💯</span> Yes — every Sunday</label>
+      <label class="choice"><input type="radio" name="sunCommit" value="most"><span class="ch-em">👍</span> Yes — most Sundays</label>
+      <label class="choice"><input type="radio" name="sunCommit" value="sometimes"><span class="ch-em">🤏</span> Only sometimes</label>
+      <label class="choice"><input type="radio" name="sunCommit" value="no"><span class="ch-em">❌</span> Can't commit Sundays</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="f-label">Can you commit to major event coverage weeks?
+      <span class="f-hint">Father's Day · Prayer Conf · Teens Camp · Glory to Glory · Hymnal Sunday</span>
+    </label>
+    <div class="choices c2">
+      <label class="choice"><input type="radio" name="events" value="all"><span class="ch-em">🙌</span> Yes — all of them</label>
+      <label class="choice"><input type="radio" name="events" value="most"><span class="ch-em">✅</span> Most of them</label>
+      <label class="choice"><input type="radio" name="events" value="some"><span class="ch-em">🤷</span> Some — depends</label>
+      <label class="choice"><input type="radio" name="events" value="unsure"><span class="ch-em">🔍</span> Not sure yet</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="f-label">Anything about your schedule we should know?
+      <span class="f-hint">Shift work, exams, travel, family — be upfront so we can plan around you</span>
+    </label>
+    <textarea name="schedNote" placeholder="e.g. I work night shifts every other weekend. Exams in May. Travel to Lagos monthly..." style="min-height:80px;"></textarea>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7: VISION ═══════════════════ -->
+<div class="slide" id="slide-7">
+<div class="slide-inner">
+  <div class="sec-tag" style="color:var(--cg)">🔭 Section G · 7 of 7</div>
+  <h2 class="sec-headline" style="background:linear-gradient(135deg,var(--cg),var(--cc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Your<br>Vision.</h2>
+  <p class="sec-lead">We don't just want your hands — we want your mind. What do you see that we're missing?</p>
+
+  <div class="field">
+    <label class="f-label">FOTA Digital Media's biggest opportunity right now — in your opinion
+      <span class="f-hint">What could we do that would make the most Kingdom impact online?</span>
+    </label>
+    <textarea name="opportunity" placeholder="e.g. We should be posting sermon clips every Monday without fail. TikTok is completely untapped. We need a recognisable visual style. Our youth content is missing..." style="min-height:110px;"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">One thing we're NOT doing that we should be</label>
+    <textarea name="shouldDo" placeholder="Your honest suggestion. No idea is too small or too big. We're listening." style="min-height:80px;"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">A church or ministry page you admire online — and WHY
+      <span class="f-hint">Name the account and exactly what they do that you respect</span>
+    </label>
+    <textarea name="admire" placeholder="e.g. @elevation.church — their production quality is extraordinary and every clip has a clear message. Or @churchlaunch — every post is actionable and the typography is always bold." style="min-height:90px;"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">What would make you proud to be part of FOTA Digital Media?
+      <span class="f-hint">What does personal success on this team look like for you?</span>
+    </label>
+    <textarea name="proud" placeholder="e.g. Seeing our content reach people outside the church. Producing something that genuinely moves people. Learning skills I can use professionally." style="min-height:90px;"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="f-label">Anything else you want your team lead to know?
+      <span class="f-hint">Your space. Say whatever needs to be said.</span>
+    </label>
+    <textarea name="anything" placeholder="Speak freely." style="min-height:80px;"></textarea>
+  </div>
+
+  <!-- PLEDGE -->
+  <div class="pledge">
+    <div class="pledge-title">✍️ The Pledge</div>
+    <p class="pledge-text">
+      "I declare that I completed this form honestly. I understand this helps FOTA Digital Media place me where I will <strong>thrive</strong>. I commit to serving faithfully, growing deliberately, and representing <strong>Foundation of Truth Assembly</strong> with excellence in every piece of content I touch. I am here for the Kingdom — not just the camera."
+    </p>
+    <div class="sig-grid">
+      <div><div class="sig-line"></div><div class="sig-lbl">Signature</div></div>
+      <div><div class="sig-line"></div><div class="sig-lbl">Date</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div><!-- /track -->
+</div><!-- /slides-wrap -->
+
+<!-- NAV BUTTONS -->
+<form id="mainForm">
+<div class="nav-bar" id="navBar">
+  <button type="button" class="btn-back" id="btnBack" onclick="goBack()" disabled>← Back</button>
+  <button type="button" class="btn-next" id="btnNext" onclick="goNext()">Next Section →</button>
+</div>
+</form>
+
+<!-- SUCCESS -->
+<div class="success-screen" id="successScreen">
+  <div class="succ-icon">🎉</div>
+  <div class="succ-title" id="succTitle">You're in.</div>
+  <p class="succ-body" id="succBody">Your FOTA Digital Media assessment is submitted.<br>Your team lead will review your responses and place you where you belong.<br><br><em>Now let's build something that reaches the world — for the Kingdom.</em></p>
+</div>
+
+<script>
+/* ═══ SUPABASE ═══ */
+const _sb = window.supabase.createClient(
+  'https://gzjkgqcikzhjnijgjtqr.supabase.co',
+  'sb_publishable_tDwFEpFb9xSikJ46Mt2ZUQ_nQfaXD5i'
+);
+
+/* ═══ CONFIG ═══ */
+const TOTAL = 7; // slides 1-7 (0 is cover)
+let current = 0;
+
+const colors = ['#48DBFB','#48DBFB','#FF9FF3','#FECA57','#1DD1A1','#FF9F43','#A29BFE','#FF6B6B'];
+const labels = ['Start','Who Are You?','Your Role','Your Skills','Platforms','Strengths','Commitment','Your Vision'];
+
+const track = document.getElementById('track');
+const progFill = document.getElementById('progFill');
+const btnBack = document.getElementById('btnBack');
+const btnNext = document.getElementById('btnNext');
+const secLabel = document.getElementById('secLabel');
+const stepNum = document.getElementById('stepNum');
+const dotRow = document.getElementById('dotRow');
+
+/* ═══ BUILD DOTS (1-7 only) ═══ */
+for(let i=1;i<=TOTAL;i++){
+  const d = document.createElement('div');
+  d.className = 'dot';
+  d.onclick = () => goTo(i);
+  dotRow.appendChild(d);
+}
+const dots = dotRow.querySelectorAll('.dot');
+
+/* ═══ BUILD SKILLS ═══ */
+const skillDefs = [
+  { group:'🎥 Video Production', color:'#FF9FF3', items:[
+    {name:'Camera Operation',desc:'Framing, stability, phone or camera',key:'camera'},
+    {name:'Video Editing',desc:'CapCut, Premiere, DaVinci, Final Cut',key:'vedit'},
+    {name:'Reel / Short-form Editing',desc:'Pacing for Reels, TikTok, Shorts',key:'reel'},
+    {name:'Colour Grading',desc:'Cinematic, consistent looks',key:'colour'},
+    {name:'Subtitles on Video',desc:'Accurate, well-timed text overlay',key:'subs'},
+    {name:'Livestream Operation',desc:'Setting up and running a live broadcast',key:'live'},
+  ]},
+  { group:'🎨 Photography & Design', color:'#FECA57', items:[
+    {name:'Photography',desc:'Composing and shooting quality stills',key:'photo'},
+    {name:'Photo Editing',desc:'Lightroom, Snapseed or similar',key:'pedit'},
+    {name:'Graphic Design',desc:'Canva, Photoshop, Illustrator',key:'design'},
+    {name:'Typography & Layout',desc:'Making text look intentional',key:'typo'},
+    {name:'Brand Consistency',desc:'Keeping posts recognisably FOTA',key:'brand'},
+  ]},
+  { group:'📱 Social Media & Strategy', color:'#1DD1A1', items:[
+    {name:'Instagram Content',desc:'Feed, Reels, Stories — what works',key:'ig'},
+    {name:'TikTok Content',desc:'Trends, hooks, native editing',key:'tt'},
+    {name:'Facebook Management',desc:'Posts, events, live, reach',key:'fb'},
+    {name:'YouTube Management',desc:'Uploads, thumbnails, playlists',key:'yt'},
+    {name:'Caption / Copywriting',desc:'Words that stop scrolling',key:'copy'},
+    {name:'Content Scheduling',desc:'Planning and queuing posts',key:'sched'},
+    {name:'Analytics Reading',desc:'Reach, saves, engagement, growth',key:'stats'},
+  ]},
+  { group:'🤝 Team & Character', color:'#A29BFE', items:[
+    {name:'Meeting Deadlines',desc:'Delivering without being chased',key:'dead'},
+    {name:'Working in a Team',desc:'Collaborating and communicating',key:'team'},
+    {name:'Taking Initiative',desc:'Seeing what needs doing and doing it',key:'init'},
+    {name:'Receiving Feedback',desc:'Accepting corrections and improving',key:'fback'},
+  ]},
+];
+
+const sh = document.getElementById('skillsHere');
+skillDefs.forEach(g => {
+  const blk = document.createElement('div');
+  blk.className = 'skill-group';
+  let html = `<div class="skill-group-title" style="color:${g.color}">${g.group}</div>`;
+  g.items.forEach(sk => {
+    html += `<div class="skill-row">
+      <div class="skill-info">
+        <div class="skill-name">${sk.name}</div>
+        <div class="skill-desc">${sk.desc}</div>
+      </div>
+      <div class="rating-btns">
+        ${[1,2,3,4,5].map(n=>`<button type="button" class="rb" data-sk="${sk.key}" data-v="${n}" title="${['','Never','Beginner','Getting there','Good','Expert'][n]}">${n}</button>`).join('')}
+      </div>
+    </div>`;
+  });
+  blk.innerHTML = html;
+  sh.appendChild(blk);
+});
+
+/* rating buttons */
+document.addEventListener('click', e => {
+  if(!e.target.classList.contains('rb')) return;
+  const key = e.target.dataset.sk;
+  document.querySelectorAll(`.rb[data-sk="${key}"]`).forEach(b=>b.classList.remove('sel'));
+  e.target.classList.add('sel');
+  updateProg();
+  updateNextBtn();
+});
+
+/* ═══ CHAR COUNTER ═══ */
+const sTA = document.getElementById('strengthTA');
+const sCnt = document.getElementById('sCount');
+if(sTA) sTA.addEventListener('input', ()=>{ sCnt.textContent = sTA.value.length+' characters'; updateProg(); updateNextBtn(); });
+
+/* ═══ NAVIGATION ═══ */
+function goTo(idx) {
+  if(idx < 0 || idx > TOTAL) return;
+  current = idx;
+  render();
+}
+function goNext() {
+  if(current === TOTAL) { submitForm(); return; }
+  goTo(current + 1);
+  // scroll slide to top
+  const sl = document.getElementById('slide-'+current);
+  if(sl) sl.scrollTop = 0;
+}
+function goBack() {
+  if(current > 0) goTo(current - 1);
+  const sl = document.getElementById('slide-'+current);
+  if(sl) sl.scrollTop = 0;
+}
+
+function render() {
+  /* slide */
+  track.style.transform = `translateX(-${current * 100}vw)`;
+
+  /* color */
+  const col = colors[current] || '#48DBFB';
+  document.documentElement.style.setProperty('--current', col);
+  progFill.style.boxShadow = `0 0 14px ${col}`;
+
+  /* progress */
+  const pct = current === 0 ? 0 : Math.round((current / TOTAL) * 100);
+  progFill.style.width = pct + '%';
+  progFill.style.background = `linear-gradient(90deg, ${col}, ${colors[Math.min(current+1,TOTAL)]})`;
+
+  /* dots */
+  dots.forEach((d, i) => {
+    const si = i + 1;
+    d.classList.remove('active','done');
+    if(si === current) d.classList.add('active');
+    else if(si < current) d.classList.add('done');
+  });
+
+  /* labels */
+  secLabel.textContent = labels[current];
+  secLabel.style.color = col;
+  stepNum.textContent = current;
+  stepNum.style.color = col;
+
+  /* buttons */
+  btnBack.disabled = current <= 1;
+  if(current === 0) {
+    document.getElementById('navBar').style.display = 'none';
+  } else {
+    document.getElementById('navBar').style.display = 'flex';
+    if(current === TOTAL) {
+      btnNext.innerHTML = 'Submit Assessment 🚀';
+      btnNext.style.background = 'linear-gradient(135deg,#FF9F43,#FF6B6B)';
+      btnNext.style.boxShadow = '0 12px 40px rgba(255,107,107,0.35)';
+    } else {
+      btnNext.innerHTML = 'Next Section →';
+      btnNext.style.background = col;
+      btnNext.style.boxShadow = `0 12px 40px ${col}44`;
+    }
+  }
+
+  /* input focus color */
+  updateInputColors(col);
+  updateProg();
+  updateNextBtn();
+}
+
+function updateInputColors(col) {
+  // dynamically update focus glow - handled via CSS var
+}
+
+/* ═══ PROGRESS FILL ═══ */
+function updateProg() {
+  const sl = document.getElementById('slide-'+current);
+  if(!sl) return;
+  const inputs = sl.querySelectorAll('input[type=text],input[type=email],input[type=tel],textarea,select');
+  const radios = sl.querySelectorAll('input[type=radio]:checked, input[type=checkbox]:checked');
+  const rbs = sl.querySelectorAll('.rb.sel');
+  let done = 0, total = inputs.length + 3;
+  inputs.forEach(i=>{ if(i.value && i.value.trim()) done++; });
+  done += Math.min(radios.length, 3);
+  done += Math.min(rbs.length, 0);
+  const base = current === 0 ? 0 : Math.round(((current-1)/TOTAL)*100);
+  const seg = Math.round((1/TOTAL)*100);
+  progFill.style.width = Math.min(99, base + Math.round((done/total)*seg)) + '%';
+}
+document.getElementById('mainForm').addEventListener('input', () => { updateProg(); updateNextBtn(); });
+
+/* ═══ VALIDATION ═══ */
+const fv  = n => { const e=document.querySelector(`[name="${n}"]`); return !!(e&&e.value.trim()); };
+const fs  = n => { const e=document.querySelector(`[name="${n}"]`); return !!(e&&e.value); };
+const fr  = n => !!document.querySelector(`[name="${n}"]:checked`);
+const fc  = n => !!document.querySelector(`[name="${n}"]:checked`);
+const fsk = k => !!document.querySelector(`.rb.sel[data-sk="${k}"]`);
+
+const SKILL_KEYS = ['camera','vedit','reel','colour','subs','live','photo','pedit','design','typo','brand','ig','tt','fb','yt','copy','sched','stats','dead','team','init','fback'];
+
+function validateSlide(idx) {
+  switch(idx) {
+    case 1: return fv('fullName')&&fv('phone')&&fs('gender')&&fs('bdayDay')&&fs('bdayMonth')&&fs('ageRange')&&fv('occupation')&&fs('yearsAtFOTA');
+    case 2: return fc('curRole')&&fr('desiredRole')&&fv('roleDesc');
+    case 3: return SKILL_KEYS.every(fsk)&&fv('tools');
+    case 4: return fc('plat')&&fr('managedSocial')&&fr('analytics');
+    case 5: return fv('strength')&&fv('weakness')&&fv('wantLearn')&&fv('atBest')&&fv('heldBack');
+    case 6: return fc('avail')&&fr('hours')&&fr('sunCommit')&&fr('events');
+    case 7: return fv('opportunity')&&fv('shouldDo')&&fv('proud');
+    default: return true;
+  }
+}
+
+function updateNextBtn() {
+  if(current === 0) { btnNext.disabled = false; return; }
+  btnNext.disabled = !validateSlide(current);
+}
+
+/* ═══ DATA COLLECTION ═══ */
+function collectData() {
+  const v  = n => { const e=document.querySelector(`[name="${n}"]`); return e&&e.value.trim()||null; };
+  const r  = n => document.querySelector(`[name="${n}"]:checked`)?.value||null;
+  const cb = n => [...document.querySelectorAll(`[name="${n}"]:checked`)].map(e=>e.value);
+  const sk = k => { const b=document.querySelector(`.rb.sel[data-sk="${k}"]`); return b?+b.dataset.v:null; };
+  return {
+    full_name:v('fullName'), preferred_name:v('preferredName'),
+    phone:v('phone'), whatsapp:v('whatsapp'), email:v('email'), gender:v('gender'),
+    bday_day:v('bdayDay')?+v('bdayDay'):null, bday_month:v('bdayMonth')?+v('bdayMonth'):null,
+    age_range:v('ageRange'), occupation:v('occupation'), years_at_fota:v('yearsAtFOTA'), other_dept:v('otherDept'),
+    current_roles:cb('curRole'), desired_role:r('desiredRole'), role_desc:v('roleDesc'),
+    skill_camera:sk('camera'), skill_vedit:sk('vedit'), skill_reel:sk('reel'), skill_colour:sk('colour'),
+    skill_subs:sk('subs'), skill_live:sk('live'), skill_photo:sk('photo'), skill_pedit:sk('pedit'),
+    skill_design:sk('design'), skill_typo:sk('typo'), skill_brand:sk('brand'), skill_ig:sk('ig'),
+    skill_tt:sk('tt'), skill_fb:sk('fb'), skill_yt:sk('yt'), skill_copy:sk('copy'),
+    skill_sched:sk('sched'), skill_stats:sk('stats'), skill_dead:sk('dead'),
+    skill_team:sk('team'), skill_init:sk('init'), skill_fback:sk('fback'),
+    tools_used:v('tools'), equipment:cb('equip'),
+    platforms:cb('plat'), managed_social:r('managedSocial'), social_experience:v('socialExp'), analytics_understanding:r('analytics'),
+    greatest_strength:v('strength'), honest_weakness:v('weakness'), want_to_learn:v('wantLearn'), at_best:v('atBest'), held_back:v('heldBack'),
+    available_days:cb('avail'), hours_per_week:r('hours'), sunday_commitment:r('sunCommit'), event_commitment:r('events'), sched_note:v('schedNote'),
+    opportunity:v('opportunity'), should_do:v('shouldDo'), admire_page:v('admire'), what_makes_proud:v('proud'), other_comments:v('anything'),
+  };
+}
+
+/* ═══ SUBMIT ═══ */
+async function submitForm() {
+  btnNext.disabled = true;
+  btnNext.innerHTML = 'Submitting… ⏳';
+
+  const { error } = await _sb.from('team_assessments').insert([collectData()]);
+
+  if(error) {
+    console.error(error);
+    btnNext.disabled = false;
+    btnNext.innerHTML = 'Submit Assessment 🚀';
+    alert('Submission failed — please try again.\n\n' + error.message);
+    return;
+  }
+
+  const preferred = (document.querySelector('[name="preferredName"]')?.value.trim()) ||
+                    (document.querySelector('[name="fullName"]')?.value.trim().split(' ')[0]) ||
+                    'Friend';
+  document.getElementById('succTitle').textContent = `${preferred}, you're in.`;
+  document.getElementById('succBody').innerHTML =
+    `Your FOTA Digital Media assessment is submitted, <strong>${preferred}</strong>.<br>` +
+    `Your team lead will review your responses and place you where you belong.<br><br>` +
+    `<em>Now let's build something that reaches the world — for the Kingdom.</em>`;
+
+  progFill.style.width = '100%';
+  document.getElementById('mainForm').style.display = 'none';
+  document.querySelector('.slides-wrap').style.display = 'none';
+  document.querySelector('.top-bar').style.display = 'none';
+  document.querySelector('.prog-rail').style.display = 'none';
+  document.getElementById('successScreen').classList.add('show');
+}
+
+/* ═══ KEYBOARD NAV ═══ */
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' && current > 0) goNext();
+  if(e.key === 'ArrowLeft' && current > 1) goBack();
+});
+
+/* ═══ INIT ═══ */
+document.getElementById('navBar').style.display = 'none';
+render();
+</script>
+</body>
+</html>
