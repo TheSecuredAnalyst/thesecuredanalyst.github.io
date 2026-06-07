@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOTA Digital Media · Meeting Agenda</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080810;
+  --card: #0F0F1C;
+  --card2: #13131F;
+  --border: rgba(255,255,255,0.07);
+  --gold: #F5A623;
+  --gold2: #FFB940;
+  --white: #FFFFFF;
+  --off: rgba(255,255,255,0.55);
+  --dim: rgba(255,255,255,0.22);
+
+  --c1: #FF6B6B;
+  --c2: #FF9F43;
+  --c3: #FECA57;
+  --c4: #48DBFB;
+  --c5: #1DD1A1;
+  --c6: #FF9FF3;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;}
+body{
+  background:var(--bg);
+  font-family:'Barlow',sans-serif;
+  color:var(--white);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* ATMOSPHERIC BG */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 10% 20%, rgba(245,166,35,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 80%, rgba(255,107,107,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(72,219,251,0.04) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+/* GRID PATTERN */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 80%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── WRAPPER ── */
+.page{
+  max-width:920px;margin:0 auto;
+  padding:0 20px 60px;
+  position:relative;z-index:1;
+}
+
+/* ── MASTHEAD ── */
+.masthead{
+  padding:36px 0 28px;
+  display:flex;align-items:flex-end;
+  justify-content:space-between;gap:16px;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--border);
+  margin-bottom:36px;
+}
+.mast-left{}
+.church-tag{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.doc-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(36px,6vw,64px);letter-spacing:2px;
+  line-height:0.9;color:var(--white);
+}
+.mast-right{text-align:right;}
+.date-badge{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);margin-bottom:8px;
+}
+.time-badge{
+  display:inline-block;
+  background:rgba(245,166,35,0.12);
+  border:1px solid rgba(245,166,35,0.3);
+  color:var(--gold);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  padding:6px 16px;border-radius:4px;
+}
+
+/* ── LIVE TIMER ── */
+.timer-block{
+  display:flex;align-items:center;gap:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px 28px;
+  margin-bottom:32px;
+  flex-wrap:wrap;
+}
+.timer-left{flex:1;min-width:180px;}
+.timer-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;
+  color:var(--dim);margin-bottom:6px;
+}
+.timer-display{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,8vw,88px);letter-spacing:2px;
+  line-height:1;color:var(--gold);
+  transition:color 0.4s;
+}
+.timer-display.warn{color:var(--c2);}
+.timer-display.danger{color:var(--c1);animation:blink 1s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.6}}
+
+.timer-right{display:flex;flex-direction:column;gap:10px;}
+.t-btn{
+  padding:12px 24px;border-radius:10px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;border:none;transition:all .2s;
+  display:flex;align-items:center;gap:8px;justify-content:center;
+  min-width:140px;
+}
+.t-btn.start{background:var(--gold);color:var(--bg);}
+.t-btn.start:hover{background:var(--gold2);}
+.t-btn.reset{background:rgba(255,255,255,0.07);color:var(--off);border:1px solid var(--border);}
+.t-btn.reset:hover{background:rgba(255,255,255,0.12);color:white;}
+
+/* progress arc */
+.timer-arc{
+  flex-shrink:0;
+  position:relative;width:90px;height:90px;
+}
+.arc-svg{transform:rotate(-90deg);}
+.arc-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:5;}
+.arc-fill{
+  fill:none;stroke:var(--gold);stroke-width:5;
+  stroke-linecap:round;
+  stroke-dasharray:251.2;
+  stroke-dashoffset:0;
+  transition:stroke-dashoffset 1s linear, stroke .4s;
+}
+.arc-text{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;color:var(--gold);
+  transition:color .4s;
+}
+
+/* ── CURRENT ITEM HIGHLIGHT ── */
+.current-item{
+  display:none;
+  background:linear-gradient(135deg,rgba(245,166,35,0.12),rgba(245,166,35,0.04));
+  border:1px solid rgba(245,166,35,0.25);
+  border-left:3px solid var(--gold);
+  border-radius:12px;padding:16px 20px;
+  margin-bottom:28px;
+  align-items:center;gap:14px;flex-wrap:wrap;
+}
+.current-item.show{display:flex;}
+.ci-emoji{font-size:24px;flex-shrink:0;}
+.ci-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.ci-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--white);}
+.ci-time{margin-left:auto;font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);flex-shrink:0;}
+
+/* ── AGENDA TABLE ── */
+.agenda-header{
+  display:grid;
+  grid-template-columns:48px 1fr auto auto;
+  gap:0;
+  padding:10px 20px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;font-weight:800;letter-spacing:4px;text-transform:uppercase;
+  color:var(--dim);
+  border-bottom:1px solid var(--border);
+  margin-bottom:8px;
+}
+.agenda-items{display:flex;flex-direction:column;gap:6px;}
+
+.agenda-item{
+  display:grid;
+  grid-template-columns:48px 1fr auto auto;
+  align-items:center;gap:0;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:18px 20px;
+  transition:all .25s;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+.agenda-item::before{
+  content:'';position:absolute;
+  left:0;top:0;bottom:0;width:3px;
+  border-radius:3px 0 0 3px;
+  transition:background .3s;
+}
+.agenda-item:hover{background:var(--card2);border-color:rgba(255,255,255,0.12);}
+.agenda-item.active{
+  border-color:rgba(245,166,35,0.35);
+  background:rgba(245,166,35,0.06);
+}
+.agenda-item.done{opacity:0.45;}
+.agenda-item.done .ai-name{text-decoration:line-through;text-decoration-color:rgba(255,255,255,0.3);}
+
+/* number */
+.ai-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;color:var(--dim);letter-spacing:1px;
+  transition:color .3s;
+}
+.agenda-item.active .ai-num{color:var(--gold);}
+
+/* content */
+.ai-content{padding:0 16px 0 8px;}
+.ai-emoji{font-size:20px;margin-bottom:4px;display:block;}
+.ai-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:18px;font-weight:800;color:var(--white);
+  letter-spacing:.5px;margin-bottom:3px;
+}
+.ai-desc{
+  font-size:12px;color:var(--off);line-height:1.5;
+  font-weight:400;
+}
+.ai-desc em{color:var(--gold);font-style:normal;font-weight:600;}
+
+/* duration badge */
+.ai-dur{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px;letter-spacing:1px;
+  padding-right:16px;
+  white-space:nowrap;
+  color:var(--dim);
+  transition:color .3s;
+}
+.agenda-item.active .ai-dur{color:var(--gold);}
+
+/* check */
+.ai-check{
+  width:28px;height:28px;border-radius:50%;
+  border:2px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;cursor:pointer;
+  transition:all .2s;flex-shrink:0;
+  background:none;color:transparent;
+}
+.ai-check:hover{border-color:var(--c5);color:var(--c5);}
+.agenda-item.done .ai-check{
+  background:var(--c5);border-color:var(--c5);color:white;
+}
+
+/* ── TOTALS BAR ── */
+.totals{
+  display:flex;gap:0;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  margin-top:28px;
+}
+.total-cell{
+  flex:1;padding:18px 20px;
+  border-right:1px solid var(--border);
+  text-align:center;
+}
+.total-cell:last-child{border-right:none;}
+.tc-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:36px;letter-spacing:1px;
+  color:var(--gold);line-height:1;margin-bottom:4px;
+}
+.tc-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dim);
+}
+
+/* ── CLOSING NOTE ── */
+.closing{
+  margin-top:28px;
+  padding:22px 24px;
+  background:rgba(29,209,161,0.06);
+  border:1px solid rgba(29,209,161,0.2);
+  border-left:3px solid var(--c5);
+  border-radius:0 10px 10px 0;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.closing-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.closing-text{font-size:13px;font-weight:600;line-height:1.75;color:var(--off);}
+.closing-text strong{color:white;}
+
+/* ── PRINT ── */
+@media print{
+  body{background:white;color:black;}
+  body::before,body::after{display:none;}
+  .timer-block,.current-item,.t-btn{display:none!important;}
+  .agenda-item{background:white;border:1px solid #ddd;box-shadow:none;}
+  .doc-title,.ai-name,.ai-num,.ai-dur,.tc-num{color:black!important;}
+  .church-tag,.ai-desc,.tc-label,.timer-label,.date-badge{color:#555!important;}
+  .ai-check{display:none;}
+  .totals{border:1px solid #ddd;background:white;}
+  .total-cell{border-right:1px solid #ddd;}
+  .closing{background:#f0fdf9;border-color:#aaa;}
+  .closing-text{color:#333;}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .masthead{flex-direction:column;align-items:flex-start;}
+  .mast-right{text-align:left;}
+  .agenda-header,.agenda-item{grid-template-columns:38px 1fr auto auto;}
+  .ai-dur{font-size:20px;padding-right:10px;}
+  .totals{flex-direction:column;}
+  .total-cell{border-right:none;border-bottom:1px solid var(--border);}
+  .total-cell:last-child{border-bottom:none;}
+  .timer-block{flex-direction:column;align-items:flex-start;}
+  .timer-right{flex-direction:row;flex-wrap:wrap;}
+}
+
+/* color stripes per item */
+.stripe-0::before{background:var(--c4);}
+.stripe-1::before{background:var(--gold);}
+.stripe-2::before{background:var(--c5);}
+.stripe-3::before{background:var(--c6);}
+.stripe-4::before{background:var(--c2);}
+.stripe-5::before{background:var(--c1);}
+.stripe-active::before{background:var(--gold)!important;}
+
+/* fadeup */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.agenda-item{animation:fadeUp .4s ease both;}
+.agenda-item:nth-child(1){animation-delay:.05s}
+.agenda-item:nth-child(2){animation-delay:.10s}
+.agenda-item:nth-child(3){animation-delay:.15s}
+.agenda-item:nth-child(4){animation-delay:.20s}
+.agenda-item:nth-child(5){animation-delay:.25s}
+.agenda-item:nth-child(6){animation-delay:.30s}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="mast-left">
+      <div class="church-tag">Foundation of Truth Assembly · Abuja · Digital Media Dept</div>
+      <div class="doc-title">MEETING<br>AGENDA</div>
+    </div>
+    <div class="mast-right">
+      <div class="date-badge" id="dateDisplay">—</div>
+      <div class="time-badge">⏱ 20 Minutes Total</div>
+    </div>
+  </div>
+
+  <!-- TIMER -->
+  <div class="timer-block">
+    <div class="timer-left">
+      <div class="timer-label">⏱ Meeting Timer</div>
+      <div class="timer-display" id="timerDisplay">20:00</div>
+    </div>
+    <div class="timer-arc">
+      <svg class="arc-svg" width="90" height="90" viewBox="0 0 90 90">
+        <circle class="arc-bg" cx="45" cy="45" r="40"/>
+        <circle class="arc-fill" id="arcFill" cx="45" cy="45" r="40"/>
+      </svg>
+      <div class="arc-text" id="arcText">100%</div>
+    </div>
+    <div class="timer-right">
+      <button class="t-btn start" id="startBtn" onclick="toggleTimer()">▶ Start Meeting</button>
+      <button class="t-btn reset" onclick="resetTimer()">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- CURRENT ITEM -->
+  <div class="current-item" id="currentItem">
+    <span class="ci-emoji" id="ciEmoji">🙏</span>
+    <div>
+      <div class="ci-label">Now In Progress</div>
+      <div class="ci-name" id="ciName">—</div>
+    </div>
+    <div class="ci-time" id="ciTime">—</div>
+  </div>
+
+  <!-- AGENDA HEADER -->
+  <div class="agenda-header">
+    <span>#</span>
+    <span>Item</span>
+    <span>Time</span>
+    <span style="text-align:center">✓</span>
+  </div>
+
+  <!-- AGENDA ITEMS -->
+  <div class="agenda-items" id="agendaItems"></div>
+
+  <!-- TOTALS -->
+  <div class="totals">
+    <div class="total-cell">
+      <div class="tc-num">6</div>
+      <div class="tc-label">Agenda Items</div>
+    </div>
+    <div class="total-cell">
+      <div class="tc-num">20</div>
+      <div class="tc-label">Total Minutes</div>
+    </div>
+    <div class="total-cell">
+      <div class="tc-num" id="doneCount">0</div>
+      <div class="tc-label">Items Done</div>
+    </div>
+    <div class="total-cell">
+      <div class="tc-num" id="remTime">20 min</div>
+      <div class="tc-label">Remaining</div>
+    </div>
+  </div>
+
+  <!-- CLOSING NOTE -->
+  <div class="closing">
+    <span class="closing-icon">📌</span>
+    <div class="closing-text">
+      <strong>Facilitator note:</strong> Keep each item tight — this meeting is intentionally short. 
+      Decisions get made; details get taken offline. 
+      The goal today is <strong>alignment, not discussion.</strong> 
+      Everything that needs more time gets scheduled — not solved in this room.
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+/* ═══ AGENDA DATA ═══ */
+const items = [
+  {
+    emoji: '🙏',
+    name: 'Opening Prayer & Welcome',
+    desc: 'Brief opening. Set the tone — this team exists to serve the Kingdom, not just post content.',
+    mins: 2,
+    color: 'var(--c4)',
+    note: ''
+  },
+  {
+    emoji: '👁',
+    name: 'The Vision — Why We Exist',
+    desc: 'State the mission clearly: <em>FOTA Digital Media is the online voice of Foundation of Truth Assembly.</em> Every post, Reel, and livestream is ministry.',
+    mins: 3,
+    color: 'var(--gold)',
+    note: ''
+  },
+  {
+    emoji: '📊',
+    name: 'Honest State of the Team',
+    desc: 'Where we are right now — no sugarcoating. What\'s been inconsistent, what\'s been missing, and what we\'re going to change starting today.',
+    mins: 3,
+    color: 'var(--c5)',
+    note: ''
+  },
+  {
+    emoji: '📋',
+    name: 'Assessment Form — Complete Now',
+    desc: 'Hand out (or share) the FOTA Digital Media Team Assessment. Each member fills it in quietly. <em>This is how we know where to place you.</em>',
+    mins: 8,
+    color: 'var(--c6)',
+    note: 'Longest item — protect this time'
+  },
+  {
+    emoji: '🗓',
+    name: 'What Happens Next',
+    desc: 'Announce the content calendar plan. Introduce the weekly posting schedule. Share that role assignments will come after forms are reviewed.',
+    mins: 3,
+    color: 'var(--c2)',
+    note: ''
+  },
+  {
+    emoji: '🔥',
+    name: 'Close & Send-Off',
+    desc: 'One word from each person: <em>what are you excited to contribute?</em> Closing prayer. Collect forms.',
+    mins: 1,
+    color: 'var(--c1)',
+    note: 'Collect all forms before anyone leaves'
+  }
+];
+
+/* ═══ BUILD ITEMS ═══ */
+const container = document.getElementById('agendaItems');
+let cumMins = 0;
+
+items.forEach((item, i) => {
+  const el = document.createElement('div');
+  el.className = `agenda-item stripe-${i}`;
+  el.id = `item-${i}`;
+  el.innerHTML = `
+    <div class="ai-num">0${i+1}</div>
+    <div class="ai-content">
+      <span class="ai-emoji">${item.emoji}</span>
+      <div class="ai-name">${item.name}</div>
+      <div class="ai-desc">${item.desc}${item.note ? ` &nbsp;<em>· ${item.note}</em>` : ''}</div>
+    </div>
+    <div class="ai-dur">${item.mins} min${item.mins>1?'s':''}</div>
+    <button class="ai-check" onclick="toggleDone(${i}, event)" title="Mark done">✓</button>
+  `;
+  el.onclick = (e) => { if(!e.target.classList.contains('ai-check')) setActive(i); };
+  container.appendChild(el);
+  cumMins += item.mins;
+});
+
+/* date */
+document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+/* ═══ ACTIVE / DONE ═══ */
+let activeIdx = -1;
+let doneItems = new Set();
+
+function setActive(i) {
+  document.querySelectorAll('.agenda-item').forEach(el => {
+    el.classList.remove('active','stripe-active');
+  });
+  const el = document.getElementById(`item-${i}`);
+  el.classList.add('active','stripe-active');
+  activeIdx = i;
+
+  const ci = document.getElementById('currentItem');
+  ci.classList.add('show');
+  document.getElementById('ciEmoji').textContent = items[i].emoji;
+  document.getElementById('ciName').textContent = items[i].name;
+  document.getElementById('ciTime').textContent = items[i].mins + (items[i].mins > 1 ? ' mins' : ' min');
+}
+
+function toggleDone(i, e) {
+  e.stopPropagation();
+  const el = document.getElementById(`item-${i}`);
+  if(doneItems.has(i)){
+    doneItems.delete(i);
+    el.classList.remove('done');
+  } else {
+    doneItems.add(i);
+    el.classList.add('done');
+  }
+  document.getElementById('doneCount').textContent = doneItems.size;
+  updateRemTime();
+}
+
+function updateRemTime() {
+  let done = 0;
+  doneItems.forEach(i => done += items[i].mins);
+  const rem = 20 - done;
+  document.getElementById('remTime').textContent = rem > 0 ? rem + ' min' : 'Done!';
+}
+
+/* ═══ TIMER ═══ */
+const TOTAL_SECS = 20 * 60;
+let timeLeft = TOTAL_SECS;
+let running = false;
+let timerInt = null;
+let currentItemIdx = 0;
+
+// compute item start/end times in seconds
+const itemTimes = [];
+let acc = 0;
+items.forEach(item => {
+  itemTimes.push({ start: acc, end: acc + item.mins * 60 });
+  acc += item.mins * 60;
+});
+
+function toggleTimer() {
+  if(running){ pauseTimer(); } else { startTimer(); }
+}
+
+function startTimer() {
+  running = true;
+  document.getElementById('startBtn').innerHTML = '⏸ Pause';
+  timerInt = setInterval(tick, 1000);
+  setActive(0);
+}
+
+function pauseTimer() {
+  running = false;
+  document.getElementById('startBtn').innerHTML = '▶ Resume';
+  clearInterval(timerInt);
+}
+
+function resetTimer() {
+  clearInterval(timerInt);
+  running = false;
+  timeLeft = TOTAL_SECS;
+  document.getElementById('startBtn').innerHTML = '▶ Start Meeting';
+  renderTimer();
+  document.querySelectorAll('.agenda-item').forEach(el => el.classList.remove('active','stripe-active'));
+  document.getElementById('currentItem').classList.remove('show');
+  activeIdx = -1;
+}
+
+function tick() {
+  if(timeLeft <= 0){ clearInterval(timerInt); running = false; return; }
+  timeLeft--;
+  const elapsed = TOTAL_SECS - timeLeft;
+
+  // auto-advance current item
+  for(let i = 0; i < itemTimes.length; i++){
+    if(elapsed >= itemTimes[i].start && elapsed < itemTimes[i].end){
+      if(activeIdx !== i) setActive(i);
+      break;
+    }
+  }
+  renderTimer();
+}
+
+function renderTimer() {
+  const m = Math.floor(timeLeft / 60);
+  const s = timeLeft % 60;
+  const display = document.getElementById('timerDisplay');
+  display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+
+  const pct = timeLeft / TOTAL_SECS;
+  const circ = 251.2;
+  document.getElementById('arcFill').style.strokeDashoffset = circ * (1 - pct);
+  document.getElementById('arcText').textContent = Math.round(pct * 100) + '%';
+
+  const arcFill = document.getElementById('arcFill');
+  const arcText = document.getElementById('arcText');
+
+  if(pct > 0.4){
+    display.className = 'timer-display';
+    arcFill.style.stroke = 'var(--gold)';
+    arcText.style.color = 'var(--gold)';
+  } else if(pct > 0.15){
+    display.className = 'timer-display warn';
+    arcFill.style.stroke = 'var(--c2)';
+    arcText.style.color = 'var(--c2)';
+  } else {
+    display.className = 'timer-display danger';
+    arcFill.style.stroke = 'var(--c1)';
+    arcText.style.color = 'var(--c1)';
+  }
+}
+</script>
+</body>
+</html>
