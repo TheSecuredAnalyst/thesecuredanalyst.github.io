@@ -1147,23 +1147,22 @@ document.addEventListener('input',  () => { updateProg(); updateNextBtn(); });
 document.addEventListener('change', () => { updateProg(); updateNextBtn(); });
 
 /* ═══ VALIDATION ═══ */
-const fv  = n => { const e=document.querySelector(`[name="${n}"]`); return !!(e&&e.value.trim()); };
-const fs  = n => { const e=document.querySelector(`[name="${n}"]`); return !!(e&&e.value); };
-const fr  = n => !!document.querySelector(`[name="${n}"]:checked`);
-const fc  = n => !!document.querySelector(`[name="${n}"]:checked`);
-const fsk = k => !!document.querySelector(`.rb.sel[data-sk="${k}"]`);
-
 const SKILL_KEYS = ['camera','vedit','reel','colour','subs','live','photo','pedit','design','typo','brand','ig','tt','fb','yt','copy','sched','stats','dead','team','init','fback'];
 
 function validateSlide(idx) {
+  const sl = document.getElementById('slide-' + idx);
+  if (!sl || idx === 0) return true;
+  // v: text/select not empty   c: at least one radio/checkbox checked in group
+  const v = name => { const e = sl.querySelector(`[name="${name}"]`); return !!(e && String(e.value).trim()); };
+  const c = name => !!sl.querySelector(`[name="${name}"]:checked`);
   switch(idx) {
-    case 1: return fv('fullName')&&fv('phone')&&fs('gender')&&fs('bdayDay')&&fs('bdayMonth')&&fs('ageRange')&&fv('occupation')&&fs('yearsAtFOTA');
-    case 2: return fc('curRole')&&fr('desiredRole')&&fv('roleDesc');
-    case 3: return SKILL_KEYS.every(fsk)&&fv('tools');
-    case 4: return fc('plat')&&fr('managedSocial')&&fr('analytics');
-    case 5: return fv('strength')&&fv('weakness')&&fv('wantLearn')&&fv('atBest')&&fv('heldBack');
-    case 6: return fc('avail')&&fr('hours')&&fr('sunCommit')&&fr('events');
-    case 7: return fv('opportunity')&&fv('shouldDo')&&fv('proud');
+    case 1: return v('fullName')&&v('phone')&&v('gender')&&v('bdayDay')&&v('bdayMonth')&&v('ageRange')&&v('occupation')&&v('yearsAtFOTA');
+    case 2: return c('curRole')&&c('desiredRole')&&v('roleDesc');
+    case 3: return SKILL_KEYS.every(k => !!sl.querySelector(`.rb.sel[data-sk="${k}"]`)) && v('tools');
+    case 4: return c('plat')&&c('managedSocial')&&c('analytics');
+    case 5: return v('strength')&&v('weakness')&&v('wantLearn')&&v('atBest')&&v('heldBack');
+    case 6: return c('avail')&&c('hours')&&c('sunCommit')&&c('events');
+    case 7: return v('opportunity')&&v('shouldDo')&&v('proud');
     default: return true;
   }
 }
