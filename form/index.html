@@ -1199,7 +1199,10 @@ function collectData() {
 }
 
 /* ═══ SUBMIT ═══ */
+let _submitting = false;
 async function submitForm() {
+  if(_submitting) return;
+  _submitting = true;
   btnNext.disabled = true;
   btnNext.innerHTML = 'Submitting… ⏳';
 
@@ -1207,6 +1210,7 @@ async function submitForm() {
 
   if(error) {
     console.error(error);
+    _submitting = false;
     btnNext.disabled = false;
     btnNext.innerHTML = 'Submit Assessment 🚀';
     alert('Submission failed — please try again.\n\n' + error.message);
