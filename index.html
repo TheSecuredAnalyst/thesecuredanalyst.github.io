@@ -224,6 +224,52 @@
   .term-body a:hover{ color:var(--cyan); border-color:rgba(72,219,251,0.5); }
   .cursor{ display:inline-block; width:8px; height:16px; background:var(--green); vertical-align:text-bottom; animation:blink 1s steps(1) infinite; }
 
+  /* ── experience timeline ── */
+  .timeline{ display:flex; flex-direction:column; gap:2px; margin-top:50px; }
+  .tl-item{
+    display:grid; grid-template-columns:170px 1fr; gap:28px; padding:28px 0;
+    border-top:1px solid var(--line);
+  }
+  .tl-item:last-child{ border-bottom:1px solid var(--line); }
+  @media(max-width:720px){ .tl-item{ grid-template-columns:1fr; gap:8px; } }
+  .tl-period{ font-family:var(--mono); font-size:13px; color:var(--green); }
+  .tl-period .now{
+    display:inline-block; margin-top:8px; font-size:10.5px; letter-spacing:1px; text-transform:uppercase;
+    color:var(--green); background:rgba(0,255,170,0.08); border:1px solid var(--line);
+    padding:3px 9px; border-radius:999px;
+  }
+  .tl-role h3{ font-size:19px; font-weight:700; }
+  .tl-role .org{ font-family:var(--mono); font-size:13px; color:var(--cyan); margin-top:3px; }
+  .tl-role ul{ list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:9px; }
+  .tl-role li{ font-size:14px; color:var(--muted); display:flex; gap:10px; align-items:flex-start; }
+  .tl-role li::before{ content:'▸'; color:var(--green); flex-shrink:0; margin-top:1px; }
+
+  /* ── certifications ── */
+  .cert-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:50px; }
+  .cert-card{
+    display:flex; align-items:center; gap:16px; background:var(--panel); border:1px solid var(--line);
+    border-radius:12px; padding:20px; transition:transform .25s, border-color .25s;
+  }
+  .cert-card:hover{ transform:translateY(-3px); border-color:rgba(0,255,170,0.4); }
+  .cert-card .badge{
+    width:46px; height:46px; border-radius:10px; flex-shrink:0; display:flex; align-items:center;
+    justify-content:center; font-family:var(--mono); font-weight:800; font-size:13px;
+    background:rgba(0,255,170,0.08); border:1px solid var(--line); color:var(--green);
+  }
+  .cert-card h4{ font-size:15px; font-weight:700; }
+  .cert-card p{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* ── education ── */
+  .edu-list{ display:flex; flex-direction:column; gap:0; margin-top:50px; }
+  .edu-item{
+    display:flex; gap:20px; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .edu-item:first-child{ border-top:1px solid var(--line); }
+  .edu-item .yr{ font-family:var(--mono); font-size:13px; color:var(--green); width:54px; flex-shrink:0; }
+  .edu-item .what b{ color:var(--text); }
+  .edu-item .what{ color:var(--muted); }
+
   /* ── footer ── */
   footer{
     border-top:1px solid var(--line); padding:34px clamp(20px,6vw,72px);
@@ -245,30 +291,33 @@
   <a href="#top" class="brand"><span class="dot"></span>The<span class="accent">Secured</span>Analyst</a>
   <div class="navlinks">
     <a href="#about">About</a>
-    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#stack">Stack</a>
+    <a href="#certs">Certs</a>
     <a href="#work">Work</a>
-    <a href="#contact" class="cta">Contact</a>
+    <a href="#contact" class="cta">Hire me</a>
   </div>
 </nav>
 
 <header id="top" class="hero">
   <div class="term-tag">
-    <span class="blink">●</span> status: actively defending systems &amp; shipping security tooling
+    <span class="blink">●</span> open to remote security engineering &amp; leadership roles
   </div>
-  <h1>Securing infrastructure.<br>Building the tools that <span class="grad">defend it.</span></h1>
+  <h1>I secure banks.<br>Then I <span class="grad">build the tools</span> that scale that work.</h1>
   <p class="lead">
-    I'm <span>Oluwagbenga Ogungbemi</span> — a cybersecurity professional and builder based in Abuja, Nigeria.
-    I work on enterprise defense at a federal financial institution by day, and design security
-    products — vaults, VAPT tooling, and automation — that help organizations stay ahead of threats.
+    I'm <span>Oluwagbenga Ogungbemi</span> — Manager, Cybersecurity &amp; Network Infrastructure at a
+    CBN-regulated Nigerian bank, where I run security and network operations across <span>40+ branches</span>
+    and <span>~1,300 staff</span>. Outside that mandate, I design and ship the products I wish existed —
+    secrets vaults, AI-assisted VAPT suites, and compliance automation — through my own company, ARX AMANI Technologies.
   </p>
   <div class="hero-actions">
-    <a href="#work" class="btn btn-primary">▸ View my work</a>
-    <a href="#contact" class="btn btn-ghost">Get in touch →</a>
+    <a href="#work" class="btn btn-primary">▸ See what I've shipped</a>
+    <a href="#contact" class="btn btn-ghost">Let's talk →</a>
   </div>
   <div class="hero-meta">
-    <div><b>Cybersecurity</b>Federal Mortgage Bank of Nigeria</div>
-    <div><b>VAPT &amp; OSINT</b>AI-assisted scanning &amp; reporting</div>
-    <div><b>Builder</b>Laravel · Python · security tooling</div>
+    <div><b>7+ yrs</b>in cybersecurity (14+ yrs in IT)</div>
+    <div><b>40+ branches</b>secured at a federal financial institution</div>
+    <div><b>5 certs</b>CEH · Security+ · CC (ISC²) · CNSP · Google IT Support</div>
   </div>
 </header>
 
@@ -278,16 +327,19 @@
     <h2>Defense-minded. Build-driven.</h2>
     <div class="about-grid">
       <div>
-        <p>I'm part of the Cybersecurity Team at the <span>Federal Mortgage Bank of Nigeria</span>,
-          where I help protect critical infrastructure, harden internal systems, and respond to threats
-          across the organization's network.</p>
-        <p>Outside of that mandate, I design and ship my own security products through
-          <span>Arx Amani Technologies</span> — including an enterprise secrets vault and IT asset
+        <p>I lead Cybersecurity &amp; Network Infrastructure at the <span>Federal Mortgage Bank of Nigeria</span> —
+          a CBN-regulated institution — where I own the firewall estate, endpoint protection, SIEM, and
+          network operations across <span>40+ branches</span> and roughly <span>1,300 staff</span>. I've held
+          that mandate since September 2018, through real incidents, real audits, and real scale.</p>
+        <p>Outside of that mandate, I design and ship the products I wish existed, through my own company,
+          <span>ARX AMANI Technologies</span> — including an enterprise secrets vault and IT asset
           management platform built for Nigerian financial institutions, plus a suite of AI-assisted
           vulnerability assessment and penetration testing tools.</p>
-        <p>My approach blends <span>offensive thinking</span> (how systems get broken) with
-          <span>practical engineering</span> (how to actually ship something that closes the gap) —
-          because the best defenses are the ones that get deployed, not just designed.</p>
+        <p>My background is unconventional — I came to security through <span>physics</span>, not a
+          bootcamp — and that shows up as a habit of reasoning from first principles rather than
+          following playbooks. I blend <span>offensive thinking</span> (how systems actually get broken)
+          with <span>practical engineering</span> (how to ship something that closes the gap), because the
+          best defenses are the ones that get deployed, not just designed.</p>
       </div>
       <div class="panel">
         <div class="panel-title">// current focus</div>
@@ -310,19 +362,55 @@
   </div>
 </section>
 
-<section id="skills">
+<section id="experience">
   <div class="wrap">
-    <div class="kicker">Capabilities</div>
-    <h2>What I bring to the table</h2>
-    <p class="sub">A working blend of security operations, offensive testing, and the engineering chops to turn findings into shipped tools.</p>
+    <div class="kicker">Job history</div>
+    <h2>Where I've put in the work</h2>
+    <p class="sub">Real mandates, real scale, real accountability — not side-project security.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-period">Sep 2018 — Present<span class="now">current</span></div>
+        <div class="tl-role">
+          <h3>Manager, Cybersecurity &amp; Network Infrastructure</h3>
+          <div class="org">Federal Mortgage Bank of Nigeria · CBN-regulated · Abuja, NG</div>
+          <ul>
+            <li>Own end-to-end security &amp; network operations across 40+ branches and ~1,300 staff</li>
+            <li>Run the firewall estate, endpoint protection (Sophos Central), SIEM (Splunk), and RMM (Action1)</li>
+            <li>Lead incident response, threat detection, and internal hardening for a regulated financial institution</li>
+            <li>Translate compliance frameworks (CBN IT risk, NDPR) into operational controls that actually hold up to audit</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">Ongoing<span class="now">building</span></div>
+        <div class="tl-role">
+          <h3>Founder &amp; CEO</h3>
+          <div class="org">ARX AMANI Technologies Ltd · arxamani.com</div>
+          <ul>
+            <li>Building managed cybersecurity services and products for Nigerian SMEs and financial institutions</li>
+            <li>Designed and shipped Security Vault — an NDPR-compliant secrets &amp; asset management platform</li>
+            <li>Built an AI-assisted VAPT suite (Sentinel One) and a 23+ module Python security toolkit</li>
+            <li>Taking products from "I saw the gap" to production — not portfolios of demos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="kicker">Tech stack</div>
+    <h2>What I actually run — in production and in the lab</h2>
+    <p class="sub">Tools I use to secure a 40-branch bank by day, and the stack I use to prototype the next thing by night.</p>
     <div class="skill-grid">
       <div class="skill-card">
-        <div class="head"><span class="ic">🛡️</span><h3>Security Operations</h3></div>
+        <div class="head"><span class="ic">🛡️</span><h3>Security Platforms (Production)</h3></div>
         <ul>
-          <li>Threat detection &amp; response</li>
-          <li>Network &amp; endpoint hardening</li>
-          <li>SIEM &amp; log analysis</li>
-          <li>NDPR / CBN compliance frameworks</li>
+          <li>Sophos Central (endpoint &amp; EDR)</li>
+          <li>Splunk (SIEM &amp; log analysis)</li>
+          <li>Action1 (RMM &amp; patch management)</li>
+          <li>Enterprise firewall estate (40+ branches)</li>
         </ul>
       </div>
       <div class="skill-card">
@@ -331,7 +419,16 @@
           <li>Penetration testing &amp; VAPT</li>
           <li>OSINT (theHarvester, Photon)</li>
           <li>Impacket &amp; exploitation tooling</li>
-          <li>Phishing simulation</li>
+          <li>Nmap + CVE-driven assessments</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="head"><span class="ic">📡</span><h3>Infrastructure &amp; Observability (Lab)</h3></div>
+        <ul>
+          <li>Proxmox (virtualization)</li>
+          <li>ELK Stack &amp; Zabbix</li>
+          <li>Prometheus + Grafana</li>
+          <li>GNS3 / Wireshark labs</li>
         </ul>
       </div>
       <div class="skill-card">
@@ -353,23 +450,38 @@
         </ul>
       </div>
       <div class="skill-card">
-        <div class="head"><span class="ic">🌐</span><h3>Networking</h3></div>
+        <div class="head"><span class="ic">🌐</span><h3>Networking &amp; Identity</h3></div>
         <ul>
-          <li>GNS3 lab design &amp; simulation</li>
-          <li>Wireshark / packet analysis</li>
           <li>Cisco switch &amp; VLAN management</li>
           <li>LDAP / Active Directory</li>
+          <li>Network segmentation &amp; hardening</li>
+          <li>Telnet/SSH estate management</li>
         </ul>
       </div>
       <div class="skill-card">
-        <div class="head"><span class="ic">📦</span><h3>Product Building</h3></div>
+        <div class="head"><span class="ic">📋</span><h3>Compliance &amp; Frameworks</h3></div>
         <ul>
-          <li>From prototype to production</li>
-          <li>Self-hosted enterprise software</li>
-          <li>Secure-by-design architecture</li>
-          <li>Nigeria-first market focus</li>
+          <li>NDPR (Nigeria Data Protection Reg.)</li>
+          <li>CBN IT risk framework</li>
+          <li>OWASP Top 10 / CIS benchmarks</li>
+          <li>Audit-ready documentation</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="kicker">Credentials</div>
+    <h2>Certified, not just self-taught</h2>
+    <p class="sub">Verified credentials that back up the hands-on experience above.</p>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="badge">CEH</div><div><h4>Certified Ethical Hacker</h4><p>EC-Council</p></div></div>
+      <div class="cert-card"><div class="badge">SEC+</div><div><h4>CompTIA Security+</h4><p>CompTIA</p></div></div>
+      <div class="cert-card"><div class="badge">CC</div><div><h4>Certified in Cybersecurity</h4><p>(ISC)²</p></div></div>
+      <div class="cert-card"><div class="badge">CNSP</div><div><h4>Certified Network Security Practitioner</h4><p>The SecOps Group</p></div></div>
+      <div class="cert-card"><div class="badge">GIT</div><div><h4>IT Support Professional</h4><p>Google (Coursera)</p></div></div>
     </div>
   </div>
 </section>
@@ -414,21 +526,42 @@
   </div>
 </section>
 
+<section id="education">
+  <div class="wrap">
+    <div class="kicker">Foundation</div>
+    <h2>From physics to security architecture</h2>
+    <p class="sub">An unconventional path that brings rigorous, first-principles thinking to how I approach systems and risk.</p>
+    <div class="edu-list">
+      <div class="edu-item"><span class="yr">2010</span><span class="what"><b>BSc Physics</b> — Ekiti State University</span></div>
+      <div class="edu-item"><span class="yr">2015</span><span class="what"><b>MSc Physics</b> — University of Lagos</span></div>
+      <div class="edu-item"><span class="yr">active</span><span class="what"><b>PhD, Materials Science</b> — in progress</span></div>
+      <div class="edu-item"><span class="yr">in view</span><span class="what"><b>MSc International Affairs &amp; Diplomacy</b> — application stage</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap">
     <div class="kicker">Let's talk</div>
-    <h2>Open to security collaborations &amp; consulting</h2>
-    <p class="sub">Whether it's a penetration test, a security tooling build, or just a conversation about defending Nigerian enterprises better — reach out below.</p>
+    <h2>Looking for a remote security role — let's see if it's a fit</h2>
+    <p class="sub">I'm actively exploring remote opportunities in security engineering, SOC/security operations leadership, and security architecture. If you're hiring — or just want to talk shop about defending systems at scale — I'd like to hear from you.</p>
     <div class="term" style="margin-top:46px;">
-      <div class="term-bar"><i></i><i></i><i></i><span>contact@thesecuredanalyst — bash</span></div>
+      <div class="term-bar"><i></i><i></i><i></i><span>recruiter@yourcompany — bash</span></div>
       <div class="term-body">
         <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ whoami</div>
-        <div class="out">Oluwagbenga Ogungbemi — Cybersecurity Analyst · Builder · Abuja, Nigeria</div>
+        <div class="out">Oluwagbenga Ogungbemi — Manager, Cybersecurity &amp; Network Infrastructure · Builder · Abuja, Nigeria</div>
+        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ cat availability.txt</div>
+        <div class="out">
+          status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: open to remote roles · contract · consulting<br>
+          looking&nbsp;for : security engineering · SOC leadership · security architecture<br>
+          timezone&nbsp;&nbsp;: WAT (UTC+1) — flexible for overlap
+        </div>
         <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ cat contact.txt</div>
         <div class="out">
           email&nbsp;&nbsp;&nbsp;&nbsp;: <a href="mailto:ogungbemigs@gmail.com">ogungbemigs@gmail.com</a><br>
-          company&nbsp;&nbsp;: <a href="#">Arx Amani Technologies Limited</a><br>
-          focus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: enterprise security tooling · VAPT · compliance automation
+          company&nbsp;&nbsp;: <a href="https://arxamani.com" target="_blank" rel="noopener">ARX AMANI Technologies Ltd</a><br>
+          linkedin&nbsp;&nbsp;: <a href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">linkedin.com/in/oluwagbengasamuel</a><br>
+          focus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: security engineering · SOC leadership · security architecture
         </div>
         <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ <span class="cursor"></span></div>
       </div>
@@ -440,8 +573,9 @@
   <div>© <span id="yr"></span> Oluwagbenga Ogungbemi · The Secured Analyst</div>
   <div class="links">
     <a href="mailto:ogungbemigs@gmail.com">Email</a>
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
+    <a href="https://github.com/TheSecuredAnalyst" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://arxamani.com" target="_blank" rel="noopener">ARX AMANI</a>
   </div>
 </footer>
 
