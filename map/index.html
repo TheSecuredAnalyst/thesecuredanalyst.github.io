@@ -1182,8 +1182,8 @@ async function sbRead() {
       .from('state')
       .select('tracker,devotional')
       .eq('id', STATE_ID)
-      .single();
-    if (error || !data) return null;
+      .maybeSingle();
+    if (!data) return null;
     return data;
   } catch { return null; }
 }
@@ -1196,8 +1196,9 @@ async function sbWrite(data) {
       devotional: data.devotional || {},
       updated_at: new Date().toISOString()
     });
+    if (error) console.error('sbWrite error:', error);
     return !error;
-  } catch { return false; }
+  } catch(e) { console.error('sbWrite exception:', e); return false; }
 }
 // ─────────────────────────────────────────────────────────
 
