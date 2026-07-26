@@ -201,6 +201,11 @@
     font-family:var(--mono); font-size:11.5px; color:var(--cyan); border:1px solid rgba(72,219,251,0.25);
     background:rgba(72,219,251,0.06); padding:4px 10px; border-radius:6px;
   }
+  .proj-tags{ display:flex; flex-direction:column; gap:6px; align-items:flex-end; flex-shrink:0; }
+  .proj-tag.alt{ color:var(--amber); background:rgba(255,184,77,0.08); border-color:rgba(255,184,77,0.22); }
+  .proj-card h3 a{ color:inherit; text-decoration:none; transition:color .2s; }
+  .proj-card h3 a:hover{ color:var(--green); }
+  .proj-card h3 .ext{ font-size:0.7em; color:var(--muted); vertical-align:super; margin-left:2px; }
 
   /* ── terminal/contact ── */
   .term{
@@ -388,8 +393,8 @@
           <div class="org">ARX AMANI Technologies Ltd · arxamani.com</div>
           <ul>
             <li>Building managed cybersecurity services and products for Nigerian SMEs and financial institutions</li>
-            <li>Designed and shipped Security Vault — an NDPR-compliant secrets &amp; asset management platform</li>
-            <li>Built an AI-assisted VAPT suite (Sentinel One) and a 23+ module Python security toolkit</li>
+            <li>Designed and shipped arxVault — an NDPR-compliant secrets &amp; PAM platform with automated credential rotation</li>
+            <li>Published Security Suite — an open-source security toolkit with ~90★ on GitHub — plus MCP servers exposing 255+ security tools to AI assistants</li>
             <li>Taking products from "I saw the gap" to production — not portfolios of demos</li>
           </ul>
         </div>
@@ -490,37 +495,67 @@
   <div class="wrap">
     <div class="kicker">Selected work</div>
     <h2>Tools I've designed &amp; shipped</h2>
-    <p class="sub">A look at the products and platforms I've built — most of them born from real gaps I saw in enterprise security tooling for the Nigerian market.</p>
+    <p class="sub">Products and platforms I've built — from open-source tools anyone can run to proprietary systems in production. Most were born from real gaps in enterprise security tooling for the Nigerian market.</p>
     <div class="proj-grid">
       <div class="proj-card">
-        <div class="proj-top"><h3>Security Vault</h3><span class="proj-tag">Flagship</span></div>
-        <p>Enterprise secrets vault &amp; IT asset management platform — NDPR-compliant, self-hosted, with 2FA, Azure/Google OAuth, LDAP integration, granular permissions, and AI-generated compliance reports. Built for Nigerian financial institutions via Arx Amani Technologies.</p>
-        <div class="proj-stack"><span>Laravel 12</span><span>Spatie Permissions</span><span>2FA</span><span>OAuth</span><span>LDAP</span></div>
+        <div class="proj-top"><h3>arxVault — Secrets Vault &amp; PAM</h3><div class="proj-tags"><span class="proj-tag">Flagship</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>Enterprise secrets vault &amp; IT asset management — self-hosted, NDPR/CBN-aligned. AES-256-GCM envelope encryption (a unique key per secret), a hash-chained tamper-evident audit log, 2FA + Azure/Google OAuth + LDAP, and a crash-safe two-phase-commit engine that automatically rotates privileged credentials. Built for Nigerian financial institutions.</p>
+        <div class="proj-stack"><span>Laravel 12</span><span>AES-256-GCM</span><span>Livewire</span><span>OAuth/LDAP</span></div>
       </div>
       <div class="proj-card">
-        <div class="proj-top"><h3>Sentinel One — VAPT Suite</h3><span class="proj-tag">AI · Security</span></div>
-        <p>Two AI-powered assessment tools: Al-VulnScan (Nmap + CVE lookup + local-LLM analysis with 0–100 risk scoring) and Automated VAPT (scan-history tracking) — producing HTML, JSON, and Markdown reports.</p>
+        <div class="proj-top"><h3>NEXUS-AD</h3><div class="proj-tags"><span class="proj-tag">AI · Network</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>A self-sustaining Active Directory / NAC / VPN platform spanning 40+ branches. Enforces network access control without 802.1X, keeps branches authenticating through VPN outages via an HMAC "dead-man's-switch", predicts tunnel degradation with EWMA scoring, and runs incident response on a local LLM — every action written to a SHA-256 hash-chained audit trail.</p>
+        <div class="proj-stack"><span>Python</span><span>PowerShell</span><span>Ollama</span><span>Splunk</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>NHF Reconciler</h3><div class="proj-tags"><span class="proj-tag">Data Engineering</span><span class="proj-tag alt">Internal</span></div></div>
+        <p>A record-matching engine that reconciles legacy payment schedules against a 9-million-record master database — phonetic, order-insensitive name matching fused with identifier signals and a multi-generation ID resolver. Replaced a manual spreadsheet process, taking auto-match to 96% and cutting manual review from ~69% to ~4%.</p>
+        <div class="proj-stack"><span>Laravel</span><span>Livewire</span><span>openspout</span><span>SQLite/MySQL</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3><a href="https://github.com/TheSecuredAnalyst/security-suite" target="_blank" rel="noopener">Security Suite<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Open Source ★</span></div></div>
+        <p>An open-source security toolkit (~90★ on GitHub): OSINT, web &amp; API scanning, an exploit engine, and multi-framework compliance checks — unified in one CLI + REST API with AI-powered analysis, all gated behind a deny-by-default guardrail that enforces rules-of-engagement.</p>
+        <div class="proj-stack"><span>Python</span><span>Typer</span><span>FastAPI</span><span>CodeQL / CI</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3><a href="https://www.npmjs.com/package/sophos-central-mcp-server" target="_blank" rel="noopener">Sophos Central MCP<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Open Source</span><span class="proj-tag">npm</span></div></div>
+        <p>A Model Context Protocol server exposing <b>255 Sophos Central API tools</b> across 14 namespaces to AI assistants — with partner / organisation / tenant auth and automatic region routing. Manage a Sophos estate conversationally from Claude Desktop. Published on npm.</p>
+        <div class="proj-stack"><span>TypeScript</span><span>Python</span><span>MCP</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>AI Security MCP Servers</h3><div class="proj-tags"><span class="proj-tag">AI · Security</span></div></div>
+        <p>MCP servers that put a SOC inside an AI assistant: PRTG + Sophos monitoring and alerting on one side; guardrailed red-team (nmap+CVE VAPT reports, MITRE ATT&amp;CK tagging, an autonomous red-blue loop) and blue-team (multi-source threat intel, IOC reports) tooling on the other — every engagement scoped and audit-logged.</p>
+        <div class="proj-stack"><span>Python</span><span>MCP</span><span>PRTG</span><span>Threat Intel</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>SwitchAI</h3><div class="proj-tags"><span class="proj-tag">AI · Network</span><span class="proj-tag alt">Internal</span></div></div>
+        <p>Natural-language management for a bank's HQ Cisco switch estate — plain English is translated to Cisco CLI, with the management VLAN protected in two independent layers so no AI mistake can touch it. Double-hop telnet access, runtime-resolved credentials (never stored in plaintext), and a full audit log.</p>
+        <div class="proj-stack"><span>Flask</span><span>Claude API</span><span>Cisco IOS</span><span>pexpect</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>Sentinel One — VAPT Suite</h3><div class="proj-tags"><span class="proj-tag">AI · Security</span></div></div>
+        <p>AI-assisted vulnerability assessment: Nmap discovery + CVE lookups + local-LLM analysis with 0–100 risk scoring, producing HTML / JSON / Markdown reports and tracking scan history over time.</p>
         <div class="proj-stack"><span>Python</span><span>Nmap</span><span>Ollama</span><span>SQLite</span></div>
       </div>
       <div class="proj-card">
-        <div class="proj-top"><h3>Security Tools Suite</h3><span class="proj-tag">23+ modules</span></div>
-        <p>An async Python security toolkit covering OSINT, web scanning, API security testing, OWASP/CIS compliance checks, phishing simulation, SIEM integration, and AI-assisted analysis.</p>
-        <div class="proj-stack"><span>Python (async)</span><span>OSINT</span><span>OWASP</span><span>SIEM</span></div>
+        <div class="proj-top"><h3>Enterprise Connectors</h3><div class="proj-tags"><span class="proj-tag">SDK</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>A Python SDK that reconciles asset inventory from external systems into arxVault — Action1 RMM and AD/LDAP live, Wazuh / Nessus / Intune next — the foundation for CAASM-style coverage-gap detection ("what's on my network but not under management?").</p>
+        <div class="proj-stack"><span>Python</span><span>REST</span><span>LDAP/AD</span><span>RMM</span></div>
       </div>
       <div class="proj-card">
-        <div class="proj-top"><h3>Enterprise Connectors</h3><span class="proj-tag">SDK</span></div>
-        <p>A Python SDK that syncs enterprise systems directly into the security vault — LDAP/AD and Action1 RMM are live, with Wazuh, Nessus, and Intune integrations on the roadmap.</p>
-        <div class="proj-stack"><span>Python</span><span>LDAP/AD</span><span>RMM</span><span>Wazuh</span></div>
+        <div class="proj-top"><h3>Arx Governance Hub</h3><div class="proj-tags"><span class="proj-tag">GRC</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>A governance, risk &amp; compliance platform — a guided compliance wizard, a NIST RMF workflow, and a live risk register — built for the Nigerian financial-sector regulatory context.</p>
+        <div class="proj-stack"><span>Laravel</span><span>NIST RMF</span><span>Livewire</span></div>
       </div>
       <div class="proj-card">
-        <div class="proj-top"><h3>SwitchAI</h3><span class="proj-tag">Internal tool</span></div>
-        <p>A natural-language-to-CLI tool for managing a federal bank's HQ Cisco switch estate — handles telnet double-hop access, protects critical VLANs, and keeps a full audit log of every change.</p>
-        <div class="proj-stack"><span>Flask</span><span>Claude API</span><span>Cisco IOS</span><span>Telnet</span></div>
+        <div class="proj-top"><h3><a href="https://cyberstart.arxamani.com" target="_blank" rel="noopener">CyberStart Africa<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Platform · Live</span></div></div>
+        <p>Entry infrastructure for cybersecurity talent in Africa — constraint-aware guidance that moves beginners from confusion to direction to demonstrable proof. Live MVP evolving along a seven-phase product roadmap.</p>
+        <div class="proj-stack"><span>Laravel</span><span>Tailwind</span><span>Alpine.js</span></div>
       </div>
       <div class="proj-card">
-        <div class="proj-top"><h3>ArxAmani Bulk Mail Platform</h3><span class="proj-tag">Internal tool</span></div>
-        <p>A production bulk-email and staff-celebration platform built for FMBN — CSV-driven sends, DKIM signing, scheduled directives, and Africa/Lagos timezone-aware delivery.</p>
-        <div class="proj-stack"><span>PHP</span><span>DKIM</span><span>Office 365 SMTP</span></div>
+        <div class="proj-top"><h3>Arx Amani Learn</h3><div class="proj-tags"><span class="proj-tag">LMS</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>A gamified learning platform — courses, modules and learning paths wrapped in a quiz-duel and matchmaking layer, with certificates and compliance analytics.</p>
+        <div class="proj-stack"><span>Laravel</span><span>Livewire</span><span>Chart.js</span></div>
       </div>
     </div>
   </div>
