@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G2G 2026 · Content Ideas · FOTA Digital Media</title>
+<meta name="description" content="Content ideas and a posting runway for G2G 2026 — The Glory of the Latter House, 21–25 October, Truth Arena, Abuja.">
+<link rel="icon" type="image/jpeg" href="logo.jpeg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0C0C0C;
+    --card-bg: #131313;
+    --card-hover: #191919;
+    --gold: #F5A623;
+    --gold-dim: rgba(245,166,35,0.15);
+    --white: #FFFFFF;
+    --off-white: #E8E4DC;
+    --gray: #8A8A8A;
+    --border: rgba(255,255,255,0.07);
+
+    --glory: #FF8C42;
+    --glory-bg: rgba(255,140,66,0.08);
+
+    /* one colour per night, so a card is recognisable at a glance */
+    --wed: #4AB8FF;
+    --thu: #C17FFF;
+    --fri: #FF8C42;
+    --sat: #3FD68F;
+    --sun: #E8C96A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    font-family: 'Barlow', sans-serif;
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9000;
+  }
+
+  a { color: var(--gold); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+
+  /* ═══════════ TOP BAR ═══════════ */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(9,9,9,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar .wrap { display: flex; align-items: center; gap: 14px; height: 58px; }
+  .topbar img { width: 34px; height: 34px; border-radius: 4px; object-fit: cover; }
+  .back {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray); text-decoration: none;
+  }
+  .back:hover { color: var(--gold); }
+  .jump { margin-left: auto; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+  .jump::-webkit-scrollbar { display: none; }
+  .jump a {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--off-white); text-decoration: none;
+    padding: 7px 10px; border-radius: 3px; white-space: nowrap;
+  }
+  .jump a:hover { background: var(--glory-bg); color: var(--glory); }
+  @media (max-width: 720px) { .jump { display: none; } }
+
+  /* ═══════════ HERO ═══════════ */
+  .hero { padding: 64px 0 40px; border-bottom: 1px solid var(--border); }
+  .hero-label {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--glory);
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+    font-size: clamp(56px, 11vw, 132px); line-height: 0.88; letter-spacing: 1px;
+    margin: 14px 0 18px;
+  }
+  .hero h1 span { color: var(--glory); }
+  .hero .verse {
+    max-width: 640px; font-size: 18px; color: var(--off-white); font-style: italic;
+  }
+  .hero .verse b { font-style: normal; color: var(--gold); font-weight: 700; }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .fact {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px;
+    padding: 10px 14px;
+  }
+  .fact small {
+    display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+  }
+  .fact strong { font-weight: 700; font-size: 15px; }
+  .fact.count strong { color: var(--glory); font-family: 'Bebas Neue', sans-serif; font-size: 30px; font-weight: 400; line-height: 1; }
+
+  /* ═══════════ SECTIONS ═══════════ */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  .sec-label {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+  }
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+    font-size: clamp(38px, 6vw, 64px); line-height: 0.95; margin: 8px 0 12px;
+  }
+  .sec-lede { max-width: 720px; color: var(--off-white); font-size: 16px; }
+
+  .callout {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--glory-bg); border-left: 3px solid var(--glory);
+    padding: 14px 18px; margin-top: 22px; border-radius: 0 4px 4px 0;
+    font-size: 15px; color: var(--off-white); max-width: 860px;
+  }
+  .callout b { color: var(--white); }
+
+  /* ═══════════ BIG IDEAS ═══════════ */
+  .big-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 14px; margin-top: 30px;
+  }
+  @media (max-width: 400px) { .big-grid { grid-template-columns: 1fr; } }
+  .big {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px;
+    padding: 22px 22px 20px; position: relative; overflow: hidden;
+  }
+  .big .no {
+    position: absolute; right: 14px; top: 4px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: rgba(255,255,255,0.04);
+  }
+  .big h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.05;
+    color: var(--glory); margin-bottom: 8px; padding-right: 40px;
+  }
+  .big p { font-size: 15px; color: var(--off-white); }
+  .big ul { margin: 10px 0 0 0; list-style: none; }
+  .big li { font-size: 14px; color: var(--off-white); padding: 4px 0 4px 16px; position: relative; }
+  .big li::before { content: '▸'; position: absolute; left: 0; color: var(--glory); }
+
+  /* ═══════════ RUNWAY (timeline) ═══════════ */
+  .runway { margin-top: 30px; display: grid; gap: 14px; }
+  .phase {
+    display: grid; grid-template-columns: 170px 1fr; gap: 20px;
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px; padding: 22px;
+  }
+  @media (max-width: 720px) { .phase { grid-template-columns: 1fr; gap: 10px; } }
+  .phase-when {
+    font-family: 'Bebas Neue', sans-serif; font-size: 34px; line-height: 0.95; color: var(--gold);
+  }
+  .phase-when small {
+    display: block; margin-top: 6px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+  }
+  .phase h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+  }
+  .phase ul { list-style: none; }
+  .phase li { font-size: 15px; color: var(--off-white); padding: 5px 0 5px 18px; position: relative; }
+  .phase li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); }
+  .phase.is-now { border-color: rgba(255,140,66,0.5); box-shadow: 0 0 0 1px rgba(255,140,66,0.25); }
+  .now-tag {
+    display: inline-block; margin-left: 8px; vertical-align: middle;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    background: var(--glory); color: #000; padding: 2px 7px; border-radius: 2px;
+  }
+
+  /* ═══════════ NIGHTS ═══════════ */
+  .nights {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px; margin-top: 30px;
+  }
+  .night {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px;
+    padding: 20px 18px; position: relative;
+  }
+  .night::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--c); border-radius: 5px 5px 0 0;
+  }
+  .night-day { font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: var(--c); }
+  .night-when {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+  }
+  .night-what { font-weight: 800; font-size: 17px; margin: 10px 0 2px; }
+  .night-who { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
+  .night h4 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--c); margin: 14px 0 4px;
+  }
+  .night ul { list-style: none; }
+  .night li { font-size: 14px; color: var(--off-white); padding: 4px 0 4px 14px; position: relative; }
+  .night li::before { content: '▸'; position: absolute; left: 0; color: var(--c); }
+
+  /* ═══════════ IDEA BANK ═══════════ */
+  .bank-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; align-items: center; }
+  .search {
+    flex: 1 1 260px; min-width: 0;
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 3px;
+    color: var(--white); font: inherit; font-size: 15px; padding: 10px 14px;
+  }
+  .search:focus { outline: none; border-color: var(--gold); }
+  .chip {
+    background: transparent; border: 1px solid var(--border); border-radius: 30px;
+    color: var(--off-white); cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 14px;
+  }
+  .chip:hover { border-color: var(--gold); }
+  .chip.on { background: var(--gold); border-color: var(--gold); color: #000; }
+  .bank-meta { margin-top: 12px; font-size: 13px; color: var(--gray); }
+
+  .ideas {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px; margin-top: 18px;
+  }
+  @media (max-width: 400px) { .ideas { grid-template-columns: 1fr; } }
+  .idea {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px;
+    padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 8px;
+    transition: background 0.15s, opacity 0.2s;
+  }
+  .idea:hover { background: var(--card-hover); }
+  .idea.hidden { display: none; }
+  .idea.used { opacity: 0.45; }
+  .idea-top { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 3px 7px; border-radius: 2px; background: rgba(255,255,255,0.06); color: var(--off-white);
+  }
+  .tag.t-when { background: var(--gold-dim); color: var(--gold); }
+  .idea h3 { font-size: 17px; font-weight: 800; line-height: 1.25; }
+  .idea p { font-size: 14px; color: var(--off-white); }
+  .idea .hook { font-size: 14px; color: var(--glory); font-style: italic; }
+  .idea label {
+    margin-top: auto; padding-top: 6px; display: flex; gap: 8px; align-items: center;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); cursor: pointer;
+  }
+  .idea input { accent-color: var(--gold); width: 15px; height: 15px; }
+  .none { display: none; margin-top: 18px; color: var(--gray); }
+  .none.show { display: block; }
+
+  /* ═══════════ KIT ═══════════ */
+  .kit {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px; margin-top: 30px;
+  }
+  @media (max-width: 400px) { .kit { grid-template-columns: 1fr; } }
+  .kit-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px; padding: 22px; }
+  .kit-box h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold); margin-bottom: 10px;
+  }
+  .kit-box ul { list-style: none; }
+  .kit-box li { font-size: 14px; color: var(--off-white); padding: 5px 0 5px 16px; position: relative; }
+  .kit-box li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); }
+  .kit-box code {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px;
+    background: var(--gold-dim); color: var(--gold); padding: 1px 6px; border-radius: 2px;
+  }
+  .copy {
+    display: block; width: 100%; text-align: left; cursor: pointer;
+    background: rgba(255,255,255,0.03); border: 1px dashed var(--border); border-radius: 3px;
+    color: var(--off-white); font: inherit; font-size: 14px; padding: 10px 12px; margin-top: 8px;
+  }
+  .copy:hover { border-color: var(--gold); }
+  .copy small {
+    display: block; margin-top: 4px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray);
+  }
+  .copy.done small { color: var(--gold); }
+
+  footer { padding: 40px 0 60px; color: var(--gray); font-size: 13px; }
+  footer a { color: var(--gray); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <img src="logo.jpeg" alt="">
+    <a class="back" href="index.html">← Content schedule</a>
+    <nav class="jump" aria-label="Sections">
+      <a href="#big">Big ideas</a>
+      <a href="#runway">Runway</a>
+      <a href="#nights">The five nights</a>
+      <a href="#bank">Idea bank</a>
+      <a href="#after">After</a>
+      <a href="#kit">Kit</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════ HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-label">FOTA Digital Media · Abuja · Content Ideas</div>
+    <h1>G2G 2026<br><span>The Glory of the</span><br>Latter House</h1>
+    <p class="verse">“The glory of this latter house shall be greater than of the former.”
+      <b>Haggai 2:9</b></p>
+    <div class="facts">
+      <div class="fact count"><small>Until Wednesday</small><strong id="days">—</strong></div>
+      <div class="fact"><small>Dates</small><strong>Wed 21 – Sun 25 October</strong></div>
+      <div class="fact"><small>Venue</small><strong>Truth Arena, Airport Road</strong></div>
+      <div class="fact"><small>Hub</small><strong><a href="http://fotag2g.gt.tc/" target="_blank" rel="noopener">fotag2g.gt.tc</a></strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ BIG IDEAS -->
+<section id="big">
+  <div class="wrap">
+    <div class="sec-label">Start here</div>
+    <h2 class="sec-title">Six ideas that carry the whole campaign</h2>
+    <p class="sec-lede">These six ideas run the whole way from now to the Sunday after, so every post
+      belongs to something bigger. Pick three if the team is small. The idea bank below
+      has one-off posts to fill the gaps.</p>
+
+    <div class="big-grid">
+
+      <article class="big">
+        <span class="no">01</span>
+        <h3>Former House / Latter House</h3>
+        <p>The theme is a comparison, so the content can be one too. Every post puts a <b>before</b> next to an <b>after</b>.</p>
+        <ul>
+          <li>Split-screen reels: the old FOTA Abuja building or first service next to Truth Arena today</li>
+          <li>Members hold up a photo of themselves from their first year at FOTA</li>
+          <li>Hook: <em>“The latter house shall be greater. Here’s the former.”</em></li>
+          <li>Ask long-standing members and leadership for archive photos this week</li>
+        </ul>
+      </article>
+
+      <article class="big">
+        <span class="no">02</span>
+        <h3>“My Greater” testimony series</h3>
+        <p>One member a day, 30–45 seconds, answering one question: <em>“Where has God made your latter greater than your former?”</em></p>
+        <ul>
+          <li>Shoot five or six on one Sunday after service, then release one a day</li>
+          <li>Each one also becomes a quote card (two posts from one interview)</li>
+          <li>Tag them so their network sees an invite from someone they know</li>
+          <li>Play a compilation on the screens on Sunday 25th</li>
+        </ul>
+      </article>
+
+      <article class="big">
+        <span class="no">03</span>
+        <h3>Pure Praise: “Who’s still awake?”</h3>
+        <p>Friday is an all-night starting at 9 PM, so the big story is staying up together. Build the online audience for it.</p>
+        <ul>
+          <li>Hourly Stories from 9 PM to dawn, each stamped with the time: “11:47 PM · still going”</li>
+          <li>Pin a comment: <em>“Drop your city — who’s worshipping with us at 3 AM?”</em></li>
+          <li>End on a sunrise shot over Airport Road</li>
+          <li>Tease it all week: <em>“Bring a jacket. Bring your voice. We’re not going home.”</em></li>
+        </ul>
+      </article>
+
+      <article class="big">
+        <span class="no">04</span>
+        <h3>Meet the voices</h3>
+        <p>Nine ministers is nine chances to reach someone else’s audience. Give each one a card and a short clip.</p>
+        <ul>
+          <li>Graphic templates: one for the speakers, one for the six ministering in songs</li>
+          <li>Ask each minister for a 10-second selfie invite: “I’ll be at G2G…”</li>
+          <li>Tag them and ask them to share it. Their followers become your audience</li>
+          <li>“Guess the song from the first three notes” game for the music ministers</li>
+        </ul>
+      </article>
+
+      <article class="big">
+        <span class="no">05</span>
+        <h3>Prayer wall → prayer week</h3>
+        <p>The G2G site already has a prayer wall. Make it a public reason to engage before anyone has decided to attend.</p>
+        <ul>
+          <li>“What are you trusting God for in this season?” with a link to the wall</li>
+          <li>Film the intercessors praying over the printed requests (no names showing)</li>
+          <li>Post the running count: <em>“400 requests. Every one prayed over.”</em></li>
+          <li>Answered prayers become testimonies for next year’s G2G</li>
+        </ul>
+      </article>
+
+      <article class="big">
+        <span class="no">06</span>
+        <h3>From class to commission</h3>
+        <p>Saturday’s Berean Bible College graduation is full of personal stories. Graduands’ families will share it more than anything else all week.</p>
+        <ul>
+          <li>Graduand spotlights: name, what they studied, one line on why</li>
+          <li>“The oldest and youngest in the class” two-shot</li>
+          <li>Printed frame / photo corner at the venue, with the #G2G2026 tag in view</li>
+          <li>Send each graduand their photos quickly. They’ll post them the same night</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ RUNWAY -->
+<section id="runway">
+  <div class="wrap">
+    <div class="sec-label">The runway</div>
+    <h2 class="sec-title">From now to Wednesday night</h2>
+    <p class="sec-lede">The posting runway, in three phases. This page highlights the phase you’re in today.</p>
+
+    <div class="runway">
+
+      <div class="phase" data-from="2026-09-26" data-to="2026-10-06">
+        <div class="phase-when">Awareness<small>25 → 15 days out</small></div>
+        <div>
+          <h3>Plant the date and the theme</h3>
+          <ul>
+            <li>Flyer reveal as a three-slide carousel: theme → dates → the nine ministers</li>
+            <li>Pastor Funke 30-second announcement to camera: <em>what G2G is and who it’s for</em></li>
+            <li>Launch the “Former House / Latter House” series with one archive split-screen</li>
+            <li>Change WhatsApp profile pictures and banners across church groups to the G2G artwork</li>
+            <li>Record the “My Greater” testimonies now, so the whole series is ready</li>
+            <li>Ask every minister for a selfie invite clip (it takes about a week to come back)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase" data-from="2026-10-07" data-to="2026-10-14">
+        <div class="phase-when">Build<small>14 → 7 days out</small></div>
+        <div>
+          <h3>Put faces on it</h3>
+          <ul>
+            <li>Speaker and minister cards, one a day. Tag every one</li>
+            <li>“My Greater” testimonies begin, one a day through to the event</li>
+            <li>Prayer wall push: link in bio, Story sticker, WhatsApp status</li>
+            <li>Street vox pops in Abuja: <em>“What does ‘greater glory’ mean to you?”</em></li>
+            <li>“How to get there” reel: from town, and from the airport side</li>
+            <li>Sunday announcement clip plus a registration link post the same afternoon</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase" data-from="2026-10-15" data-to="2026-10-20">
+        <div class="phase-when">Urgency<small>6 → 1 day out</small></div>
+        <div>
+          <h3>Countdown and invite</h3>
+          <ul>
+            <li>Daily countdown graphic. Each day’s number carries one reason to come</li>
+            <li>Minister selfie invites go out, one or two a day</li>
+            <li>“Bring one” WhatsApp status kit: send members a ready image and caption</li>
+            <li>Behind-the-scenes: stage build, lights, sound check, ushers’ briefing</li>
+            <li>Pure Praise teaser: <em>“Friday. 9 PM. All night.”</em></li>
+            <li>Tuesday night: final trailer plus a “Watch live” post for those outside Abuja</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ NIGHTS -->
+<section id="nights">
+  <div class="wrap">
+    <div class="sec-label">Event week</div>
+    <h2 class="sec-title">The five nights</h2>
+    <p class="sec-lede">What to capture and what to post each night. Rule of the week: <b>one clip goes out
+      before people have left the car park</b>, and the full recap goes out the next morning.</p>
+
+    <div class="nights">
+
+      <article class="night" style="--c:var(--wed)">
+        <div class="night-day">WED 21</div>
+        <div class="night-when">6:00 PM · Conference Opening</div>
+        <div class="night-what">First night of the Word</div>
+        <div class="night-who">Rev. Yomi Kasali · Pastor Funke Kasali</div>
+        <h4>Capture</h4>
+        <ul>
+          <li>The doors opening and the first people walking in</li>
+          <li>The room from the back as the first worship song starts</li>
+          <li>The sermon line that makes the room react</li>
+        </ul>
+        <h4>Post</h4>
+        <ul>
+          <li>Same night: 30-second sermon hook</li>
+          <li>Next morning: “Night 1 in 60 seconds”</li>
+        </ul>
+      </article>
+
+      <article class="night" style="--c:var(--thu)">
+        <div class="night-day">THU 22</div>
+        <div class="night-when">6:00 PM · Night of the Word</div>
+        <div class="night-what">Guest night</div>
+        <div class="night-who">Dr King Omudu · Shelter of Glory, Makurdi</div>
+        <h4>Capture</h4>
+        <ul>
+          <li>The guest’s arrival and welcome (with permission)</li>
+          <li>Sermon key points, for a carousel</li>
+          <li>Altar call. Wide shots only, no faces</li>
+        </ul>
+        <h4>Post</h4>
+        <ul>
+          <li>Same night: best line as a text-on-black reel</li>
+          <li>Tag Shelter of Glory and ask them to share</li>
+        </ul>
+      </article>
+
+      <article class="night" style="--c:var(--fri)">
+        <div class="night-day">FRI 23</div>
+        <div class="night-when">9:00 PM · All night</div>
+        <div class="night-what">Pure Praise Concert</div>
+        <div class="night-who">Chris Morgan · Prospa Ochimana · Deborah Billyben · Joshua Omale · HOD · Victor Ochani</div>
+        <h4>Capture</h4>
+        <ul>
+          <li>Slow-motion hands raised (120 fps)</li>
+          <li>Each minister’s peak moment, 15 seconds each</li>
+          <li>Clock shots: midnight, 3 AM, sunrise</li>
+        </ul>
+        <h4>Post</h4>
+        <ul>
+          <li>Hourly Stories through the night</li>
+          <li>Next day: one clip per minister, each one tagged</li>
+        </ul>
+      </article>
+
+      <article class="night" style="--c:var(--sat)">
+        <div class="night-day">SAT 24</div>
+        <div class="night-when">4:00 PM prompt · Graduation</div>
+        <div class="night-what">Berean Bible College</div>
+        <div class="night-who">The Abuja graduating class</div>
+        <h4>Capture</h4>
+        <ul>
+          <li>The procession, from the front and at eye level</li>
+          <li>A portrait of every graduand at the frame</li>
+          <li>Families cheering when their graduand’s name is called</li>
+        </ul>
+        <h4>Post</h4>
+        <ul>
+          <li>Same night: procession reel</li>
+          <li>Photos shared with graduands by Sunday</li>
+        </ul>
+      </article>
+
+      <article class="night" style="--c:var(--sun)">
+        <div class="night-day">SUN 25</div>
+        <div class="night-when">9:30 AM · Thanksgiving</div>
+        <div class="night-what">Thanksgiving Celebration</div>
+        <div class="night-who">Rev. Yomi Kasali · Pastor Funke Kasali</div>
+        <h4>Capture</h4>
+        <ul>
+          <li>The thanksgiving dance, filmed wide from the balcony or a high angle</li>
+          <li>Families together, for “our G2G” photos</li>
+          <li>The closing charge, word for word</li>
+        </ul>
+        <h4>Post</h4>
+        <ul>
+          <li>Afternoon: dance reel with the congregation’s audio</li>
+          <li>Evening: “That was G2G 2026” thank-you post</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="callout">🎥 <div><b>Staffing tip:</b> on Friday, give each camera person a shift
+      (9 PM–1 AM, 1 AM–sunrise). Someone who is still fresh at 3 AM gets the shots that matter most.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ IDEA BANK -->
+<section id="bank">
+  <div class="wrap">
+    <div class="sec-label">Idea bank</div>
+    <h2 class="sec-title">Grab one. Post it today.</h2>
+    <p class="sec-lede">Filter by format or by when to post it. Tick an idea once it’s gone out. The ticks are saved in this browser only.</p>
+
+    <div class="bank-tools">
+      <input class="search" id="q" type="search" placeholder="Search ideas…" aria-label="Search ideas">
+      <button class="chip" id="surprise" type="button">✨ Surprise me</button>
+    </div>
+    <div class="bank-tools" id="chips" role="group" aria-label="Filter">
+      <button class="chip on" data-f="all" type="button">All</button>
+      <button class="chip" data-f="reel" type="button">Reels / TikTok</button>
+      <button class="chip" data-f="carousel" type="button">Carousels</button>
+      <button class="chip" data-f="story" type="button">Stories</button>
+      <button class="chip" data-f="whatsapp" type="button">WhatsApp</button>
+      <button class="chip" data-f="live" type="button">Live</button>
+      <button class="chip" data-f="ugc" type="button">Community</button>
+      <button class="chip" data-f="before" type="button">Before</button>
+      <button class="chip" data-f="during" type="button">During</button>
+      <button class="chip" data-f="after" type="button">After</button>
+    </div>
+    <div class="bank-meta" id="meta"></div>
+
+    <div class="ideas" id="ideas"></div>
+    <p class="none" id="none">No ideas match that. Try another word.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ AFTER -->
+<section id="after">
+  <div class="wrap">
+    <div class="sec-label">The week after</div>
+    <h2 class="sec-title">Don’t stop on Sunday</h2>
+    <p class="sec-lede">Most of G2G’s reach comes after the event. The footage from five nights is enough for a month of posts.</p>
+
+    <div class="runway">
+      <div class="phase" data-from="2026-10-26" data-to="2026-11-01">
+        <div class="phase-when">Recap<small>Mon 26 → Sun 1 Nov</small></div>
+        <div>
+          <h3>Tell the story of the week</h3>
+          <ul>
+            <li>“G2G 2026 in 90 seconds” film: one shot from every night, cut to the Friday worship audio</li>
+            <li>Full sermon replays on YouTube, titled by topic rather than by date</li>
+            <li>Graduation photo album on Facebook, and tag the families</li>
+            <li>“The moment I won’t forget” comments thread, then turn the best replies into cards</li>
+            <li>Thank-you posts for the volunteers: ushers, media, sound, welcome team, by name</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase" data-from="2026-11-02" data-to="2026-11-30">
+        <div class="phase-when">Long tail<small>November</small></div>
+        <div>
+          <h3>Keep the theme working</h3>
+          <ul>
+            <li>Weekly “From G2G” sermon clip, with a new hook on each re-post</li>
+            <li>Collect testimonies from the week and post them as “Greater, already”</li>
+            <li>Welcome the first-timers: invite everyone who ticked “first time” to a Sunday</li>
+            <li>Save the best raw footage for next year’s trailer, and label it now while it’s fresh</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ KIT -->
+<section id="kit">
+  <div class="wrap">
+    <div class="sec-label">Kit</div>
+    <h2 class="sec-title">Tags, captions &amp; ground rules</h2>
+
+    <div class="kit">
+      <div class="kit-box">
+        <h3>Hashtags</h3>
+        <ul>
+          <li><code>#G2G2026</code>: the main one, on every post</li>
+          <li><code>#GloryOfTheLatterHouse</code>: for theme posts</li>
+          <li><code>#FOTAAbuja</code>: always</li>
+          <li><code>#PurePraise</code>: Friday night only</li>
+        </ul>
+        <p style="margin-top:12px;font-size:13px;color:var(--gray)">Keep to three or four tags. Use the same ones on every platform.</p>
+      </div>
+
+      <div class="kit-box">
+        <h3>Where we are</h3>
+        <ul>
+          <li>Instagram <a href="https://www.instagram.com/fotaabuja/" target="_blank" rel="noopener">@fotaabuja</a></li>
+          <li>TikTok <a href="https://www.tiktok.com/@fotainabuja" target="_blank" rel="noopener">@fotainabuja</a></li>
+          <li>Facebook <a href="https://www.facebook.com/FOTAABUJA/" target="_blank" rel="noopener">FOTAABUJA</a></li>
+          <li><a href="https://www.youtube.com/channel/UCkr_JWY3z53JhufIeh9JOEQ" target="_blank" rel="noopener">YouTube</a>: live every session</li>
+          <li>Hub: <a href="http://fotag2g.gt.tc/" target="_blank" rel="noopener">fotag2g.gt.tc</a> (register · prayer wall · watch live)</li>
+        </ul>
+      </div>
+
+      <div class="kit-box">
+        <h3>Ready captions <span style="font-weight:600;color:var(--gray);font-size:12px">(tap to copy)</span></h3>
+        <button class="copy" type="button">The glory of this latter house shall be greater than of the former. G2G 2026 · 21–25 October · Truth Arena, Abuja. Free and open to all. #G2G2026<small>Tap to copy</small></button>
+        <button class="copy" type="button">Friday 23 October. 9 PM. All night. Pure Praise at Truth Arena. Come ready to stay. #PurePraise #G2G2026<small>Tap to copy</small></button>
+        <button class="copy" type="button">Can’t be in Abuja? Every session of G2G 2026 streams live. fotag2g.gt.tc #G2G2026<small>Tap to copy</small></button>
+        <button class="copy" type="button">I’m going to G2G 2026, and I’m bringing someone. Who are you bringing? #G2G2026 #FOTAAbuja<small>Tap to copy</small></button>
+      </div>
+
+      <div class="kit-box">
+        <h3>Ground rules</h3>
+        <ul>
+          <li>Ask before filming anyone at the altar. Use wide shots or backs of heads if unsure</li>
+          <li>Minors: no faces without a parent’s OK, and never tag a child</li>
+          <li>Testimonies: get a “yes, you can post this” on camera</li>
+          <li>Ministers’ songs: short clips only, always tagged. Full sets stay on the livestream</li>
+          <li>Prayer requests are private. Show paper and hands, never readable text</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    FOTA Digital Media · Abuja · 2026 &nbsp;·&nbsp; <a href="index.html">Back to the content schedule</a>
+  </div>
+</footer>
+
+<script>
+/* ── The idea bank. f = formats, w = when (before / during / after). ── */
+var IDEAS = [
+  { t: 'Empty room to full room', f: ['reel'], w: ['before','during'],
+    h: '“This room is empty. On Wednesday it won’t be.”',
+    d: 'Film Truth Arena empty and still on a weekday. Wipe the lens and cut to the same angle on opening night, full. Shoot the before now so you have it.' },
+  { t: 'Flash-card reel: the verse, one card at a time', f: ['reel'], w: ['before'],
+    h: '“The glory… of this latter house…”',
+    d: 'Handwrite Haggai 2:9 across five or six index cards. Flip one card per beat of a worship track, and end on an open Bible. You can make it in 20 minutes on a phone.' },
+  { t: 'Former house photo challenge', f: ['ugc','reel'], w: ['before'],
+    h: '“Show us your former. We’ll show you greater.”',
+    d: 'Ask members to post a photo from their first year at FOTA next to one from today, with #G2G2026. Repost the best to Stories every day and make a compilation reel the week before.' },
+  { t: 'Nine ministers, nine selfie invites', f: ['reel','story'], w: ['before'],
+    h: '“Hi Abuja, I’ll see you at G2G.”',
+    d: 'Send each minister a script of two lines and ask for a 10-second portrait selfie video. Post with them as a Collab so it appears on both profiles.' },
+  { t: 'Guess the song in three notes', f: ['reel','story'], w: ['before'],
+    h: '“Name this song in three notes. Friday, you’ll sing it.”',
+    d: 'Play the first seconds of a well-known song from one of the Friday ministers (Ekwueme, Arabaribiti…) on a keyboard. Reveal the answer, then the minister’s card. Use a Story quiz sticker as the second version.' },
+  { t: 'Countdown with a reason', f: ['story','carousel'], w: ['before'],
+    h: '“7 days. Reason #7: it’s free.”',
+    d: 'The daily number plus one reason to come: it’s free, the guest speaker, the all-night, the graduation, the livestream, first-timers are welcome, the theme. Use the same template every day so it’s recognisable.' },
+  { t: '“How to get to Truth Arena” POV', f: ['reel'], w: ['before'],
+    h: '“If you’re coming from town, this is your turn.”',
+    d: 'Dashcam-style from a phone on the windscreen, driving from town along Airport Road. Mark the landmarks (Dunamis, Mobil, Aso junction) with text. Then a second, shorter version for people coming from the airport side.' },
+  { t: 'Street vox pop: what is “greater glory”?', f: ['reel'], w: ['before'],
+    h: '“We asked Abuja what ‘greater glory’ means.”',
+    d: 'Two people with a mic around Lugbe or a busy junction. Keep the best five answers, then end on the flyer. Always ask permission to post on camera.' },
+  { t: 'Stage build time-lapse', f: ['reel','story'], w: ['before'],
+    h: '“48 hours to turn a room into G2G.”',
+    d: 'A phone on a tripod in a corner during the set-up days. Speed up hours of work into 20 seconds. Post the night before opening.' },
+  { t: 'Sound check sneak peek', f: ['story','reel'], w: ['before','during'],
+    h: '“You weren’t supposed to hear this yet.”',
+    d: 'Ask the worship team, or a Friday minister, if you can film 15 seconds of sound check. Keep it rough on purpose, because the unpolished feel is what makes it work.' },
+  { t: '“Bring one” WhatsApp status kit', f: ['whatsapp'], w: ['before'],
+    d: 'Make one 1080×1920 status image per night plus a one-line caption, and send them to church group admins every morning of the last week. Everyone posts the same thing on the same day.' },
+  { t: 'WhatsApp broadcast: nightly reminder', f: ['whatsapp'], w: ['during'],
+    d: 'At 3 PM each day, send a short message: tonight’s time, who’s ministering, the watch-live link. Nothing more. Keep it short enough to read without opening it.' },
+  { t: 'Pastor Funke: “Three things to know about G2G”', f: ['reel','carousel'], w: ['before'],
+    h: '“If it’s your first G2G, three things…”',
+    d: 'One take, to camera, under 45 seconds. It answers what a newcomer is really wondering: is it free, what time, what should I expect. Turn it into a carousel with the same three points.' },
+  { t: 'Prayer wall counter', f: ['story','ugc'], w: ['before','during'],
+    h: '“312 prayer requests. Every one prayed over.”',
+    d: 'Every two days, post a Story with the number of prayer requests and a link to the wall. Show intercessors’ hands over printed pages. Never show readable text.' },
+  { t: 'Live Q&A with the planning team', f: ['live'], w: ['before'],
+    d: 'Ten minutes on Instagram Live the Sunday before. Parking, times, what to bring on Friday, the livestream. Save it as a Reel afterwards.' },
+  { t: 'Night-by-night “in 60 seconds”', f: ['reel'], w: ['during'],
+    h: '“Night 1 of G2G in 60 seconds.”',
+    d: 'Every morning, cut the best shots from the night before to the room’s own worship audio. Use the same format and title each day so people know to look for it.' },
+  { t: 'Crowd-reaction cut', f: ['reel'], w: ['during'],
+    d: 'Skip the pulpit. Make a reel of just the congregation’s reaction to the key sermon line: nodding, hands raised, laughter. To an outsider, a full room reacting is the strongest invite there is.' },
+  { t: 'Clock reel: Pure Praise through the night', f: ['reel','story'], w: ['during'],
+    h: '“9 PM. 12 AM. 3 AM. Still here.”',
+    d: 'Film a phone or wall clock at each hour, then cut to the room at that moment. The last shot is daylight at the door. This will be the reel of the week, so plan the shots.' },
+  { t: '“Drop your city” for the livestream', f: ['live','ugc'], w: ['during'],
+    h: '“Watching from where? Drop your city 👇”',
+    d: 'Pin this in the YouTube and Facebook live chat every night. Screenshot the spread of cities for a “worshipping with us from…” graphic the next day.' },
+  { t: 'Minister peak moments, one post each', f: ['reel'], w: ['during','after'],
+    d: 'After Friday, cut 30–45 seconds of each music minister’s high point and post one a day, tagged as a Collab. Their fans share it, and each clip reaches a new audience.' },
+  { t: 'Slow-motion worship', f: ['reel'], w: ['during'],
+    d: 'Set a phone to 120 fps and film hands raised and people singing. Slow it to 40% and play it over quiet ambient sound or the room audio. These get saved more than almost anything else.' },
+  { t: 'Graduand spotlight cards', f: ['carousel','story'], w: ['during','after'],
+    h: '“Class of 2026. Meet the Berean Bible College graduands.”',
+    d: 'A portrait and one sentence each: “I came to Berean because…”. Post them as a carousel of 8–10 people. Families will share their graduand’s slide.' },
+  { t: 'The thanksgiving dance from above', f: ['reel'], w: ['during'],
+    d: 'Sunday’s dance, filmed from the highest spot in the room: balcony, ladder, or a phone on a pole. The whole church moving together makes a strong closing image for the week.' },
+  { t: 'Photo corner with a printed frame', f: ['ugc'], w: ['during'],
+    d: 'A large G2G 2026 frame at the entrance, with the hashtag printed on it. People post their own photos, so every attendee advertises the event.' },
+  { t: 'Volunteer faces', f: ['carousel','story'], w: ['during','after'],
+    h: '“You didn’t see them. You felt them.”',
+    d: 'Portraits of ushers, sound, media, welcome and car park teams, each with their name and role. Post after the event as a thank-you. It also recruits volunteers for next year.' },
+  { t: '“G2G 2026 in 90 seconds” film', f: ['reel'], w: ['after'],
+    d: 'One strong shot from each night, cut to Friday’s worship audio, with the dates as text. Pin it to the top of every profile until next October.' },
+  { t: 'Sermon replays titled by topic', f: ['live'], w: ['after'],
+    d: 'On YouTube, title replays by what the sermon answers, e.g. “Why your latter season is greater | Rev. Yomi Kasali | G2G 2026”, not “Night 1”. People search for topics, not dates.' },
+  { t: '“The moment I won’t forget” thread', f: ['ugc','carousel'], w: ['after'],
+    h: '“One moment from G2G you won’t forget. Go.”',
+    d: 'Post the week recap with this question. Turn the best replies into quote cards (with permission) over the following two weeks.' },
+  { t: 'First-timer follow-up video', f: ['whatsapp','reel'], w: ['after'],
+    d: 'A 20-second thank-you from Pastor Funke for those who came for the first time, with an invitation to a Sunday service. Send it to everyone who ticked “first time” when registering.' },
+  { t: 'Then and now: G2G across the years', f: ['reel','carousel'], w: ['after'],
+    h: '“The latter house shall be greater.”',
+    d: 'Past G2G flyers or photos, year by year, ending with 2026. It finishes the “former / latter” story from the start of the campaign.' }
+];
+
+(function () {
+  var box = document.getElementById('ideas');
+  var KEY = 'g2g26-used';
+  var used = {};
+  try { used = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { used = {}; }
+
+  var LABEL = { reel: 'Reel / TikTok', carousel: 'Carousel', story: 'Story', whatsapp: 'WhatsApp',
+                live: 'Live', ugc: 'Community', before: 'Before', during: 'During', after: 'After' };
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  box.innerHTML = IDEAS.map(function (it, i) {
+    var tags = it.w.map(function (w) { return '<span class="tag t-when">' + LABEL[w] + '</span>'; })
+      .concat(it.f.map(function (f) { return '<span class="tag">' + LABEL[f] + '</span>'; })).join('');
+    return '<article class="idea' + (used[i] ? ' used' : '') + '" data-i="' + i + '" data-k="' +
+      it.f.concat(it.w).join(' ') + '">' +
+      '<div class="idea-top">' + tags + '</div>' +
+      '<h3>' + esc(it.t) + '</h3>' +
+      (it.h ? '<p class="hook">' + esc(it.h) + '</p>' : '') +
+      '<p>' + esc(it.d) + '</p>' +
+      '<label><input type="checkbox"' + (used[i] ? ' checked' : '') + '> Posted</label>' +
+      '</article>';
+  }).join('');
+
+  box.addEventListener('change', function (e) {
+    var card = e.target.closest('.idea');
+    if (!card) { return; }
+    var i = card.getAttribute('data-i');
+    if (e.target.checked) { used[i] = 1; } else { delete used[i]; }
+    card.classList.toggle('used', e.target.checked);
+    try { localStorage.setItem(KEY, JSON.stringify(used)); } catch (err) {}
+    count();
+  });
+
+  var q = document.getElementById('q');
+  var filter = 'all';
+
+  function apply() {
+    var term = q.value.toLowerCase().trim();
+    var shown = 0;
+    box.querySelectorAll('.idea').forEach(function (card) {
+      var ok = (filter === 'all' || (' ' + card.getAttribute('data-k') + ' ').indexOf(' ' + filter + ' ') !== -1) &&
+               (!term || card.textContent.toLowerCase().indexOf(term) !== -1);
+      card.classList.toggle('hidden', !ok);
+      if (ok) { shown++; }
+    });
+    document.getElementById('none').classList.toggle('show', shown === 0);
+    count();
+  }
+
+  function count() {
+    var n = Object.keys(used).length;
+    document.getElementById('meta').textContent =
+      IDEAS.length + ' ideas · ' + n + ' posted';
+  }
+
+  q.addEventListener('input', apply);
+  document.getElementById('chips').addEventListener('click', function (e) {
+    var b = e.target.closest('.chip');
+    if (!b) { return; }
+    filter = b.getAttribute('data-f');
+    document.querySelectorAll('#chips .chip').forEach(function (c) { c.classList.toggle('on', c === b); });
+    apply();
+  });
+
+  document.getElementById('surprise').addEventListener('click', function () {
+    q.value = ''; filter = 'all';
+    document.querySelectorAll('#chips .chip').forEach(function (c) { c.classList.toggle('on', c.getAttribute('data-f') === 'all'); });
+    apply();
+    var pool = [].slice.call(box.querySelectorAll('.idea:not(.used)'));
+    if (!pool.length) { pool = [].slice.call(box.querySelectorAll('.idea')); }
+    var pick = pool[Math.floor(Math.random() * pool.length)];
+    pick.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    pick.style.background = 'rgba(245,166,35,0.12)';
+    setTimeout(function () { pick.style.background = ''; }, 1800);
+  });
+
+  apply();
+})();
+
+/* ── Countdown and "you are here" on the runway, in Abuja time ── */
+(function () {
+  var start = new Date('2026-10-21T18:00:00+01:00').getTime();
+  var now = Date.now();
+  var el = document.getElementById('days');
+  var d = Math.ceil((start - now) / 86400000);
+  el.textContent = d > 1 ? d + ' days' : d === 1 ? 'Tomorrow' : now < start + 5 * 86400000 ? 'Live now' : 'Done';
+
+  var today = new Date(now + 3600000).toISOString().slice(0, 10);   // WAT = UTC+1
+  document.querySelectorAll('.phase[data-from]').forEach(function (p) {
+    if (today >= p.getAttribute('data-from') && today <= p.getAttribute('data-to')) {
+      p.classList.add('is-now');
+      p.querySelector('h3').insertAdjacentHTML('beforeend', '<span class="now-tag">This week</span>');
+    }
+  });
+})();
+
+/* ── Tap a caption to copy it ── */
+document.querySelectorAll('.copy').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var text = b.childNodes[0].textContent.trim();
+    var done = function () {
+      b.classList.add('done'); b.querySelector('small').textContent = 'Copied';
+      setTimeout(function () { b.classList.remove('done'); b.querySelector('small').textContent = 'Tap to copy'; }, 1600);
+    };
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, function () {}); }
+  });
+});
+</script>
+</body>
+</html>
