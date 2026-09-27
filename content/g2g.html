@@ -3,308 +3,578 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>G2G 2026 · Content Ideas · FOTA Digital Media</title>
-<meta name="description" content="Content ideas and a posting runway for G2G 2026 — The Glory of the Latter House, 21–25 October, Truth Arena, Abuja.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0E0A09">
+<title>G2G 2026 · Content Playbook · FOTA Digital Media</title>
+<meta name="description" content="The content playbook for G2G 2026, The Glory of the Latter House: 21–25 October, Truth Arena, Abuja.">
+<meta property="og:title" content="G2G 2026 · Content Playbook">
+<meta property="og:description" content="The Glory of the Latter House · 21–25 October · Truth Arena, Abuja.">
+<meta property="og:image" content="g2g/trio.webp">
 <link rel="icon" type="image/jpeg" href="logo.jpeg">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=Barlow+Condensed:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0C0C0C;
-    --card-bg: #131313;
-    --card-hover: #191919;
-    --gold: #F5A623;
-    --gold-dim: rgba(245,166,35,0.15);
-    --white: #FFFFFF;
-    --off-white: #E8E4DC;
-    --gray: #8A8A8A;
-    --border: rgba(255,255,255,0.07);
+    --ink:    #0E0A09;
+    --char:   #16100E;
+    --char-2: #1E1613;
+    --char-3: #2A1F1B;
+    --line:   rgba(255,230,190,0.08);
+    --line-2: rgba(255,230,190,0.16);
 
-    --glory: #FF8C42;
-    --glory-bg: rgba(255,140,66,0.08);
+    --cream:  #F3E9DA;
+    --text:   #D9CDBE;
+    --muted:  #9A8B7E;
 
-    /* one colour per night, so a card is recognisable at a glance */
-    --wed: #4AB8FF;
-    --thu: #C17FFF;
-    --fri: #FF8C42;
+    --gold-1: #FFF1C1;
+    --gold-2: #F6C453;
+    --gold-3: #C47F1C;
+    --gold:   #F2B544;
+    --flame:  #FF7A2F;
+    --red:    #C8232C;
+    --green:  #1F8A55;
+
+    --wed: #5FB7FF;
+    --thu: #B98CFF;
+    --fri: #FF7A2F;
     --sat: #3FD68F;
-    --sun: #E8C96A;
+    --sun: #F6C453;
+
+    --metal: linear-gradient(178deg, var(--gold-1) 0%, var(--gold-2) 34%, var(--gold-3) 58%, #FFD978 82%, var(--gold-2) 100%);
+    --r: 14px;
+    --serif: 'Playfair Display', Georgia, serif;
+    --display: 'Bebas Neue', Impact, sans-serif;
+    --cond: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
-    background: var(--black);
-    font-family: 'Barlow', sans-serif;
-    color: var(--white);
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
     overflow-x: hidden;
-    line-height: 1.5;
   }
+  /* film grain over everything */
   body::after {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: 9000;
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9000; opacity: .045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-
   a { color: var(--gold); }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 28px; } }
+
+  .gold {
+    background: var(--metal);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 0 rgba(90,45,5,.55)) drop-shadow(0 0 22px rgba(246,196,83,.18));
+  }
+  .kicker {
+    font-family: var(--cond); font-weight: 700; font-size: 12px;
+    letter-spacing: .32em; text-transform: uppercase; color: var(--gold);
+  }
 
   /* ═══════════ TOP BAR ═══════════ */
   .topbar {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(9,9,9,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    transition: background .3s, border-color .3s;
+    border-bottom: 1px solid transparent;
   }
-  .topbar .wrap { display: flex; align-items: center; gap: 14px; height: 58px; }
-  .topbar img { width: 34px; height: 34px; border-radius: 4px; object-fit: cover; }
+  .topbar.solid { background: rgba(14,10,9,.86); backdrop-filter: blur(10px); border-color: var(--line); }
+  .topbar .wrap { display: flex; align-items: center; gap: 14px; height: 60px; }
+  .topbar .mark { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; object-position: 50% 42%; box-shadow: 0 0 0 1px var(--line-2); }
   .back {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gray); text-decoration: none;
+    font-family: var(--cond); font-weight: 700; font-size: 12px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
   }
   .back:hover { color: var(--gold); }
-  .jump { margin-left: auto; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-  .jump::-webkit-scrollbar { display: none; }
+  .jump { margin-left: auto; display: flex; gap: 2px; }
   .jump a {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--off-white); text-decoration: none;
-    padding: 7px 10px; border-radius: 3px; white-space: nowrap;
+    font-family: var(--cond); font-weight: 700; font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--text); text-decoration: none;
+    padding: 8px 11px; border-radius: 30px; white-space: nowrap;
   }
-  .jump a:hover { background: var(--glory-bg); color: var(--glory); }
-  @media (max-width: 720px) { .jump { display: none; } }
+  .jump a:hover, .jump a.on { color: var(--ink); background: var(--gold); }
+  @media (max-width: 900px) { .jump { display: none; } }
 
   /* ═══════════ HERO ═══════════ */
-  .hero { padding: 64px 0 40px; border-bottom: 1px solid var(--border); }
-  .hero-label {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--glory);
+  .hero {
+    position: relative; min-height: min(100svh, 940px); overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px 0 0;
+    isolation: isolate;
+  }
+  .hero-bg {
+    position: absolute; inset: -40px; z-index: -3;
+    background: url("g2g/skyline.webp") center 30% / cover no-repeat;
+    filter: blur(6px) saturate(.8) brightness(.55);
+  }
+  .hero::before { /* warm vignette, the flyer's brown */
+    content: ''; position: absolute; inset: 0; z-index: -2;
+    background:
+      radial-gradient(60% 55% at 70% 38%, rgba(246,196,83,.20), transparent 70%),
+      radial-gradient(120% 90% at 50% 100%, var(--ink) 30%, transparent 70%),
+      linear-gradient(180deg, rgba(14,10,9,.35), rgba(14,10,9,.2) 40%, var(--ink) 96%);
+  }
+  .rays { /* slow god-rays behind the portraits */
+    position: absolute; z-index: -1; width: 1300px; height: 1300px;
+    right: -380px; top: -380px; border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, rgba(255,215,120,.07) 0deg 4deg, transparent 4deg 14deg);
+    -webkit-mask: radial-gradient(circle, #000 0%, transparent 62%);
+            mask: radial-gradient(circle, #000 0%, transparent 62%);
+    animation: spin 140s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #motes { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr .95fr; gap: 30px; align-items: center;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+
+  .hero-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+  .shield {
+    width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: 50% 38%;
+    box-shadow: 0 0 0 2px rgba(246,196,83,.5), 0 0 30px rgba(200,35,44,.45);
   }
   .hero h1 {
-    font-family: 'Bebas Neue', sans-serif; font-weight: 400;
-    font-size: clamp(56px, 11vw, 132px); line-height: 0.88; letter-spacing: 1px;
-    margin: 14px 0 18px;
+    font-family: var(--serif); font-style: italic; font-weight: 900;
+    font-size: clamp(52px, 8.4vw, 118px); line-height: .9; letter-spacing: -.01em;
   }
-  .hero h1 span { color: var(--glory); }
-  .hero .verse {
-    max-width: 640px; font-size: 18px; color: var(--off-white); font-style: italic;
+  .hero h1 .the { display: block; font-size: .5em; margin-bottom: .1em; }
+  .hero h1 small {
+    display: block; font-family: var(--display); font-style: normal; font-weight: 400;
+    font-size: .28em; letter-spacing: .12em; color: var(--cream); margin-top: .35em;
   }
-  .hero .verse b { font-style: normal; color: var(--gold); font-weight: 700; }
-  .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-  .fact {
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px;
-    padding: 10px 14px;
+  .verse {
+    margin-top: 22px; max-width: 520px; font-family: var(--serif); font-style: italic;
+    font-size: clamp(17px, 2vw, 21px); color: var(--cream); line-height: 1.45;
   }
-  .fact small {
-    display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+  .verse cite { display: block; margin-top: 6px; font-style: normal; font-family: var(--cond); font-weight: 700; letter-spacing: .25em; font-size: 12px; color: var(--gold); text-transform: uppercase; }
+
+  .hero-art { position: relative; justify-self: center; width: min(560px, 100%); }
+  .arch {
+    position: relative; aspect-ratio: 1000 / 640; border-radius: 50% 50% 18px 18px / 44% 44% 18px 18px;
+    overflow: hidden;
+    background: radial-gradient(70% 60% at 50% 40%, rgba(246,196,83,.35), transparent 70%), var(--char-2);
+    box-shadow: 0 0 0 1px rgba(246,196,83,.35), 0 0 0 10px rgba(246,196,83,.05), 0 40px 80px -20px rgba(0,0,0,.7), 0 0 120px -10px rgba(246,196,83,.25);
   }
-  .fact strong { font-weight: 700; font-size: 15px; }
-  .fact.count strong { color: var(--glory); font-family: 'Bebas Neue', sans-serif; font-size: 30px; font-weight: 400; line-height: 1; }
+  .arch img { position: absolute; left: 50%; bottom: 0; width: 156%; max-width: none; height: auto; transform: translateX(-50%);
+    -webkit-mask: linear-gradient(180deg, transparent 0, #000 32%); mask: linear-gradient(180deg, transparent 0, #000 32%); }
+  .arch::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(14,10,9,.85));
+  }
+  .arch-tag {
+    position: absolute; left: 50%; bottom: -18px; transform: translateX(-50%); z-index: 2;
+    background: var(--red); color: #fff; white-space: nowrap;
+    font-family: var(--cond); font-weight: 800; font-size: 13px; letter-spacing: .22em; text-transform: uppercase;
+    padding: 9px 18px; border-radius: 3px; box-shadow: 0 10px 30px rgba(200,35,44,.35);
+  }
+
+  /* countdown */
+  .count { display: flex; gap: 10px; margin-top: 34px; flex-wrap: wrap; }
+  .tile {
+    min-width: 78px; text-align: center; padding: 12px 10px 8px;
+    background: linear-gradient(180deg, var(--char-3), var(--char));
+    border: 1px solid var(--line-2); border-radius: 10px; position: relative; overflow: hidden;
+  }
+  .tile::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0,0,0,.45); }
+  .tile b { display: block; font-family: var(--display); font-weight: 400; font-size: 46px; line-height: 1; color: var(--cream); font-variant-numeric: tabular-nums; }
+  .tile span { font-family: var(--cond); font-weight: 700; font-size: 10px; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); }
+  .tile.days b { color: var(--gold-2); }
+  .count-note { margin-top: 10px; font-size: 13px; color: var(--muted); }
+
+  /* nights ticker, echoing the flyer's red/green date bars */
+  .ticker {
+    margin-top: 64px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    overflow: hidden; background: rgba(14,10,9,.6);
+  }
+  .ticker-track { display: flex; width: max-content; animation: tick 38s linear infinite; }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  @keyframes tick { to { transform: translateX(-50%); } }
+  .tk {
+    display: flex; align-items: center; gap: 12px; padding: 14px 26px; white-space: nowrap;
+    font-family: var(--cond); font-weight: 700; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--cream);
+  }
+  .tk i { font-style: normal; padding: 3px 9px; border-radius: 2px; font-size: 12px; color: #fff; }
+  .tk .r { background: var(--red); } .tk .g { background: var(--green); }
+  .tk::after { content: '✦'; color: var(--gold); margin-left: 14px; }
 
   /* ═══════════ SECTIONS ═══════════ */
-  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
-  .sec-label {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+  section { position: relative; padding: clamp(70px, 10vw, 120px) 0; }
+  .sec-head { display: grid; gap: 12px; max-width: 780px; margin-bottom: 44px; }
+  .sec-head h2 {
+    font-family: var(--serif); font-style: italic; font-weight: 900;
+    font-size: clamp(40px, 6vw, 72px); line-height: .95; color: var(--cream);
   }
-  .sec-title {
-    font-family: 'Bebas Neue', sans-serif; font-weight: 400;
-    font-size: clamp(38px, 6vw, 64px); line-height: 0.95; margin: 8px 0 12px;
+  .sec-head p { font-size: 17px; color: var(--text); }
+  .num-bg {
+    position: absolute; right: 12px; top: 30px; z-index: -1; pointer-events: none;
+    font-family: var(--serif); font-style: italic; font-weight: 900; font-size: clamp(160px, 26vw, 340px); line-height: 1;
+    color: transparent; -webkit-text-stroke: 1px rgba(246,196,83,.08);
   }
-  .sec-lede { max-width: 720px; color: var(--off-white); font-size: 16px; }
+  .divider { display: flex; align-items: center; gap: 18px; color: var(--gold); font-size: 14px; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2), transparent); }
 
-  .callout {
-    display: flex; gap: 14px; align-items: flex-start;
-    background: var(--glory-bg); border-left: 3px solid var(--glory);
-    padding: 14px 18px; margin-top: 22px; border-radius: 0 4px 4px 0;
-    font-size: 15px; color: var(--off-white); max-width: 860px;
+  /* reveal on scroll */
+  .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+
+  /* ═══════════ TWO HOUSES ═══════════ */
+  .houses {
+    display: grid; grid-template-columns: 1fr auto 1.35fr; gap: 20px; align-items: end;
+    max-width: 520px; margin: 0 auto 56px;
   }
-  .callout b { color: var(--white); }
+  .houses figure { text-align: center; }
+  .houses figcaption { margin-top: 10px; font-family: var(--cond); font-weight: 700; letter-spacing: .25em; font-size: 12px; text-transform: uppercase; color: var(--muted); }
+  .houses .latter figcaption { color: var(--gold); }
+  .houses svg { width: 100%; height: auto; overflow: visible; }
+  .houses .arrow { font-family: var(--serif); font-style: italic; font-size: 34px; color: var(--gold); padding-bottom: 60px; }
+  .glowhouse { filter: drop-shadow(0 0 26px rgba(246,196,83,.45)); animation: breathe 5s ease-in-out infinite; }
+  @keyframes breathe { 50% { filter: drop-shadow(0 0 44px rgba(246,196,83,.7)); } }
 
   /* ═══════════ BIG IDEAS ═══════════ */
-  .big-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 14px; margin-top: 30px;
-  }
-  @media (max-width: 400px) { .big-grid { grid-template-columns: 1fr; } }
+  .big-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: 16px; }
   .big {
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px;
-    padding: 22px 22px 20px; position: relative; overflow: hidden;
+    --mx: 50%; --my: 0%;
+    position: relative; border-radius: var(--r); padding: 26px 24px 22px; overflow: hidden;
+    background:
+      radial-gradient(420px circle at var(--mx) var(--my), rgba(246,196,83,.12), transparent 45%),
+      linear-gradient(180deg, var(--char-2), var(--char));
+    border: 1px solid var(--line);
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s;
   }
-  .big .no {
-    position: absolute; right: 14px; top: 4px;
-    font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: rgba(255,255,255,0.04);
+  .big:hover { transform: translateY(-4px); border-color: rgba(246,196,83,.35); }
+  .big-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .ico {
+    width: 50px; height: 50px; flex: none; border-radius: 12px; display: grid; place-items: center;
+    background: linear-gradient(145deg, rgba(246,196,83,.2), rgba(255,122,47,.08));
+    box-shadow: inset 0 0 0 1px rgba(246,196,83,.3);
   }
-  .big h3 {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
-    font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.05;
-    color: var(--glory); margin-bottom: 8px; padding-right: 40px;
-  }
-  .big p { font-size: 15px; color: var(--off-white); }
-  .big ul { margin: 10px 0 0 0; list-style: none; }
-  .big li { font-size: 14px; color: var(--off-white); padding: 4px 0 4px 16px; position: relative; }
-  .big li::before { content: '▸'; position: absolute; left: 0; color: var(--glory); }
+  .ico svg { width: 26px; height: 26px; stroke: var(--gold-2); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .big .n { margin-left: auto; font-family: var(--serif); font-style: italic; font-weight: 900; font-size: 44px; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(246,196,83,.35); }
+  .big h3 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 26px; line-height: 1.1; color: var(--cream); margin-bottom: 8px; }
+  .big > p { font-size: 15px; }
+  .big ul { list-style: none; margin-top: 14px; border-top: 1px dashed var(--line-2); padding-top: 10px; }
+  .big li { font-size: 14.5px; padding: 5px 0 5px 20px; position: relative; }
+  .big li::before { content: '✦'; position: absolute; left: 0; top: 6px; font-size: 10px; color: var(--gold); }
+  .big em { color: var(--gold-2); }
 
-  /* ═══════════ RUNWAY (timeline) ═══════════ */
-  .runway { margin-top: 30px; display: grid; gap: 14px; }
-  .phase {
-    display: grid; grid-template-columns: 170px 1fr; gap: 20px;
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px; padding: 22px;
+  /* ═══════════ VOICES ═══════════ */
+  .voices { background: linear-gradient(180deg, var(--ink), var(--char) 30%, var(--char) 70%, var(--ink)); }
+  .speakers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; margin: 0 auto; }
+  @media (max-width: 640px) { .speakers { grid-template-columns: 1fr 1fr; } .speakers .sp:first-child { grid-column: 1 / -1; max-width: 260px; justify-self: center; } }
+  .sp { text-align: center; }
+  .sp .ph {
+    aspect-ratio: 4/5; border-radius: 999px 999px 14px 14px; overflow: hidden; position: relative;
+    background: var(--char-3);
+    box-shadow: 0 0 0 1px rgba(246,196,83,.3), 0 30px 60px -25px rgba(0,0,0,.8);
+    transition: box-shadow .4s, transform .4s;
   }
-  @media (max-width: 720px) { .phase { grid-template-columns: 1fr; gap: 10px; } }
-  .phase-when {
-    font-family: 'Bebas Neue', sans-serif; font-size: 34px; line-height: 0.95; color: var(--gold);
+  .sp:hover .ph { transform: translateY(-5px); box-shadow: 0 0 0 1px rgba(246,196,83,.7), 0 0 60px -10px rgba(246,196,83,.45); }
+  .sp .ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; filter: saturate(1.05) contrast(1.03); }
+  .sp h3 { margin-top: 14px; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 21px; color: var(--cream); line-height: 1.15; }
+  .sp small { display: block; margin-top: 4px; font-family: var(--cond); font-weight: 700; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+
+  .singers-head { margin: 64px 0 26px; }
+  .singers { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .singers { grid-template-columns: repeat(3, 1fr); } }
+  .sg { text-align: center; }
+  .sg .ph {
+    aspect-ratio: 1; border-radius: 50%; overflow: hidden; padding: 3px;
+    background: conic-gradient(from 200deg, var(--gold-3), var(--gold-1), var(--flame), var(--gold-3));
+    transition: transform .35s;
   }
-  .phase-when small {
-    display: block; margin-top: 6px;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
+  .sg:hover .ph { transform: scale(1.05) rotate(-2deg); }
+  .sg .ph img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: var(--char-3); }
+  .sg b { display: block; margin-top: 10px; font-weight: 700; font-size: 14.5px; color: var(--cream); line-height: 1.2; }
+  .sg small { font-family: var(--cond); font-weight: 700; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .voices-note {
+    margin: 46px auto 0; max-width: 760px; text-align: center; font-size: 15.5px;
+    padding: 16px 20px; border-radius: 999px; border: 1px dashed rgba(246,196,83,.35); color: var(--cream);
   }
-  .phase h3 {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px;
-    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+  @media (max-width: 640px) { .voices-note { border-radius: 14px; } }
+
+  /* ═══════════ RUNWAY ═══════════ */
+  .runway { position: relative; padding-left: 46px; }
+  .rail { position: absolute; left: 14px; top: 8px; bottom: 8px; width: 3px; border-radius: 3px; background: var(--char-3); overflow: hidden; }
+  .rail i { position: absolute; left: 0; right: 0; top: 0; height: 0; background: linear-gradient(180deg, var(--gold-1), var(--gold-2), var(--flame)); box-shadow: 0 0 14px var(--gold-2); transition: height 1.6s cubic-bezier(.2,.7,.2,1); }
+  .phase { position: relative; margin-bottom: 18px; }
+  .phase:last-child { margin-bottom: 0; }
+  .node {
+    position: absolute; left: -41px; top: 26px; width: 17px; height: 17px; border-radius: 50%;
+    background: var(--ink); border: 3px solid var(--char-3);
   }
-  .phase ul { list-style: none; }
-  .phase li { font-size: 15px; color: var(--off-white); padding: 5px 0 5px 18px; position: relative; }
-  .phase li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); }
-  .phase.is-now { border-color: rgba(255,140,66,0.5); box-shadow: 0 0 0 1px rgba(255,140,66,0.25); }
+  .phase.past .node { border-color: var(--gold-3); background: var(--gold-3); }
+  .phase.is-now .node { border-color: var(--gold-1); background: var(--flame); box-shadow: 0 0 0 0 rgba(255,122,47,.6); animation: pulse 2s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 14px rgba(255,122,47,0); } 100% { box-shadow: 0 0 0 0 rgba(255,122,47,0); } }
+  .phase-card {
+    display: grid; grid-template-columns: 200px 1fr; gap: 24px;
+    padding: 24px; border-radius: var(--r); background: var(--char); border: 1px solid var(--line);
+  }
+  @media (max-width: 720px) { .phase-card { grid-template-columns: 1fr; gap: 10px; } }
+  .phase.is-now .phase-card { border-color: rgba(255,122,47,.45); background: linear-gradient(135deg, rgba(255,122,47,.08), var(--char) 50%); }
+  .phase-when { font-family: var(--display); font-size: 38px; line-height: .95; color: var(--gold-2); }
+  .phase-when small { display: block; margin-top: 6px; font-family: var(--cond); font-weight: 700; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .phase h3 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 23px; color: var(--cream); margin-bottom: 8px; }
+  .phase ul { list-style: none; columns: 2 280px; column-gap: 26px; }
+  .phase li { break-inside: avoid; font-size: 15px; padding: 5px 0 5px 20px; position: relative; }
+  .phase li::before { content: '✦'; position: absolute; left: 0; top: 6px; font-size: 10px; color: var(--gold); }
+  .phase em { color: var(--gold-2); }
   .now-tag {
-    display: inline-block; margin-left: 8px; vertical-align: middle;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 10px;
-    letter-spacing: 2px; text-transform: uppercase;
-    background: var(--glory); color: #000; padding: 2px 7px; border-radius: 2px;
+    display: inline-block; margin-left: 10px; vertical-align: 4px;
+    font-family: var(--cond); font-style: normal; font-weight: 800; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
+    background: var(--flame); color: #1a0d05; padding: 3px 9px; border-radius: 30px;
   }
 
-  /* ═══════════ NIGHTS ═══════════ */
-  .nights {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 12px; margin-top: 30px;
-  }
+  /* ═══════════ FIVE NIGHTS ═══════════ */
+  .nights { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  @media (max-width: 1100px) { .nights { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); } }
   .night {
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px;
-    padding: 20px 18px; position: relative;
+    position: relative; border-radius: var(--r); padding: 22px 18px 20px; overflow: hidden;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--c) 14%, var(--char)) 0%, var(--char) 45%);
+    border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
   }
-  .night::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: var(--c); border-radius: 5px 5px 0 0;
-  }
-  .night-day { font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: var(--c); }
-  .night-when {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--gray);
-  }
-  .night-what { font-weight: 800; font-size: 17px; margin: 10px 0 2px; }
-  .night-who { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
-  .night h4 {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--c); margin: 14px 0 4px;
-  }
+  .night-day { font-family: var(--serif); font-style: italic; font-weight: 900; font-size: 64px; line-height: .85; color: var(--c); }
+  .night-dow { font-family: var(--cond); font-weight: 800; font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: var(--cream); }
+  .night-when { display: inline-block; margin-top: 12px; padding: 4px 10px; border-radius: 30px; background: color-mix(in srgb, var(--c) 20%, transparent); color: var(--c); font-family: var(--cond); font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+  .night-what { margin-top: 12px; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 20px; color: var(--cream); line-height: 1.15; }
+  .night-who { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .night h4 { font-family: var(--cond); font-weight: 800; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--c); margin: 16px 0 4px; }
   .night ul { list-style: none; }
-  .night li { font-size: 14px; color: var(--off-white); padding: 4px 0 4px 14px; position: relative; }
-  .night li::before { content: '▸'; position: absolute; left: 0; color: var(--c); }
+  .night li { font-size: 14px; padding: 4px 0 4px 14px; position: relative; }
+  .night li::before { content: ''; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+
+  /* Friday: dusk to dawn */
+  .night.fri {
+    background: linear-gradient(180deg, #0B0A1F 0%, #1A1036 30%, #3A1830 58%, #8A3A1E 84%, #E9873A 100%);
+    border-color: rgba(255,122,47,.5);
+  }
+  .night.fri::before { /* stars, fading out towards dawn */
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 12% 8%, #fff, transparent), radial-gradient(1px 1px at 72% 5%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 40% 14%, #fff, transparent), radial-gradient(1px 1px at 88% 20%, #fff, transparent),
+      radial-gradient(1px 1px at 25% 26%, #fff, transparent), radial-gradient(1.5px 1.5px at 60% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 8% 40%, rgba(255,255,255,.7), transparent), radial-gradient(1px 1px at 80% 44%, rgba(255,255,255,.6), transparent);
+    -webkit-mask: linear-gradient(180deg, #000 30%, transparent 60%); mask: linear-gradient(180deg, #000 30%, transparent 60%);
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { to { opacity: .55; } }
+  .night.fri > * { position: relative; }
+  .night.fri li, .night.fri .night-who { color: #F6E7DA; }
+  .night.fri .night-day { color: #FFD39A; text-shadow: 0 0 30px rgba(255,160,80,.6); }
+  .clock { display: flex; justify-content: space-between; margin-top: 16px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.2); font-family: var(--cond); font-weight: 800; font-size: 11px; letter-spacing: .1em; color: #FFE3C4; }
+  .sunrise { position: absolute; left: 50%; bottom: -60px; width: 160px; height: 120px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,214,140,.9), rgba(255,140,60,.3) 45%, transparent 70%); pointer-events: none; }
+
+  .tipbar {
+    display: flex; gap: 14px; align-items: center; margin-top: 22px; padding: 16px 20px;
+    border-radius: var(--r); background: linear-gradient(90deg, rgba(200,35,44,.16), transparent 70%); border: 1px solid rgba(200,35,44,.35);
+    font-size: 15px; color: var(--cream);
+  }
+  .tipbar b { color: #fff; }
+
+  /* ═══════════ TEMPLATES ═══════════ */
+  .templates { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: end; }
+  @media (max-width: 1000px) { .templates { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .templates { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; } }
+  .tpl figcaption { margin-top: 12px; text-align: center; }
+  .tpl figcaption b { display: block; color: var(--cream); font-weight: 700; font-size: 15px; }
+  .tpl figcaption small { font-family: var(--cond); font-weight: 700; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .phone {
+    border-radius: 26px; padding: 8px; background: #050404;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 30px 60px -20px rgba(0,0,0,.9);
+    transition: transform .4s cubic-bezier(.2,.7,.2,1);
+    container-type: inline-size;
+  }
+  .tpl:hover .phone { transform: translateY(-6px) rotate(-1deg); }
+  .screen { border-radius: 19px; overflow: hidden; position: relative; }
+
+  /* 1 · countdown story (9:16) */
+  .t-count { aspect-ratio: 9/16; background: radial-gradient(90% 60% at 50% 38%, #3A2616, var(--ink) 75%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10cqw; }
+  .t-count .big7 { font-family: var(--serif); font-style: italic; font-weight: 900; font-size: 64cqw; line-height: .8; }
+  .t-count .lbl { font-family: var(--display); font-size: 12cqw; letter-spacing: .06em; color: var(--cream); line-height: 1; margin-top: 3cqw; }
+  .t-count .why { font-family: var(--serif); font-style: italic; font-size: 6.4cqw; color: var(--gold-2); margin-top: 6cqw; }
+  .t-count .bar { position: absolute; left: 0; right: 0; bottom: 8cqw; display: flex; justify-content: center; gap: 2cqw; }
+  .t-count .bar i { font-style: normal; font-family: var(--cond); font-weight: 800; font-size: 4.4cqw; letter-spacing: .1em; color: #fff; padding: 1.2cqw 3cqw; border-radius: 1cqw; }
+
+  /* 2 · minister card (4:5) */
+  .t-min { aspect-ratio: 4/5; background: linear-gradient(180deg, #2B1D16, var(--ink)); padding: 7cqw; display: flex; flex-direction: column; align-items: center; }
+  .t-min .p { width: 62%; aspect-ratio: 4/5; border-radius: 999px 999px 4cqw 4cqw; overflow: hidden; box-shadow: 0 0 0 .8cqw rgba(246,196,83,.7), 0 0 14cqw rgba(246,196,83,.35); }
+  .t-min .p img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
+  .t-min .nm { margin-top: 6cqw; font-family: var(--serif); font-style: italic; font-weight: 900; font-size: 10cqw; line-height: 1; text-align: center; }
+  .t-min .rl { margin-top: 2.4cqw; font-family: var(--cond); font-weight: 800; font-size: 4.4cqw; letter-spacing: .25em; text-transform: uppercase; color: var(--cream); }
+  .t-min .dt { margin-top: auto; background: var(--red); color: #fff; font-family: var(--cond); font-weight: 800; font-size: 4.2cqw; letter-spacing: .12em; text-transform: uppercase; padding: 1.6cqw 4cqw; border-radius: 1cqw; }
+
+  /* 3 · verse card (1:1) */
+  .t-verse { aspect-ratio: 1; background: #070505; display: flex; flex-direction: column; justify-content: center; padding: 10cqw; position: relative; }
+  .t-verse::before { content: '“'; position: absolute; left: 6cqw; top: -4cqw; font-family: var(--serif); font-weight: 900; font-size: 50cqw; color: rgba(246,196,83,.12); line-height: 1; }
+  .t-verse p { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 9.4cqw; line-height: 1.12; color: var(--cream); position: relative; }
+  .t-verse p span { color: var(--gold-2); }
+  .t-verse small { margin-top: 6cqw; font-family: var(--cond); font-weight: 800; font-size: 4.4cqw; letter-spacing: .3em; color: var(--gold); position: relative; }
+
+  /* 4 · 3 AM story (9:16) */
+  .t-night { aspect-ratio: 9/16; background: linear-gradient(180deg, #0B0A1F, #24123A 45%, #7A2E22 80%, #F08A3C); display: flex; flex-direction: column; justify-content: space-between; padding: 10cqw 8cqw; }
+  .t-night .tm { font-family: var(--display); font-size: 30cqw; line-height: .85; color: #fff; text-shadow: 0 0 10cqw rgba(255,180,120,.6); }
+  .t-night .tm small { display: block; font-size: 9cqw; letter-spacing: .1em; color: #FFD7AE; }
+  .t-night .st { font-family: var(--serif); font-style: italic; font-weight: 900; font-size: 12cqw; line-height: 1; color: #fff; }
+  .t-night .st em { display: block; font-family: var(--cond); font-style: normal; font-weight: 800; font-size: 4.6cqw; letter-spacing: .2em; color: #FFE3C4; text-transform: uppercase; margin-top: 3cqw; }
+  .t-night .lv { align-self: flex-start; display: inline-flex; gap: 2cqw; align-items: center; background: var(--red); color: #fff; font-family: var(--cond); font-weight: 800; font-size: 4.4cqw; letter-spacing: .2em; padding: 1.4cqw 3cqw; border-radius: 1cqw; }
+  .t-night .lv::before { content: ''; width: 2cqw; height: 2cqw; border-radius: 50%; background: #fff; animation: blink 1.2s infinite; }
+  @keyframes blink { 50% { opacity: .2; } }
+
+  .swatches { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 40px; }
+  .sw {
+    display: flex; align-items: center; gap: 10px; cursor: pointer; font: inherit;
+    padding: 6px 14px 6px 6px; border-radius: 30px; background: var(--char); border: 1px solid var(--line); color: var(--text);
+  }
+  .sw:hover { border-color: var(--gold); }
+  .sw i { width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
+  .sw span { font-family: var(--cond); font-weight: 700; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+  .sw.done span { color: var(--gold); }
+  .fonts-note { text-align: center; margin-top: 14px; font-size: 14px; color: var(--muted); }
+  .fonts-note b { color: var(--cream); }
 
   /* ═══════════ IDEA BANK ═══════════ */
-  .bank-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; align-items: center; }
+  .bank-bar { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 18px; }
+  .ring { position: relative; width: 74px; height: 74px; flex: none; }
+  .ring svg { transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 6; }
+  .ring .bg { stroke: var(--char-3); }
+  .ring .fg { stroke: url(#ringGrad); stroke-linecap: round; transition: stroke-dashoffset .6s; }
+  .ring b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-weight: 400; font-size: 22px; color: var(--cream); line-height: 1; text-align: center; }
+  .ring b small { display: block; font-family: var(--cond); font-weight: 700; font-size: 9px; letter-spacing: .2em; color: var(--muted); }
   .search {
-    flex: 1 1 260px; min-width: 0;
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 3px;
-    color: var(--white); font: inherit; font-size: 15px; padding: 10px 14px;
+    flex: 1 1 240px; min-width: 0; background: var(--char); border: 1px solid var(--line-2); border-radius: 30px;
+    color: var(--cream); font: inherit; font-size: 15px; padding: 12px 20px;
   }
-  .search:focus { outline: none; border-color: var(--gold); }
+  .search:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 4px rgba(246,196,83,.12); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
-    background: transparent; border: 1px solid var(--border); border-radius: 30px;
-    color: var(--off-white); cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
-    letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 14px;
+    background: transparent; border: 1px solid var(--line-2); border-radius: 30px; color: var(--text); cursor: pointer;
+    font-family: var(--cond); font-weight: 700; font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; padding: 8px 14px;
+    transition: background .2s, color .2s, border-color .2s;
   }
-  .chip:hover { border-color: var(--gold); }
-  .chip.on { background: var(--gold); border-color: var(--gold); color: #000; }
-  .bank-meta { margin-top: 12px; font-size: 13px; color: var(--gray); }
+  .chip:hover { border-color: var(--gold); color: var(--cream); }
+  .chip.on { background: var(--metal); border-color: transparent; color: #2A1606; }
+  .chip.sur { border-color: rgba(255,122,47,.5); color: var(--flame); }
+  .chips .sep { width: 1px; background: var(--line-2); margin: 4px 4px; }
 
-  .ideas {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 12px; margin-top: 18px;
-  }
-  @media (max-width: 400px) { .ideas { grid-template-columns: 1fr; } }
+  .ideas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 14px; margin-top: 22px; }
   .idea {
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px;
-    padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 8px;
-    transition: background 0.15s, opacity 0.2s;
+    position: relative; display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+    padding: 20px 20px 16px; border-radius: var(--r); background: var(--char); border: 1px solid var(--line);
+    transition: transform .3s, border-color .3s, background .3s;
   }
-  .idea:hover { background: var(--card-hover); }
+  .idea:hover { transform: translateY(-3px); border-color: var(--line-2); background: var(--char-2); }
   .idea.hidden { display: none; }
-  .idea.used { opacity: 0.45; }
-  .idea-top { display: flex; gap: 6px; flex-wrap: wrap; }
-  .tag {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 10px;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 3px 7px; border-radius: 2px; background: rgba(255,255,255,0.06); color: var(--off-white);
+  .idea.flash { border-color: var(--flame); box-shadow: 0 0 0 4px rgba(255,122,47,.18); }
+  .idea-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .fmt { font-size: 18px; line-height: 1; }
+  .tag { font-family: var(--cond); font-weight: 700; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 3px 8px; border-radius: 30px; background: rgba(255,255,255,.05); color: var(--text); }
+  .tag.w { background: rgba(246,196,83,.12); color: var(--gold-2); }
+  .idea h3 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 20px; line-height: 1.15; color: var(--cream); }
+  .idea .hook { font-size: 14.5px; font-style: italic; color: var(--flame); padding-left: 10px; border-left: 2px solid var(--flame); }
+  .idea p { font-size: 14.5px; }
+  .idea label { margin-top: auto; padding-top: 8px; display: inline-flex; gap: 8px; align-items: center; cursor: pointer; font-family: var(--cond); font-weight: 700; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .idea input { accent-color: var(--gold); width: 16px; height: 16px; }
+  .stamp {
+    position: absolute; right: 14px; top: 16px; transform: rotate(12deg) scale(1.6); opacity: 0; pointer-events: none;
+    font-family: var(--display); font-size: 22px; letter-spacing: .12em; color: var(--gold-2);
+    border: 2px solid var(--gold-2); border-radius: 6px; padding: 0 10px; transition: opacity .3s, transform .35s cubic-bezier(.3,1.6,.5,1);
   }
-  .tag.t-when { background: var(--gold-dim); color: var(--gold); }
-  .idea h3 { font-size: 17px; font-weight: 800; line-height: 1.25; }
-  .idea p { font-size: 14px; color: var(--off-white); }
-  .idea .hook { font-size: 14px; color: var(--glory); font-style: italic; }
-  .idea label {
-    margin-top: auto; padding-top: 6px; display: flex; gap: 8px; align-items: center;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px;
-    letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); cursor: pointer;
-  }
-  .idea input { accent-color: var(--gold); width: 15px; height: 15px; }
-  .none { display: none; margin-top: 18px; color: var(--gray); }
+  .idea.used { background: linear-gradient(135deg, rgba(246,196,83,.05), var(--char)); }
+  .idea.used h3, .idea.used p, .idea.used .hook { opacity: .5; }
+  .idea.used .stamp { opacity: .85; transform: rotate(12deg) scale(1); }
+  .none { display: none; margin-top: 20px; color: var(--muted); }
   .none.show { display: block; }
 
-  /* ═══════════ KIT ═══════════ */
-  .kit {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 14px; margin-top: 30px;
-  }
-  @media (max-width: 400px) { .kit { grid-template-columns: 1fr; } }
-  .kit-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 5px; padding: 22px; }
-  .kit-box h3 {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
-    text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold); margin-bottom: 10px;
-  }
-  .kit-box ul { list-style: none; }
-  .kit-box li { font-size: 14px; color: var(--off-white); padding: 5px 0 5px 16px; position: relative; }
-  .kit-box li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); }
-  .kit-box code {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px;
-    background: var(--gold-dim); color: var(--gold); padding: 1px 6px; border-radius: 2px;
-  }
-  .copy {
-    display: block; width: 100%; text-align: left; cursor: pointer;
-    background: rgba(255,255,255,0.03); border: 1px dashed var(--border); border-radius: 3px;
-    color: var(--off-white); font: inherit; font-size: 14px; padding: 10px 12px; margin-top: 8px;
-  }
-  .copy:hover { border-color: var(--gold); }
-  .copy small {
-    display: block; margin-top: 4px;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 10px;
-    letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray);
-  }
-  .copy.done small { color: var(--gold); }
+  /* ═══════════ AFTER ═══════════ */
+  .after-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .after-grid { grid-template-columns: 1fr; } }
+  .after-card { padding: 26px; border-radius: var(--r); background: var(--char); border: 1px solid var(--line); }
+  .after-card .phase-when { margin-bottom: 12px; }
+  .after-card ul { list-style: none; }
+  .after-card li { font-size: 15px; padding: 6px 0 6px 20px; position: relative; }
+  .after-card li::before { content: '✦'; position: absolute; left: 0; top: 7px; font-size: 10px; color: var(--gold); }
 
-  footer { padding: 40px 0 60px; color: var(--gray); font-size: 13px; }
-  footer a { color: var(--gray); }
+  /* ═══════════ KIT ═══════════ */
+  .kit { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+  .kit-box { padding: 24px; border-radius: var(--r); background: var(--char); border: 1px solid var(--line); }
+  .kit-box h3 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 22px; color: var(--cream); margin-bottom: 14px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    cursor: pointer; font: inherit; font-family: var(--cond); font-weight: 800; font-size: 16px; letter-spacing: .04em;
+    padding: 8px 14px; border-radius: 30px; border: 1px solid rgba(246,196,83,.35); background: rgba(246,196,83,.08); color: var(--gold-2);
+    transition: background .2s, transform .2s;
+  }
+  .pill:hover { background: rgba(246,196,83,.18); transform: translateY(-2px); }
+  .pill.main { background: var(--metal); color: #2A1606; border-color: transparent; }
+  .kit-note { margin-top: 12px; font-size: 13.5px; color: var(--muted); }
+  .socials { list-style: none; display: grid; gap: 8px; }
+  .socials a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,.03); text-decoration: none; color: var(--cream); border: 1px solid transparent; transition: border-color .2s; }
+  .socials a:hover { border-color: var(--line-2); }
+  .socials svg { width: 20px; height: 20px; fill: var(--gold-2); flex: none; }
+  .socials small { margin-left: auto; color: var(--muted); font-size: 13px; }
+  .cap {
+    display: block; width: 100%; text-align: left; cursor: pointer; font: inherit; font-size: 14.5px; color: var(--text);
+    padding: 12px 14px; margin-top: 8px; border-radius: 10px; background: rgba(255,255,255,.03); border: 1px dashed var(--line-2);
+    transition: border-color .2s;
+  }
+  .cap:hover { border-color: var(--gold); }
+  .cap small { display: block; margin-top: 6px; font-family: var(--cond); font-weight: 700; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .cap.done small, .pill.done { color: var(--flame); }
+  .rules { list-style: none; counter-reset: r; }
+  .rules li { counter-increment: r; position: relative; padding: 7px 0 7px 38px; font-size: 14.5px; }
+  .rules li::before { content: counter(r); position: absolute; left: 0; top: 6px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 16px; background: rgba(200,35,44,.2); color: #FF8A8F; }
+
+  /* ═══════════ FOOTER ═══════════ */
+  footer { padding: 70px 0 90px; text-align: center; border-top: 1px solid var(--line); }
+  footer .shield { width: 72px; height: 72px; margin: 0 auto 18px; }
+  footer p { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--cream); max-width: 560px; margin: 0 auto; }
+  footer small { display: block; margin-top: 16px; font-family: var(--cond); font-weight: 700; letter-spacing: .2em; font-size: 12px; text-transform: uppercase; color: var(--muted); }
+  footer a { color: var(--muted); }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 30px); opacity: 0; z-index: 200;
+    background: var(--metal); color: #2A1606; font-family: var(--cond); font-weight: 800; letter-spacing: .15em; text-transform: uppercase; font-size: 13px;
+    padding: 10px 18px; border-radius: 30px; transition: opacity .3s, transform .3s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rv { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
 
-<header class="topbar">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1C1"/><stop offset=".5" stop-color="#F6C453"/><stop offset="1" stop-color="#FF7A2F"/></linearGradient>
+    <linearGradient id="houseGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1C1"/><stop offset=".45" stop-color="#F6C453"/><stop offset="1" stop-color="#C47F1C"/></linearGradient>
+  </defs>
+</svg>
+
+<header class="topbar" id="topbar">
   <div class="wrap">
-    <img src="logo.jpeg" alt="">
+    <img class="mark" src="g2g/shield.webp" alt="">
     <a class="back" href="index.html">← Content schedule</a>
     <nav class="jump" aria-label="Sections">
       <a href="#big">Big ideas</a>
+      <a href="#voices">Voices</a>
       <a href="#runway">Runway</a>
-      <a href="#nights">The five nights</a>
+      <a href="#nights">Five nights</a>
+      <a href="#looks">Looks</a>
       <a href="#bank">Idea bank</a>
-      <a href="#after">After</a>
       <a href="#kit">Kit</a>
     </nav>
   </div>
@@ -312,296 +582,420 @@
 
 <!-- ══════════════════════════════════ HERO -->
 <div class="hero">
-  <div class="wrap">
-    <div class="hero-label">FOTA Digital Media · Abuja · Content Ideas</div>
-    <h1>G2G 2026<br><span>The Glory of the</span><br>Latter House</h1>
-    <p class="verse">“The glory of this latter house shall be greater than of the former.”
-      <b>Haggai 2:9</b></p>
-    <div class="facts">
-      <div class="fact count"><small>Until Wednesday</small><strong id="days">—</strong></div>
-      <div class="fact"><small>Dates</small><strong>Wed 21 – Sun 25 October</strong></div>
-      <div class="fact"><small>Venue</small><strong>Truth Arena, Airport Road</strong></div>
-      <div class="fact"><small>Hub</small><strong><a href="http://fotag2g.gt.tc/" target="_blank" rel="noopener">fotag2g.gt.tc</a></strong></div>
+  <div class="hero-bg"></div>
+  <div class="rays"></div>
+  <canvas id="motes"></canvas>
+
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-brand">
+        <img class="shield" src="g2g/shield.webp" alt="G2G Conference">
+        <div class="kicker">FOTA Digital Media<br><span style="color:var(--muted)">Content playbook · Abuja</span></div>
+      </div>
+      <h1><span class="gold the">The Glory of the</span><span class="gold">Latter House</span><small>G2G 2026 · 21–25 October · Truth Arena</small></h1>
+      <p class="verse">“The glory of this latter house shall be greater than of the former.”<cite>Haggai 2 : 9</cite></p>
+
+      <div class="count" id="count" aria-live="polite">
+        <div class="tile days"><b id="cd-d">--</b><span>Days</span></div>
+        <div class="tile"><b id="cd-h">--</b><span>Hours</span></div>
+        <div class="tile"><b id="cd-m">--</b><span>Mins</span></div>
+        <div class="tile"><b id="cd-s">--</b><span>Secs</span></div>
+      </div>
+      <p class="count-note" id="count-note">until the doors open on Wednesday, 6:00 PM (Abuja time)</p>
     </div>
+
+    <div class="hero-art rv">
+      <div class="arch"><img src="g2g/trio.webp" alt="Pastor Funke Kasali, Rev. Yomi Kasali and Dr King Omudu"></div>
+      <div class="arch-tag">Five nights · one house</div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="ticker"></div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════ BIG IDEAS -->
 <section id="big">
+  <div class="num-bg">6</div>
   <div class="wrap">
-    <div class="sec-label">Start here</div>
-    <h2 class="sec-title">Six ideas that carry the whole campaign</h2>
-    <p class="sec-lede">These six ideas run the whole way from now to the Sunday after, so every post
-      belongs to something bigger. Pick three if the team is small. The idea bank below
-      has one-off posts to fill the gaps.</p>
+    <div class="houses rv" aria-hidden="true">
+      <figure>
+        <svg viewBox="0 0 120 110"><path d="M10 105V52L60 12l50 40v53z" fill="none" stroke="#6E5E52" stroke-width="2.5" stroke-dasharray="6 5"/><rect x="48" y="70" width="24" height="35" fill="none" stroke="#6E5E52" stroke-width="2.5"/></svg>
+        <figcaption>The former</figcaption>
+      </figure>
+      <div class="arrow">→</div>
+      <figure class="latter">
+        <svg viewBox="0 0 160 150" class="glowhouse"><path d="M8 146V70L80 10l72 60v76z" fill="url(#houseGold)"/><path d="M66 146v-44a14 14 0 0 1 28 0v44z" fill="#2A1606"/><circle cx="80" cy="58" r="10" fill="#2A1606"/><path d="M80 0v-0" stroke="#FFF1C1"/></svg>
+        <figcaption>The latter · greater</figcaption>
+      </figure>
+    </div>
+
+    <div class="sec-head rv">
+      <span class="kicker">Start here</span>
+      <h2>Six ideas that carry the <span class="gold">whole campaign</span></h2>
+      <p>Each of these runs from now until the Sunday after, so every post is part of a bigger story. If the team is small, pick three. The idea bank further down has one-off posts to fill the gaps.</p>
+    </div>
 
     <div class="big-grid">
 
-      <article class="big">
-        <span class="no">01</span>
+      <article class="big rv">
+        <div class="big-top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21V11l5-4 5 4v10M11 21V9l5-4 5 4v12"/></svg></div><span class="n">01</span></div>
         <h3>Former House / Latter House</h3>
-        <p>The theme is a comparison, so the content can be one too. Every post puts a <b>before</b> next to an <b>after</b>.</p>
+        <p>The theme compares two houses, so the content can too. Every post shows a <b>before</b> next to an <b>after</b>.</p>
         <ul>
-          <li>Split-screen reels: the old FOTA Abuja building or first service next to Truth Arena today</li>
-          <li>Members hold up a photo of themselves from their first year at FOTA</li>
+          <li>Split-screen reels: an old FOTA Abuja photo next to Truth Arena today</li>
+          <li>Members hold up a photo from their first year at FOTA</li>
           <li>Hook: <em>“The latter house shall be greater. Here’s the former.”</em></li>
           <li>Ask long-standing members and leadership for archive photos this week</li>
         </ul>
       </article>
 
-      <article class="big">
-        <span class="no">02</span>
-        <h3>“My Greater” testimony series</h3>
+      <article class="big rv">
+        <div class="big-top"><div class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div><span class="n">02</span></div>
+        <h3>“My Greater” testimonies</h3>
         <p>One member a day, 30–45 seconds, answering one question: <em>“Where has God made your latter greater than your former?”</em></p>
         <ul>
-          <li>Shoot five or six on one Sunday after service, then release one a day</li>
-          <li>Each one also becomes a quote card (two posts from one interview)</li>
-          <li>Tag them so their network sees an invite from someone they know</li>
-          <li>Play a compilation on the screens on Sunday 25th</li>
+          <li>Film five or six on one Sunday after service, then release one a day</li>
+          <li>Each one also becomes a quote card, so one interview gives two posts</li>
+          <li>Tag each person so their followers see the invite from someone they know</li>
+          <li>Play them all together on the screens on Sunday 25th</li>
         </ul>
       </article>
 
-      <article class="big">
-        <span class="no">03</span>
+      <article class="big rv">
+        <div class="big-top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></div><span class="n">03</span></div>
         <h3>Pure Praise: “Who’s still awake?”</h3>
-        <p>Friday is an all-night starting at 9 PM, so the big story is staying up together. Build the online audience for it.</p>
+        <p>Friday is an all-night that starts at 9 PM. The story to tell is everyone staying up together, online as well as in the room.</p>
         <ul>
-          <li>Hourly Stories from 9 PM to dawn, each stamped with the time: “11:47 PM · still going”</li>
-          <li>Pin a comment: <em>“Drop your city — who’s worshipping with us at 3 AM?”</em></li>
-          <li>End on a sunrise shot over Airport Road</li>
-          <li>Tease it all week: <em>“Bring a jacket. Bring your voice. We’re not going home.”</em></li>
+          <li>Hourly Stories stamped with the time: “11:47 PM · still going”</li>
+          <li>Pin: <em>“Drop your city. Who’s worshipping with us at 3 AM?”</em></li>
+          <li>Finish on a sunrise shot over Airport Road</li>
+          <li>All week: <em>“Bring a jacket. Bring your voice. We’re not going home.”</em></li>
         </ul>
       </article>
 
-      <article class="big">
-        <span class="no">04</span>
+      <article class="big rv">
+        <div class="big-top"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M15 14.5a5 5 0 0 1 6.5 5.5"/></svg></div><span class="n">04</span></div>
         <h3>Meet the voices</h3>
-        <p>Nine ministers is nine chances to reach someone else’s audience. Give each one a card and a short clip.</p>
+        <p>Nine ministers means nine chances to reach someone else’s audience. Give each of them a card and a short clip.</p>
         <ul>
-          <li>Graphic templates: one for the speakers, one for the six ministering in songs</li>
+          <li>Two templates: one for the speakers, one for the six ministering in songs</li>
           <li>Ask each minister for a 10-second selfie invite: “I’ll be at G2G…”</li>
-          <li>Tag them and ask them to share it. Their followers become your audience</li>
-          <li>“Guess the song from the first three notes” game for the music ministers</li>
+          <li>Post it as a Collab so it shows on their profile as well as ours</li>
+          <li>“Guess the song in three notes” game for the music ministers</li>
         </ul>
       </article>
 
-      <article class="big">
-        <span class="no">05</span>
+      <article class="big rv">
+        <div class="big-top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 7 3.5C19 16.5 12 21 12 21z"/></svg></div><span class="n">05</span></div>
         <h3>Prayer wall → prayer week</h3>
-        <p>The G2G site already has a prayer wall. Make it a public reason to engage before anyone has decided to attend.</p>
+        <p>The G2G site already has a prayer wall. Use it to get people involved before they’ve decided to come.</p>
         <ul>
-          <li>“What are you trusting God for in this season?” with a link to the wall</li>
-          <li>Film the intercessors praying over the printed requests (no names showing)</li>
+          <li>Ask “What are you trusting God for in this season?” with a link to the wall</li>
+          <li>Film intercessors praying over the printed requests, with no names visible</li>
           <li>Post the running count: <em>“400 requests. Every one prayed over.”</em></li>
-          <li>Answered prayers become testimonies for next year’s G2G</li>
+          <li>Answered prayers become testimonies for G2G 2027</li>
         </ul>
       </article>
 
-      <article class="big">
-        <span class="no">06</span>
+      <article class="big rv">
+        <div class="big-top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></svg></div><span class="n">06</span></div>
         <h3>From class to commission</h3>
-        <p>Saturday’s Berean Bible College graduation is full of personal stories. Graduands’ families will share it more than anything else all week.</p>
+        <p>Saturday’s Berean Bible College graduation is full of personal stories. The graduands’ families will share these posts more than any others all week.</p>
         <ul>
-          <li>Graduand spotlights: name, what they studied, one line on why</li>
-          <li>“The oldest and youngest in the class” two-shot</li>
-          <li>Printed frame / photo corner at the venue, with the #G2G2026 tag in view</li>
-          <li>Send each graduand their photos quickly. They’ll post them the same night</li>
+          <li>Graduand spotlights: name, what they studied, and one line on why</li>
+          <li>A photo of the oldest and youngest graduands together</li>
+          <li>A printed frame for photos at the venue, with #G2G2026 on it</li>
+          <li>Send graduands their photos quickly. They’ll post them that night</li>
         </ul>
       </article>
 
     </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ VOICES -->
+<section id="voices" class="voices">
+  <div class="wrap">
+    <div class="sec-head rv" style="margin-inline:auto;text-align:center">
+      <span class="kicker">The line-up</span>
+      <h2>Nine voices, nine <span class="gold">audiences</span></h2>
+      <p>Tag every one of them in every post that features them. Each tag puts the post in front of people who don’t follow FOTA yet.</p>
+    </div>
+
+    <div class="speakers">
+      <div class="sp rv"><div class="ph"><img src="g2g/yomi.webp" alt="" loading="lazy"></div><h3>Rev. Yomi Kasali</h3><small>Senior Pastor · FOTA Worldwide</small></div>
+      <div class="sp rv"><div class="ph"><img src="g2g/funke.webp" alt="" loading="lazy"></div><h3>Pastor Funke Kasali</h3><small>Lead Pastor · FOTA Abuja</small></div>
+      <div class="sp rv"><div class="ph"><img src="g2g/omudu.webp" alt="" loading="lazy"></div><h3>Dr King Omudu</h3><small>Guest · Shelter of Glory</small></div>
+    </div>
+
+    <div class="singers-head divider rv">✦ Ministering in songs · Friday all night ✦</div>
+    <div class="singers">
+      <div class="sg rv"><div class="ph"><img src="g2g/chris.webp" alt="" loading="lazy"></div><b>Chris Morgan</b><small>Ministering</small></div>
+      <div class="sg rv"><div class="ph"><img src="g2g/prospa.webp" alt="" loading="lazy"></div><b>Prospa Ochimana</b><small>Ministering</small></div>
+      <div class="sg rv"><div class="ph"><img src="g2g/deborah.webp" alt="" loading="lazy"></div><b>Deborah Billyben</b><small>Ministering</small></div>
+      <div class="sg rv"><div class="ph"><img src="g2g/joshua.webp" alt="" loading="lazy"></div><b>Joshua Omale</b><small>Ministering</small></div>
+      <div class="sg rv"><div class="ph"><img src="g2g/hod.webp" alt="" loading="lazy"></div><b>HOD</b><small>Ministering</small></div>
+      <div class="sg rv"><div class="ph"><img src="g2g/victor.webp" alt="" loading="lazy"></div><b>Victor Ochani</b><small>Ministering</small></div>
+    </div>
+
+    <p class="voices-note rv">💡 These photos are cropped from the flyer. Ask each minister’s team for a proper headshot and a 10-second selfie invite <b>this week</b>. Both take time to come back.</p>
   </div>
 </section>
 
 <!-- ══════════════════════════════════ RUNWAY -->
 <section id="runway">
+  <div class="num-bg">24</div>
   <div class="wrap">
-    <div class="sec-label">The runway</div>
-    <h2 class="sec-title">From now to Wednesday night</h2>
-    <p class="sec-lede">The posting runway, in three phases. This page highlights the phase you’re in today.</p>
+    <div class="sec-head rv">
+      <span class="kicker">The runway</span>
+      <h2>From now to <span class="gold">Wednesday night</span></h2>
+      <p>Three phases before the doors open. The gold line shows how far along we are, and the glowing dot marks the phase we’re in today.</p>
+    </div>
 
-    <div class="runway">
+    <div class="runway" id="runwayList">
+      <div class="rail"><i id="railFill"></i></div>
 
-      <div class="phase" data-from="2026-09-26" data-to="2026-10-06">
-        <div class="phase-when">Awareness<small>25 → 15 days out</small></div>
-        <div>
-          <h3>Plant the date and the theme</h3>
-          <ul>
-            <li>Flyer reveal as a three-slide carousel: theme → dates → the nine ministers</li>
-            <li>Pastor Funke 30-second announcement to camera: <em>what G2G is and who it’s for</em></li>
-            <li>Launch the “Former House / Latter House” series with one archive split-screen</li>
-            <li>Change WhatsApp profile pictures and banners across church groups to the G2G artwork</li>
-            <li>Record the “My Greater” testimonies now, so the whole series is ready</li>
-            <li>Ask every minister for a selfie invite clip (it takes about a week to come back)</li>
-          </ul>
+      <div class="phase rv" data-from="2026-09-26" data-to="2026-10-06">
+        <span class="node"></span>
+        <div class="phase-card">
+          <div class="phase-when">Awareness<small>25 → 15 days out</small></div>
+          <div>
+            <h3>Plant the date and the theme</h3>
+            <ul>
+              <li>Reveal the flyer as a carousel: theme, then dates, then the nine ministers</li>
+              <li>Pastor Funke, 30 seconds to camera: <em>what G2G is and who it’s for</em></li>
+              <li>Start the Former / Latter series with one archive split-screen</li>
+              <li>Switch church WhatsApp group photos and banners to the G2G artwork</li>
+              <li>Film all the “My Greater” testimonies now</li>
+              <li>Ask every minister for a selfie invite clip</li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div class="phase" data-from="2026-10-07" data-to="2026-10-14">
-        <div class="phase-when">Build<small>14 → 7 days out</small></div>
-        <div>
-          <h3>Put faces on it</h3>
-          <ul>
-            <li>Speaker and minister cards, one a day. Tag every one</li>
-            <li>“My Greater” testimonies begin, one a day through to the event</li>
-            <li>Prayer wall push: link in bio, Story sticker, WhatsApp status</li>
-            <li>Street vox pops in Abuja: <em>“What does ‘greater glory’ mean to you?”</em></li>
-            <li>“How to get there” reel: from town, and from the airport side</li>
-            <li>Sunday announcement clip plus a registration link post the same afternoon</li>
-          </ul>
+      <div class="phase rv" data-from="2026-10-07" data-to="2026-10-14">
+        <span class="node"></span>
+        <div class="phase-card">
+          <div class="phase-when">Build<small>14 → 7 days out</small></div>
+          <div>
+            <h3>Put faces on it</h3>
+            <ul>
+              <li>One speaker or minister card a day, each one tagged</li>
+              <li>“My Greater” testimonies begin, one a day</li>
+              <li>Push the prayer wall: link in bio, Story sticker, WhatsApp status</li>
+              <li>Street vox pops: <em>“What does ‘greater glory’ mean to you?”</em></li>
+              <li>A “How to get to Truth Arena” reel, from town and from the airport side</li>
+              <li>After Sunday’s announcement, post the registration link the same afternoon</li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div class="phase" data-from="2026-10-15" data-to="2026-10-20">
-        <div class="phase-when">Urgency<small>6 → 1 day out</small></div>
-        <div>
-          <h3>Countdown and invite</h3>
-          <ul>
-            <li>Daily countdown graphic. Each day’s number carries one reason to come</li>
-            <li>Minister selfie invites go out, one or two a day</li>
-            <li>“Bring one” WhatsApp status kit: send members a ready image and caption</li>
-            <li>Behind-the-scenes: stage build, lights, sound check, ushers’ briefing</li>
-            <li>Pure Praise teaser: <em>“Friday. 9 PM. All night.”</em></li>
-            <li>Tuesday night: final trailer plus a “Watch live” post for those outside Abuja</li>
-          </ul>
+      <div class="phase rv" data-from="2026-10-15" data-to="2026-10-20">
+        <span class="node"></span>
+        <div class="phase-card">
+          <div class="phase-when">Urgency<small>6 → 1 day out</small></div>
+          <div>
+            <h3>Countdown and invite</h3>
+            <ul>
+              <li>Daily countdown graphic, each day with one reason to come</li>
+              <li>Minister selfie invites, one or two a day</li>
+              <li>“Bring one” WhatsApp status kit for every group admin</li>
+              <li>Behind the scenes: stage build, lights, sound check, usher briefing</li>
+              <li>Pure Praise teaser: <em>“Friday. 9 PM. All night.”</em></li>
+              <li>Tuesday night: final trailer plus a “Watch live” post</li>
+            </ul>
+          </div>
         </div>
       </div>
 
+      <div class="phase rv" data-from="2026-10-21" data-to="2026-10-25">
+        <span class="node"></span>
+        <div class="phase-card">
+          <div class="phase-when">The week<small>21 → 25 October</small></div>
+          <div>
+            <h3>Five nights, live</h3>
+            <ul>
+              <li>Post one clip from each night before people have left the car park</li>
+              <li>Post a 60-second recap of each night the next morning</li>
+              <li>Night-by-night plan below ↓</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════ NIGHTS -->
-<section id="nights">
+<section id="nights" style="background:linear-gradient(180deg,var(--ink),var(--char) 50%,var(--ink))">
   <div class="wrap">
-    <div class="sec-label">Event week</div>
-    <h2 class="sec-title">The five nights</h2>
-    <p class="sec-lede">What to capture and what to post each night. Rule of the week: <b>one clip goes out
-      before people have left the car park</b>, and the full recap goes out the next morning.</p>
+    <div class="sec-head rv">
+      <span class="kicker">Event week</span>
+      <h2>The <span class="gold">five nights</span></h2>
+      <p>What to film and what to post each night. The rule all week: <b style="color:var(--cream)">one clip goes out before people have left the car park</b>, and the full recap goes out the next morning.</p>
+    </div>
 
     <div class="nights">
 
-      <article class="night" style="--c:var(--wed)">
-        <div class="night-day">WED 21</div>
-        <div class="night-when">6:00 PM · Conference Opening</div>
+      <article class="night rv" style="--c:var(--wed)">
+        <div class="night-day">21</div><div class="night-dow">Wednesday</div>
+        <span class="night-when">6:00 PM · Opening</span>
         <div class="night-what">First night of the Word</div>
         <div class="night-who">Rev. Yomi Kasali · Pastor Funke Kasali</div>
         <h4>Capture</h4>
-        <ul>
-          <li>The doors opening and the first people walking in</li>
-          <li>The room from the back as the first worship song starts</li>
-          <li>The sermon line that makes the room react</li>
-        </ul>
+        <ul><li>The doors opening and the first people walking in</li><li>The room from the back as the first song starts</li><li>The sermon line the room reacts to</li></ul>
         <h4>Post</h4>
-        <ul>
-          <li>Same night: 30-second sermon hook</li>
-          <li>Next morning: “Night 1 in 60 seconds”</li>
-        </ul>
+        <ul><li>That night: 30-second sermon hook</li><li>Next morning: “Night 1 in 60 seconds”</li></ul>
       </article>
 
-      <article class="night" style="--c:var(--thu)">
-        <div class="night-day">THU 22</div>
-        <div class="night-when">6:00 PM · Night of the Word</div>
+      <article class="night rv" style="--c:var(--thu)">
+        <div class="night-day">22</div><div class="night-dow">Thursday</div>
+        <span class="night-when">6:00 PM · The Word</span>
         <div class="night-what">Guest night</div>
         <div class="night-who">Dr King Omudu · Shelter of Glory, Makurdi</div>
         <h4>Capture</h4>
-        <ul>
-          <li>The guest’s arrival and welcome (with permission)</li>
-          <li>Sermon key points, for a carousel</li>
-          <li>Altar call. Wide shots only, no faces</li>
-        </ul>
+        <ul><li>The guest arriving and being welcomed (ask first)</li><li>The sermon’s main points, for a carousel</li><li>The altar call, wide shots only</li></ul>
         <h4>Post</h4>
-        <ul>
-          <li>Same night: best line as a text-on-black reel</li>
-          <li>Tag Shelter of Glory and ask them to share</li>
-        </ul>
+        <ul><li>That night: the best line as white text on black</li><li>Tag Shelter of Glory</li></ul>
       </article>
 
-      <article class="night" style="--c:var(--fri)">
-        <div class="night-day">FRI 23</div>
-        <div class="night-when">9:00 PM · All night</div>
+      <article class="night fri rv" style="--c:var(--fri)">
+        <div class="night-day">23</div><div class="night-dow">Friday</div>
+        <span class="night-when" style="background:rgba(255,255,255,.12);color:#FFE3C4">9:00 PM · All night</span>
         <div class="night-what">Pure Praise Concert</div>
         <div class="night-who">Chris Morgan · Prospa Ochimana · Deborah Billyben · Joshua Omale · HOD · Victor Ochani</div>
-        <h4>Capture</h4>
-        <ul>
-          <li>Slow-motion hands raised (120 fps)</li>
-          <li>Each minister’s peak moment, 15 seconds each</li>
-          <li>Clock shots: midnight, 3 AM, sunrise</li>
-        </ul>
-        <h4>Post</h4>
-        <ul>
-          <li>Hourly Stories through the night</li>
-          <li>Next day: one clip per minister, each one tagged</li>
-        </ul>
+        <h4 style="color:#FFD39A">Capture</h4>
+        <ul><li>Slow-motion hands raised, filmed at 120 fps</li><li>15 seconds of each minister at their peak</li><li>Shots of a clock at midnight, 3 AM and sunrise</li></ul>
+        <h4 style="color:#FFD39A">Post</h4>
+        <ul><li>Stories every hour through the night</li><li>Next day: one clip per minister, each tagged</li></ul>
+        <div class="clock"><span>9P</span><span>12A</span><span>3A</span><span>6A ☀</span></div>
+        <div class="sunrise"></div>
       </article>
 
-      <article class="night" style="--c:var(--sat)">
-        <div class="night-day">SAT 24</div>
-        <div class="night-when">4:00 PM prompt · Graduation</div>
-        <div class="night-what">Berean Bible College</div>
+      <article class="night rv" style="--c:var(--sat)">
+        <div class="night-day">24</div><div class="night-dow">Saturday</div>
+        <span class="night-when">4:00 PM prompt</span>
+        <div class="night-what">Berean Bible College graduation</div>
         <div class="night-who">The Abuja graduating class</div>
         <h4>Capture</h4>
-        <ul>
-          <li>The procession, from the front and at eye level</li>
-          <li>A portrait of every graduand at the frame</li>
-          <li>Families cheering when their graduand’s name is called</li>
-        </ul>
+        <ul><li>The procession, filmed from the front at eye level</li><li>A portrait of every graduand at the photo frame</li><li>Families cheering when their graduand’s name is called</li></ul>
         <h4>Post</h4>
-        <ul>
-          <li>Same night: procession reel</li>
-          <li>Photos shared with graduands by Sunday</li>
-        </ul>
+        <ul><li>That night: a reel of the procession</li><li>Photos to graduands by Sunday</li></ul>
       </article>
 
-      <article class="night" style="--c:var(--sun)">
-        <div class="night-day">SUN 25</div>
-        <div class="night-when">9:30 AM · Thanksgiving</div>
+      <article class="night rv" style="--c:var(--sun)">
+        <div class="night-day">25</div><div class="night-dow">Sunday</div>
+        <span class="night-when">9:30 AM · Thanksgiving</span>
         <div class="night-what">Thanksgiving Celebration</div>
         <div class="night-who">Rev. Yomi Kasali · Pastor Funke Kasali</div>
         <h4>Capture</h4>
-        <ul>
-          <li>The thanksgiving dance, filmed wide from the balcony or a high angle</li>
-          <li>Families together, for “our G2G” photos</li>
-          <li>The closing charge, word for word</li>
-        </ul>
+        <ul><li>The thanksgiving dance, filmed from the highest point in the room</li><li>Photos of whole families together</li><li>The closing charge, recorded word for word</li></ul>
         <h4>Post</h4>
-        <ul>
-          <li>Afternoon: dance reel with the congregation’s audio</li>
-          <li>Evening: “That was G2G 2026” thank-you post</li>
-        </ul>
+        <ul><li>Afternoon: dance reel</li><li>Evening: “That was G2G 2026”</li></ul>
       </article>
 
     </div>
 
-    <div class="callout">🎥 <div><b>Staffing tip:</b> on Friday, give each camera person a shift
-      (9 PM–1 AM, 1 AM–sunrise). Someone who is still fresh at 3 AM gets the shots that matter most.</div></div>
+    <div class="tipbar rv">🎥 <div><b>Friday staffing:</b> split the camera crew into two shifts, 9 PM–1 AM and 1 AM–sunrise. Whoever is still fresh at 3 AM gets the shots that matter most.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ LOOKS -->
+<section id="looks">
+  <div class="wrap">
+    <div class="sec-head rv" style="margin-inline:auto;text-align:center">
+      <span class="kicker">Design direction</span>
+      <h2>Copy <span class="gold">these looks</span></h2>
+      <p>Four sample designs in the flyer’s style. Build them in Canva using the colours and fonts below, so every post on every platform looks like it comes from the same campaign.</p>
+    </div>
+
+    <div class="templates">
+      <figure class="tpl rv">
+        <div class="phone"><div class="screen t-count">
+          <div class="big7 gold">7</div>
+          <div class="lbl">Days to G2G</div>
+          <div class="why">Reason #7: it’s free.</div>
+          <div class="bar"><i style="background:var(--red)">21–25 Oct</i><i style="background:var(--green)">Truth Arena</i></div>
+        </div></div>
+        <figcaption><b>Countdown Story</b><small>9:16 · daily, last 7 days</small></figcaption>
+      </figure>
+
+      <figure class="tpl rv">
+        <div class="phone"><div class="screen t-min">
+          <div class="p"><img src="g2g/prospa.webp" alt="" loading="lazy"></div>
+          <div class="nm gold">Prospa Ochimana</div>
+          <div class="rl">Ministering</div>
+          <div class="dt">Fri 23 · 9 PM · All night</div>
+        </div></div>
+        <figcaption><b>Minister card</b><small>4:5 · feed · tag them</small></figcaption>
+      </figure>
+
+      <figure class="tpl rv">
+        <div class="phone"><div class="screen t-verse">
+          <p>The glory of this <span>latter house</span> shall be greater than of the former.</p>
+          <small>HAGGAI 2:9 · G2G 2026</small>
+        </div></div>
+        <figcaption><b>Verse card</b><small>1:1 · saves &amp; shares</small></figcaption>
+      </figure>
+
+      <figure class="tpl rv">
+        <div class="phone"><div class="screen t-night">
+          <span class="lv">LIVE</span>
+          <div class="tm">3:00<small>AM · Truth Arena</small></div>
+          <div class="st">Still here.<em>Pure Praise · #G2G2026</em></div>
+        </div></div>
+        <figcaption><b>3 AM Story</b><small>9:16 · Friday, hourly</small></figcaption>
+      </figure>
+    </div>
+
+    <div class="swatches rv" id="swatches">
+      <button class="sw" type="button" data-hex="#0E0A09"><i style="background:#0E0A09"></i><span>Ink #0E0A09</span></button>
+      <button class="sw" type="button" data-hex="#2A1F1B"><i style="background:#2A1F1B"></i><span>Flyer brown #2A1F1B</span></button>
+      <button class="sw" type="button" data-hex="#F6C453"><i style="background:linear-gradient(180deg,#FFF1C1,#F6C453,#C47F1C)"></i><span>Gold #F6C453</span></button>
+      <button class="sw" type="button" data-hex="#FF7A2F"><i style="background:#FF7A2F"></i><span>Flame #FF7A2F</span></button>
+      <button class="sw" type="button" data-hex="#C8232C"><i style="background:#C8232C"></i><span>Flyer red #C8232C</span></button>
+      <button class="sw" type="button" data-hex="#1F8A55"><i style="background:#1F8A55"></i><span>Flyer green #1F8A55</span></button>
+      <button class="sw" type="button" data-hex="#F3E9DA"><i style="background:#F3E9DA"></i><span>Cream #F3E9DA</span></button>
+    </div>
+    <p class="fonts-note">Tap a colour to copy its code. Fonts: <b>Playfair Display Italic</b> for headlines · <b>Bebas Neue</b> for numbers · <b>Barlow</b> for body text. All three are free in Canva.</p>
   </div>
 </section>
 
 <!-- ══════════════════════════════════ IDEA BANK -->
-<section id="bank">
+<section id="bank" style="background:linear-gradient(180deg,var(--ink),var(--char) 20%,var(--char) 80%,var(--ink))">
+  <div class="num-bg">30</div>
   <div class="wrap">
-    <div class="sec-label">Idea bank</div>
-    <h2 class="sec-title">Grab one. Post it today.</h2>
-    <p class="sec-lede">Filter by format or by when to post it. Tick an idea once it’s gone out. The ticks are saved in this browser only.</p>
-
-    <div class="bank-tools">
-      <input class="search" id="q" type="search" placeholder="Search ideas…" aria-label="Search ideas">
-      <button class="chip" id="surprise" type="button">✨ Surprise me</button>
+    <div class="sec-head rv">
+      <span class="kicker">Idea bank</span>
+      <h2>Grab one. <span class="gold">Post it today.</span></h2>
+      <p>Filter by format or by when to post. Tick an idea once it has gone out. The ticks are saved only in the browser you ticked them in.</p>
     </div>
-    <div class="bank-tools" id="chips" role="group" aria-label="Filter">
+
+    <div class="bank-bar">
+      <div class="ring" title="Ideas posted">
+        <svg viewBox="0 0 74 74" width="74" height="74"><circle class="bg" cx="37" cy="37" r="31"/><circle class="fg" id="ringFg" cx="37" cy="37" r="31"/></svg>
+        <b id="ringTxt">0<small>POSTED</small></b>
+      </div>
+      <input class="search" id="q" type="search" placeholder="Search ideas: “sunrise”, “graduand”, “WhatsApp”…" aria-label="Search ideas">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter">
       <button class="chip on" data-f="all" type="button">All</button>
-      <button class="chip" data-f="reel" type="button">Reels / TikTok</button>
-      <button class="chip" data-f="carousel" type="button">Carousels</button>
-      <button class="chip" data-f="story" type="button">Stories</button>
-      <button class="chip" data-f="whatsapp" type="button">WhatsApp</button>
-      <button class="chip" data-f="live" type="button">Live</button>
-      <button class="chip" data-f="ugc" type="button">Community</button>
+      <button class="chip" data-f="reel" type="button">🎬 Reels / TikTok</button>
+      <button class="chip" data-f="carousel" type="button">🖼 Carousels</button>
+      <button class="chip" data-f="story" type="button">📲 Stories</button>
+      <button class="chip" data-f="whatsapp" type="button">💬 WhatsApp</button>
+      <button class="chip" data-f="live" type="button">🔴 Live</button>
+      <button class="chip" data-f="ugc" type="button">🤝 Community</button>
+      <span class="sep"></span>
       <button class="chip" data-f="before" type="button">Before</button>
       <button class="chip" data-f="during" type="button">During</button>
       <button class="chip" data-f="after" type="button">After</button>
+      <span class="sep"></span>
+      <button class="chip sur" id="surprise" type="button">✨ Surprise me</button>
     </div>
-    <div class="bank-meta" id="meta"></div>
 
     <div class="ideas" id="ideas"></div>
     <p class="none" id="none">No ideas match that. Try another word.</p>
@@ -611,85 +1005,82 @@
 <!-- ══════════════════════════════════ AFTER -->
 <section id="after">
   <div class="wrap">
-    <div class="sec-label">The week after</div>
-    <h2 class="sec-title">Don’t stop on Sunday</h2>
-    <p class="sec-lede">Most of G2G’s reach comes after the event. The footage from five nights is enough for a month of posts.</p>
-
-    <div class="runway">
-      <div class="phase" data-from="2026-10-26" data-to="2026-11-01">
-        <div class="phase-when">Recap<small>Mon 26 → Sun 1 Nov</small></div>
-        <div>
-          <h3>Tell the story of the week</h3>
-          <ul>
-            <li>“G2G 2026 in 90 seconds” film: one shot from every night, cut to the Friday worship audio</li>
-            <li>Full sermon replays on YouTube, titled by topic rather than by date</li>
-            <li>Graduation photo album on Facebook, and tag the families</li>
-            <li>“The moment I won’t forget” comments thread, then turn the best replies into cards</li>
-            <li>Thank-you posts for the volunteers: ushers, media, sound, welcome team, by name</li>
-          </ul>
-        </div>
+    <div class="sec-head rv">
+      <span class="kicker">The week after</span>
+      <h2>Don’t stop <span class="gold">on Sunday</span></h2>
+      <p>Most of G2G’s reach comes after the event. Five nights of footage is enough for a month of posts.</p>
+    </div>
+    <div class="after-grid">
+      <div class="after-card rv">
+        <div class="phase-when">Recap<small>Mon 26 Oct → Sun 1 Nov</small></div>
+        <ul>
+          <li>“G2G 2026 in 90 seconds”: one shot from each night, set to Friday’s worship</li>
+          <li>Full sermon replays on YouTube, titled by topic rather than by date</li>
+          <li>Graduation photo album on Facebook, with the families tagged</li>
+          <li>Ask for “the moment I won’t forget” in the comments, then turn the best replies into cards</li>
+          <li>Thank the volunteers by name: ushers, media, sound, welcome team</li>
+        </ul>
       </div>
-      <div class="phase" data-from="2026-11-02" data-to="2026-11-30">
+      <div class="after-card rv">
         <div class="phase-when">Long tail<small>November</small></div>
-        <div>
-          <h3>Keep the theme working</h3>
-          <ul>
-            <li>Weekly “From G2G” sermon clip, with a new hook on each re-post</li>
-            <li>Collect testimonies from the week and post them as “Greater, already”</li>
-            <li>Welcome the first-timers: invite everyone who ticked “first time” to a Sunday</li>
-            <li>Save the best raw footage for next year’s trailer, and label it now while it’s fresh</li>
-          </ul>
-        </div>
+        <ul>
+          <li>A weekly “From G2G” sermon clip, with a new hook each time it’s re-posted</li>
+          <li>Testimonies from the week, posted as “Greater, already”</li>
+          <li>Invite everyone who ticked “first time” on the registration form to a Sunday service</li>
+          <li>Label the best raw footage now for next year’s trailer, while it’s fresh</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════ KIT -->
-<section id="kit">
+<section id="kit" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-label">Kit</div>
-    <h2 class="sec-title">Tags, captions &amp; ground rules</h2>
+    <div class="sec-head rv">
+      <span class="kicker">Kit</span>
+      <h2>Tags, captions &amp; <span class="gold">ground rules</span></h2>
+    </div>
 
     <div class="kit">
-      <div class="kit-box">
+      <div class="kit-box rv">
         <h3>Hashtags</h3>
-        <ul>
-          <li><code>#G2G2026</code>: the main one, on every post</li>
-          <li><code>#GloryOfTheLatterHouse</code>: for theme posts</li>
-          <li><code>#FOTAAbuja</code>: always</li>
-          <li><code>#PurePraise</code>: Friday night only</li>
-        </ul>
-        <p style="margin-top:12px;font-size:13px;color:var(--gray)">Keep to three or four tags. Use the same ones on every platform.</p>
+        <div class="pills">
+          <button class="pill main" type="button" data-copy="#G2G2026">#G2G2026</button>
+          <button class="pill" type="button" data-copy="#GloryOfTheLatterHouse">#GloryOfTheLatterHouse</button>
+          <button class="pill" type="button" data-copy="#FOTAAbuja">#FOTAAbuja</button>
+          <button class="pill" type="button" data-copy="#PurePraise">#PurePraise</button>
+        </div>
+        <p class="kit-note">Tap to copy. <b style="color:var(--cream)">#G2G2026</b> goes on every post. Use three or four tags at most, the same ones on every platform. Save #PurePraise for Friday.</p>
       </div>
 
-      <div class="kit-box">
+      <div class="kit-box rv">
         <h3>Where we are</h3>
-        <ul>
-          <li>Instagram <a href="https://www.instagram.com/fotaabuja/" target="_blank" rel="noopener">@fotaabuja</a></li>
-          <li>TikTok <a href="https://www.tiktok.com/@fotainabuja" target="_blank" rel="noopener">@fotainabuja</a></li>
-          <li>Facebook <a href="https://www.facebook.com/FOTAABUJA/" target="_blank" rel="noopener">FOTAABUJA</a></li>
-          <li><a href="https://www.youtube.com/channel/UCkr_JWY3z53JhufIeh9JOEQ" target="_blank" rel="noopener">YouTube</a>: live every session</li>
-          <li>Hub: <a href="http://fotag2g.gt.tc/" target="_blank" rel="noopener">fotag2g.gt.tc</a> (register · prayer wall · watch live)</li>
+        <ul class="socials">
+          <li><a href="https://www.instagram.com/fotaabuja/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3 0-4.1.1C4.3 2.3 2.3 4.3 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.2 3.6 2.2 5.6 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c3.6-.2 5.6-2.2 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.2-3.6-2.2-5.6-5.8-5.8C15 2 14.7 2 12 2z"/></svg>Instagram<small>@fotaabuja</small></a></li>
+          <li><a href="https://www.tiktok.com/@fotainabuja" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.3v12.9a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.9a6 6 0 1 0 5.2 6V9.4a7.6 7.6 0 0 0 4.5 1.4V7.5a4.3 4.3 0 0 1-3.4-1.7z"/></svg>TikTok<small>@fotainabuja</small></a></li>
+          <li><a href="https://www.facebook.com/FOTAABUJA/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.5 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg>Facebook<small>FOTAABUJA</small></a></li>
+          <li><a href="https://www.youtube.com/channel/UCkr_JWY3z53JhufIeh9JOEQ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg>YouTube<small>live, every session</small></a></li>
+          <li><a href="http://fotag2g.gt.tc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-3a15.7 15.7 0 0 0-1.4-3.9A8 8 0 0 1 18.9 8zM12 4a14 14 0 0 1 1.9 4h-3.8A14 14 0 0 1 12 4zM4.3 14a8.2 8.2 0 0 1 0-4h3.4a16.5 16.5 0 0 0 0 4zm.8 2h3a15.7 15.7 0 0 0 1.4 3.9A8 8 0 0 1 5.1 16zm3-8h-3a8 8 0 0 1 4.4-3.9A15.7 15.7 0 0 0 8.1 8zM12 20a14 14 0 0 1-1.9-4h3.8A14 14 0 0 1 12 20zm2.3-6H9.7a14.7 14.7 0 0 1 0-4h4.6a14.7 14.7 0 0 1 0 4zm.2 5.9a15.7 15.7 0 0 0 1.4-3.9h3a8 8 0 0 1-4.4 3.9zm1.8-5.9a16.5 16.5 0 0 0 0-4h3.4a8.2 8.2 0 0 1 0 4z"/></svg>G2G hub<small>fotag2g.gt.tc</small></a></li>
         </ul>
       </div>
 
-      <div class="kit-box">
-        <h3>Ready captions <span style="font-weight:600;color:var(--gray);font-size:12px">(tap to copy)</span></h3>
-        <button class="copy" type="button">The glory of this latter house shall be greater than of the former. G2G 2026 · 21–25 October · Truth Arena, Abuja. Free and open to all. #G2G2026<small>Tap to copy</small></button>
-        <button class="copy" type="button">Friday 23 October. 9 PM. All night. Pure Praise at Truth Arena. Come ready to stay. #PurePraise #G2G2026<small>Tap to copy</small></button>
-        <button class="copy" type="button">Can’t be in Abuja? Every session of G2G 2026 streams live. fotag2g.gt.tc #G2G2026<small>Tap to copy</small></button>
-        <button class="copy" type="button">I’m going to G2G 2026, and I’m bringing someone. Who are you bringing? #G2G2026 #FOTAAbuja<small>Tap to copy</small></button>
+      <div class="kit-box rv">
+        <h3>Ready captions</h3>
+        <button class="cap" type="button">The glory of this latter house shall be greater than of the former. G2G 2026 · 21–25 October · Truth Arena, Abuja. Free and open to all. #G2G2026<small>Tap to copy</small></button>
+        <button class="cap" type="button">Friday 23 October. 9 PM. All night. Pure Praise at Truth Arena. Come ready to stay. #PurePraise #G2G2026<small>Tap to copy</small></button>
+        <button class="cap" type="button">Can’t be in Abuja? Every session of G2G 2026 streams live. fotag2g.gt.tc #G2G2026<small>Tap to copy</small></button>
+        <button class="cap" type="button">I’m going to G2G 2026, and I’m bringing someone. Who are you bringing? #G2G2026 #FOTAAbuja<small>Tap to copy</small></button>
       </div>
 
-      <div class="kit-box">
+      <div class="kit-box rv">
         <h3>Ground rules</h3>
-        <ul>
-          <li>Ask before filming anyone at the altar. Use wide shots or backs of heads if unsure</li>
+        <ul class="rules">
+          <li>Ask before filming anyone at the altar. If you can’t ask, use wide shots or the backs of heads</li>
           <li>Minors: no faces without a parent’s OK, and never tag a child</li>
-          <li>Testimonies: get a “yes, you can post this” on camera</li>
+          <li>Testimonies: get a clear “yes, you can post this” on camera</li>
           <li>Ministers’ songs: short clips only, always tagged. Full sets stay on the livestream</li>
-          <li>Prayer requests are private. Show paper and hands, never readable text</li>
+          <li>Prayer requests are private. Show the paper and hands, never readable text</li>
         </ul>
       </div>
     </div>
@@ -697,10 +1088,12 @@
 </section>
 
 <footer>
-  <div class="wrap">
-    FOTA Digital Media · Abuja · 2026 &nbsp;·&nbsp; <a href="index.html">Back to the content schedule</a>
-  </div>
+  <img class="shield" src="g2g/shield.webp" alt="">
+  <p>“…and in this place will I give peace, saith the Lord of hosts.”</p>
+  <small>Haggai 2:9 · FOTA Digital Media · Abuja · <a href="index.html">Back to the content schedule</a></small>
 </footer>
+
+<div class="toast" id="toast">Copied</div>
 
 <script>
 /* ── The idea bank. f = formats, w = when (before / during / after). ── */
@@ -786,6 +1179,19 @@ var IDEAS = [
     d: 'Past G2G flyers or photos, year by year, ending with 2026. It finishes the “former / latter” story from the start of the campaign.' }
 ];
 
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast.h); toast.h = setTimeout(function () { t.classList.remove('show'); }, 1500);
+}
+function copy(text, then) {
+  if (!navigator.clipboard) { return; }
+  navigator.clipboard.writeText(text).then(function () { toast('Copied'); if (then) { then(); } }, function () {});
+}
+
+/* ── Idea bank ── */
 (function () {
   var box = document.getElementById('ideas');
   var KEY = 'g2g26-used';
@@ -794,22 +1200,32 @@ var IDEAS = [
 
   var LABEL = { reel: 'Reel / TikTok', carousel: 'Carousel', story: 'Story', whatsapp: 'WhatsApp',
                 live: 'Live', ugc: 'Community', before: 'Before', during: 'During', after: 'After' };
+  var ICON = { reel: '🎬', carousel: '🖼', story: '📲', whatsapp: '💬', live: '🔴', ugc: '🤝' };
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   box.innerHTML = IDEAS.map(function (it, i) {
-    var tags = it.w.map(function (w) { return '<span class="tag t-when">' + LABEL[w] + '</span>'; })
+    var tags = it.w.map(function (w) { return '<span class="tag w">' + LABEL[w] + '</span>'; })
       .concat(it.f.map(function (f) { return '<span class="tag">' + LABEL[f] + '</span>'; })).join('');
-    return '<article class="idea' + (used[i] ? ' used' : '') + '" data-i="' + i + '" data-k="' +
-      it.f.concat(it.w).join(' ') + '">' +
-      '<div class="idea-top">' + tags + '</div>' +
+    return '<article class="idea' + (used[i] ? ' used' : '') + '" data-i="' + i + '" data-k="' + it.f.concat(it.w).join(' ') + '">' +
+      '<span class="stamp">Posted</span>' +
+      '<div class="idea-top"><span class="fmt">' + ICON[it.f[0]] + '</span>' + tags + '</div>' +
       '<h3>' + esc(it.t) + '</h3>' +
       (it.h ? '<p class="hook">' + esc(it.h) + '</p>' : '') +
       '<p>' + esc(it.d) + '</p>' +
-      '<label><input type="checkbox"' + (used[i] ? ' checked' : '') + '> Posted</label>' +
+      '<label><input type="checkbox"' + (used[i] ? ' checked' : '') + '> Mark as posted</label>' +
       '</article>';
   }).join('');
+
+  var C = 2 * Math.PI * 31;
+  var fg = document.getElementById('ringFg');
+  fg.style.strokeDasharray = C;
+  function ring() {
+    var n = Object.keys(used).length;
+    fg.style.strokeDashoffset = C * (1 - n / IDEAS.length);
+    document.getElementById('ringTxt').innerHTML = n + '/' + IDEAS.length + '<small>POSTED</small>';
+  }
 
   box.addEventListener('change', function (e) {
     var card = e.target.closest('.idea');
@@ -818,15 +1234,13 @@ var IDEAS = [
     if (e.target.checked) { used[i] = 1; } else { delete used[i]; }
     card.classList.toggle('used', e.target.checked);
     try { localStorage.setItem(KEY, JSON.stringify(used)); } catch (err) {}
-    count();
+    ring();
   });
 
   var q = document.getElementById('q');
   var filter = 'all';
-
   function apply() {
-    var term = q.value.toLowerCase().trim();
-    var shown = 0;
+    var term = q.value.toLowerCase().trim(), shown = 0;
     box.querySelectorAll('.idea').forEach(function (card) {
       var ok = (filter === 'all' || (' ' + card.getAttribute('data-k') + ' ').indexOf(' ' + filter + ' ') !== -1) &&
                (!term || card.textContent.toLowerCase().indexOf(term) !== -1);
@@ -834,67 +1248,174 @@ var IDEAS = [
       if (ok) { shown++; }
     });
     document.getElementById('none').classList.toggle('show', shown === 0);
-    count();
   }
-
-  function count() {
-    var n = Object.keys(used).length;
-    document.getElementById('meta').textContent =
-      IDEAS.length + ' ideas · ' + n + ' posted';
-  }
-
   q.addEventListener('input', apply);
+
   document.getElementById('chips').addEventListener('click', function (e) {
     var b = e.target.closest('.chip');
-    if (!b) { return; }
+    if (!b || b.id === 'surprise') { return; }
     filter = b.getAttribute('data-f');
-    document.querySelectorAll('#chips .chip').forEach(function (c) { c.classList.toggle('on', c === b); });
+    document.querySelectorAll('#chips .chip[data-f]').forEach(function (c) { c.classList.toggle('on', c === b); });
     apply();
   });
 
   document.getElementById('surprise').addEventListener('click', function () {
     q.value = ''; filter = 'all';
-    document.querySelectorAll('#chips .chip').forEach(function (c) { c.classList.toggle('on', c.getAttribute('data-f') === 'all'); });
+    document.querySelectorAll('#chips .chip[data-f]').forEach(function (c) { c.classList.toggle('on', c.getAttribute('data-f') === 'all'); });
     apply();
     var pool = [].slice.call(box.querySelectorAll('.idea:not(.used)'));
     if (!pool.length) { pool = [].slice.call(box.querySelectorAll('.idea')); }
     var pick = pool[Math.floor(Math.random() * pool.length)];
-    pick.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    pick.style.background = 'rgba(245,166,35,0.12)';
-    setTimeout(function () { pick.style.background = ''; }, 1800);
+    pick.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    pick.classList.add('flash');
+    setTimeout(function () { pick.classList.remove('flash'); }, 1800);
   });
 
-  apply();
+  ring(); apply();
 })();
 
-/* ── Countdown and "you are here" on the runway, in Abuja time ── */
+/* ── Countdown, in Abuja time ── */
 (function () {
   var start = new Date('2026-10-21T18:00:00+01:00').getTime();
-  var now = Date.now();
-  var el = document.getElementById('days');
-  var d = Math.ceil((start - now) / 86400000);
-  el.textContent = d > 1 ? d + ' days' : d === 1 ? 'Tomorrow' : now < start + 5 * 86400000 ? 'Live now' : 'Done';
+  var end = new Date('2026-10-25T14:00:00+01:00').getTime();
+  var el = { d: 'cd-d', h: 'cd-h', m: 'cd-m', s: 'cd-s' };
+  for (var k in el) { el[k] = document.getElementById(el[k]); }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var now = Date.now(), ms = start - now;
+    if (ms <= 0) {
+      document.getElementById('count').style.display = 'none';
+      document.getElementById('count-note').textContent = now < end ? '● G2G 2026 is happening now.' : 'G2G 2026 has ended. See the week-after plan below.';
+      return;
+    }
+    var s = Math.floor(ms / 1000);
+    el.d.textContent = Math.floor(s / 86400);
+    el.h.textContent = pad(Math.floor(s % 86400 / 3600));
+    el.m.textContent = pad(Math.floor(s % 3600 / 60));
+    el.s.textContent = pad(s % 60);
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
 
-  var today = new Date(now + 3600000).toISOString().slice(0, 10);   // WAT = UTC+1
-  document.querySelectorAll('.phase[data-from]').forEach(function (p) {
-    if (today >= p.getAttribute('data-from') && today <= p.getAttribute('data-to')) {
+/* ── Ticker ── */
+(function () {
+  var items = [
+    ['Wed 21', 'r', 'Conference Opening · 6 PM'],
+    ['Thu 22', 'r', 'Night of the Word · 6 PM'],
+    ['Fri 23', 'g', 'Pure Praise · 9 PM · All night'],
+    ['Sat 24', 'r', 'BBC Graduation · 4 PM prompt'],
+    ['Sun 25', 'g', 'Thanksgiving · 9:30 AM'],
+    ['#G2G2026', 'g', 'Truth Arena · Airport Road · Abuja']
+  ];
+  var one = items.map(function (x) { return '<span class="tk"><i class="' + x[1] + '">' + x[0] + '</i>' + x[2] + '</span>'; }).join('');
+  document.getElementById('ticker').innerHTML = one + one;
+})();
+
+/* ── Runway progress and "you are here", in Abuja time ── */
+(function () {
+  var today = new Date(Date.now() + 3600000).toISOString().slice(0, 10);
+  var phases = document.querySelectorAll('.phase[data-from]');
+  var first = phases[0].getAttribute('data-from'), last = phases[phases.length - 1].getAttribute('data-to');
+  phases.forEach(function (p) {
+    var f = p.getAttribute('data-from'), t = p.getAttribute('data-to');
+    if (today > t) { p.classList.add('past'); }
+    if (today >= f && today <= t) {
       p.classList.add('is-now');
       p.querySelector('h3').insertAdjacentHTML('beforeend', '<span class="now-tag">This week</span>');
     }
   });
+  var d0 = Date.parse(first), d1 = Date.parse(last) + 86400000, dn = Date.parse(today) + 43200000;
+  var pct = Math.max(0.03, Math.min(1, (dn - d0) / (d1 - d0)));
+  var fill = document.getElementById('railFill');
+  var io = new IntersectionObserver(function (es) {
+    if (es[0].isIntersecting) { fill.style.height = (pct * 100) + '%'; io.disconnect(); }
+  }, { threshold: .2 });
+  io.observe(document.getElementById('runwayList'));
 })();
 
-/* ── Tap a caption to copy it ── */
-document.querySelectorAll('.copy').forEach(function (b) {
-  b.addEventListener('click', function () {
-    var text = b.childNodes[0].textContent.trim();
-    var done = function () {
-      b.classList.add('done'); b.querySelector('small').textContent = 'Copied';
-      setTimeout(function () { b.classList.remove('done'); b.querySelector('small').textContent = 'Tap to copy'; }, 1600);
-    };
-    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, function () {}); }
+/* ── Reveal on scroll, spotlight cards, sticky bar, section highlight ── */
+(function () {
+  var els = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function (e) { e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) { return; }
+        var sibs = [].slice.call(e.target.parentNode.children).filter(function (x) { return x.classList.contains('rv'); });
+        e.target.style.transitionDelay = Math.min(sibs.indexOf(e.target), 6) * 70 + 'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  }
+
+  document.querySelectorAll('.big').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
   });
+
+  var bar = document.getElementById('topbar');
+  var links = [].slice.call(document.querySelectorAll('.jump a'));
+  function onScroll() {
+    bar.classList.toggle('solid', window.scrollY > 40);
+    var y = window.scrollY + 140, cur = null;
+    links.forEach(function (a) { var s = document.querySelector(a.getAttribute('href')); if (s && s.offsetTop <= y) { cur = a; } });
+    links.forEach(function (a) { a.classList.toggle('on', a === cur); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+/* ── Copy: captions, hashtags, colours ── */
+document.querySelectorAll('.cap').forEach(function (b) {
+  b.addEventListener('click', function () { copy(b.childNodes[0].textContent.trim()); });
 });
+document.querySelectorAll('.pill').forEach(function (b) {
+  b.addEventListener('click', function () { copy(b.getAttribute('data-copy')); });
+});
+document.querySelectorAll('.sw').forEach(function (b) {
+  b.addEventListener('click', function () { copy(b.getAttribute('data-hex')); });
+});
+
+/* ── Gold dust drifting up through the hero ── */
+(function () {
+  if (reduce) { return; }
+  var cv = document.getElementById('motes'), ctx = cv.getContext('2d');
+  var W, H, dpr = Math.min(window.devicePixelRatio || 1, 2), motes = [];
+  function size() {
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function mk(y) {
+    return { x: Math.random() * W, y: y === undefined ? Math.random() * H : y, r: Math.random() * 1.8 + .4,
+             v: Math.random() * .35 + .12, a: Math.random() * .6 + .2, w: Math.random() * 6.28 };
+  }
+  size();
+  var n = Math.round(Math.min(90, W / 14));
+  for (var i = 0; i < n; i++) { motes.push(mk()); }
+  window.addEventListener('resize', size);
+  var running = true;
+  new IntersectionObserver(function (es) { running = es[0].isIntersecting; if (running) { loop(); } }).observe(cv);
+  function loop() {
+    if (!running) { return; }
+    ctx.clearRect(0, 0, W, H);
+    motes.forEach(function (m, i) {
+      m.y -= m.v; m.w += .01; m.x += Math.sin(m.w) * .25;
+      if (m.y < -5) { motes[i] = mk(H + 5); }
+      ctx.beginPath(); ctx.arc(m.x, m.y, m.r, 0, 6.283);
+      ctx.fillStyle = 'rgba(255,214,130,' + m.a + ')';
+      ctx.shadowColor = 'rgba(255,190,90,.9)'; ctx.shadowBlur = 6;
+      ctx.fill();
+    });
+    requestAnimationFrame(loop);
+  }
+})();
 </script>
 </body>
 </html>
