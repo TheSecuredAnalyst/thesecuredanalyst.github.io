@@ -351,19 +351,19 @@
   .night li { font-size: 14px; padding: 4px 0 4px 14px; position: relative; }
   .night li::before { content: ''; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
 
-  /* Friday: dusk to dawn */
+  /* Friday: 5 PM golden hour, night falling as it goes on */
   .night.fri {
-    background: linear-gradient(180deg, #0B0A1F 0%, #1A1036 30%, #3A1830 58%, #8A3A1E 84%, #E9873A 100%);
+    background: linear-gradient(180deg, #E9873A 0%, #8A3A1E 22%, #3A1830 50%, #1A1036 74%, #0B0A1F 100%);
     border-color: rgba(255,122,47,.5);
   }
-  .night.fri::before { /* stars, fading out towards dawn */
+  .night.fri::before { /* stars, coming out as night falls */
     content: ''; position: absolute; inset: 0; pointer-events: none;
     background-image:
-      radial-gradient(1px 1px at 12% 8%, #fff, transparent), radial-gradient(1px 1px at 72% 5%, #fff, transparent),
-      radial-gradient(1.5px 1.5px at 40% 14%, #fff, transparent), radial-gradient(1px 1px at 88% 20%, #fff, transparent),
-      radial-gradient(1px 1px at 25% 26%, #fff, transparent), radial-gradient(1.5px 1.5px at 60% 30%, #fff, transparent),
-      radial-gradient(1px 1px at 8% 40%, rgba(255,255,255,.7), transparent), radial-gradient(1px 1px at 80% 44%, rgba(255,255,255,.6), transparent);
-    -webkit-mask: linear-gradient(180deg, #000 30%, transparent 60%); mask: linear-gradient(180deg, #000 30%, transparent 60%);
+      radial-gradient(1px 1px at 12% 92%, #fff, transparent), radial-gradient(1px 1px at 72% 95%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 40% 86%, #fff, transparent), radial-gradient(1px 1px at 88% 80%, #fff, transparent),
+      radial-gradient(1px 1px at 25% 74%, #fff, transparent), radial-gradient(1.5px 1.5px at 60% 70%, #fff, transparent),
+      radial-gradient(1px 1px at 8% 62%, rgba(255,255,255,.7), transparent), radial-gradient(1px 1px at 80% 58%, rgba(255,255,255,.6), transparent);
+    -webkit-mask: linear-gradient(0deg, #000 30%, transparent 60%); mask: linear-gradient(0deg, #000 30%, transparent 60%);
     animation: twinkle 4s ease-in-out infinite alternate;
   }
   @keyframes twinkle { to { opacity: .55; } }
@@ -371,7 +371,7 @@
   .night.fri li, .night.fri .night-who { color: #F6E7DA; }
   .night.fri .night-day { color: #FFD39A; text-shadow: 0 0 30px rgba(255,160,80,.6); }
   .clock { display: flex; justify-content: space-between; margin-top: 16px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.2); font-family: var(--cond); font-weight: 800; font-size: 11px; letter-spacing: .1em; color: #FFE3C4; }
-  .sunrise { position: absolute; left: 50%; bottom: -60px; width: 160px; height: 120px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,214,140,.9), rgba(255,140,60,.3) 45%, transparent 70%); pointer-events: none; }
+  .night.fri > .sunset { position: absolute; opacity: .55; left: 50%; top: -70px; width: 160px; height: 120px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,214,140,.9), rgba(255,140,60,.3) 45%, transparent 70%); pointer-events: none; }
 
   .tipbar {
     display: flex; gap: 14px; align-items: center; margin-top: 22px; padding: 16px 20px;
@@ -419,8 +419,8 @@
   .t-verse p span { color: var(--gold-2); }
   .t-verse small { margin-top: 6cqw; font-family: var(--cond); font-weight: 800; font-size: 4.4cqw; letter-spacing: .3em; color: var(--gold); position: relative; }
 
-  /* 4 · 3 AM story (9:16) */
-  .t-night { aspect-ratio: 9/16; background: linear-gradient(180deg, #0B0A1F, #24123A 45%, #7A2E22 80%, #F08A3C); display: flex; flex-direction: column; justify-content: space-between; padding: 10cqw 8cqw; }
+  /* 4 · sunset story (9:16) */
+  .t-night { aspect-ratio: 9/16; background: linear-gradient(180deg, #F08A3C, #7A2E22 30%, #24123A 65%, #0B0A1F); display: flex; flex-direction: column; justify-content: space-between; padding: 10cqw 8cqw; }
   .t-night .tm { font-family: var(--display); font-size: 30cqw; line-height: .85; color: #fff; text-shadow: 0 0 10cqw rgba(255,180,120,.6); }
   .t-night .tm small { display: block; font-size: 9cqw; letter-spacing: .1em; color: #FFD7AE; }
   .t-night .st { font-family: var(--serif); font-style: italic; font-weight: 900; font-size: 12cqw; line-height: 1; color: #fff; }
@@ -664,14 +664,14 @@
       </article>
 
       <article class="big rv">
-        <div class="big-top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></div><span class="n">03</span></div>
-        <h3>Pure Praise: “Who’s still awake?”</h3>
-        <p>Friday is an all-night that starts at 9 PM. The story to tell is everyone staying up together, online as well as in the room.</p>
+        <div class="big-top"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 6V3M5.6 8.6 3.5 6.5M18.4 8.6l2.1-2.1"/></svg></div><span class="n">03</span></div>
+        <h3>Pure Praise: golden hour to night</h3>
+        <p>Friday starts at 5 PM prompt, two hours earlier than the teaching nights and still in daylight. The story to tell is: come early, and stay for every minister.</p>
         <ul>
-          <li>Hourly Stories stamped with the time: “11:47 PM · still going”</li>
-          <li>Pin: <em>“Drop your city. Who’s worshipping with us at 3 AM?”</em></li>
-          <li>Finish on a sunrise shot over Airport Road</li>
-          <li>All week: <em>“Bring a jacket. Bring your voice. We’re not going home.”</em></li>
+          <li>“Prompt means prompt”: Stories of people arriving before 5 PM</li>
+          <li>Film the sunset through the doors as the first minister takes the stage</li>
+          <li>A Story for each minister as they come on, stamped with the time</li>
+          <li>All week: <em>“Friday. 5 PM prompt. Come early, come loud.”</em></li>
         </ul>
       </article>
 
@@ -730,7 +730,7 @@
       <div class="sp rv"><div class="ph"><img src="g2g/omudu.webp" alt="" loading="lazy"></div><h3>Dr King Omudu</h3><small>Guest · Shelter of Glory</small></div>
     </div>
 
-    <div class="singers-head divider rv">✦ Ministering in songs · Friday all night ✦</div>
+    <div class="singers-head divider rv">✦ Ministering in songs · Friday, 5 PM prompt ✦</div>
     <div class="singers">
       <div class="sg rv"><div class="ph"><img src="g2g/chris.webp" alt="" loading="lazy"></div><b>Chris Morgan</b><small>Ministering</small></div>
       <div class="sg rv"><div class="ph"><img src="g2g/prospa.webp" alt="" loading="lazy"></div><b>Prospa Ochimana</b><small>Ministering</small></div>
@@ -804,7 +804,7 @@
               <li>Minister selfie invites, one or two a day</li>
               <li>“Bring one” WhatsApp status kit for every group admin</li>
               <li>Behind the scenes: stage build, lights, sound check, usher briefing</li>
-              <li>Pure Praise teaser: <em>“Friday. 9 PM. All night.”</em></li>
+              <li>Pure Praise teaser: <em>“Friday. 5 PM prompt. Don’t be late.”</em></li>
               <li>Tuesday night: final trailer plus a “Watch live” post</li>
             </ul>
           </div>
@@ -864,15 +864,15 @@
 
       <article class="night fri rv" style="--c:var(--fri)">
         <div class="night-day">23</div><div class="night-dow">Friday</div>
-        <span class="night-when" style="background:rgba(255,255,255,.12);color:#FFE3C4">9:00 PM · All night</span>
+        <span class="night-when" style="background:rgba(0,0,0,.2);color:#FFF1DE">5:00 PM prompt</span>
         <div class="night-what">Pure Praise Concert</div>
         <div class="night-who">Chris Morgan · Prospa Ochimana · Deborah Billyben · Joshua Omale · HOD · Victor Ochani</div>
         <h4 style="color:#FFD39A">Capture</h4>
-        <ul><li>Slow-motion hands raised, filmed at 120 fps</li><li>15 seconds of each minister at their peak</li><li>Shots of a clock at midnight, 3 AM and sunrise</li></ul>
+        <ul><li>The arrival rush, 4:30 to 5 PM</li><li>Slow-motion hands raised, filmed at 120 fps</li><li>15 seconds of each minister at their peak</li><li>The sunset through the doors</li></ul>
         <h4 style="color:#FFD39A">Post</h4>
-        <ul><li>Stories every hour through the night</li><li>Next day: one clip per minister, each tagged</li></ul>
-        <div class="clock"><span>9P</span><span>12A</span><span>3A</span><span>6A ☀</span></div>
-        <div class="sunrise"></div>
+        <ul><li>A Story as each minister comes on</li><li>Next day: one clip per minister, each tagged</li></ul>
+        <div class="clock"><span>5P ☀</span><span>6P</span><span>7P</span><span>8P ☾</span></div>
+        <div class="sunset"></div>
       </article>
 
       <article class="night rv" style="--c:var(--sat)">
@@ -899,7 +899,7 @@
 
     </div>
 
-    <div class="tipbar rv">🎥 <div><b>Friday staffing:</b> split the camera crew into two shifts, 9 PM–1 AM and 1 AM–sunrise. Whoever is still fresh at 3 AM gets the shots that matter most.</div></div>
+    <div class="tipbar rv">🎥 <div><b>Friday starts early:</b> 5 PM prompt, not 6. Crew call at 3:30 PM so cameras are ready for the arrival rush. Remind everyone twice that Friday is earlier.</div></div>
   </div>
 </section>
 
@@ -928,7 +928,7 @@
           <div class="p"><img src="g2g/prospa.webp" alt="" loading="lazy"></div>
           <div class="nm gold">Prospa Ochimana</div>
           <div class="rl">Ministering</div>
-          <div class="dt">Fri 23 · 9 PM · All night</div>
+          <div class="dt">Fri 23 · 5 PM prompt</div>
         </div></div>
         <figcaption><b>Minister card</b><small>4:5 · feed · tag them</small></figcaption>
       </figure>
@@ -944,10 +944,10 @@
       <figure class="tpl rv">
         <div class="phone"><div class="screen t-night">
           <span class="lv">LIVE</span>
-          <div class="tm">3:00<small>AM · Truth Arena</small></div>
-          <div class="st">Still here.<em>Pure Praise · #G2G2026</em></div>
+          <div class="tm">6:30<small>PM · Truth Arena</small></div>
+          <div class="st">Sun’s down. Praise is up.<em>Pure Praise · #G2G2026</em></div>
         </div></div>
-        <figcaption><b>3 AM Story</b><small>9:16 · Friday, hourly</small></figcaption>
+        <figcaption><b>Sunset Story</b><small>9:16 · Friday evening</small></figcaption>
       </figure>
     </div>
 
@@ -979,7 +979,7 @@
         <svg viewBox="0 0 74 74" width="74" height="74"><circle class="bg" cx="37" cy="37" r="31"/><circle class="fg" id="ringFg" cx="37" cy="37" r="31"/></svg>
         <b id="ringTxt">0<small>POSTED</small></b>
       </div>
-      <input class="search" id="q" type="search" placeholder="Search ideas: “sunrise”, “graduand”, “WhatsApp”…" aria-label="Search ideas">
+      <input class="search" id="q" type="search" placeholder="Search ideas: “sunset”, “graduand”, “WhatsApp”…" aria-label="Search ideas">
     </div>
     <div class="chips" id="chips" role="group" aria-label="Filter">
       <button class="chip on" data-f="all" type="button">All</button>
@@ -1068,7 +1068,7 @@
       <div class="kit-box rv">
         <h3>Ready captions</h3>
         <button class="cap" type="button">The glory of this latter house shall be greater than of the former. G2G 2026 · 21–25 October · Truth Arena, Abuja. Free and open to all. #G2G2026<small>Tap to copy</small></button>
-        <button class="cap" type="button">Friday 23 October. 9 PM. All night. Pure Praise at Truth Arena. Come ready to stay. #PurePraise #G2G2026<small>Tap to copy</small></button>
+        <button class="cap" type="button">Friday 23 October. 5 PM prompt. Pure Praise at Truth Arena. Come early, come loud. #PurePraise #G2G2026<small>Tap to copy</small></button>
         <button class="cap" type="button">Can’t be in Abuja? Every session of G2G 2026 streams live. fotag2g.gt.tc #G2G2026<small>Tap to copy</small></button>
         <button class="cap" type="button">I’m going to G2G 2026, and I’m bringing someone. Who are you bringing? #G2G2026 #FOTAAbuja<small>Tap to copy</small></button>
       </div>
@@ -1115,7 +1115,7 @@ var IDEAS = [
     d: 'Play the first seconds of a well-known song from one of the Friday ministers (Ekwueme, Arabaribiti…) on a keyboard. Reveal the answer, then the minister’s card. Use a Story quiz sticker as the second version.' },
   { t: 'Countdown with a reason', f: ['story','carousel'], w: ['before'],
     h: '“7 days. Reason #7: it’s free.”',
-    d: 'The daily number plus one reason to come: it’s free, the guest speaker, the all-night, the graduation, the livestream, first-timers are welcome, the theme. Use the same template every day so it’s recognisable.' },
+    d: 'The daily number plus one reason to come: it’s free, the guest speaker, Pure Praise, the graduation, the livestream, first-timers are welcome, the theme. Use the same template every day so it’s recognisable.' },
   { t: '“How to get to Truth Arena” POV', f: ['reel'], w: ['before'],
     h: '“If you’re coming from town, this is your turn.”',
     d: 'Dashcam-style from a phone on the windscreen, driving from town along Airport Road. Mark the landmarks (Dunamis, Mobil, Aso junction) with text. Then a second, shorter version for people coming from the airport side.' },
@@ -1145,9 +1145,9 @@ var IDEAS = [
     d: 'Every morning, cut the best shots from the night before to the room’s own worship audio. Use the same format and title each day so people know to look for it.' },
   { t: 'Crowd-reaction cut', f: ['reel'], w: ['during'],
     d: 'Skip the pulpit. Make a reel of just the congregation’s reaction to the key sermon line: nodding, hands raised, laughter. To an outsider, a full room reacting is the strongest invite there is.' },
-  { t: 'Clock reel: Pure Praise through the night', f: ['reel','story'], w: ['during'],
-    h: '“9 PM. 12 AM. 3 AM. Still here.”',
-    d: 'Film a phone or wall clock at each hour, then cut to the room at that moment. The last shot is daylight at the door. This will be the reel of the week, so plan the shots.' },
+  { t: 'Golden hour to night: Pure Praise timelapse', f: ['reel','story'], w: ['during'],
+    h: '“5 PM, still daylight. By the last song, night.”',
+    d: 'Fix one phone at the back of the room, pointed at the stage with the doors in shot. Record the whole concert and speed it up, so the light outside goes from gold to dark while the room fills. Plan it, because this could be the reel of the week.' },
   { t: '“Drop your city” for the livestream', f: ['live','ugc'], w: ['during'],
     h: '“Watching from where? Drop your city 👇”',
     d: 'Pin this in the YouTube and Facebook live chat every night. Screenshot the spread of cities for a “worshipping with us from…” graphic the next day.' },
@@ -1303,7 +1303,7 @@ function copy(text, then) {
   var items = [
     ['Wed 21', 'r', 'Conference Opening · 6 PM'],
     ['Thu 22', 'r', 'Night of the Word · 6 PM'],
-    ['Fri 23', 'g', 'Pure Praise · 9 PM · All night'],
+    ['Fri 23', 'g', 'Pure Praise · 5 PM prompt'],
     ['Sat 24', 'r', 'BBC Graduation · 4 PM prompt'],
     ['Sun 25', 'g', 'Thanksgiving · 9:30 AM'],
     ['#G2G2026', 'g', 'Truth Arena · Airport Road · Abuja']
