@@ -1,11 +1,14 @@
 name: Devotion Reminders
 
+# GitHub drops or delays scheduled runs under load, most often at the top of
+# the hour. So each email has a primary time off the hour and a backup 30
+# minutes later; the backup only sends if the primary didn't.
 on:
   schedule:
-    # 07:00 UTC = 8:00am Abuja — morning devotion
-    - cron: '0 7 * * *'
-    # 19:30 UTC = 8:30pm Abuja — evening questions and prayer, before 9pm prayer
-    - cron: '30 19 * * *'
+    - cron: '7 7 * * *'     # 8:07am Abuja — morning (primary)
+    - cron: '37 7 * * *'    # 8:37am Abuja — morning (backup)
+    - cron: '23 19 * * *'   # 8:23pm Abuja — evening (primary)
+    - cron: '43 19 * * *'   # 8:43pm Abuja — evening (backup)
   workflow_dispatch:
     inputs:
       edition:
@@ -18,15 +21,36 @@ on:
         required: false
         default: ''
 
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Devotion {0} (manual)', inputs.edition) || (startsWith(github.event.schedule, '7 7') || startsWith(github.event.schedule, '37 7')) && 'Devotion morning' || 'Devotion evening' }}
+
+permissions:
+  actions: read
+  contents: read
+
 jobs:
   send:
     runs-on: ubuntu-latest
+    env:
+      EDITION: ${{ github.event_name == 'workflow_dispatch' && inputs.edition || (startsWith(github.event.schedule, '7 7') || startsWith(github.event.schedule, '37 7')) && 'morning' || 'evening' }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Send the devotion email
+      - name: Skip if this edition already went out today
+        id: dedupe
+        if: github.event_name == 'schedule'
         env:
-          EDITION: ${{ github.event_name == 'workflow_dispatch' && inputs.edition || (github.event.schedule == '0 7 * * *' && 'morning' || 'evening') }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          today=$(date -u +%F)
+          n=$(gh run list -R "$GITHUB_REPOSITORY" --workflow devotion-reminders.yml --event schedule --status success --limit 30 \
+                --json displayTitle,createdAt \
+                --jq "[.[] | select(.displayTitle == \"Devotion ${EDITION}\" and (.createdAt | startswith(\"${today}\")))] | length")
+          echo "already=$n" >> "$GITHUB_OUTPUT"
+          [ "$n" = "0" ] && echo "Not sent yet today — sending." || echo "The ${EDITION} devotion already went out today — skipping."
+
+      - name: Send the devotion email
+        if: github.event_name != 'schedule' || steps.dedupe.outputs.already == '0'
+        env:
           DEVOTION_DATE: ${{ inputs.date }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
