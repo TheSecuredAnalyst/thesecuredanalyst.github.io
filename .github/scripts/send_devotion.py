@@ -169,6 +169,11 @@ def main():
     data = json.loads(DATA.read_text(encoding="utf-8"))
     days = data["days"]
     today = lagos_today()
+    # GitHub often starts scheduled runs hours late. An evening run that slips
+    # past midnight still belongs to the day it was scheduled for.
+    lagos_hour = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(hours=1)).hour
+    if edition == "evening" and lagos_hour < 12:
+        today -= dt.timedelta(days=1)
     want = os.environ.get("DEVOTION_DATE", "").strip() or key(today)
 
     idx = next((i for i, d in enumerate(days) if d["date"] == want), None)
