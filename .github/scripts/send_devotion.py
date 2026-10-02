@@ -147,7 +147,7 @@ def evening(d, nxt, themes, today):
     body += box(label("Prayer", "#fecdd3") + p(E(d["prayer"]), "margin:0;color:#ffffff;font-family:Arial,Helvetica,sans-serif;"),
                 "#9f1239", "#e11d48", "20px 22px")
     body += box(label("Before you sleep") +
-                p("☐ Night prayer + Bible&nbsp;&nbsp; ☐ Duolingo Dutch&nbsp;&nbsp; ☐ Tick today in the tracker",
+                p("☐ Night prayer + Bible&nbsp;&nbsp; ☐ Tick today in the tracker",
                   "margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;"),
                 "#fdf3e2", "#f59e0b")
     if nxt:
