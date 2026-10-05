@@ -299,14 +299,14 @@ body { background:var(--ink); color:var(--ink); font-family:'DM Sans',sans-serif
 .dev-cover::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 38%,rgba(245,158,11,0.08) 0%,transparent 58%); }
 .dev-cover-content { position:relative; z-index:1; max-width:560px; }
 .cross-large { font-size:3rem; margin-bottom:24px; color:var(--gold); filter:drop-shadow(0 0 22px rgba(245,158,11,0.6)); animation:float 4s ease-in-out infinite; display:block; }
-.dev-cover h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,6vw,3.2rem); font-weight:900; color:#fff; line-height:1.1; margin-bottom:12px; }
-.dev-cover h2 span { background:linear-gradient(135deg,var(--gold),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.dev-tagline { font-family:'Playfair Display',serif; font-style:italic; font-size:1.05rem; color:#94a3b8; margin-bottom:8px; line-height:1.6; }
-.dev-sub { font-family:'DM Mono',monospace; font-size:0.65rem; text-transform:uppercase; letter-spacing:0.18em; color:#475569; margin-top:20px; }
-.dev-esther { font-family:'Playfair Display',serif; font-style:italic; font-size:0.9rem; color:var(--gold); margin-top:16px; border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; }
-.dev-themes { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:24px; }
-.dev-themes .theme-tag { font-family:'DM Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; padding:5px 12px; border:1px solid rgba(255,255,255,0.12); color:#64748b; transition:all 0.2s; }
-.dev-themes .theme-tag:hover { border-color:var(--gold); color:var(--gold); }
+.dev-cover h2, .dev-cover h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,6vw,3.2rem); font-weight:900; color:#fff; line-height:1.1; margin-bottom:12px; }
+.dev-cover h2 span, .dev-cover h1 span { background:linear-gradient(135deg,var(--gold),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.dev-tagline, .dev-cover .tagline { font-family:'Playfair Display',serif; font-style:italic; font-size:1.05rem; color:#94a3b8; margin-bottom:8px; line-height:1.6; }
+.dev-sub, .dev-cover .sub { font-family:'DM Mono',monospace; font-size:0.65rem; text-transform:uppercase; letter-spacing:0.18em; color:#475569; margin-top:20px; }
+.dev-esther, .dev-cover .esther { font-family:'Playfair Display',serif; font-style:italic; font-size:0.9rem; color:var(--gold); margin-top:16px; border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; }
+.dev-themes, .dev-cover .themes { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:24px; }
+.dev-themes .theme-tag, .dev-cover .themes .theme-tag { font-family:'DM Mono',monospace; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.1em; padding:5px 12px; border:1px solid rgba(255,255,255,0.12); color:#64748b; transition:all 0.2s; }
+.dev-themes .theme-tag:hover, .dev-cover .themes .theme-tag:hover { border-color:var(--gold); color:var(--gold); }
 .start-btn { background:linear-gradient(135deg,var(--accent),var(--accent-d)); color:#fff; border:none; font-family:'DM Mono',monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.15em; padding:14px 32px; cursor:pointer; margin-top:28px; transition:all 0.25s; box-shadow:0 4px 22px rgba(249,115,22,0.35); }
 .start-btn:hover { box-shadow:0 7px 30px rgba(249,115,22,0.5); transform:translateY(-2px); }
 .view-list-btn { background:transparent; color:#64748b; border:1px solid rgba(255,255,255,0.1); font-family:'DM Mono',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; padding:10px 20px; cursor:pointer; margin-top:10px; transition:all 0.2s; display:inline-block; }
@@ -376,6 +376,58 @@ body { background:var(--ink); color:var(--ink); font-family:'DM Sans',sans-serif
 .btn-next:hover { background:var(--ink-3); }
 .btn-back { background:transparent; color:var(--muted); border:1px solid var(--line); font-family:'DM Mono',monospace; font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; padding:12px 16px; cursor:pointer; transition:all 0.2s; }
 .btn-back:hover { background:var(--parchment); color:var(--ink); }
+
+/* ═══════════════════════════════════════
+   WIDE LAYOUT
+   The sections were a ~900px strip with 0.6–0.8rem text, leaving most of a
+   desktop screen empty and the weekly table scrolling sideways. Widths here
+   are max-widths only, so phones are unaffected.
+═══════════════════════════════════════ */
+html { font-size:106.25%; }
+
+#section-map .page { max-width:1320px; padding:40px 32px 80px; }
+#section-checklist .page { max-width:1240px; padding:32px 32px 80px; }
+.home-cards, .home-progress, .today-card { max-width:1100px; }
+.home-esther { max-width:620px; }
+.mandate { max-width:340px; }
+.dev-cover-content { max-width:720px; }
+.dev-body { max-width:900px; padding:32px 28px; }
+
+/* Weekly table: fits without scrolling at desktop width, larger cells. */
+.daily-table { font-size:0.85rem; }
+.daily-table th { font-size:0.7rem; }
+.daily-table .time-cell { font-size:0.72rem; }
+.tag { font-size:0.76rem; }
+
+/* Month calendar: room for the notes in each day. */
+.cal-cell { min-height:100px; padding:8px 9px; font-size:0.78rem; }
+.cal-num { font-size:0.85rem; }
+.cal-note { font-size:0.68rem; }
+.cd { width:7px; height:7px; }
+.month-head { font-size:0.7rem; }
+.legend-item { font-size:0.8rem; }
+
+/* Body copy that was set at 0.7–0.85rem. */
+.alert { font-size:0.95rem; }
+.week-one .action-text h3 { font-size:1.1rem; }
+.week-one .action-text p { font-size:0.92rem; }
+.learn-card p, .spirit-card p { font-size:0.9rem; }
+.learn-card .target { font-size:0.78rem; }
+.anchor h4 { font-size:0.95rem; }
+.anchor p { font-size:0.82rem; }
+.conf-item p { font-size:0.92rem; }
+.section-label { font-size:0.72rem; }
+.dev-section p { font-size:1rem; }
+.study-questions li { font-size:0.95rem; }
+.scripture-block blockquote { font-size:1.15rem; }
+.day-btn .day-title { font-size:0.9rem; }
+
+/* Tracker: on a wide screen the week's sections sit in two columns instead
+   of one long single-file list. */
+@media(min-width:1000px){
+  .week-panel.active { display:grid; grid-template-columns:1fr 1fr; gap:0 32px; align-items:start; }
+  .table-scroll::after { display:none; }
+}
 
 /* RESPONSIVE */
 @media(max-width:680px){
