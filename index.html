@@ -1763,16 +1763,16 @@
   window.addEventListener('keydown', e => { if (e.key==='Escape' && pwnActive) closePwn(); });
   $('#pwnBtn').addEventListener('click', pwn);
   document.querySelectorAll('[data-pwn]').forEach(b => b.addEventListener('click', pwn));
-  // fires on its own on every visit (once per page load), as the visitor nears the end of the page.
+  // fires on its own on every visit (once per page load), as the visitor reaches the AI section, about halfway down.
   // A plain scroll check rather than IntersectionObserver, so every mobile browser triggers it.
   {
-    const reg = $('#reg'); let armed = true;
+    const trig = $('#ai'); let armed = true;
     const nearEnd = () => {
       if (!armed) return;
-      const top = reg.getBoundingClientRect().top, bottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 300;
-      if (top < innerHeight * 0.75 || bottom){
+      const top = trig.getBoundingClientRect().top, bottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 300;
+      if (top < innerHeight * 0.6 || bottom){
         armed = false; window.removeEventListener('scroll', nearEnd);
-        pwnTimers.push(setTimeout(() => { if (!pwnActive && !term.classList.contains('open')) pwn(); }, 1200));
+        pwnTimers.push(setTimeout(() => { if (!pwnActive && !term.classList.contains('open')) pwn(); }, 700));
       }
     };
     window.addEventListener('scroll', nearEnd, {passive:true});
