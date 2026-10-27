@@ -3,617 +3,1873 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oluwagbenga Ogungbemi · The Secured Analyst</title>
-<meta name="description" content="Cybersecurity professional &amp; builder — securing systems, automating defense, and shipping tools that protect organizations.">
+<title>Ogungbemi Samuel Oluwagbenga // TheSecuredAnalyst</title>
+<meta name="description" content="Cybersecurity leader and founder of ARX AMANI Technologies. 14+ years across banking, government and managed security in Nigeria, the UK and Latvia. I build security systems where none exist, and I build them to last.">
+<link rel="canonical" href="https://thesecuredanalyst.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Oluwagbenga Ogungbemi · TheSecuredAnalyst">
+<meta property="og:description" content="Cybersecurity leader, security architect and founder of ARX AMANI. Run recon on the analyst: an interactive profile, with a ransomware drill.">
+<meta property="og:url" content="https://thesecuredanalyst.github.io/">
+<meta property="og:image" content="https://thesecuredanalyst.github.io/gbenga/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#070b0f;
-    --bg2:#0c1219;
-    --panel:#0f1620;
-    --line:rgba(0,255,170,0.14);
-    --green:#00ffaa;
-    --cyan:#48dbfb;
-    --amber:#ffb84d;
-    --text:#d7e3ec;
-    --muted:#8fa3b3;
-    --mono:'JetBrains Mono', monospace;
-    --sans:'Space Grotesk', sans-serif;
+    --ink:#080b10;
+    --panel:#0e131b;
+    --panel-2:#11171f;
+    --line:rgba(127,165,160,.14);
+    --line-soft:rgba(127,165,160,.07);
+    --text:#cdd6df;
+    --head:#f2f5f8;
+    --dim:#7f8a96;
+    --faint:#525c66;
+    --cyber:#33d6b8;
+    --cyber-dim:#1c7d6c;
+    --sacred:#e3a85a;
+    --sacred-dim:#8a6630;
+    --alert:#e5614f;
+    --serif:'Fraunces',Georgia,serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--sans);
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-
-  /* ── background grid + scanlines ── */
-  .bg-grid{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:var(--ink);color:var(--text);font-family:var(--mono);
+    font-size:15px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;
     background-image:
-      linear-gradient(rgba(0,255,170,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,255,170,0.05) 1px, transparent 1px);
-    background-size:42px 42px;
-    mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 90%);
+      linear-gradient(var(--line-soft) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+    background-size:42px 42px;background-position:center top;
   }
-  .bg-glow{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:
-      radial-gradient(600px 400px at 15% 10%, rgba(0,255,170,0.10), transparent 60%),
-      radial-gradient(700px 500px at 90% 20%, rgba(72,219,251,0.08), transparent 60%),
-      radial-gradient(800px 600px at 50% 100%, rgba(255,184,77,0.05), transparent 60%);
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:radial-gradient(ellipse 120% 80% at 50% -10%,rgba(51,214,184,.06),transparent 60%);
   }
-  .bg-scan{
-    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.35;
-    background:repeating-linear-gradient(
-      to bottom, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px,
-      transparent 1px, transparent 3px
-    );
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.022;
+    background-image:repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 3px);
+  }
+  a{color:inherit}
+  ::selection{background:var(--cyber-dim);color:#04110d}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:3}
+  em.s{font-style:italic;color:var(--sacred);font-weight:600}
+  em.c{font-style:italic;color:var(--cyber);font-weight:600}
+  em.r{font-style:italic;color:var(--alert);font-weight:600}
+
+  /* ---------- boot ---------- */
+  #boot{position:fixed;inset:0;z-index:100;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .6s ease,visibility .6s ease;cursor:pointer}
+  #boot.done{opacity:0;visibility:hidden}
+  .boot-inner{color:var(--cyber);font-size:13px;width:min(440px,84vw)}
+  .boot-line{opacity:0;animation:bootIn .3s forwards}
+  .boot-line .pre{color:var(--dim)}
+  .boot-skip{font-size:11px;color:var(--faint);letter-spacing:.12em}
+  @keyframes bootIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:40;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(8,11,16,.72);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:56px}
+  nav .brand{font-size:13px;color:var(--head);text-decoration:none;letter-spacing:.02em;white-space:nowrap}
+  nav .brand b{color:var(--cyber);font-weight:500}
+  nav .links{display:flex;gap:20px;margin-left:auto;font-size:12.5px}
+  nav .links a{text-decoration:none;color:var(--dim)}
+  nav .links a:hover{color:var(--cyber)}
+  .term-btn{font-family:var(--mono);font-size:12px;background:var(--panel);border:1px solid var(--cyber-dim);color:var(--cyber);padding:6px 10px;border-radius:3px;cursor:pointer;white-space:nowrap}
+  .term-btn:hover{background:rgba(51,214,184,.08)}
+  .term-btn kbd{font-family:var(--mono);color:var(--faint);margin-left:6px}
+  @media(max-width:720px){nav .links{display:none}.term-btn{margin-left:auto}.term-btn kbd{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:110px 0 60px;position:relative}
+  .statusbar{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;font-size:12px;color:var(--dim);letter-spacing:.04em;margin-bottom:38px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--cyber);box-shadow:0 0 8px var(--cyber);display:inline-block;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .prompt{font-size:13px;color:var(--cyber);margin-bottom:22px;min-height:1.6em}
+  .cursor{display:inline-block;width:8px;height:15px;background:var(--cyber);margin-left:2px;animation:blink 1.1s steps(1) infinite;vertical-align:-2px}
+  @keyframes blink{50%{opacity:0}}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,8vw,5.6rem);line-height:.98;letter-spacing:-.03em;color:var(--head)}
+  h1 .last{color:transparent;-webkit-text-stroke:1px var(--cyber);font-style:italic}
+  .role{font-size:clamp(13px,1.6vw,15px);color:var(--dim);margin-top:22px;max-width:62ch}
+  .role b{color:var(--text);font-weight:500}
+  .hero .line{font-family:var(--serif);font-size:clamp(1.3rem,3.2vw,2rem);line-height:1.3;color:#eef1f4;margin-top:44px;padding-left:22px;border-left:2px solid var(--sacred-dim);max-width:30ch}
+  .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+  .cta .btn{text-decoration:none;font-size:13px;padding:10px 16px}
+  .scrollcue{position:absolute;bottom:28px;left:0;font-size:11.5px;color:var(--faint);letter-spacing:.14em;display:flex;align-items:center;gap:10px}
+  .scrollcue i{display:block;width:1px;height:34px;background:linear-gradient(var(--cyber),transparent);animation:drip 2s infinite}
+  @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ---------- section heads ---------- */
+  .sec{padding:110px 0 40px}
+  .kicker{font-size:11px;color:var(--cyber);letter-spacing:.2em;margin-bottom:14px;display:flex;gap:14px;align-items:center}
+  .kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+  .kicker .cmd{color:var(--faint);letter-spacing:.02em;order:2}
+  h2{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,3.4rem);line-height:1.04;letter-spacing:-.02em;color:var(--head);margin-bottom:18px}
+  .lede{color:var(--dim);max-width:60ch;margin-bottom:38px}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- story ---------- */
+  .story{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;position:relative}
+  .stage{position:sticky;top:56px;height:calc(100vh - 56px);display:flex;align-items:center;order:2}
+  .stage-box{position:relative;width:100%;aspect-ratio:1.18;max-height:calc(100vh - 120px);border:1px solid var(--line);background:rgba(14,19,27,.7)}
+  #net{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hud{position:absolute;font-size:10.5px;letter-spacing:.1em;color:var(--dim);pointer-events:none}
+  .hud.tl{top:12px;left:14px}.hud.tr{top:12px;right:14px;text-align:right}
+  .hud.bl{bottom:12px;left:14px;right:14px;display:flex;gap:18px;flex-wrap:wrap}
+  .hud b{color:var(--head);font-weight:500}
+  .hud .stat{transition:color .3s}
+  .hud .stat.ok{color:var(--cyber)}.hud .stat.bad{color:var(--alert)}.hud .stat.warn{color:var(--sacred)}
+  .hud .sim{margin-left:auto;color:var(--faint);letter-spacing:.06em}
+  .steps{order:1}
+  .step{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0}
+  .step .n{font-size:11px;letter-spacing:.2em;color:var(--cyber);margin-bottom:12px}
+  .step h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.08;letter-spacing:-.02em;color:var(--head);margin-bottom:16px}
+  .step p{color:var(--text);max-width:44ch}
+  .step p+p{margin-top:12px}
+  .step .muted{color:var(--dim);font-size:13px}
+  .step{opacity:.25;transition:opacity .5s}
+  .step.active{opacity:1}
+  .bigstats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px;max-width:420px}
+  .bigstats div{background:var(--panel);padding:14px 16px}
+  .bigstats b{display:block;font-family:var(--serif);font-size:1.9rem;color:var(--head);font-weight:600;line-height:1.1}
+  .bigstats span{font-size:11px;color:var(--dim);letter-spacing:.06em}
+  @media(max-width:860px){
+    .story{grid-template-columns:1fr;gap:0}
+    .stage{order:0;height:auto;top:56px;z-index:5;background:var(--ink);padding:10px 0}
+    .stage-box{max-height:44vh;aspect-ratio:auto;height:44vh}
+    .step{min-height:78vh;justify-content:flex-start;padding-top:30px}
   }
 
-  section, header, footer{ position:relative; z-index:2; }
+  /* ---------- work ---------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);padding:22px;display:flex;flex-direction:column;gap:10px;transition:border-color .25s,transform .25s;position:relative}
+  .card:hover{border-color:var(--cyber-dim);transform:translateY(-2px)}
+  .card.feature{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center}
+  @media(max-width:720px){.card.feature{grid-template-columns:1fr}}
+  .card h4{font-family:var(--serif);font-size:1.45rem;font-weight:600;color:var(--head);letter-spacing:-.01em}
+  .card.feature h4{font-size:2rem}
+  .card p{color:var(--dim);font-size:13.5px}
+  .card .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+  .st{font-size:10px;letter-spacing:.1em;padding:3px 8px;border-radius:2px;white-space:nowrap;font-weight:500;align-self:flex-start}
+  .st.run{background:rgba(51,214,184,.12);color:var(--cyber)}
+  .st.hold{background:rgba(229,97,79,.12);color:var(--alert)}
+  .st.queue{background:rgba(227,168,90,.12);color:var(--sacred)}
+  .st.ship{background:rgba(127,138,150,.14);color:var(--dim)}
+  .card a.go{font-size:12.5px;color:var(--cyber);text-decoration:none;border-bottom:1px dotted var(--cyber-dim);align-self:flex-start}
+  .card a.go:hover{border-bottom-style:solid}
+  .mini-term{background:#05080c;border:1px solid var(--line);padding:16px;font-size:12px;line-height:1.7;color:var(--dim);white-space:pre-wrap}
+  .mini-term .g{color:var(--cyber)}.mini-term .a{color:var(--sacred)}
 
-  /* ── nav ── */
-  nav{
-    position:sticky; top:0; z-index:50;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px clamp(20px,6vw,72px);
-    background:rgba(7,11,15,0.7);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line);
-  }
-  .brand{
-    font-family:var(--mono); font-weight:700; font-size:17px; letter-spacing:0.5px;
-    color:var(--text); text-decoration:none; display:flex; align-items:center; gap:10px;
-  }
-  .brand .dot{ width:9px; height:9px; border-radius:50%; background:var(--green); box-shadow:0 0 14px var(--green); animation:pulse 2.4s ease-in-out infinite; }
-  @keyframes pulse{ 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.45; transform:scale(0.78);} }
-  .brand .accent{ color:var(--green); }
-  .navlinks{ display:flex; gap:clamp(14px,2.6vw,34px); align-items:center; }
-  .navlinks a{
-    color:var(--muted); text-decoration:none; font-family:var(--mono); font-size:13.5px;
-    letter-spacing:0.3px; transition:color .2s;
-  }
-  .navlinks a:hover{ color:var(--green); }
-  .navlinks a.cta{
-    color:var(--bg); background:var(--green); padding:9px 18px; border-radius:7px;
-    font-weight:700; box-shadow:0 8px 26px rgba(0,255,170,0.25);
-  }
-  .navlinks a.cta:hover{ filter:brightness(1.1); color:var(--bg); }
-  @media(max-width:720px){ .navlinks a:not(.cta){ display:none; } }
+  /* ---------- solutions ---------- */
+  .sols{display:flex;flex-direction:column;border:1px solid var(--line)}
+  .sol{display:grid;grid-template-columns:200px 1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--line);background:var(--panel)}
+  .sol:last-child{border-bottom:none}
+  .sol>div{padding:20px 22px;border-right:1px solid var(--line-soft)}
+  .sol>div:last-child{border-right:none}
+  .sol .nm{display:flex;flex-direction:column;gap:10px}
+  .sol .nm b{font-family:var(--serif);font-size:1.2rem;color:var(--head);font-weight:600;line-height:1.2}
+  .sol .h{font-size:10.5px;letter-spacing:.16em;margin-bottom:6px}
+  .sol .pb .h{color:var(--alert)}.sol .bt .h{color:var(--cyber)}.sol .oc .h{color:var(--sacred)}
+  .sol p{font-size:13.5px;color:var(--text)}
+  .sol-head{display:grid;grid-template-columns:200px 1fr 1fr 1fr;font-size:10.5px;letter-spacing:.16em;color:var(--faint);padding:0 0 10px}
+  .sol-head span{padding:0 22px}
+  .sol-head span:first-child{padding-left:0}
+  @media(max-width:900px){.sol,.sol-head{grid-template-columns:1fr}.sol-head{display:none}.sol>div{border-right:none;padding:14px 20px}.sol .nm{padding-top:20px}}
+  @media(min-width:901px){.sol .h{display:none}}
 
-  /* ── hero ── */
-  .hero{
-    min-height:92vh; display:flex; flex-direction:column; justify-content:center;
-    padding:80px clamp(20px,6vw,72px) 60px;
-    max-width:1180px; margin:0 auto;
-  }
-  .term-tag{
-    display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:13px;
-    color:var(--green); border:1px solid var(--line); background:rgba(0,255,170,0.05);
-    padding:8px 16px; border-radius:999px; width:fit-content; margin-bottom:28px;
-  }
-  .term-tag .blink{ animation:blink 1.1s steps(1) infinite; }
-  @keyframes blink{ 50%{ opacity:0; } }
-  h1{
-    font-size:clamp(38px, 7vw, 76px); font-weight:700; line-height:1.06; letter-spacing:-1.5px;
-    max-width:920px;
-  }
-  h1 .grad{
-    background:linear-gradient(120deg, var(--green), var(--cyan) 60%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
-  .hero p.lead{
-    margin-top:24px; font-size:clamp(16px,2.1vw,19px); color:var(--muted); max-width:640px;
-  }
-  .hero p.lead span{ color:var(--text); font-weight:600; }
-  .hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-top:38px; }
-  .btn{
-    font-family:var(--mono); font-weight:700; font-size:14px; letter-spacing:0.3px;
-    padding:14px 28px; border-radius:9px; text-decoration:none; display:inline-flex;
-    align-items:center; gap:10px; transition:transform .2s, box-shadow .2s, filter .2s;
-  }
-  .btn-primary{ background:var(--green); color:#04140e; box-shadow:0 14px 40px rgba(0,255,170,0.22); }
-  .btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.08); }
-  .btn-ghost{ border:1px solid var(--line); color:var(--text); background:rgba(255,255,255,0.02); }
-  .btn-ghost:hover{ border-color:var(--green); color:var(--green); transform:translateY(-2px); }
+  /* ---------- ai pipeline ---------- */
+  .ai-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:16px}
+  @media(max-width:900px){.ai-grid{grid-template-columns:1fr}}
+  .asks{display:flex;flex-direction:column;gap:10px}
+  .ask{all:unset;box-sizing:border-box;cursor:pointer;background:var(--panel);border:1px solid var(--line);padding:14px 16px;font-size:13.5px;color:var(--text);transition:border-color .2s}
+  .ask:hover,.ask:focus-visible{border-color:var(--cyber-dim)}
+  .ask.on{border-color:var(--cyber);background:rgba(51,214,184,.05)}
+  .ask small{display:block;font-size:11px;color:var(--faint);margin-top:4px;letter-spacing:.04em}
+  .ai-note{font-size:12.5px;color:var(--dim);margin-top:6px}
+  .pipe{background:#05080c;border:1px solid var(--line);padding:6px 0}
+  .stage-row{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 18px;opacity:.22;transition:opacity .35s;border-left:2px solid transparent}
+  .stage-row.lit{opacity:1;border-left-color:var(--cyber-dim)}
+  .stage-row.stop{opacity:1;border-left-color:var(--alert)}
+  .stage-row.wait{opacity:1;border-left-color:var(--sacred)}
+  .stage-row .sn{font-size:10.5px;letter-spacing:.14em;color:var(--dim);padding-top:2px}
+  .stage-row.lit .sn{color:var(--cyber)}.stage-row.stop .sn{color:var(--alert)}.stage-row.wait .sn{color:var(--sacred)}
+  .stage-row .sv{font-size:13px;color:var(--text);min-height:1.6em;word-break:break-word}
+  .stage-row .sv code{color:var(--head);background:var(--panel-2);padding:1px 6px;font-family:var(--mono);font-size:12.5px}
+  .stage-row .sv .btns{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  @media(max-width:560px){.stage-row{grid-template-columns:1fr;gap:4px}}
 
-  .hero-meta{
-    display:flex; flex-wrap:wrap; gap:34px; margin-top:64px;
-    font-family:var(--mono); font-size:13px; color:var(--muted);
-  }
-  .hero-meta b{ color:var(--green); font-size:22px; display:block; font-family:var(--sans); }
+  /* ---------- prompt anatomy ---------- */
+  .prompt-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+  @media(max-width:900px){.prompt-grid{grid-template-columns:1fr}}
+  .anat{align-self:start;background:#05080c;border:1px solid var(--line);font-size:12.5px;line-height:1.65}
+  .anat .ln{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:9px 16px;border-bottom:1px solid var(--line-soft);cursor:default;transition:background .2s}
+  .anat .ln:last-child{border-bottom:none}
+  .anat .ln:hover,.anat .ln.on{background:rgba(51,214,184,.05)}
+  .anat .ln .t{color:var(--cyber);letter-spacing:.08em;font-size:11px;padding-top:1px}
+  .anat .ln .c{color:var(--text)}
+  .anat .ln .c i{color:var(--sacred);font-style:normal}
+  .rules{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line)}
+  .rules div{background:var(--panel);padding:16px 18px}
+  .rules b{display:block;color:var(--head);font-weight:500;font-size:14px;margin-bottom:4px}
+  .rules span{font-size:13px;color:var(--dim)}
+  .rules div.on{background:#121a20}
+  .rules div.on b{color:var(--cyber)}
 
-  /* ── section shell ── */
-  .wrap{ max-width:1180px; margin:0 auto; padding:90px clamp(20px,6vw,72px); }
-  .kicker{
-    font-family:var(--mono); font-size:13px; letter-spacing:2.5px; text-transform:uppercase;
-    color:var(--green); margin-bottom:14px; display:flex; align-items:center; gap:12px;
-  }
-  .kicker::before{ content:''; width:28px; height:1px; background:var(--green); display:inline-block; }
-  h2{ font-size:clamp(28px,4.4vw,42px); font-weight:700; letter-spacing:-1px; max-width:640px; }
-  .sub{ color:var(--muted); margin-top:14px; max-width:600px; font-size:15.5px; }
+  /* ---------- learning ---------- */
+  .learn-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+  @media(max-width:900px){.learn-grid{grid-template-columns:1fr}}
+  .tl{position:relative;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--cyber-dim),var(--sacred-dim))}
+  .tl-i{position:relative;padding-bottom:22px}
+  .tl-i:last-child{padding-bottom:0}
+  .tl-i::before{content:"";position:absolute;left:-25px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--ink);border:1.5px solid var(--cyber)}
+  .tl-i.now::before{background:var(--sacred);border-color:var(--sacred);box-shadow:0 0 10px var(--sacred)}
+  .tl-i.next::before{border-style:dashed;border-color:var(--faint)}
+  .tl-i .y{font-size:11px;letter-spacing:.14em;color:var(--dim)}
+  .tl-i b{display:block;color:var(--head);font-weight:500;font-size:14.5px}
+  .tl-i span{font-size:13px;color:var(--dim)}
+  .learn-cards{display:flex;flex-direction:column;gap:12px}
+  .lc{background:var(--panel);border:1px solid var(--line);padding:18px 20px}
+  .lc h4{font-family:var(--serif);font-size:1.2rem;color:var(--head);font-weight:600;margin:8px 0 6px}
+  .lc p{font-size:13.5px;color:var(--dim)}
 
-  /* ── about ── */
-  .about-grid{
-    display:grid; grid-template-columns:1.1fr 1fr; gap:56px; margin-top:54px; align-items:start;
-  }
-  @media(max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
-  .about-grid p{ color:var(--muted); margin-bottom:16px; font-size:15.5px; }
-  .about-grid p span{ color:var(--text); font-weight:600; }
-  .panel{
-    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:26px;
-  }
-  .panel-title{ font-family:var(--mono); font-size:13px; color:var(--green); margin-bottom:18px; letter-spacing:0.5px; }
-  .focus-list{ display:flex; flex-direction:column; gap:14px; }
-  .focus-item{ display:flex; gap:14px; align-items:flex-start; }
-  .focus-item .ic{
-    width:34px; height:34px; border-radius:8px; flex-shrink:0; display:flex; align-items:center;
-    justify-content:center; background:rgba(0,255,170,0.08); border:1px solid var(--line);
-    font-size:16px;
-  }
-  .focus-item h4{ font-size:15px; font-weight:600; }
-  .focus-item p{ font-size:13.5px; color:var(--muted); margin:2px 0 0; }
+  /* ---------- now building: arxvault ---------- */
+  .nb{border:1px solid var(--sacred-dim);background:linear-gradient(160deg,rgba(227,168,90,.06),transparent 45%),var(--panel);padding:clamp(22px,4vw,44px);position:relative;overflow:hidden}
+  .nb::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(227,168,90,.10),transparent 65%);pointer-events:none}
+  .nb-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+  .nb h3{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,7vw,4.6rem);line-height:1;letter-spacing:-.03em;color:var(--head)}
+  .nb h3 span{color:var(--sacred)}
+  .nb .tag-line{font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.5rem);color:#e6eaee;margin:14px 0 26px;max-width:40ch}
+  .nb-problem{font-size:14px;color:var(--text);max-width:68ch;margin-bottom:30px}
+  .nb-problem b{color:var(--head);font-weight:500}
+  .life-switch{display:inline-flex;border:1px solid var(--line);margin-bottom:16px}
+  .life-switch button{all:unset;cursor:pointer;font-size:12px;padding:8px 16px;color:var(--dim);letter-spacing:.06em}
+  .life-switch button.on[data-v="before"]{background:rgba(229,97,79,.12);color:var(--alert)}
+  .life-switch button.on[data-v="after"]{background:rgba(51,214,184,.12);color:var(--cyber)}
+  .life-switch button:focus-visible{outline:1px solid var(--cyber)}
+  .life{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:30px}
+  @media(max-width:900px){.life{grid-template-columns:1fr}}
+  .life div{background:#0b1016;padding:16px;transition:background .3s}
+  .life .k{font-size:10.5px;letter-spacing:.14em;color:var(--faint);margin-bottom:8px}
+  .life p{font-size:13px;color:var(--text);transition:opacity .25s}
+  .life.before .k{color:var(--alert)}.life.after .k{color:var(--cyber)}
+  .nb-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px}
+  @media(max-width:900px){.nb-grid{grid-template-columns:1fr}}
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);align-self:start}
+  @media(max-width:560px){.feat{grid-template-columns:1fr}}
+  .feat div{background:#0b1016;padding:14px 16px}
+  .feat b{display:block;color:var(--head);font-weight:500;font-size:13.5px;margin-bottom:3px}
+  .feat span{font-size:12.5px;color:var(--dim)}
+  .vault-term{background:#05080c;border:1px solid var(--line);padding:16px;font-size:12px;line-height:1.75;color:var(--dim);white-space:pre-wrap;min-height:250px}
+  .vault-term .g{color:var(--cyber)}.vault-term .a{color:var(--sacred)}.vault-term .h{color:var(--head)}.vault-term .r{color:var(--alert)}
+  .nb-foot{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim)}
+  .nb-foot b{color:var(--head);font-weight:500}
+  .nb-foot .btn{margin-left:auto;text-decoration:none;border-color:var(--sacred-dim);color:var(--sacred)}
+  .nb-foot .btn:hover{background:rgba(227,168,90,.08)}
 
-  /* ── skills ── */
-  .skill-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:18px; margin-top:50px; }
-  .skill-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px;
-    transition:transform .25s, border-color .25s, box-shadow .25s;
-  }
-  .skill-card:hover{ transform:translateY(-4px); border-color:rgba(0,255,170,0.4); box-shadow:0 16px 50px rgba(0,255,170,0.08); }
-  .skill-card .head{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-  .skill-card .head .ic{ font-size:22px; }
-  .skill-card h3{ font-size:16.5px; font-weight:700; }
-  .skill-card ul{ list-style:none; display:flex; flex-direction:column; gap:7px; }
-  .skill-card li{
-    font-family:var(--mono); font-size:12.5px; color:var(--muted); display:flex; gap:8px; align-items:center;
-  }
-  .skill-card li::before{ content:'›'; color:var(--green); font-weight:700; }
+  /* ---------- ATT&CK framing ---------- */
+  .kicker .ta{color:var(--faint);letter-spacing:.08em;margin-right:-4px}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;align-items:center}
+  @media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  .recon{color:var(--sacred)!important}
+  .tcard{background:rgba(14,19,27,.85);border:1px solid var(--line);position:relative;font-size:12.5px}
+  .tcard::before{content:"";position:absolute;inset:-1px;border:1px solid transparent;background:linear-gradient(135deg,var(--alert),transparent 40%,transparent 60%,var(--cyber)) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6}
+  .tc-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.14em;color:var(--dim)}
+  .tc-head .lvl{color:var(--alert);font-weight:600;animation:pulse 2.4s infinite}
+  .tc-head .lvl small{color:var(--faint);font-weight:400;letter-spacing:.04em;margin-left:4px}
+  .tcard dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;padding:16px}
+  .tcard dt{font-size:10.5px;letter-spacing:.12em;color:var(--faint);padding-top:2px}
+  .tcard dd{color:var(--text)}
+  .tcard dd b{color:var(--head);font-weight:500}
+  .ttp{display:flex;flex-wrap:wrap;gap:5px}
+  .ttp span{font-size:11px;padding:2px 7px;border:1px solid var(--cyber-dim);color:var(--cyber);border-radius:2px}
+  .tc-foot{padding:10px 16px;border-top:1px solid var(--line);font-size:10.5px;color:var(--faint);letter-spacing:.06em}
+  .redact{background:var(--text);color:transparent;border-radius:1px;cursor:pointer;transition:background .3s,color .3s;user-select:none}
+  .redact.show{background:transparent;color:var(--sacred)}
 
-  /* ── projects ── */
-  .proj-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:22px; margin-top:50px; }
-  .proj-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:28px;
-    display:flex; flex-direction:column; gap:14px; position:relative; overflow:hidden;
-    transition:transform .25s, border-color .25s, box-shadow .25s;
-  }
-  .proj-card::before{
-    content:''; position:absolute; top:0; left:0; right:0; height:2px;
-    background:linear-gradient(90deg, var(--green), var(--cyan)); opacity:0; transition:opacity .25s;
-  }
-  .proj-card:hover{ transform:translateY(-5px); border-color:rgba(0,255,170,0.35); box-shadow:0 20px 60px rgba(0,0,0,0.35); }
-  .proj-card:hover::before{ opacity:1; }
-  .proj-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
-  .proj-tag{
-    font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase;
-    color:var(--green); background:rgba(0,255,170,0.08); border:1px solid var(--line);
-    padding:5px 11px; border-radius:999px; white-space:nowrap;
-  }
-  .proj-card h3{ font-size:19px; font-weight:700; }
-  .proj-card p{ color:var(--muted); font-size:14px; }
-  .proj-stack{ display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:6px; }
-  .proj-stack span{
-    font-family:var(--mono); font-size:11.5px; color:var(--cyan); border:1px solid rgba(72,219,251,0.25);
-    background:rgba(72,219,251,0.06); padding:4px 10px; border-radius:6px;
-  }
-  .proj-tags{ display:flex; flex-direction:column; gap:6px; align-items:flex-end; flex-shrink:0; }
-  .proj-tag.alt{ color:var(--amber); background:rgba(255,184,77,0.08); border-color:rgba(255,184,77,0.22); }
-  .proj-card h3 a{ color:inherit; text-decoration:none; transition:color .2s; }
-  .proj-card h3 a:hover{ color:var(--green); }
-  .proj-card h3 .ext{ font-size:0.7em; color:var(--muted); vertical-align:super; margin-left:2px; }
+  /* initial access */
+  .ia{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+  @media(max-width:860px){.ia{grid-template-columns:1fr}}
+  .ia .panel p{font-size:14px;color:var(--text)}
+  .ia .panel p+p{margin-top:10px}
+  .orgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .big-stat{display:flex;flex-direction:column;justify-content:center;background:var(--panel);border:1px solid var(--sacred-dim);padding:28px}
+  .big-stat b{font-family:var(--serif);font-size:clamp(3rem,8vw,4.6rem);line-height:1;color:var(--sacred);font-weight:600}
+  .big-stat span{color:var(--dim);font-size:13px;margin-top:10px}
 
-  /* ── terminal/contact ── */
-  .term{
-    background:#03070a; border:1px solid var(--line); border-radius:14px; overflow:hidden;
-    box-shadow:0 30px 90px rgba(0,0,0,0.5);
-  }
-  .term-bar{
-    display:flex; align-items:center; gap:8px; padding:14px 18px; background:#0a1118; border-bottom:1px solid var(--line);
-  }
-  .term-bar i{ width:11px; height:11px; border-radius:50%; display:inline-block; }
-  .term-bar i:nth-child(1){ background:#ff5f57; }
-  .term-bar i:nth-child(2){ background:#febc2e; }
-  .term-bar i:nth-child(3){ background:#28c840; }
-  .term-bar span{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-left:8px; }
-  .term-body{ padding:28px clamp(20px,4vw,40px); font-family:var(--mono); font-size:14px; }
-  .term-body .ln{ margin-bottom:12px; color:var(--muted); }
-  .term-body .ln .prompt{ color:var(--green); }
-  .term-body .ln .path{ color:var(--cyan); }
-  .term-body .out{ color:var(--text); padding-left:20px; }
-  .term-body a{ color:var(--green); text-decoration:none; border-bottom:1px dashed rgba(0,255,170,0.4); }
-  .term-body a:hover{ color:var(--cyan); border-color:rgba(72,219,251,0.5); }
-  .cursor{ display:inline-block; width:8px; height:16px; background:var(--green); vertical-align:text-bottom; animation:blink 1s steps(1) infinite; }
+  /* privilege escalation */
+  .ladder{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;margin-bottom:22px}
+  @media(max-width:900px){.ladder{grid-template-columns:1fr}.ladder .rung{min-height:0!important}}
+  .rung{background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--cyber-dim);padding:14px;display:flex;flex-direction:column;gap:4px;transition:border-color .2s,transform .2s}
+  .rung:hover{border-top-color:var(--cyber);transform:translateY(-3px)}
+  .rung .y{font-size:10.5px;letter-spacing:.14em;color:var(--dim)}
+  .rung b{color:var(--head);font-weight:500;font-size:13.5px;line-height:1.35}
+  .rung span{font-size:12px;color:var(--dim)}
+  .rung.now{border-top-color:var(--sacred);background:linear-gradient(180deg,rgba(227,168,90,.07),var(--panel))}
+  .rung.target{border:1px dashed var(--faint);border-top:2px dashed var(--alert);background:transparent}
+  .rung.target b{color:var(--alert)}
+  .perms{background:#05080c;border:1px solid var(--line);padding:16px 18px;font-size:12.5px;line-height:1.85;overflow-x:auto;white-space:pre}
+  .perms .g{color:var(--cyber)}.perms .a{color:var(--sacred)}.perms .r{color:var(--alert)}.perms .d{color:var(--faint)}.perms .h{color:var(--head)}
 
-  /* ── experience timeline ── */
-  .timeline{ display:flex; flex-direction:column; gap:2px; margin-top:50px; }
-  .tl-item{
-    display:grid; grid-template-columns:170px 1fr; gap:28px; padding:28px 0;
-    border-top:1px solid var(--line);
-  }
-  .tl-item:last-child{ border-bottom:1px solid var(--line); }
-  @media(max-width:720px){ .tl-item{ grid-template-columns:1fr; gap:8px; } }
-  .tl-period{ font-family:var(--mono); font-size:13px; color:var(--green); }
-  .tl-period .now{
-    display:inline-block; margin-top:8px; font-size:10.5px; letter-spacing:1px; text-transform:uppercase;
-    color:var(--green); background:rgba(0,255,170,0.08); border:1px solid var(--line);
-    padding:3px 9px; border-radius:999px;
-  }
-  .tl-role h3{ font-size:19px; font-weight:700; }
-  .tl-role .org{ font-family:var(--mono); font-size:13px; color:var(--cyan); margin-top:3px; }
-  .tl-role ul{ list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:9px; }
-  .tl-role li{ font-size:14px; color:var(--muted); display:flex; gap:10px; align-items:flex-start; }
-  .tl-role li::before{ content:'▸'; color:var(--green); flex-shrink:0; margin-top:1px; }
+  /* lateral movement */
+  .lat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px}
+  @media(max-width:900px){.lat{grid-template-columns:1fr}}
+  .lat-map{background:#05080c;border:1px solid var(--line);position:sticky;top:76px;align-self:start}
+  @media(max-width:900px){.lat-map{position:relative;top:0}}
+  #latsvg{width:100%;height:auto;display:block}
+  #latsvg .arc{fill:none;stroke:var(--cyber-dim);stroke-width:1.4;stroke-dasharray:5 6;animation:march 1.4s linear infinite}
+  #latsvg .arc.on{stroke:var(--cyber);stroke-width:2}
+  @keyframes march{to{stroke-dashoffset:-22}}
+  #latsvg .pin{cursor:pointer}
+  #latsvg .pin circle{fill:#0e131b;stroke:var(--cyber);stroke-width:1.6;transition:r .2s}
+  #latsvg .pin.home circle{stroke:var(--sacred);fill:rgba(227,168,90,.2)}
+  #latsvg .pin.on circle{fill:var(--cyber)}
+  #latsvg text{font-family:var(--mono);font-size:10px;fill:var(--dim);pointer-events:none}
+  #latsvg text.c{fill:var(--faint);font-size:9px;letter-spacing:.2em}
+  .moves{display:flex;flex-direction:column;gap:10px}
+  .move{background:var(--panel);border:1px solid var(--line);padding:16px 18px;transition:border-color .2s;cursor:default}
+  .move.on{border-color:var(--cyber)}
+  .move .where{font-size:10.5px;letter-spacing:.14em;color:var(--cyber)}
+  .move h4{font-family:var(--serif);font-size:1.2rem;color:var(--head);font-weight:600;margin:4px 0 2px}
+  .move .role{margin:0 0 8px;font-size:12.5px;color:var(--dim)}
+  .move ul{list-style:none;font-size:13px;color:var(--text)}
+  .move li{padding-left:16px;position:relative;margin-top:3px}
+  .move li::before{content:"›";position:absolute;left:0;color:var(--cyber)}
 
-  /* ── certifications ── */
-  .cert-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:50px; }
-  .cert-card{
-    display:flex; align-items:center; gap:16px; background:var(--panel); border:1px solid var(--line);
-    border-radius:12px; padding:20px; transition:transform .25s, border-color .25s;
-  }
-  .cert-card:hover{ transform:translateY(-3px); border-color:rgba(0,255,170,0.4); }
-  .cert-card .badge{
-    width:46px; height:46px; border-radius:10px; flex-shrink:0; display:flex; align-items:center;
-    justify-content:center; font-family:var(--mono); font-weight:800; font-size:13px;
-    background:rgba(0,255,170,0.08); border:1px solid var(--line); color:var(--green);
-  }
-  .cert-card h4{ font-size:15px; font-weight:700; }
-  .cert-card p{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:2px; }
+  /* implants */
+  .implants{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px}
+  @media(max-width:900px){.implants{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.implants{grid-template-columns:1fr}}
+  .implants div{background:var(--panel);padding:16px}
+  .implants .k{font-size:10px;letter-spacing:.14em;color:var(--cyber);margin-bottom:6px}
+  .implants b{display:block;color:var(--head);font-weight:500;font-size:13.5px;margin-bottom:4px}
+  .implants span{font-size:12.5px;color:var(--dim)}
 
-  /* ── education ── */
-  .edu-list{ display:flex; flex-direction:column; gap:0; margin-top:50px; }
-  .edu-item{
-    display:flex; gap:20px; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line);
-    font-size:14.5px;
-  }
-  .edu-item:first-child{ border-top:1px solid var(--line); }
-  .edu-item .yr{ font-family:var(--mono); font-size:13px; color:var(--green); width:54px; flex-shrink:0; }
-  .edu-item .what b{ color:var(--text); }
-  .edu-item .what{ color:var(--muted); }
+  /* impact */
+  .impact{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(max-width:800px){.impact{grid-template-columns:1fr 1fr}}
+  .impact div{background:var(--panel);padding:24px 20px}
+  .impact b{display:block;font-family:var(--serif);font-size:clamp(2rem,4.4vw,2.9rem);color:var(--head);font-weight:600;line-height:1}
+  .impact div:nth-child(4n+1) b{color:var(--cyber)}
+  .impact div:nth-child(4n+3) b{color:var(--sacred)}
+  .impact span{display:block;font-size:11.5px;color:var(--dim);letter-spacing:.06em;margin-top:8px}
 
-  /* ── footer ── */
-  footer{
-    border-top:1px solid var(--line); padding:34px clamp(20px,6vw,72px);
-    display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;
-    font-family:var(--mono); font-size:12.5px; color:var(--muted);
+  /* exfiltration / writing */
+  .exfil{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.exfil{grid-template-columns:1fr}}
+  .exfil .card .pkt{font-size:10.5px;letter-spacing:.12em;color:var(--faint)}
+
+  /* contact */
+  .contact-links button{font-family:var(--mono);font-size:14px;padding:12px 18px;border:1px solid var(--sacred-dim);background:var(--panel);color:var(--sacred);cursor:pointer}
+  .contact-links button:hover{background:rgba(227,168,90,.08)}
+
+  /* ---------- toolbox ---------- */
+  .tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:820px){.tool-grid{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);padding:22px}
+  .label{font-size:11px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+  .tagrow{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-size:12.5px;padding:5px 11px;border:1px solid var(--line);background:var(--panel-2);color:var(--text);border-radius:2px;cursor:default;transition:transform .15s,border-color .15s}
+  .tag:hover{transform:translateY(-2px);border-color:var(--cyber-dim)}
+  .tag.live{border-color:var(--cyber-dim);color:var(--cyber)}
+  .tag.live::before{content:"● ";font-size:9px}
+  .tag.lab{border-style:dashed;color:var(--dim)}
+  .tag.soon{border:1px dashed var(--sacred-dim);color:var(--sacred)}
+  .tag.soon::after{content:" · expected";color:var(--sacred-dim);font-size:11px}
+  .tag.exp{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--alert)}
+  .foot-note{font-size:11.5px;color:var(--faint);margin-top:14px}
+
+  /* ---------- play ---------- */
+  .play-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
+  @media(max-width:900px){.play-grid{grid-template-columns:1fr}}
+  .game{background:var(--panel);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:14px}
+  .game-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .game-head h4{font-family:var(--serif);font-size:1.35rem;color:var(--head);font-weight:600}
+  .game-head .hint{font-size:11.5px;color:var(--faint)}
+  #ir{width:100%;height:auto;display:block;background:#05080c;border:1px solid var(--line);touch-action:manipulation}
+  #ir .edge{stroke:rgba(127,165,160,.22);stroke-width:1.2;transition:stroke .3s}
+  #ir .edge.hot{stroke:rgba(229,97,79,.55)}
+  #ir .edge.cut{stroke:rgba(127,165,160,.12);stroke-dasharray:3 4}
+  #ir .host{cursor:pointer}
+  #ir .host circle.core{fill:#0e131b;stroke:var(--cyber);stroke-width:1.6;transition:fill .3s,stroke .3s}
+  #ir .host.inf circle.core{fill:rgba(229,97,79,.35);stroke:var(--alert)}
+  #ir .host.iso circle.core{stroke:var(--dim);fill:#0b0f15;stroke-dasharray:3 3}
+  #ir .host.iso.inf circle.core{stroke:var(--sacred);fill:rgba(227,168,90,.18)}
+  #ir .host.dc circle.core{stroke:var(--sacred);stroke-width:2.2}
+  #ir .host.dc.inf circle.core{stroke:var(--alert)}
+  #ir .host:hover circle.core{stroke-width:2.6}
+  #ir text{font-family:var(--mono);font-size:9px;fill:var(--dim);pointer-events:none}
+  #ir .host.dc text{fill:var(--sacred)}
+  .ir-bar{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--dim)}
+  .ir-bar b{color:var(--head);font-weight:500}
+  .ir-msg{font-size:13px;min-height:2.6em;color:var(--text)}
+  .btn{font-family:var(--mono);font-size:12.5px;background:transparent;border:1px solid var(--cyber-dim);color:var(--cyber);padding:7px 14px;border-radius:2px;cursor:pointer}
+  .btn:hover{background:rgba(51,214,184,.08)}
+  .btn.alt{border-color:var(--line);color:var(--text)}
+  .btn.bad{border-color:rgba(229,97,79,.5);color:var(--alert)}
+  .btn.bad:hover{background:rgba(229,97,79,.08)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--faint)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px;border:1.5px solid}
+
+  .mail{background:#05080c;border:1px solid var(--line);padding:16px;min-height:178px;display:flex;flex-direction:column;gap:6px}
+  .mail .from{font-size:12px;color:var(--dim)}
+  .mail .from b{color:var(--text);font-weight:500}
+  .mail .subj{font-size:14px;color:var(--head);font-weight:500}
+  .mail .body{font-size:13px;color:var(--text);margin-top:4px}
+  .mail .body code{color:var(--sacred);font-family:var(--mono);word-break:break-all}
+  .verdict{font-size:12.5px;min-height:3.4em;color:var(--dim)}
+  .verdict.ok b{color:var(--cyber)}.verdict.no b{color:var(--alert)}
+  .phish-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .progress{display:flex;gap:5px}
+  .progress i{width:18px;height:3px;background:var(--line)}
+  .progress i.ok{background:var(--cyber)}.progress i.no{background:var(--alert)}.progress i.now{background:var(--text)}
+
+  /* ---------- risk register ---------- */
+  .reg{display:flex;flex-direction:column;border:1px solid rgba(229,97,79,.28);background:linear-gradient(180deg,rgba(229,97,79,.04),transparent)}
+  .item{border-bottom:1px solid var(--line-soft)}
+  .item:last-child{border-bottom:none}
+  .item button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:18px 20px;cursor:pointer}
+  .item button:focus-visible{outline:1px solid var(--cyber);outline-offset:-1px}
+  .item b{color:var(--head);font-weight:500;font-size:14.5px}
+  .item .chev{color:var(--faint);transition:transform .25s}
+  .item.open .chev{transform:rotate(90deg);color:var(--cyber)}
+  .sev{font-size:10px;letter-spacing:.08em;padding:4px 8px;border-radius:2px;white-space:nowrap;font-weight:600}
+  .sev.hi{background:rgba(229,97,79,.14);color:var(--alert)}
+  .sev.prog{background:rgba(227,168,90,.14);color:var(--sacred)}
+  .sev.ok{background:rgba(51,214,184,.12);color:var(--cyber)}
+  .sev.done{background:rgba(127,138,150,.16);color:var(--text)}
+  .sev.med{background:rgba(227,168,90,.14);color:var(--sacred)}
+  .item .detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+  .item.open .detail{grid-template-rows:1fr}
+  .item .detail>div{overflow:hidden;padding:0 20px 0 20px;font-size:13.5px;color:var(--dim)}
+  .item.open .detail>div{padding-bottom:18px}
+  .item .mit{display:block;margin-top:8px;color:var(--text)}
+  .item .mit::before{content:"mitigation › ";color:var(--cyber)}
+
+  /* ---------- principles ---------- */
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  @media(max-width:820px){.principles{grid-template-columns:1fr}}
+  .principles div{background:var(--panel);padding:26px 24px}
+  .principles .k{font-size:11px;color:var(--sacred);letter-spacing:.16em;margin-bottom:12px}
+  .principles p{font-family:var(--serif);font-size:1.12rem;line-height:1.55;color:#e6eaee}
+
+  /* ---------- contact ---------- */
+  .contact{padding:120px 0 60px;text-align:left}
+  .contact h2{font-size:clamp(2.4rem,7vw,4.8rem)}
+  .contact-links{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 70px}
+  .contact-links a{font-size:14px;text-decoration:none;padding:12px 18px;border:1px solid var(--line);background:var(--panel);color:var(--text);transition:border-color .2s,color .2s}
+  .contact-links a:hover{border-color:var(--cyber-dim);color:var(--cyber)}
+  .contact-links a span{color:var(--faint);margin-left:8px}
+  footer{border-top:1px solid var(--line);padding-top:24px;font-size:11.5px;color:var(--faint);line-height:1.8;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer .sig{font-family:var(--serif);font-style:italic;color:var(--sacred);font-size:16px}
+  footer a{color:var(--dim);text-decoration:none;border-bottom:1px dotted var(--faint);cursor:pointer}
+
+  /* ---------- fake ransomware drill ---------- */
+  body.glitching .wrap,body.glitching nav{animation:glitch .9s steps(1) both}
+  @keyframes glitch{
+    0%{transform:none;filter:none}
+    12%{transform:translate(-6px,2px) skewX(-4deg);filter:drop-shadow(4px 0 0 rgba(229,97,79,.8)) drop-shadow(-4px 0 0 rgba(51,214,184,.8))}
+    28%{transform:translate(5px,-3px);clip-path:inset(12% 0 40% 0)}
+    44%{transform:translate(-3px,0) skewX(6deg);filter:drop-shadow(-6px 0 0 rgba(229,97,79,.8)) drop-shadow(6px 0 0 rgba(51,214,184,.8));clip-path:none}
+    60%{transform:translate(8px,4px);clip-path:inset(55% 0 5% 0)}
+    78%{transform:translate(-2px,-2px);filter:grayscale(1) contrast(1.4);clip-path:none}
+    100%{transform:none;filter:none}
   }
-  footer a{ color:var(--muted); text-decoration:none; }
-  footer a:hover{ color:var(--green); }
-  footer .links{ display:flex; gap:22px; }
+  #pwn{position:fixed;inset:0;z-index:95;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(10,2,2,.94);font-family:var(--mono)}
+  #pwn.open{display:flex}
+  #pwn::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(229,97,79,.05) 0,rgba(229,97,79,.05) 1px,transparent 1px,transparent 4px)}
+  #pwn.safe{background:rgba(2,10,9,.95)}
+  #pwn.safe::before{background:repeating-linear-gradient(0deg,rgba(51,214,184,.04) 0,rgba(51,214,184,.04) 1px,transparent 1px,transparent 4px)}
+  .pwn-box{position:relative;width:min(720px,100%);max-height:92vh;overflow-y:auto;border:1px solid var(--alert);background:#0d0505;box-shadow:0 0 60px rgba(229,97,79,.25);padding:clamp(20px,4vw,34px)}
+  #pwn.safe .pwn-box{border-color:var(--cyber);background:#05100e;box-shadow:0 0 60px rgba(51,214,184,.18)}
+  .pwn-sev{font-size:11px;letter-spacing:.2em;color:var(--alert);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .pwn-sev .blink{animation:blink 1s steps(1) infinite}
+  .pwn-box h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,5vw,2.7rem);line-height:1.05;letter-spacing:-.02em;color:#ffdcd6;margin:14px 0 10px}
+  #pwn.safe .pwn-box h3{color:var(--head)}
+  .pwn-box p{font-size:13.5px;color:#e8c9c4;margin-bottom:8px}
+  #pwn.safe .pwn-box p{color:var(--text)}
+  .pwn-box p.small{font-size:12px;color:#a8817b}
+  .pwn-log{background:#060202;border:1px solid rgba(229,97,79,.3);padding:12px 14px;font-size:12px;line-height:1.7;height:150px;overflow:hidden;margin:16px 0;color:#c99a93;white-space:pre-wrap}
+  .pwn-log .ok{color:var(--alert)}.pwn-log .no{color:var(--cyber)}
+  .pwn-demand{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;border-top:1px dashed rgba(229,97,79,.4);border-bottom:1px dashed rgba(229,97,79,.4);padding:14px 0;margin-bottom:18px}
+  .pwn-demand .k{font-size:10.5px;letter-spacing:.16em;color:#a8817b}
+  .pwn-demand b{display:block;color:#ffdcd6;font-size:16px;font-weight:600}
+  .pwn-demand .clock{font-size:clamp(1.6rem,5vw,2.2rem);color:var(--alert);font-weight:600;letter-spacing:.04em}
+  .pwn-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .pwn-actions button,.pwn-actions a{font-family:var(--mono);font-size:13px;padding:10px 16px;cursor:pointer;text-decoration:none;border:1px solid var(--alert);background:rgba(229,97,79,.12);color:#ffdcd6}
+  .pwn-actions .iso{border-color:var(--cyber);background:rgba(51,214,184,.1);color:var(--cyber)}
+  .pwn-actions button:hover,.pwn-actions a:hover{filter:brightness(1.25)}
+  .pwn-steps{list-style:none;margin:14px 0 20px;display:grid;gap:8px;counter-reset:st}
+  .pwn-steps li{counter-increment:st;font-size:13px;color:var(--text);padding-left:30px;position:relative}
+  .pwn-steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;color:var(--cyber);font-size:11px;top:2px}
+  .pwn-steps b{color:var(--head);font-weight:500}
+  .pwn-esc{position:absolute;top:10px;right:12px;font-size:10.5px;color:#7a5a55;letter-spacing:.08em}
+  #pwn.safe .pwn-esc{color:var(--faint)}
+  .toasts{position:fixed;right:16px;bottom:16px;z-index:96;display:flex;flex-direction:column;gap:8px;width:min(380px,calc(100vw - 32px));pointer-events:none}
+  .toast{background:#120707;border:1px solid var(--alert);border-left:4px solid var(--alert);padding:10px 12px;font-size:12px;color:#ffdcd6;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:toastIn .25s ease both}
+  .toast .src{font-size:10px;letter-spacing:.14em;color:var(--alert);display:flex;justify-content:space-between}
+  .toast.warn{border-color:var(--sacred);border-left-color:var(--sacred)}.toast.warn .src{color:var(--sacred)}
+  @keyframes toastIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+  body.shaking .wrap,body.shaking nav{animation:shake .12s linear infinite}
+  @keyframes shake{0%{transform:translate(0,0)}25%{transform:translate(-3px,2px)}50%{transform:translate(3px,-2px)}75%{transform:translate(-2px,-3px)}100%{transform:translate(2px,3px)}}
+  .redflash{position:fixed;inset:0;z-index:94;background:radial-gradient(circle,rgba(229,97,79,.55),rgba(80,0,0,.9));pointer-events:none;animation:rf .7s ease-out both}
+  @keyframes rf{from{opacity:1}to{opacity:0}}
+  .pwn-lock{color:var(--alert);font-size:10px;line-height:1.15;white-space:pre;float:right;margin:0 0 8px 16px;opacity:.85}
+  @media(max-width:560px){.pwn-lock{display:none}}
+  .pwn-meta{font-size:11px;color:#a8817b;letter-spacing:.06em;margin-bottom:12px}
+  .pwn-meta b{color:#ffdcd6;font-weight:500}
+  .pwn-bar{height:6px;background:rgba(229,97,79,.15);margin:6px 0 2px;overflow:hidden}
+  .pwn-bar i{display:block;height:100%;width:0;background:var(--alert);transition:width .2s linear}
+  .pwn-count{display:flex;justify-content:space-between;font-size:11px;color:#a8817b}
+  .pwn-count b{color:var(--alert)}
+  .drill{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:16px;padding:18px 20px;border:1px dashed rgba(229,97,79,.45);background:rgba(229,97,79,.04);font-size:13.5px;color:var(--dim)}
+  .drill b{color:var(--head);font-weight:500}
+  .dont{color:var(--faint)!important;border-bottom-color:rgba(229,97,79,.4)!important}
+  .dont:hover{color:var(--alert)!important}
+
+  /* ---------- terminal overlay ---------- */
+  #term{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;background:rgba(4,6,9,.6);backdrop-filter:blur(3px);padding:16px}
+  #term.open{display:flex}
+  .tw{width:min(760px,100%);height:min(480px,80vh);background:#05080c;border:1px solid var(--cyber-dim);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(51,214,184,.05);display:flex;flex-direction:column;animation:twIn .2s ease}
+  @keyframes twIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+  .tw-bar{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--dim)}
+  .tw-bar .x{margin-left:auto;background:none;border:none;color:var(--dim);font-family:var(--mono);cursor:pointer;font-size:12px}
+  .tw-bar .x:hover{color:var(--alert)}
+  .tw-out{flex:1;overflow-y:auto;padding:14px 16px;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+  .tw-out .p{color:var(--cyber)}.tw-out .d{color:var(--dim)}.tw-out .a{color:var(--sacred)}.tw-out .e{color:var(--alert)}.tw-out .h{color:var(--head)}
+  .tw-in{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--line);font-size:13px}
+  .tw-in label{color:var(--cyber);white-space:nowrap}
+  .tw-in input{flex:1;background:none;border:none;outline:none;color:var(--head);font-family:var(--mono);font-size:13px;caret-color:var(--cyber);min-width:0}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    html{scroll-behavior:auto}
+  }
 </style>
 </head>
 <body>
 
-<div class="bg-grid"></div>
-<div class="bg-glow"></div>
-<div class="bg-scan"></div>
+<!-- recon bonus: you read source. good instinct. open the terminal (press `) and try: cat flag.txt -->
+<div id="boot" role="presentation"><div class="boot-inner" id="bootlog"></div><div class="boot-skip">click or press any key to skip</div></div>
 
 <nav>
-  <a href="#top" class="brand"><span class="dot"></span>The<span class="accent">Secured</span>Analyst</a>
-  <div class="navlinks">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#stack">Stack</a>
-    <a href="#certs">Certs</a>
-    <a href="#work">Work</a>
-    <a href="#contact" class="cta">Hire me</a>
+  <div class="wrap">
+    <a class="brand" href="#top">gbenga<b>@</b>arxamani</a>
+    <div class="links">
+      <a href="#access">Career</a><a href="#lateral">Moves</a><a href="#solutions">Solutions</a><a href="#ai">AI</a><a href="#arxvault" style="color:var(--sacred)">ArxVault</a><a href="#writing">Writing</a><a href="#play">Play</a><a href="#contact">Contact</a>
+    </div>
+    <button class="term-btn" id="termBtn" aria-label="Open terminal">~$_<kbd>`</kbd></button>
   </div>
 </nav>
 
-<header id="top" class="hero">
-  <div class="term-tag">
-    <span class="blink">●</span> securing 40+ branches by day · building security products by night
-  </div>
-  <h1>I secure banks.<br>Then I <span class="grad">build the tools</span> that scale that work.</h1>
-  <p class="lead">
-    I'm <span>Oluwagbenga Ogungbemi</span> — Manager, Cybersecurity &amp; Network Infrastructure at a
-    CBN-regulated Nigerian bank, where I run security and network operations across <span>40+ branches</span>
-    and <span>~1,300 staff</span>. Outside that mandate, I design and ship the products I wish existed —
-    secrets vaults, AI-assisted VAPT suites, and compliance automation — through my own company, ARX AMANI Technologies.
-  </p>
-  <div class="hero-actions">
-    <a href="#work" class="btn btn-primary">▸ See what I've shipped</a>
-    <a href="#contact" class="btn btn-ghost">Let's talk →</a>
-  </div>
-  <div class="hero-meta">
-    <div><b>7+ yrs</b>in cybersecurity (14+ yrs in IT)</div>
-    <div><b>40+ branches</b>secured at a federal financial institution</div>
-    <div><b>5 certs</b>CEH · Security+ · CC (ISC²) · CNSP · Google IT Support</div>
-  </div>
-</header>
+<div class="wrap" id="top">
 
-<section id="about">
-  <div class="wrap">
-    <div class="kicker">Who I am</div>
-    <h2>Defense-minded. Build-driven.</h2>
-    <div class="about-grid">
-      <div>
-        <p>I lead Cybersecurity &amp; Network Infrastructure at the <span>Federal Mortgage Bank of Nigeria</span> —
-          a CBN-regulated institution — where I own the firewall estate, endpoint protection, SIEM, and
-          network operations across <span>40+ branches</span> and roughly <span>1,300 staff</span>. I've held
-          that mandate since September 2018, through real incidents, real audits, and real scale.</p>
-        <p>Outside of that mandate, I design and ship the products I wish existed, through my own company,
-          <span>ARX AMANI Technologies</span> — including an enterprise secrets vault and IT asset
-          management platform built for Nigerian financial institutions, plus a suite of AI-assisted
-          vulnerability assessment and penetration testing tools.</p>
-        <p>My background is unconventional — I came to security through <span>physics</span>, not a
-          bootcamp — and that shows up as a habit of reasoning from first principles rather than
-          following playbooks. I blend <span>offensive thinking</span> (how systems actually get broken)
-          with <span>practical engineering</span> (how to ship something that closes the gap), because the
-          best defenses are the ones that get deployed, not just designed.</p>
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="statusbar">
+      <span><span class="dot"></span> TA0043 · RECONNAISSANCE</span>
+      <span class="recon">YOU ARE RUNNING RECON ON: GBENGA</span>
+      <span>FAITH: anchored</span>
+      <span>uptime: 14y+ IT · 8y+ security</span>
+    </div>
+    <div class="hero-grid"><div>
+    <div class="prompt" id="typed"><span class="cursor"></span></div>
+    <h1>Ogungbemi Samuel<br><span class="last">Oluwagbenga</span></h1>
+    <p class="role"><b>Manager, Cybersecurity &amp; Network Infrastructure</b> at the Federal Mortgage Bank of Nigeria · <b>Founder/CEO</b>, ARX AMANI Technologies · writing as <b>TheSecuredAnalyst</b></p>
+    <p class="line">I build security systems where none exist — and I build them <em class="s">to last.</em></p>
+    <div class="cta">
+      <a class="btn" href="gbenga/Oluwagbenga_Ogungbemi_CV.pdf" download>↓ Download CV</a>
+      <a class="btn alt" href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <button class="btn bad" data-pwn>⚠ Simulate an attack</button>
+    </div>
+    </div>
+    <aside class="tcard" aria-label="Threat profile">
+      <div class="tc-head"><span>THREAT PROFILE</span><span class="lvl">CRITICAL<small>to attackers</small></span></div>
+      <dl>
+        <dt>ALIAS</dt><dd><b>TheSecuredAnalyst</b></dd>
+        <dt>BASE</dt><dd>Abuja / Lagos, Nigeria</dd>
+        <dt>ACTIVE</dt><dd>Since 2011 · no signs of slowing</dd>
+        <dt>SEEN IN</dt><dd>Nigeria · United Kingdom · Latvia</dd>
+        <dt>SECTORS</dt><dd>Banking · Government · Oil &amp; Gas · Media · MSSP</dd>
+        <dt>MOTIVE</dt><dd>Systems that outlast the person who built them</dd>
+        <dt>TTPs</dt><dd class="ttp"><span>SIEM</span><span>Incident response</span><span>Firewalls</span><span>IAM / PAM</span><span>ISO 27001</span><span>AI automation</span></dd>
+        <dt>OFF HOURS</dt><dd>Reading · guitar · photography · learning Mandarin 中文 · travel</dd>
+        <dt>WEAKNESS</dt><dd><span class="redact" title="click to declassify">starts more side projects than one human should. See TA0005.</span></dd>
+      </dl>
+      <div class="tc-foot">CONFIDENCE: HIGH · receipts below · scroll to begin the attack chain</div>
+    </aside>
+    </div>
+    <div class="scrollcue"><i></i> SCROLL TO FOLLOW THE ATTACK CHAIN</div>
+  </header>
+
+  <!-- ================= INITIAL ACCESS ================= -->
+  <section id="access" class="sec">
+    <div class="kicker reveal"><span class="ta">TA0001 ·</span> INITIAL ACCESS <span class="cmd">$ git log --since=2011</span></div>
+    <h2 class="reveal">Got in through <em class="c">the support desk.</em></h2>
+    <p class="lede reveal">Every intrusion has an entry point, and so does every career. Mine was a systems analyst seat in 2011, and it taught me early that most security failures start as operations failures.</p>
+    <div class="ia">
+      <div class="panel reveal">
+        <div class="label">2011 – 2018 // System Analyst → Technical Support Specialist → Network Administrator</div>
+        <p>Seven years across oil &amp; gas, resources and media: running systems, building networks, putting the first security controls in place, and managing ICT projects end to end.</p>
+        <p style="color:var(--dim)">That's where the habits formed: document everything, automate the repeat work, and never pay a vendor for what a well-run team can do itself.</p>
+        <div class="orgs"><span class="tag">Xhibits Media · 2011</span><span class="tag">Jasna Resources · 2013</span><span class="tag">Bovas · 2016</span></div>
       </div>
-      <div class="panel">
-        <div class="panel-title">// current focus</div>
-        <div class="focus-list">
-          <div class="focus-item">
-            <div class="ic">🔐</div>
-            <div><h4>Enterprise Secrets Vault</h4><p>NDPR-compliant PAM &amp; asset management for Nigerian financial institutions, with 2FA, OAuth, LDAP, and AI-driven compliance reporting.</p></div>
-          </div>
-          <div class="focus-item">
-            <div class="ic">🛰️</div>
-            <div><h4>AI-Powered VAPT</h4><p>Automated vulnerability scanning that pairs Nmap + CVE lookups with local LLM analysis and 0–100 risk scoring.</p></div>
-          </div>
-          <div class="focus-item">
-            <div class="ic">🧩</div>
-            <div><h4>Enterprise Connectors</h4><p>SDK that syncs LDAP/AD, RMM, and SIEM platforms (Wazuh, Nessus, Intune) directly into the security vault.</p></div>
-          </div>
+      <div class="big-stat reveal">
+        <b data-count="17" data-prefix="₦" data-suffix="M+">₦17M+</b>
+        <span>saved in vendor SLA costs through infrastructure optimisation, helpdesk automation and hardware lifecycle management.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PERSISTENCE ================= -->
+  <section class="sec" style="padding-bottom:0">
+    <div class="kicker reveal"><span class="ta">TA0003 ·</span> PERSISTENCE <span class="cmd">$ uptime --since 2018</span></div>
+    <h2 class="reveal">Eight years. One bank. <em class="s">Still here.</em></h2>
+    <p class="lede reveal" style="margin-bottom:0">Attackers measure persistence by how long they go unnoticed. I measure it by how long the systems keep working. Scroll to watch a national bank network come online.</p>
+  </section>
+
+  <!-- ================= STORY ================= -->
+  <section id="story" class="story">
+    <div class="stage">
+      <div class="stage-box">
+        <canvas id="net" aria-label="Animated illustration of a bank network across Nigeria coming online"></canvas>
+        <div class="hud tl">NET // <b id="hudStep">00</b> / 06</div>
+        <div class="hud tr">STATUS<br><b class="stat ok" id="hudStatus">STANDBY</b></div>
+        <div class="hud bl">
+          <span>SITES <b id="hudSites">1</b></span>
+          <span>ENDPOINTS MANAGED <b id="hudEp">—</b></span>
+          <span>EVENTS/s <b id="hudEv">—</b></span>
+          <span class="sim">simulation · not live data</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="experience">
-  <div class="wrap">
-    <div class="kicker">Job history</div>
-    <h2>Where I've put in the work</h2>
-    <p class="sub">Real mandates, real scale, real accountability — not side-project security.</p>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-period">Sep 2018 — Present<span class="now">current</span></div>
-        <div class="tl-role">
-          <h3>Manager, Cybersecurity &amp; Network Infrastructure</h3>
-          <div class="org">Federal Mortgage Bank of Nigeria · CBN-regulated · Abuja, NG</div>
+    <div class="steps">
+      <div class="step" data-step="1">
+        <div class="n">01 — 2018</div>
+        <h3>It starts with <em class="s">one link.</em></h3>
+        <p>September 2018. A CBN-regulated bank, a headquarters in Abuja, and a security function that mostly had to be built rather than inherited.</p>
+        <p class="muted">Physicist by training. Systems builder by habit. The first job was to find out what was actually on the network.</p>
+      </div>
+      <div class="step" data-step="2">
+        <div class="n">02 — SCALE</div>
+        <h3>Then <em class="c">forty branches.</em></h3>
+        <p>Forty-plus offices across the country, 1,000+ users, and a firewall estate that had to behave like one network instead of forty.</p>
+      </div>
+      <div class="step" data-step="3">
+        <div class="n">03 — ENDPOINTS</div>
+        <h3>Every device, <em class="c">one pane.</em></h3>
+        <p>Endpoint protection and patching, managed from one console. Unknown machines become known; unpatched ones become patched.</p>
+        <p class="muted">Amber → teal is the whole job, repeated forever.</p>
+      </div>
+      <div class="step" data-step="4">
+        <div class="n">04 — VISIBILITY</div>
+        <h3>Every log, <em class="c">one story.</em></h3>
+        <p>Branches stream events back to a central SIEM. The goal isn't to collect logs. It's to be able to answer "what happened?" before someone asks.</p>
+      </div>
+      <div class="step" data-step="5">
+        <div class="n">05 — INCIDENT</div>
+        <h3>Then something <em class="r">moves.</em></h3>
+        <p>Every network gets tested eventually. What matters is how fast you see it, how cleanly you cut it off, and whether it spreads.</p>
+        <p class="muted">Detect. Isolate. Restore. Write it down. (You can try it yourself further down.)</p>
+      </div>
+      <div class="step" data-step="6">
+        <div class="n">06 — POSTURE</div>
+        <h3>Built <em class="s">to last.</em></h3>
+        <p>Not a hero moment, but a system that keeps working after the person who built it goes home.</p>
+        <div class="bigstats">
+          <div><b>40+</b><span>BRANCHES</span></div>
+          <div><b>1,000+</b><span>USERS PROTECTED</span></div>
+          <div><b>14y+</b><span>IN IT</span></div>
+          <div><b>8y+</b><span>IN SECURITY</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRIVILEGE ESCALATION ================= -->
+  <section id="privesc" class="sec">
+    <div class="kicker reveal"><span class="ta">TA0004 ·</span> PRIVILEGE ESCALATION <span class="cmd">$ sudo -l</span></div>
+    <h2 class="reveal">Escalated <em class="c">the legitimate way.</em></h2>
+    <p class="lede reveal">No exploits, no stolen tokens. Just promotions earned in the open and credentials earned one exam at a time.</p>
+    <div class="ladder reveal">
+      <div class="rung" style="min-height:90px"><span class="y">2011</span><b>System Analyst</b><span>Xhibits Media</span></div>
+      <div class="rung" style="min-height:114px"><span class="y">2013</span><b>Technical Support Specialist</b><span>Jasna Resources</span></div>
+      <div class="rung" style="min-height:138px"><span class="y">2016</span><b>Network Administrator</b><span>Bovas</span></div>
+      <div class="rung" style="min-height:162px"><span class="y">SEP 2018</span><b>Assistant Manager</b><span>FMBN · first dedicated security hire</span></div>
+      <div class="rung" style="min-height:186px"><span class="y">MAR 2022</span><b>Deputy Manager</b><span>FMBN · security engineering</span></div>
+      <div class="rung now" style="min-height:210px"><span class="y">APR 2025 · NOW</span><b>Manager, Cybersecurity &amp; Network Infrastructure</b><span>FMBN</span></div>
+      <div class="rung target" style="min-height:234px"><span class="y">NEXT TARGET</span><b>CISO</b><span>uid=0. Working on it, in the open.</span></div>
+    </div>
+    <div class="perms reveal"><span class="d">guest@arxamani:~$</span> <span class="h">ls -l /etc/privileges</span>
+<span class="g">-r--r--r--</span>  granted   <span class="h">CEH</span>                         <span class="d">Certified Ethical Hacker</span>
+<span class="g">-r--r--r--</span>  granted   <span class="h">CompTIA Security+</span>           <span class="d">SY0-701</span>
+<span class="g">-r--r--r--</span>  granted   <span class="h">CC</span>                          <span class="d">ISC² Certified in Cybersecurity</span>
+<span class="g">-r--r--r--</span>  granted   <span class="h">CNSP</span>                        <span class="d">Certified Network Security Professional</span>
+<span class="g">-r--r--r--</span>  granted   <span class="h">CCNA CyberOps</span>               <span class="d">Cisco, 2024</span>
+<span class="g">-r--r--r--</span>  granted   <span class="h">ITIL 4 Foundation</span>
+<span class="g">-r--r--r--</span>  granted   <span class="h">Cyber Insurance Strategies</span>  <span class="d">SecurityScorecard, 2025</span>
+<span class="g">-r--r--r--</span>  granted   <span class="h">Google IT Support</span>           <span class="d">Professional Certificate</span>
+<span class="a">--w-------</span>  pending   <span class="h">CISSP</span>                       <span class="d">ISC² · in progress</span>
+<span class="a">--w-------</span>  pending   <span class="h">CompTIA SecAI+</span>              <span class="d">CY0-001 · expected</span>
+<span class="a">--w-------</span>  pending   <span class="h">CCNA</span>                        <span class="d">Cisco · in progress</span>
+<span class="r">----------</span>  expired   <span class="h">AWS Cloud Practitioner</span>      <span class="d">lapsed · on the renewal list</span></div>
+    <div class="panel reveal" style="margin-top:16px">
+      <div class="label">Foundation // physics before firewalls</div>
+      <p style="font-size:14px">BSc Physics, Ado-Ekiti (2010) · MSc Physics, University of Lagos (2015) · PhD research in physics (computational materials), University of Lagos, in progress · MSc International Affairs &amp; Diplomacy, ABU, at project stage. <span style="color:var(--dim)">Physics teaches you to distrust a model until it survives contact with reality, and security is the same discipline.</span></p>
+    </div>
+  </section>
+
+  <!-- ================= LATERAL MOVEMENT ================= -->
+  <section id="lateral" class="sec">
+    <div class="kicker reveal"><span class="ta">TA0008 ·</span> LATERAL MOVEMENT <span class="cmd">$ ssh -J abuja london riga lagos</span></div>
+    <h2 class="reveal">Moved across <em class="c">borders and sectors.</em></h2>
+    <p class="lede reveal">An attacker moves laterally to find more access. I moved laterally to find harder problems: a UK managed security provider, a European cloud network and a national government programme. All three ran concurrently with the day job at the bank, which never stopped.</p>
+    <div class="lat">
+      <div class="lat-map reveal">
+        <svg id="latsvg" viewBox="0 0 520 420" role="img" aria-label="Map of roles in Nigeria, the United Kingdom and Latvia"></svg>
+      </div>
+      <div class="moves" id="moves">
+        <div class="move reveal" data-k="uk">
+          <div class="where">UNITED KINGDOM · REMOTE · CONCURRENT · DEC 2022 – DEC 2024</div>
+          <h4>Zeeko Technologies</h4>
+          <p class="role">Cyber Security Manager / Senior Cyber Security Analyst</p>
           <ul>
-            <li>Own end-to-end security &amp; network operations across 40+ branches and ~1,300 staff</li>
-            <li>Run the firewall estate, endpoint protection (Sophos Central), SIEM (Splunk), and RMM (Action1)</li>
-            <li>Lead incident response, threat detection, and internal hardening for a regulated financial institution</li>
-            <li>Translate compliance frameworks (CBN IT risk, NDPR) into operational controls that actually hold up to audit</li>
+            <li>SIEM engineering and detection rules for authentication anomalies, privilege escalation and lateral movement. (Yes, the irony is noted.)</li>
+            <li>Threat hunting mapped to MITRE ATT&amp;CK, plus VAPT across infrastructure and applications.</li>
+            <li>Led incident response through containment and recovery, with executive post-incident reports.</li>
+          </ul>
+        </div>
+        <div class="move reveal" data-k="lv">
+          <div class="where">LATVIA · REMOTE · CONCURRENT · AUG – NOV 2024</div>
+          <h4>Fotbo</h4>
+          <p class="role">Network Security Engineer</p>
+          <ul>
+            <li>Firewalls, VPNs and DDoS protection (FastNetMon) in a multi-tenant cloud VPC.</li>
+            <li>Security configuration automated with Ansible across Arista and OPNsense.</li>
+          </ul>
+        </div>
+        <div class="move reveal" data-k="ng">
+          <div class="where">LAGOS · NATIONWIDE · CONCURRENT · MAY – SEP 2025</div>
+          <h4>EMI Systems × Nigeria Customs Service</h4>
+          <p class="role">Team Lead, ICT Security &amp; Infrastructure QA · Trade Modernisation Project</p>
+          <ul>
+            <li>Independent security QA on national trade infrastructure.</li>
+            <li>Reviewed identity, authentication and access controls before system acceptance.</li>
+            <li>Executive risk and compliance reporting for vendor decisions.</li>
           </ul>
         </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-period">Ongoing<span class="now">building</span></div>
-        <div class="tl-role">
-          <h3>Founder &amp; CEO</h3>
-          <div class="org">ARX AMANI Technologies Ltd · arxamani.com</div>
-          <ul>
-            <li>Building managed cybersecurity services and products for Nigerian SMEs and financial institutions</li>
-            <li>Designed and shipped arxVault — an NDPR-compliant secrets &amp; PAM platform with automated credential rotation</li>
-            <li>Published Security Suite — an open-source security toolkit with ~90★ on GitHub — plus MCP servers exposing 255+ security tools to AI assistants</li>
-            <li>Taking products from "I saw the gap" to production — not portfolios of demos</li>
-          </ul>
+    </div>
+  </section>
+
+  <!-- ================= SOLUTIONS ================= -->
+  <section id="solutions" class="sec">
+    <div class="kicker reveal"><span class="ta">TA0002 ·</span> EXECUTION <span class="cmd">$ ls /opt/built-in-house</span></div>
+    <h2 class="reveal">Problems, <em class="c">solved in-house.</em></h2>
+    <p class="lede reveal">An institution doesn't always need a vendor. Sometimes it needs someone who understands the problem well enough to build exactly what fits and then run it. These are the systems built and run from inside the bank.</p>
+    <div class="sol-head reveal"><span>SYSTEM</span><span>THE PROBLEM</span><span>WHAT WAS BUILT</span><span>WHERE IT STANDS</span></div>
+    <div class="sols reveal">
+      <div class="sol">
+        <div class="nm"><span class="st run">IN PRODUCTION</span><b>Legacy payment reconciliation</b></div>
+        <div class="pb"><div class="h">PROBLEM</div><p>Years of legacy contribution schedules that never matched the records they were meant to update. The backlog was too large to work by hand.</p></div>
+        <div class="bt"><div class="h">BUILT</div><p>A reconciliation platform that streams 300k-row schedules, matches them against a 9M-record history on BVN, auto-matches the confident cases and queues the rest for human review.</p></div>
+        <div class="oc"><div class="h">OUTCOME</div><p>A backlog that once needed teams of people is now a queue with an audit trail and role-based approvals.</p></div>
+      </div>
+      <div class="sol">
+        <div class="nm"><span class="st run">IN PRODUCTION</span><b>AI-assisted switch operations</b></div>
+        <div class="pb"><div class="h">PROBLEM</div><p>Configuration changes typed by hand across a fleet of switches. One wrong line can take a floor offline.</p></div>
+        <div class="bt"><div class="h">BUILT</div><p>Plain-English requests turned into switch commands by a local model. Protected VLANs are hard-blocked, incidents are detected, and every fix needs human approval.</p></div>
+        <div class="oc"><div class="h">OUTCOME</div><p>Faster routine operations, with the dangerous changes structurally impossible rather than merely discouraged.</p></div>
+      </div>
+      <div class="sol">
+        <div class="nm"><span class="st run">LIVE</span><b>Travel allowance &amp; approvals</b></div>
+        <div class="pb"><div class="h">PROBLEM</div><p>Allowances calculated manually, approvals chased on paper, and the rules applied differently by different people.</p></div>
+        <div class="bt"><div class="h">BUILT</div><p>A calculator that encodes the policy once, plus an approval workflow that routes every claim the same way.</p></div>
+        <div class="oc"><div class="h">OUTCOME</div><p>One rulebook, applied consistently, with every approval on record.</p></div>
+      </div>
+      <div class="sol">
+        <div class="nm"><span class="st run">LIVE</span><b>Duty reminders with proof</b></div>
+        <div class="pb"><div class="h">PROBLEM</div><p>Recurring duties and deadlines that slip because a reminder is easy to ignore.</p></div>
+        <div class="bt"><div class="h">BUILT</div><p>Reminders that keep going until there's evidence the task is done. A reminder alone isn't enough.</p></div>
+        <div class="oc"><div class="h">OUTCOME</div><p>Accountability moves from memory to the system.</p></div>
+      </div>
+      <div class="sol">
+        <div class="nm"><span class="st run">IN PRODUCTION</span><b>ISP outage notification</b></div>
+        <div class="pb"><div class="h">PROBLEM</div><p>Branch connectivity drops, and nobody who needs to know finds out in time.</p></div>
+        <div class="bt"><div class="h">BUILT</div><p>A tool that emails the right offices when a link goes down, so the people affected hear it first.</p></div>
+        <div class="oc"><div class="h">OUTCOME</div><p>Outages are communicated, not discovered.</p></div>
+      </div>
+      <div class="sol">
+        <div class="nm"><span class="st queue">IN BUILD</span><b>Identity &amp; access platform</b></div>
+        <div class="pb"><div class="h">PROBLEM</div><p>Directory, network access control, VPN and patching all live in separate consoles, with separate blind spots.</p></div>
+        <div class="bt"><div class="h">BUILT</div><p>A unified platform under construction: consistent naming, AI-assisted access decisions, and integration with endpoint and SIEM tooling.</p></div>
+        <div class="oc"><div class="h">OUTCOME</div><p>The goal is identity as the control plane, with one place to answer "who has access, and should they?"</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AI AUTOMATION ================= -->
+  <section id="ai" class="sec">
+    <div class="kicker reveal"><span class="ta">TA0011 ·</span> COMMAND &amp; CONTROL <span class="cmd">$ explain --pipeline</span></div>
+    <h2 class="reveal">AI proposes. <em class="s">Humans approve.</em></h2>
+    <p class="lede reveal">In a regulated bank, an AI that acts on its own is a liability, and one that only chats is a toy. The useful middle is a pipeline: the model does the translation work, policy decides what's allowed, and a person signs off on anything that changes state. Pick a request to watch it go through.</p>
+    <div class="ai-grid">
+      <div class="reveal">
+        <div class="asks" id="asks">
+          <button class="ask" data-k="read">"Which ports on the second-floor switch are down?"<small>read-only request</small></button>
+          <button class="ask" data-k="change">"Block this rogue device on the staff VLAN."<small>state-changing request</small></button>
+          <button class="ask" data-k="danger">"Shut down the core uplink."<small>protected infrastructure</small></button>
+        </div>
+        <p class="ai-note">Illustrative walkthrough of the design pattern. The model runs locally, so no network data leaves the building.</p>
+      </div>
+      <div class="pipe reveal" id="pipe">
+        <div class="stage-row" data-s="0"><span class="sn">01 INTENT</span><span class="sv">—</span></div>
+        <div class="stage-row" data-s="1"><span class="sn">02 CONTEXT</span><span class="sv">—</span></div>
+        <div class="stage-row" data-s="2"><span class="sn">03 MODEL</span><span class="sv">—</span></div>
+        <div class="stage-row" data-s="3"><span class="sn">04 POLICY</span><span class="sv">—</span></div>
+        <div class="stage-row" data-s="4"><span class="sn">05 HUMAN</span><span class="sv">—</span></div>
+        <div class="stage-row" data-s="5"><span class="sn">06 AUDIT</span><span class="sv">—</span></div>
+      </div>
+    </div>
+    <div class="implants reveal">
+      <div><div class="k">IMPLANT 01 · AUTHORISED</div><b>Sophos Central MCP server</b><span>Connects EDR/XDR APIs to an AI assistant for faster triage and incident correlation. Written up publicly.</span></div>
+      <div><div class="k">IMPLANT 02 · AUTHORISED</div><b>PRTG MCP server</b><span>Network monitoring data, queried in plain English through a local Llama model.</span></div>
+      <div><div class="k">IMPLANT 03 · AUTHORISED</div><b>Sovereign LLM stack</b><span>Ollama on local hardware, so security data never leaves the building.</span></div>
+      <div><div class="k">IMPLANT 04 · AUTHORISED</div><b>SecContext</b><span>Budgeted security context for AI tools: enough to reason with, nothing more.</span></div>
+    </div>
+  </section>
+
+  <!-- ================= PROMPT ================= -->
+  <section id="prompt" class="sec" style="padding-top:40px">
+    <h2 class="reveal" style="font-size:clamp(1.6rem,3.6vw,2.4rem)">And a prompt is <em class="c">a specification.</em></h2>
+    <p class="lede reveal">Most prompts are wishes. A production prompt is closer to a contract: it says who the model is, what it may see, what it must never do, what shape the answer takes, and what to do when it isn't sure. Hover a line to see the principle behind it.</p>
+    <div class="prompt-grid">
+      <div class="anat reveal" id="anat">
+        <div class="ln" data-r="0"><span class="t">ROLE</span><span class="c">You are a network change assistant for a regulated bank.</span></div>
+        <div class="ln" data-r="1"><span class="t">CONTEXT</span><span class="c"><i>{device_facts}</i>, scoped to the devices this request names. Nothing else.</span></div>
+        <div class="ln" data-r="2"><span class="t">TASK</span><span class="c">Translate the operator's request into IOS commands.</span></div>
+        <div class="ln" data-r="3"><span class="t">NEVER</span><span class="c">Touch protected VLANs or uplinks. Invent interfaces. Combine unrelated changes.</span></div>
+        <div class="ln" data-r="4"><span class="t">UNSURE</span><span class="c">If the request is ambiguous, ask one clarifying question. Do not guess.</span></div>
+        <div class="ln" data-r="5"><span class="t">OUTPUT</span><span class="c">JSON only: <i>{intent, commands[], risk, needs_approval, rationale}</i></span></div>
+        <div class="ln" data-r="6"><span class="t">TESTED</span><span class="c">Regression-run against a fixed set of known requests before any prompt change ships.</span></div>
+      </div>
+      <div class="rules reveal" id="rules">
+        <div><b>Give it a job title, not a personality.</b><span>A role sets scope and stakes. "Regulated bank" changes how cautious the answers are.</span></div>
+        <div><b>Context is a budget.</b><span>Give the model only what this task needs. More context means more cost, more confusion and more data exposure.</span></div>
+        <div><b>One task per prompt.</b><span>Prompts that do several jobs fail in ways that are hard to debug. Compose small, testable steps instead.</span></div>
+        <div><b>Write the "never" list first.</b><span>Constraints are the security boundary, and the model must still be checked by code afterwards.</span></div>
+        <div><b>Give it a way to say "I don't know".</b><span>A model with no exit path will make something up. Asking is cheaper than an outage.</span></div>
+        <div><b>Demand a schema you can validate.</b><span>Structured output lets ordinary code check the model's work before anything runs.</span></div>
+        <div><b>Version and test prompts like code.</b><span>A prompt edit is a deployment. It gets a test suite, a diff and a rollback.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NOW BUILDING: ARXVAULT ================= -->
+  <section id="arxvault" class="sec">
+    <div class="kicker reveal" style="color:var(--sacred)"><span class="ta">TA0042 ·</span> RESOURCE DEVELOPMENT · NOW BUILDING <span class="cmd">$ vault status</span></div>
+    <div class="nb reveal">
+      <div class="nb-top"><span class="st queue">v1.0 · EARLY ACCESS</span><span class="st ship">ARX AMANI</span><span class="st ship">SELF-HOSTED PAM</span></div>
+      <h3>Arx<span>Vault</span></h3>
+      <p class="tag-line">The keys to your kingdom, kept on your own servers, used by people who never see them.</p>
+      <p class="nb-problem">Walk into most Nigerian institutions and ask where the domain admin password lives. The honest answer is <b>a spreadsheet, a notebook, or a WhatsApp chat</b>. Six engineers share it, it hasn't changed in years, and it leaves with whoever resigns. When something goes wrong, nobody can say who logged in or what they typed. The tools that fix this are priced in dollars, hosted abroad, and built for teams that already have specialists. <b>ArxVault is privileged access management built for everyone else.</b></p>
+
+      <div class="life-switch" role="tablist" aria-label="Compare the life of a privileged password">
+        <button data-v="before" class="on" role="tab" aria-selected="true">WITHOUT ARXVAULT</button>
+        <button data-v="after" role="tab" aria-selected="false">WITH ARXVAULT</button>
+      </div>
+      <div class="life before" id="life">
+        <div><div class="k">STORED</div><p></p></div>
+        <div><div class="k">SHARED</div><p></p></div>
+        <div><div class="k">CHANGED</div><p></p></div>
+        <div><div class="k">SOMEONE LEAVES</div><p></p></div>
+        <div><div class="k">SOMETHING BREAKS</div><p></p></div>
+      </div>
+
+      <div class="nb-grid">
+        <div class="feat">
+          <div><b>Envelope encryption</b><span>A unique key per secret, wrapped by a master key the customer holds.</span></div>
+          <div><b>Brokered SSH &amp; RDP</b><span>Engineers get a session in the browser. The password is never shown.</span></div>
+          <div><b>Automatic rotation</b><span>Changed on the device itself: Linux, Cisco IOS and Windows.</span></div>
+          <div><b>Session recording</b><span>Every privileged session can be replayed, keystroke by keystroke.</span></div>
+          <div><b>Tamper-evident audit</b><span>A hash-chained log, so a deleted line shows up as a broken chain.</span></div>
+          <div><b>Your identity, your servers</b><span>Active Directory login, TOTP, break-glass access, and fully on-premise.</span></div>
+        </div>
+        <div class="vault-term" id="vterm" aria-label="Illustration of a brokered session"></div>
+      </div>
+
+      <div class="nb-foot">
+        <span><b>370+</b> automated tests</span>
+        <span>Verified against real Linux, Cisco and Windows targets</span>
+        <span>Works offline, with signed licences</span>
+        <a class="btn" href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">Request a demo ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section id="work" class="sec" style="padding-top:40px">
+    <h2 class="reveal" style="font-size:clamp(1.6rem,3.6vw,2.4rem)">Also shipping from <em class="s">ARX AMANI.</em></h2>
+    <p class="lede reveal">Outside the bank, ARX AMANI builds security tools for African realities: low bandwidth, shared devices and SMEs with no security team. Statuses are honest: paused means paused.</p>
+
+    <div class="cards">
+      <article class="card feature reveal">
+        <div>
+          <span class="st run">RUNNING · LIVE</span>
+          <h4 style="margin-top:12px">CyberStart</h4>
+          <p style="margin:10px 0 16px">A learning-path finder for African beginners breaking into cybersecurity. You answer a few questions and get a route, not a reading list.</p>
+          <a class="go" href="https://cyberstart.arxamani.com" target="_blank" rel="noopener">cyberstart.arxamani.com ↗</a>
+        </div>
+        <div class="mini-term"><span class="g">$</span> cyberstart --where-do-i-begin
+<span class="d">› background:</span> physics graduate
+<span class="d">› time/week:</span>  6 hours
+<span class="d">› device:</span>     phone + shared laptop
+<span class="a">→ route:</span> networking basics → Linux → Security+ → SOC lab
+<span class="g">✓ plan ready.</span> first step today.</div>
+      </article>
+
+      <article class="card reveal">
+        <span class="st run">PUBLIC</span>
+        <h4>Security Suite</h4>
+        <p>An open-source Python security toolkit with guardrails built in, so the tools can't be pointed at things they shouldn't be.</p>
+        <div class="meta"><a class="go" href="https://github.com/TheSecuredAnalyst/security-suite" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <article class="card reveal">
+        <span class="st run">v0.1</span>
+        <h4>SecContext</h4>
+        <p>Budgeted security context for AI assistants over MCP, CLI and local models. It gives the model what it needs to reason about your environment and nothing more.</p>
+        <div class="meta"><a class="go" href="https://github.com/TheSecuredAnalyst" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <article class="card reveal">
+        <span class="st run">v2.0</span>
+        <h4>AI-VulnScan</h4>
+        <p>AI-assisted vulnerability scanning that explains findings in business language, so a client knows what to fix first.</p>
+        <div class="meta"><span class="foot-note" style="margin:0">client proof-of-concept</span></div>
+      </article>
+
+      <article class="card reveal">
+        <span class="st run">IN USE</span>
+        <h4>Exam study engine</h4>
+        <p>Spaced repetition, timed mock exams weighted like the real exam, and a local AI tutor that explains rather than just grading. Built for SecAI+, and works for any certification.</p>
+      </article>
+
+      <article class="card reveal">
+        <span class="st hold">PAUSED</span>
+        <h4>ExplainableSOC</h4>
+        <p>A SOC that teaches as it works: every alert explains itself. Paused on purpose until the architecture is right.</p>
+      </article>
+
+      <article class="card reveal">
+        <span class="st queue">QUEUED</span>
+        <h4>NaijaBreachDB</h4>
+        <p>Breach intelligence for the Nigerian landscape. It's the prerequisite for a WhatsApp threat-briefing bot.</p>
+      </article>
+
+      <article class="card reveal">
+        <span class="st queue">QUEUED</span>
+        <h4>CyberScore Nigeria</h4>
+        <p>Security posture scoring for SMEs, giving a business owner one number they can understand and improve.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= EXFILTRATION ================= -->
+  <section id="writing" class="sec">
+    <div class="kicker reveal"><span class="ta">TA0010 ·</span> EXFILTRATION (THE LEGAL KIND) <span class="cmd">$ curl -X POST medium.com</span></div>
+    <h2 class="reveal">Knowledge, <em class="s">leaked on purpose.</em></h2>
+    <p class="lede reveal">Everything learned gets taken out of my head and published on Medium, LinkedIn and arxamani.com, including cyber insurance, 2026 threat trends and AI in the SOC.</p>
+    <div class="exfil">
+      <article class="card reveal">
+        <span class="pkt">PACKET 01 · INCIDENT ANALYSIS</span>
+        <h4>Nigeria's 2026 breaches, dissected</h4>
+        <p>The Sterling Bank, Remita and CAC breaches, mapped to the OWASP Top 10:2025: what failed, why, and what it means for your business.</p>
+        <a class="go" href="https://arxamani.com/blog/your-customers-data-may-already-be-for-sale-what-the-sterling-bank-remita-and-cac-breaches-mean-for-your-business" target="_blank" rel="noopener">Read on arxamani.com ↗</a>
+      </article>
+      <article class="card reveal">
+        <span class="pkt">PACKET 02 · AI × SOC</span>
+        <h4>Drowning in alerts, so I built an AI copilot</h4>
+        <p>A laptop, Llama 3 and a custom MCP server became a personal threat-hunting assistant for an EDR platform, without sending security data abroad.</p>
+        <a class="go" href="https://medium.com/p/c4f532a61d03" target="_blank" rel="noopener">Read on Medium ↗</a>
+      </article>
+      <article class="card reveal">
+        <span class="pkt">PACKET 03 · FAITH × SECURITY</span>
+        <h4>The Devil's OWASP</h4>
+        <p>How ancient temptation maps onto modern attacks: phishing in Eden, broken access control, Trojan fruit. Part of the Sacred Architecture writing.</p>
+        <a class="go" href="https://medium.com/@ogungbemigs/the-devils-owasp-how-ancient-temptation-looks-like-modern-cybersecurity-55367ab31b5e" target="_blank" rel="noopener">Read on Medium ↗</a>
+      </article>
+    </div>
+    <div style="margin-top:16px" class="reveal"><a class="go" style="font-size:13px;color:var(--cyber);text-decoration:none;border-bottom:1px dotted var(--cyber-dim)" href="https://medium.com/@ogungbemigs" target="_blank" rel="noopener">All articles on Medium ↗</a></div>
+  </section>
+
+  <!-- ================= IMPACT ================= -->
+  <section id="impact" class="sec">
+    <div class="kicker reveal"><span class="ta">TA0040 ·</span> IMPACT <span class="cmd">$ wc -l ~/receipts</span></div>
+    <h2 class="reveal">Blast radius, <em class="c">in a good way.</em></h2>
+    <div class="impact reveal">
+      <div><b data-count="14" data-suffix="+">14+</b><span>YEARS IN IT</span></div>
+      <div><b data-count="40" data-suffix="+">40+</b><span>BRANCHES DEFENDED</span></div>
+      <div><b data-count="1000" data-suffix="+">1,000+</b><span>USERS PROTECTED</span></div>
+      <div><b data-count="8" data-suffix="+">8+</b><span>YEARS IN SECURITY</span></div>
+      <div><b data-count="3">3</b><span>COUNTRIES WORKED IN</span></div>
+      <div><b data-count="5">5</b><span>IN-HOUSE SYSTEMS IN PRODUCTION</span></div>
+      <div><b data-count="17" data-prefix="₦" data-suffix="M+">₦17M+</b><span>VENDOR COSTS SAVED</span></div>
+      <div><b data-count="370" data-suffix="+">370+</b><span>ARXVAULT TESTS PASSING</span></div>
+    </div>
+  </section>
+
+  <!-- ================= TOOLBOX ================= -->
+  <section id="toolbox" class="sec">
+    <div class="kicker reveal"><span class="ta">TA0009 ·</span> COLLECTION <span class="cmd">$ stack --list</span></div>
+    <h2 class="reveal">Tools <em class="c">collected.</em></h2>
+    <p class="lede reveal">Tools I've worked with in the field across banking, government and managed security. Dashed tags are where new things get built first.</p>
+    <div class="tool-grid">
+      <div class="panel reveal">
+        <div class="label">Defend // network &amp; endpoint</div>
+        <div class="tagrow">
+          <span class="tag">Sophos</span><span class="tag">FastNetMon</span><span class="tag">Active Directory</span>
+          <span class="tag">OPNsense</span><span class="tag">Arista</span><span class="tag">Cisco</span><span class="tag">Azure AD</span><span class="tag">IPsec VPN</span><span class="tag">IDS/IPS</span>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <div class="label">Detect // SIEM &amp; monitoring</div>
+        <div class="tagrow">
+          <span class="tag">Wazuh</span><span class="tag">ELK Stack</span><span class="tag">Security Onion</span><span class="tag">Splunk</span><span class="tag">Nessus</span><span class="tag">Zabbix</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">MITRE ATT&amp;CK</span>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <div class="label">Govern // frameworks &amp; regulation</div>
+        <div class="tagrow">
+          <span class="tag">ISO 27001</span><span class="tag">NIST CSF</span><span class="tag">CBN Cybersecurity Framework</span><span class="tag">NDPR / NDPA</span><span class="tag">PCI-DSS</span><span class="tag">OWASP Top 10:2025</span><span class="tag">BCP / DR</span>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <div class="label">Build // automation &amp; lab</div>
+        <div class="tagrow">
+          <span class="tag lab">Python</span><span class="tag lab">Ansible</span><span class="tag lab">Laravel</span><span class="tag lab">Ollama</span><span class="tag lab">MCP</span><span class="tag lab">Proxmox</span><span class="tag lab">Linux</span><span class="tag lab">Windows Server</span><span class="tag lab">Mayan EDMS</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="stack">
-  <div class="wrap">
-    <div class="kicker">Tech stack</div>
-    <h2>What I actually run — in production and in the lab</h2>
-    <p class="sub">Tools I use to secure a 40-branch bank by day, and the stack I use to prototype the next thing by night.</p>
-    <div class="skill-grid">
-      <div class="skill-card">
-        <div class="head"><span class="ic">🛡️</span><h3>Security Platforms (Production)</h3></div>
-        <ul>
-          <li>Sophos Central (endpoint &amp; EDR)</li>
-          <li>Splunk (SIEM &amp; log analysis)</li>
-          <li>Action1 (RMM &amp; patch management)</li>
-          <li>Enterprise firewall estate (40+ branches)</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <div class="head"><span class="ic">🎯</span><h3>Offensive Security</h3></div>
-        <ul>
-          <li>Penetration testing &amp; VAPT</li>
-          <li>OSINT (theHarvester, Photon)</li>
-          <li>Impacket &amp; exploitation tooling</li>
-          <li>Nmap + CVE-driven assessments</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <div class="head"><span class="ic">📡</span><h3>Infrastructure &amp; Observability (Lab)</h3></div>
-        <ul>
-          <li>Proxmox (virtualization)</li>
-          <li>ELK Stack &amp; Zabbix</li>
-          <li>Prometheus + Grafana</li>
-          <li>GNS3 / Wireshark labs</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <div class="head"><span class="ic">⚙️</span><h3>Engineering</h3></div>
-        <ul>
-          <li>Laravel / PHP (production apps)</li>
-          <li>Python (security automation)</li>
-          <li>Node.js &amp; process management</li>
-          <li>Android development</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <div class="head"><span class="ic">🤖</span><h3>AI &amp; Automation</h3></div>
-        <ul>
-          <li>Local LLMs (Ollama) for analysis</li>
-          <li>RAG pipelines (FAISS + embeddings)</li>
-          <li>AI-driven compliance reporting</li>
-          <li>Risk scoring &amp; report generation</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <div class="head"><span class="ic">🌐</span><h3>Networking &amp; Identity</h3></div>
-        <ul>
-          <li>Cisco switch &amp; VLAN management</li>
-          <li>LDAP / Active Directory</li>
-          <li>Network segmentation &amp; hardening</li>
-          <li>Telnet/SSH estate management</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <div class="head"><span class="ic">📋</span><h3>Compliance &amp; Frameworks</h3></div>
-        <ul>
-          <li>NDPR (Nigeria Data Protection Reg.)</li>
-          <li>CBN IT risk framework</li>
-          <li>OWASP Top 10 / CIS benchmarks</li>
-          <li>Audit-ready documentation</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- ================= PLAY ================= -->
+  <section id="play" class="sec">
+    <div class="kicker reveal">PURPLE TEAM · TABLETOP <span class="cmd">$ ./tabletop.sh</span></div>
+    <h2 class="reveal">Your turn to <em class="r">respond.</em></h2>
+    <p class="lede reveal">Two tabletop exercises based on the decisions security teams make every week. Nothing here touches a real network or sends any data.</p>
 
-<section id="certs">
-  <div class="wrap">
-    <div class="kicker">Credentials</div>
-    <h2>Certified, not just self-taught</h2>
-    <p class="sub">Verified credentials that back up the hands-on experience above.</p>
-    <div class="cert-grid">
-      <div class="cert-card"><div class="badge">CEH</div><div><h4>Certified Ethical Hacker</h4><p>EC-Council</p></div></div>
-      <div class="cert-card"><div class="badge">SEC+</div><div><h4>CompTIA Security+</h4><p>CompTIA</p></div></div>
-      <div class="cert-card"><div class="badge">CC</div><div><h4>Certified in Cybersecurity</h4><p>(ISC)²</p></div></div>
-      <div class="cert-card"><div class="badge">CNSP</div><div><h4>Certified Network Security Practitioner</h4><p>The SecOps Group</p></div></div>
-      <div class="cert-card"><div class="badge">GIT</div><div><h4>IT Support Professional</h4><p>Google (Coursera)</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="work">
-  <div class="wrap">
-    <div class="kicker">Selected work</div>
-    <h2>Tools I've designed &amp; shipped</h2>
-    <p class="sub">Products and platforms I've built — from open-source tools anyone can run to proprietary systems in production. Most were born from real gaps in enterprise security tooling for the Nigerian market.</p>
-    <div class="proj-grid">
-      <div class="proj-card">
-        <div class="proj-top"><h3>arxVault — Secrets Vault &amp; PAM</h3><div class="proj-tags"><span class="proj-tag">Flagship</span><span class="proj-tag alt">Proprietary</span></div></div>
-        <p>Enterprise secrets vault &amp; IT asset management — self-hosted, NDPR/CBN-aligned. AES-256-GCM envelope encryption (a unique key per secret), a hash-chained tamper-evident audit log, 2FA + Azure/Google OAuth + LDAP, and a crash-safe two-phase-commit engine that automatically rotates privileged credentials. Built for Nigerian financial institutions.</p>
-        <div class="proj-stack"><span>Laravel 12</span><span>AES-256-GCM</span><span>Livewire</span><span>OAuth/LDAP</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3>NEXUS-AD</h3><div class="proj-tags"><span class="proj-tag">AI · Network</span><span class="proj-tag alt">Proprietary</span></div></div>
-        <p>A self-sustaining Active Directory / NAC / VPN platform spanning 40+ branches. Enforces network access control without 802.1X, keeps branches authenticating through VPN outages via an HMAC "dead-man's-switch", predicts tunnel degradation with EWMA scoring, and runs incident response on a local LLM — every action written to a SHA-256 hash-chained audit trail.</p>
-        <div class="proj-stack"><span>Python</span><span>PowerShell</span><span>Ollama</span><span>Splunk</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3>NHF Reconciler</h3><div class="proj-tags"><span class="proj-tag">Data Engineering</span><span class="proj-tag alt">Internal</span></div></div>
-        <p>A record-matching engine that reconciles legacy payment schedules against a 9-million-record master database — phonetic, order-insensitive name matching fused with identifier signals and a multi-generation ID resolver. Replaced a manual spreadsheet process, taking auto-match to 96% and cutting manual review from ~69% to ~4%.</p>
-        <div class="proj-stack"><span>Laravel</span><span>Livewire</span><span>openspout</span><span>SQLite/MySQL</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3><a href="https://github.com/TheSecuredAnalyst/security-suite" target="_blank" rel="noopener">Security Suite<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Open Source ★</span></div></div>
-        <p>An open-source security toolkit (~90★ on GitHub): OSINT, web &amp; API scanning, an exploit engine, and multi-framework compliance checks — unified in one CLI + REST API with AI-powered analysis, all gated behind a deny-by-default guardrail that enforces rules-of-engagement.</p>
-        <div class="proj-stack"><span>Python</span><span>Typer</span><span>FastAPI</span><span>CodeQL / CI</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3><a href="https://www.npmjs.com/package/sophos-central-mcp-server" target="_blank" rel="noopener">Sophos Central MCP<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Open Source</span><span class="proj-tag">npm</span></div></div>
-        <p>A Model Context Protocol server exposing <b>255 Sophos Central API tools</b> across 14 namespaces to AI assistants — with partner / organisation / tenant auth and automatic region routing. Manage a Sophos estate conversationally from Claude Desktop. Published on npm.</p>
-        <div class="proj-stack"><span>TypeScript</span><span>Python</span><span>MCP</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3>AI Security MCP Servers</h3><div class="proj-tags"><span class="proj-tag">AI · Security</span></div></div>
-        <p>MCP servers that put a SOC inside an AI assistant: PRTG + Sophos monitoring and alerting on one side; guardrailed red-team (nmap+CVE VAPT reports, MITRE ATT&amp;CK tagging, an autonomous red-blue loop) and blue-team (multi-source threat intel, IOC reports) tooling on the other — every engagement scoped and audit-logged.</p>
-        <div class="proj-stack"><span>Python</span><span>MCP</span><span>PRTG</span><span>Threat Intel</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3>SwitchAI</h3><div class="proj-tags"><span class="proj-tag">AI · Network</span><span class="proj-tag alt">Internal</span></div></div>
-        <p>Natural-language management for a bank's HQ Cisco switch estate — plain English is translated to Cisco CLI, with the management VLAN protected in two independent layers so no AI mistake can touch it. Double-hop telnet access, runtime-resolved credentials (never stored in plaintext), and a full audit log.</p>
-        <div class="proj-stack"><span>Flask</span><span>Claude API</span><span>Cisco IOS</span><span>pexpect</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3>Sentinel One — VAPT Suite</h3><div class="proj-tags"><span class="proj-tag">AI · Security</span></div></div>
-        <p>AI-assisted vulnerability assessment: Nmap discovery + CVE lookups + local-LLM analysis with 0–100 risk scoring, producing HTML / JSON / Markdown reports and tracking scan history over time.</p>
-        <div class="proj-stack"><span>Python</span><span>Nmap</span><span>Ollama</span><span>SQLite</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3>Enterprise Connectors</h3><div class="proj-tags"><span class="proj-tag">SDK</span><span class="proj-tag alt">Proprietary</span></div></div>
-        <p>A Python SDK that reconciles asset inventory from external systems into arxVault — Action1 RMM and AD/LDAP live, Wazuh / Nessus / Intune next — the foundation for CAASM-style coverage-gap detection ("what's on my network but not under management?").</p>
-        <div class="proj-stack"><span>Python</span><span>REST</span><span>LDAP/AD</span><span>RMM</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3>Arx Governance Hub</h3><div class="proj-tags"><span class="proj-tag">GRC</span><span class="proj-tag alt">Proprietary</span></div></div>
-        <p>A governance, risk &amp; compliance platform — a guided compliance wizard, a NIST RMF workflow, and a live risk register — built for the Nigerian financial-sector regulatory context.</p>
-        <div class="proj-stack"><span>Laravel</span><span>NIST RMF</span><span>Livewire</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3><a href="https://cyberstart.arxamani.com" target="_blank" rel="noopener">CyberStart Africa<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Platform · Live</span></div></div>
-        <p>Entry infrastructure for cybersecurity talent in Africa — constraint-aware guidance that moves beginners from confusion to direction to demonstrable proof. Live MVP evolving along a seven-phase product roadmap.</p>
-        <div class="proj-stack"><span>Laravel</span><span>Tailwind</span><span>Alpine.js</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><h3>Arx Amani Learn</h3><div class="proj-tags"><span class="proj-tag">LMS</span><span class="proj-tag alt">Proprietary</span></div></div>
-        <p>A gamified learning platform — courses, modules and learning paths wrapped in a quiz-duel and matchmaking layer, with certificates and compliance analytics.</p>
-        <div class="proj-stack"><span>Laravel</span><span>Livewire</span><span>Chart.js</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="education">
-  <div class="wrap">
-    <div class="kicker">Foundation</div>
-    <h2>From physics to security architecture</h2>
-    <p class="sub">An unconventional path that brings rigorous, first-principles thinking to how I approach systems and risk.</p>
-    <div class="edu-list">
-      <div class="edu-item"><span class="yr">2010</span><span class="what"><b>BSc Physics</b> — Ekiti State University</span></div>
-      <div class="edu-item"><span class="yr">2015</span><span class="what"><b>MSc Physics</b> — University of Lagos</span></div>
-      <div class="edu-item"><span class="yr">active</span><span class="what"><b>PhD, Materials Science</b> — in progress</span></div>
-      <div class="edu-item"><span class="yr">active</span><span class="what"><b>MSc International Affairs &amp; Diplomacy</b> — thesis stage</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="kicker">Let's talk</div>
-    <h2>Building, defending, and shipping — let's talk</h2>
-    <p class="sub">Whether it's a security leadership conversation, a tooling build, or a problem you think I'd be the right person to take on — I'm always glad to hear from people doing serious work in this space.</p>
-    <div class="term" style="margin-top:46px;">
-      <div class="term-bar"><i></i><i></i><i></i><span>thesecuredanalyst — bash</span></div>
-      <div class="term-body">
-        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ whoami</div>
-        <div class="out">Oluwagbenga Ogungbemi — Manager, Cybersecurity &amp; Network Infrastructure · Builder · Abuja, Nigeria</div>
-        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ cat focus.txt</div>
-        <div class="out">
-          strengths&nbsp;: security operations · SIEM/EDR · network defense at scale · AI-assisted tooling<br>
-          building&nbsp;&nbsp;&nbsp;: ARX AMANI Technologies — security products for African enterprises<br>
-          based&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abuja, Nigeria · WAT (UTC+1)
+    <div class="play-grid">
+      <div class="game reveal">
+        <div class="game-head">
+          <h4>Lateral Movement</h4>
+          <span class="hint">click a host to isolate it</span>
         </div>
-        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ cat contact.txt</div>
-        <div class="out">
-          email&nbsp;&nbsp;&nbsp;&nbsp;: <a href="mailto:ogungbemigs@gmail.com">ogungbemigs@gmail.com</a><br>
-          company&nbsp;&nbsp;: <a href="https://arxamani.com" target="_blank" rel="noopener">ARX AMANI Technologies Ltd</a><br>
-          linkedin&nbsp;&nbsp;: <a href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">linkedin.com/in/oluwagbengasamuel</a><br>
-          github&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="https://github.com/TheSecuredAnalyst" target="_blank" rel="noopener">github.com/TheSecuredAnalyst</a>
+        <svg id="ir" viewBox="0 0 600 340" role="img" aria-label="Incident response simulation network"></svg>
+        <div class="ir-bar">
+          <span>ISOLATIONS LEFT <b id="irIso">4</b></span>
+          <span>COMPROMISED <b id="irInf">0</b></span>
+          <span>CLEAN <b id="irClean">0</b></span>
+          <button class="btn bad" id="irStart" style="margin-left:auto">▶ Start incident</button>
         </div>
-        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ <span class="cursor"></span></div>
+        <div class="ir-msg" id="irMsg">A workstation is about to be compromised. Spend your 4 isolations wisely, and whatever happens, <b style="color:var(--sacred)">don't lose the DC</b>.</div>
+        <div class="legend"><span><i style="border-color:var(--cyber)"></i>clean</span><span><i style="border-color:var(--alert);background:rgba(229,97,79,.35)"></i>compromised</span><span><i style="border-color:var(--dim);border-style:dashed"></i>isolated</span><span><i style="border-color:var(--sacred)"></i>domain controller</span></div>
+      </div>
+
+      <div class="game reveal">
+        <div class="game-head">
+          <h4>Phish or Legit?</h4>
+          <div class="progress" id="phProg"></div>
+        </div>
+        <div class="mail" id="phMail"></div>
+        <div class="phish-actions" id="phActions">
+          <button class="btn bad" data-ans="phish">🎣 Phish</button>
+          <button class="btn" data-ans="legit">✓ Legit</button>
+        </div>
+        <div class="verdict" id="phVerdict">Most breaches at Nigerian SMEs start in an inbox. Six messages: how many can you call correctly?</div>
       </div>
     </div>
-  </div>
-</section>
+    <div class="drill reveal">
+      <div><b>Want the full experience?</b> Watch this page get hit by ransomware, then see how to respond. It's loud, red and completely harmless.</div>
+      <button class="btn bad" data-pwn>⚠ Simulate an attack on this page</button>
+    </div>
+  </section>
 
-<footer>
-  <div>© <span id="yr"></span> Oluwagbenga Ogungbemi · The Secured Analyst</div>
-  <div class="links">
-    <a href="mailto:ogungbemigs@gmail.com">Email</a>
-    <a href="https://github.com/TheSecuredAnalyst" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://arxamani.com" target="_blank" rel="noopener">ARX AMANI</a>
-  </div>
-</footer>
+  <!-- ================= AUDIT ================= -->
+  <section id="audit" class="sec">
+    <div class="kicker reveal" style="color:var(--alert)"><span class="ta" style="color:var(--alert)">TA0005 ·</span> DEFENSE EVASION: NONE <span class="cmd">$ audit --honest</span></div>
+    <h2 class="reveal">Open issues, <em class="c">being closed.</em></h2>
+    <p class="lede reveal">No hiding anything here. A security professional tracks open issues on their own systems, so this profile tracks its operator's, each with an owner and a fix.</p>
+    <div class="reg reveal" id="reg">
+      <div class="item"><button aria-expanded="false"><span class="sev prog">IN PROGRESS</span><b>Focus: one flagship, not ten side projects.</b><span class="chev">›</span></button>
+        <div class="detail"><div>Building widely is a strength until it becomes a habit. ArxVault is the product getting full attention, and everything else on this page is deliberately paused or queued, labelled honestly.<span class="mit">ship ArxVault v1.0 to its first paying client before starting anything new.</span></div></div></div>
+      <div class="item"><button aria-expanded="false"><span class="sev prog">IN PROGRESS</span><b>Building CISO-scale evidence.</b><span class="chev">›</span></button>
+        <div class="detail"><div>The leadership record is already here: security for a national institution, board and EXCO reporting, regulator-facing audits, cross-border managed security, and a company founded from scratch. What's next is formal: owning a security budget and a team at group level.<span class="mit">CISSP in progress; every new mandate measured and documented.</span></div></div></div>
+      <div class="item"><button aria-expanded="false"><span class="sev ok">ON TRACK</span><b>Closing the credential gaps.</b><span class="chev">›</span></button>
+        <div class="detail"><div>CISSP, CompTIA SecAI+ and CCNA are underway, and the lapsed AWS credential is on the renewal list. It stays visible above rather than quietly deleted.<span class="mit">one credential closed per quarter.</span></div></div></div>
+      <div class="item"><button aria-expanded="false"><span class="sev done">CLOSED</span><b>Every claim, verifiable.</b><span class="chev">›</span></button>
+        <div class="detail"><div>Shipped tools, public repositories, a downloadable CV, and references on request. If something here can't be checked, it shouldn't be here.<span class="mit">keep the receipts ahead of the story.</span></div></div></div>
+    </div>
+  </section>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="contact">
+    <div class="kicker reveal"><span class="ta">TA0011 ·</span> ESTABLISH A CHANNEL <span class="cmd">$ ssh hello@gbenga</span></div>
+    <h2 class="reveal">Let's build something <em class="s">that lasts.</em></h2>
+    <p class="lede reveal">Hiring for a security leadership role? ArxVault demos and pilots, security architecture, AI automation that holds up to audit, managed security for SMEs, or speaking on faith and technology. The door is open.</p>
+    <div class="label reveal" style="color:var(--sacred);margin-top:10px">ROOT OF TRUST // what you get with the analyst</div>
+    <div class="principles reveal">
+      <div><div class="k">STRUCTURE</div><p>I walk into vacuums and install structure. I finish what I start, and I delegate so people grow, not just so work moves.</p></div>
+      <div><div class="k">FAITH</div><p>Faith is not decoration on the work. It's the architecture underneath it, and the two were never meant to be separate systems.</p></div>
+      <div><div class="k">TRUTH</div><p>Truth over comfort. I would rather be corrected today than be impressive and wrong.</p></div>
+    </div>
+    <div class="contact-links reveal">
+      <a href="gbenga/Oluwagbenga_Ogungbemi_CV.pdf" download style="border-color:var(--cyber-dim);color:var(--cyber)">↓ Download CV<span>PDF</span></a>
+      <button id="mailBtn" title="Assembled in your browser, so scrapers don't get it">✉ Copy email</button>
+      <a href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">LinkedIn<span>↗</span></a>
+      <a href="https://github.com/TheSecuredAnalyst" target="_blank" rel="noopener">GitHub<span>↗</span></a>
+      <a href="https://arxamani.com" target="_blank" rel="noopener">ARX AMANI<span>↗</span></a>
+    </div>
+    <footer>
+      <div>Ogungbemi Samuel Oluwagbenga · Abuja / Lagos, Nigeria<br>
+      Facts on this page come from the operator's own account. Network visuals are illustrative. MITRE ATT&amp;CK® tactic names are used playfully; this page isn't affiliated with MITRE.<br>
+      <a id="replay">Watch it again ↑</a> &nbsp;·&nbsp; <a id="pwnBtn" class="dont">Don't press this</a></div>
+      <div class="sig">Built to last.</div>
+    </footer>
+  </section>
+</div>
+
+<!-- ================= RANSOMWARE DRILL (a joke, entirely local) ================= -->
+<div id="pwn" role="alertdialog" aria-modal="true" aria-labelledby="pwnTitle">
+  <div class="pwn-box" id="pwnBox"></div>
+</div>
+
+<!-- ================= TERMINAL ================= -->
+<div id="term" aria-hidden="true">
+  <div class="tw" role="dialog" aria-label="Terminal">
+    <div class="tw-bar"><span class="dot"></span> guest@arxamani: ~ <span style="color:var(--faint)">— local only, nothing leaves your browser</span><button class="x" id="termClose">esc ✕</button></div>
+    <div class="tw-out" id="tout"></div>
+    <div class="tw-in"><label for="tin">guest@arxamani:~$</label><input id="tin" autocomplete="off" spellcheck="false" autocapitalize="off"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s);
+
+  /* ---------------- boot ---------------- */
+  const boot = $('#boot'), log = $('#bootlog');
+  const bootLines = [
+    ['authenticating identity','OK'],
+    ['mounting 14y+ career history','OK'],
+    ['loading credentials [CEH, Sec+, CC, CNSP]','OK'],
+    ['verifying faith layer','ANCHORED'],
+    ['running self-audit','HONEST'],
+    ['rendering profile','OK']
+  ];
+  let seen = false;
+  try { seen = sessionStorage.getItem('booted') === '1'; } catch(e) {}
+  let bootTimer, typeStarted = false;
+  function endBoot(){
+    clearTimeout(bootTimer);
+    boot.classList.add('done');
+    try { sessionStorage.setItem('booted','1'); } catch(e) {}
+    window.removeEventListener('keydown', endBoot);
+    startTyping();
+  }
+  if (seen || reduce) { boot.classList.add('done'); }
+  else {
+    bootLines.forEach((l,i) => {
+      const d = document.createElement('div');
+      d.className = 'boot-line';
+      d.style.animationDelay = (i*0.24)+'s';
+      d.innerHTML = '<span class="pre">[ '+String(i+1).padStart(2,'0')+' ] </span>'+l[0]+' ... '+l[1];
+      log.appendChild(d);
+    });
+    bootTimer = setTimeout(endBoot, bootLines.length*240+700);
+    boot.addEventListener('click', endBoot);
+    window.addEventListener('keydown', endBoot);
+  }
+
+  /* ---------------- typewriter ---------------- */
+  function startTyping(){
+    if (typeStarted) return; typeStarted = true;
+    const target = 'whoami && cat identity.md && audit --honest';
+    const el = $('#typed'), pre = '<span style="color:var(--dim)">guest@arxamani:~$ </span>';
+    if (reduce) { el.innerHTML = pre+target+'<span class="cursor"></span>'; return; }
+    let i = 0;
+    (function type(){
+      el.innerHTML = pre + target.slice(0,i) + '<span class="cursor"></span>';
+      if (i++ < target.length) setTimeout(type, 45);
+    })();
+  }
+  if (seen || reduce) setTimeout(startTyping, 300);
+
+  /* ---------------- reveal ---------------- */
+  const rio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); }
+  }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => rio.observe(el));
+
+  /* ---------------- network story ---------------- */
+  const cv = $('#net'), ctx = cv.getContext('2d');
+  // [lon, lat] of state capitals: an illustrative branch footprint, HQ first
+  const cities = [[7.49,9.06],[3.38,6.52],[3.90,7.38],[3.35,7.16],[4.56,7.77],[5.19,7.25],[5.22,7.62],[4.55,8.50],
+    [5.63,6.34],[6.73,6.20],[7.01,4.82],[6.26,4.92],[7.03,5.48],[7.49,5.53],[7.50,6.44],[7.07,6.21],[8.11,6.32],
+    [7.92,5.04],[8.33,4.95],[8.54,7.73],[8.52,8.49],[6.74,7.80],[6.55,9.61],[8.89,9.90],[7.44,10.52],[8.52,12.00],
+    [7.60,12.99],[5.24,13.06],[4.20,12.45],[6.66,12.16],[9.34,11.76],[9.84,10.31],[11.17,10.29],[12.50,9.21],
+    [11.36,8.89],[11.96,11.75],[13.16,11.85]];
+  const INFECT = [25,26,30]; // Kano, Katsina, Dutse
+  const nodes = cities.map(([lon,lat],i) => ({
+    u:(lon-2.6)/12.2, v:(13.95-lat)/9.7, hq:i===0,
+    delay: i===0 ? 0 : 120 + Math.hypot(lon-7.49,lat-9.06)*110 + Math.random()*120,
+    vis:i===0?1:0, patch:0, patchAt:300+Math.random()*1800, inf:0, phase:Math.random()*Math.PI*2
+  }));
+  let W=0,H=0,DPR=1, step=0, stepAt=performance.now(), packets=[];
+  const pos = n => { const pad=Math.min(W,H)*.1; const s=Math.min((W-2*pad)/1.26,(H-2*pad)); const ox=(W-s*1.26)/2, oy=(H-s)/2; return [ox+n.u*s*1.26, oy+n.v*s]; };
+  function resize(){
+    const r = cv.getBoundingClientRect(); DPR = Math.min(devicePixelRatio||1,2);
+    W = r.width; H = r.height; cv.width = W*DPR; cv.height = H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  new ResizeObserver(resize).observe(cv); resize();
+
+  const hud = {step:$('#hudStep'),status:$('#hudStatus'),sites:$('#hudSites'),ep:$('#hudEp'),ev:$('#hudEv')};
+  const STATUS = [['STANDBY','ok'],['ONLINE','ok'],['EXPANDING','warn'],['HARDENING','warn'],['NOMINAL','ok'],['INCIDENT','bad'],['CONTAINED','ok']];
+  function setStep(s){
+    if (s===step) return;
+    step = s; stepAt = performance.now();
+    hud.step.textContent = String(s).padStart(2,'0');
+    if (s<5) nodes.forEach(n => n.inf=0);
+    if (s<3) nodes.forEach(n => n.patch=0);
+  }
+  const sio = new IntersectionObserver(es => es.forEach(e => {
+    e.target.classList.toggle('active', e.isIntersecting);
+    if (e.isIntersecting) setStep(+e.target.dataset.step);
+  }), {rootMargin:'-45% 0px -45% 0px'});
+  document.querySelectorAll('.step').forEach(el => sio.observe(el));
+  // scrolling back above the story resets it
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && e.boundingClientRect.top > 0) setStep(0); }),
+    {rootMargin:'0px 0px -60% 0px'}).observe(document.querySelector('.hero .line'));
+
+  let lastHud = 0, evSmooth = 0;
+  function frame(now){
+    const t = now - stepAt;
+    ctx.clearRect(0,0,W,H);
+    // faint dot field
+    ctx.fillStyle = 'rgba(127,165,160,.09)';
+    for (let x=12;x<W;x+=18) for (let y=12;y<H;y+=18) ctx.fillRect(x,y,1,1);
+
+    const hq = nodes[0], [hx,hy] = pos(hq);
+    const incident = step===5, restored = step>=6;
+    // infection timeline
+    if (incident){
+      INFECT.forEach((idx,k) => { const at = k===0 ? 500 : 1300+k*250; nodes[idx].inf = t>at ? (t>2600 ? 2 : 1) : 0; });
+    } else if (restored) INFECT.forEach(idx => nodes[idx].inf = 0);
+
+    let online = 0, patched = 0;
+    nodes.forEach((n,i) => {
+      const target = step>=2 || n.hq ? 1 : 0;
+      if (reduce) n.vis = target;
+      else if (target && (step>2 || t>n.delay)) n.vis += (1-n.vis)*.08;
+      else if (!target) n.vis *= .85;
+      if (step>=3 && (step>3 || t>n.patchAt)) n.patch += (1-n.patch)*(reduce?1:.06);
+      if (n.vis>.5) online++;
+      if (n.patch>.5) patched++;
+      if (n.hq || n.vis<.01) return;
+      const [x,y] = pos(n);
+      // link
+      const ex = hx+(x-hx)*n.vis, ey = hy+(y-hy)*n.vis;
+      ctx.beginPath(); ctx.moveTo(hx,hy); ctx.lineTo(ex,ey);
+      if (n.inf===2){ ctx.setLineDash([3,5]); ctx.strokeStyle='rgba(229,97,79,.35)'; }
+      else if (n.inf===1){ ctx.setLineDash([]); ctx.strokeStyle='rgba(229,97,79,.5)'; }
+      else { ctx.setLineDash([]); ctx.strokeStyle = 'rgba(51,214,184,'+(.08+.1*n.vis)+')'; }
+      ctx.lineWidth = 1; ctx.stroke(); ctx.setLineDash([]);
+    });
+
+    // packets
+    if (step===4 || step===6){
+      if (!reduce && Math.random()<.5){
+        const n = nodes[1+Math.floor(Math.random()*(nodes.length-1))];
+        packets.push({n, p:0, sp:.006+Math.random()*.01});
+      }
+    }
+    packets = packets.filter(k => k.p<1 && (step===4||step===6));
+    evSmooth += ((step===4||step===6 ? packets.length*37 : step===5 ? 0 : 0) - evSmooth)*.05;
+    packets.forEach(k => {
+      k.p += k.sp; const [x,y] = pos(k.n);
+      const px = x+(hx-x)*k.p, py = y+(hy-y)*k.p;
+      ctx.fillStyle = 'rgba(51,214,184,.9)'; ctx.fillRect(px-1.2,py-1.2,2.4,2.4);
+    });
+
+    // nodes
+    nodes.forEach(n => {
+      if (n.vis<.05) return;
+      const [x,y] = pos(n);
+      // endpoint satellites
+      if (step>=3 && !n.hq){
+        for (let d=0; d<4; d++){
+          const a = n.phase + d*Math.PI/2 + (reduce?0:now/2400);
+          const ok = n.patch>(d+1)/5;
+          ctx.fillStyle = ok ? 'rgba(51,214,184,.75)' : 'rgba(227,168,90,.8)';
+          ctx.fillRect(x+Math.cos(a)*8-1, y+Math.sin(a)*8-1, 2, 2);
+        }
+      }
+      let col = n.inf ? '#e5614f' : '#33d6b8';
+      const r = n.hq ? 5.5 : 3;
+      if (n.inf===1 && !reduce){ ctx.beginPath(); ctx.arc(x,y,r+4+Math.sin(now/120)*2,0,7); ctx.fillStyle='rgba(229,97,79,.18)'; ctx.fill(); }
+      if (n.inf===2){ ctx.beginPath(); ctx.arc(x,y,13,0,7); ctx.strokeStyle='rgba(227,168,90,.8)'; ctx.setLineDash([2,3]); ctx.stroke(); ctx.setLineDash([]); }
+      ctx.beginPath(); ctx.arc(x,y,r*Math.min(1,n.vis*1.2),0,7);
+      ctx.shadowColor = col; ctx.shadowBlur = n.hq ? 16 : 7; ctx.fillStyle = col; ctx.fill(); ctx.shadowBlur = 0;
+    });
+
+    // HQ rings + label
+    const pulse = reduce ? .5 : (now%2400)/2400;
+    ctx.beginPath(); ctx.arc(hx,hy,8+pulse*26,0,7);
+    ctx.strokeStyle = (incident ? 'rgba(227,168,90,' : 'rgba(51,214,184,')+(.5*(1-pulse))+')'; ctx.lineWidth=1; ctx.stroke();
+    if (step>=4){ ctx.beginPath(); ctx.arc(hx,hy,12,0,7); ctx.strokeStyle='rgba(51,214,184,.5)'; ctx.stroke(); }
+    ctx.font = '10px "IBM Plex Mono", monospace'; ctx.fillStyle = 'rgba(205,214,223,.75)';
+    ctx.fillText(step>=4 ? 'HQ · ABUJA · SIEM' : 'HQ · ABUJA', hx+14, hy-10);
+    if (incident && t>500){
+      const [kx,ky] = pos(nodes[25]);
+      ctx.fillStyle = t>2600 ? 'rgba(227,168,90,.9)' : 'rgba(229,97,79,.9)';
+      ctx.fillText(t>2600 ? 'ISOLATED' : 'ANOMALY', kx+16, ky-12);
+    }
+
+    if (now-lastHud > 200){
+      lastHud = now;
+      const s = incident && t>2600 ? ['CONTAINING','warn'] : STATUS[step];
+      hud.status.textContent = s[0]; hud.status.className = 'stat '+s[1];
+      hud.sites.textContent = online;
+      hud.ep.textContent = step>=3 ? Math.round(patched/(nodes.length-1)*100)+'%' : '—';
+      hud.ev.textContent = step>=4 ? (incident ? 'held' : Math.round(evSmooth).toLocaleString()) : '—';
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* ---------------- game: lateral movement ---------------- */
+  const svg = $('#ir'), NS = 'http://www.w3.org/2000/svg';
+  const COLS = 6, ROWS = 4, DC = 2*COLS+3;
+  let hosts, edges, isoLeft, timer, running = false, over = false;
+  function build(){
+    svg.innerHTML = ''; hosts = []; edges = [];
+    for (let r=0;r<ROWS;r++) for (let c=0;c<COLS;c++){
+      const i = r*COLS+c;
+      hosts.push({i, x:60+c*96+(Math.random()*24-12), y:50+r*80+(Math.random()*20-10), inf:false, iso:false, dc:i===DC, nb:[]});
+    }
+    const link = (a,b) => { if (hosts[a].nb.includes(b)) return; hosts[a].nb.push(b); hosts[b].nb.push(a); edges.push([a,b]); };
+    for (let r=0;r<ROWS;r++) for (let c=0;c<COLS;c++){
+      const i = r*COLS+c;
+      if (c<COLS-1 && Math.random()<.85) link(i,i+1);
+      if (r<ROWS-1 && Math.random()<.8) link(i,i+COLS);
+      if (c<COLS-1 && r<ROWS-1 && Math.random()<.28) link(i,i+COLS+1);
+      if (c>0 && r<ROWS-1 && Math.random()<.2) link(i,i+COLS-1);
+    }
+    // guarantee connectivity to the DC so every round is a real fight
+    hosts.forEach(h => { if (!h.nb.length) link(h.i, h.i%COLS<COLS-1 ? h.i+1 : h.i-1); });
+    const seen = new Set([DC]), q=[DC];
+    while (q.length){ const h=q.shift(); hosts[h].nb.forEach(n => { if(!seen.has(n)){ seen.add(n); q.push(n);} }); }
+    hosts.forEach(h => { if (!seen.has(h.i)){ const c=h.i%COLS; link(h.i, c<COLS-1 ? h.i+1 : h.i-1); } });
+
+    edges.forEach(e => {
+      const [a,b] = e, l = document.createElementNS(NS,'line');
+      l.setAttribute('x1',hosts[a].x); l.setAttribute('y1',hosts[a].y); l.setAttribute('x2',hosts[b].x); l.setAttribute('y2',hosts[b].y);
+      l.setAttribute('class','edge'); svg.appendChild(l); e.el = l;
+    });
+    hosts.forEach(h => {
+      const g = document.createElementNS(NS,'g'); g.setAttribute('class','host'+(h.dc?' dc':''));
+      g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+      const c = document.createElementNS(NS,'circle'); c.setAttribute('class','core'); c.setAttribute('cx',h.x); c.setAttribute('cy',h.y); c.setAttribute('r',h.dc?14:10);
+      const hit = document.createElementNS(NS,'circle'); hit.setAttribute('cx',h.x); hit.setAttribute('cy',h.y); hit.setAttribute('r',22); hit.setAttribute('fill','transparent');
+      const tx = document.createElementNS(NS,'text'); tx.setAttribute('x',h.x); tx.setAttribute('y',h.y+(h.dc?30:25)); tx.setAttribute('text-anchor','middle');
+      tx.textContent = h.dc ? 'DC-01' : 'WS-'+String(h.i+1).padStart(2,'0');
+      g.append(hit,c,tx); svg.appendChild(g); h.el = g;
+      g.setAttribute('aria-label', tx.textContent);
+      g.addEventListener('click', () => isolate(h));
+      g.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); isolate(h);} });
+    });
+    isoLeft = 4; running = false; over = false; paint();
+  }
+  function paint(){
+    hosts.forEach(h => h.el.setAttribute('class','host'+(h.dc?' dc':'')+(h.inf?' inf':'')+(h.iso?' iso':'')));
+    edges.forEach(e => {
+      const A=hosts[e[0]], B=hosts[e[1]];
+      e.el.setAttribute('class','edge'+((A.iso||B.iso)?' cut':((A.inf||B.inf)?' hot':'')));
+    });
+    $('#irIso').textContent = isoLeft;
+    $('#irInf').textContent = hosts.filter(h=>h.inf).length;
+    $('#irClean').textContent = hosts.filter(h=>!h.inf).length;
+  }
+  const msg = s => $('#irMsg').innerHTML = s;
+  function isolate(h){
+    if (!running || over || h.iso) return;
+    if (h.dc){ msg('You can\'t unplug the domain controller. The whole bank stops. Protect it some other way.'); return; }
+    if (!isoLeft){ msg('No isolations left. In a real incident, this is where you escalate.'); return; }
+    h.iso = true; isoLeft--; paint(); check();
+  }
+  function tick(){
+    const fresh = [];
+    hosts.forEach(h => {
+      if (!h.inf || h.iso) return;
+      h.nb.forEach(n => { const o = hosts[n]; if (!o.inf && !o.iso && Math.random()<.42) fresh.push(o); });
+    });
+    fresh.forEach(o => o.inf = true);
+    paint(); check();
+  }
+  function canSpread(){ return hosts.some(h => h.inf && !h.iso && h.nb.some(n => !hosts[n].inf && !hosts[n].iso)); }
+  function end(text){ over = true; running = false; clearInterval(timer); $('#irStart').textContent = '↻ New incident'; msg(text); }
+  function check(){
+    if (hosts[DC].inf) return end('<b style="color:var(--alert)">DC-01 compromised.</b> The attacker now holds the keys to every account. Next time, try isolating the hosts <i>between</i> the attacker and the DC.');
+    if (!canSpread()){
+      const clean = hosts.filter(h=>!h.inf).length, pct = Math.round(clean/hosts.length*100);
+      const grade = pct>=85 ? 'Textbook.' : pct>=65 ? 'Solid containment.' : 'Contained, but it hurt.';
+      return end('<b style="color:var(--cyber)">Contained.</b> '+clean+'/'+hosts.length+' hosts clean ('+pct+'%). '+grade);
+    }
+  }
+  $('#irStart').addEventListener('click', () => {
+    build();
+    const corners = [0, COLS-1, (ROWS-1)*COLS, ROWS*COLS-1];
+    hosts[corners[Math.floor(Math.random()*4)]].inf = true;
+    running = true; paint();
+    $('#irStart').textContent = '■ Running…';
+    msg('Beacon detected. It\'s spreading every second. Isolate hosts to cut its paths.');
+    clearInterval(timer); timer = setInterval(tick, 1100);
+  });
+  build();
+
+  /* ---------------- game: phish or legit ---------------- */
+  const mails = [
+    {from:'CBN Alerts', addr:'alerts@cbn-bvn-verify.com', subj:'Your BVN has been suspended', body:'Due to a KYC update your BVN is suspended. Restore access within 24 hours: <code>cbn-bvn-verify.com/restore</code>', ans:'phish', why:'The CBN doesn\'t email you about your BVN, the domain is a lookalike, and the 24-hour deadline is there to make you panic.'},
+    {from:'IT Service Desk', addr:'servicedesk@yourbank.ng', subj:'Patch window tonight 21:00, no action needed', body:'Workstations will restart after 21:00 for scheduled updates. Save your work before you leave. There\'s no link to click and nothing to reply to.', ans:'legit', why:'It comes from an internal domain, asks for nothing, includes no link, and matches a normal patch cycle. Boring is a good sign.'},
+    {from:'Managing Director', addr:'md.office.private@gmail.com', subj:'Urgent & confidential', body:'Are you at your desk? I need you to get some gift cards for a client meeting. Keep this between us. I\'ll refund you today.', ans:'phish', why:'This is classic CEO fraud: a personal Gmail, secrecy, urgency and gift cards. Call the MD\'s office on a known number to check.'},
+    {from:'HR Department', addr:'hr@yourbank.ng', subj:'Revised leave policy 2026', body:'Please review the attached policy: <code>Leave_Policy_2026.pdf.exe</code>', ans:'phish', why:'The double extension (.pdf.exe) gives it away. A policy document never needs to be an executable, even when the sender looks internal.'},
+    {from:'GitHub', addr:'notifications@github.com', subj:'[security-suite] New pull request #12', body:'A contributor opened a pull request on a repository you maintain. View it on github.com.', ans:'legit', why:'It\'s the expected sender and domain, about something you actually own, with no credentials requested. Still, go to github.com yourself rather than clicking the link.'},
+    {from:'Microsoft 365', addr:'no-reply@micros0ft-security.com', subj:'Mailbox storage full, messages on hold', body:'You have 3 held messages. Re-enter your password to release them: <code>micros0ft-security.com/owa</code>', ans:'phish', why:'"micros0ft" uses a zero, and it asks for your password to release mail. That\'s credential harvesting.'}
+  ];
+  let mi = 0, results = [];
+  const prog = $('#phProg'), mailEl = $('#phMail'), verd = $('#phVerdict'), acts = $('#phActions');
+  function renderProg(){ prog.innerHTML = mails.map((_,i) => '<i class="'+(results[i]===true?'ok':results[i]===false?'no':i===mi?'now':'')+'"></i>').join(''); }
+  function showMail(){
+    const m = mails[mi];
+    mailEl.innerHTML = '<div class="from"><b>'+m.from+'</b> &lt;'+m.addr+'&gt;</div><div class="subj">'+m.subj+'</div><div class="body">'+m.body+'</div>';
+    acts.innerHTML = '<button class="btn bad" data-ans="phish">🎣 Phish</button><button class="btn" data-ans="legit">✓ Legit</button>';
+    renderProg();
+  }
+  acts.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.next !== undefined){
+      if (mi >= mails.length){ mi = 0; results = []; verd.className='verdict'; verd.textContent='Round two.'; }
+      showMail(); return;
+    }
+    const m = mails[mi], ok = b.dataset.ans === m.ans;
+    results[mi] = ok;
+    verd.className = 'verdict '+(ok?'ok':'no');
+    verd.innerHTML = '<b>'+(ok?'Correct.':'Not quite.')+'</b> '+m.why;
+    mi++;
+    renderProg();
+    if (mi >= mails.length){
+      const score = results.filter(Boolean).length;
+      verd.innerHTML += '<br><br><b style="color:var(--head)">'+score+'/'+mails.length+'</b> '+(score===6?'Sharp eye.':score>=4?'Good instincts. Slow down on the tricky ones.':'These are built to fool people. The tells above are the habit to build.');
+      acts.innerHTML = '<button class="btn alt" data-next>↻ Play again</button>';
+    } else acts.innerHTML = '<button class="btn alt" data-next>Next message →</button>';
+  });
+  showMail();
+
+  /* ---------------- AI pipeline walkthrough ---------------- */
+  const flows = {
+    read: [
+      ['lit','Read-only lookup: list interfaces in a down state on one access switch.'],
+      ['lit','Loaded: that switch\'s inventory and interface list. Nothing else.'],
+      ['lit','Proposed: <code>show interfaces status | include notconnect</code>'],
+      ['lit','Read-only command. Auto-approved by policy.'],
+      ['lit','Not required: nothing changes state.'],
+      ['lit','Logged: requester, prompt, command, output and timestamp.']
+    ],
+    change: [
+      ['lit','State change: drop traffic from one MAC address on the staff VLAN.'],
+      ['lit','Loaded: the VLAN map and that MAC\'s last-seen port.'],
+      ['lit','Proposed: <code>mac address-table static 0011.2233.4455 vlan 20 drop</code>'],
+      ['wait','Changes state, so a human must approve it. Risk: medium.'],
+      ['wait','Waiting for an engineer…<div class="btns"><button class="btn" data-ap="yes">Approve</button><button class="btn alt" data-ap="no">Reject</button></div>'],
+      ['','—']
+    ],
+    danger: [
+      ['lit','State change: administratively disable the core uplink.'],
+      ['lit','Loaded: the device role is core, and the interface is tagged protected.'],
+      ['lit','Proposed: <code>interface Te1/1/1</code> → <code>shutdown</code>'],
+      ['stop','BLOCKED. The interface is on the protected list, and no approval can override that here.'],
+      ['stop','Not offered. Some changes go through change management, not through a chat box.'],
+      ['lit','Logged as a blocked attempt, with the requester and full context.']
+    ]
+  };
+  const rows = [...document.querySelectorAll('#pipe .stage-row')];
+  let flowTimers = [];
+  function runFlow(k){
+    flowTimers.forEach(clearTimeout); flowTimers = [];
+    document.querySelectorAll('#asks .ask').forEach(b => b.classList.toggle('on', b.dataset.k===k));
+    rows.forEach(r => { r.className = 'stage-row'; r.querySelector('.sv').innerHTML = '—'; });
+    flows[k].forEach(([cls,html],i) => flowTimers.push(setTimeout(() => {
+      if (cls) rows[i].classList.add(cls);
+      rows[i].querySelector('.sv').innerHTML = html;
+    }, reduce ? 0 : i*550)));
+  }
+  $('#asks').addEventListener('click', e => { const b = e.target.closest('.ask'); if (b) runFlow(b.dataset.k); });
+  $('#pipe').addEventListener('click', e => {
+    const b = e.target.closest('[data-ap]'); if (!b) return;
+    const yes = b.dataset.ap === 'yes';
+    rows[4].className = 'stage-row '+(yes?'lit':'stop');
+    rows[4].querySelector('.sv').innerHTML = yes ? 'Approved by the on-duty engineer. Command executed.' : 'Rejected by the engineer. Nothing executed.';
+    rows[5].className = 'stage-row lit';
+    rows[5].querySelector('.sv').innerHTML = 'Logged: proposal, decision, approver'+(yes?', output and a rollback command.':' and reason.');
+  });
+  const pio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ runFlow('read'); pio.disconnect(); } }), {threshold:.4});
+  pio.observe($('#pipe'));
+
+  /* ---------------- prompt anatomy ↔ principles ---------------- */
+  const lns = [...document.querySelectorAll('#anat .ln')], rls = [...document.querySelectorAll('#rules > div')];
+  const mark = i => { lns.forEach((l,j) => l.classList.toggle('on', j===i)); rls.forEach((r,j) => r.classList.toggle('on', j===i)); };
+  lns.forEach((l,i) => { l.addEventListener('mouseenter', () => mark(i)); l.addEventListener('click', () => mark(i)); });
+  rls.forEach((r,i) => r.addEventListener('mouseenter', () => mark(i)));
+
+  /* ---------------- ArxVault: life of a password ---------------- */
+  const life = {
+    before: ['In an Excel sheet on a shared drive, or pinned in a WhatsApp group.','Read aloud over the phone. Everyone on the team knows it.','Never. It was set during installation in 2019.','Their access is disabled. The password they memorised still works.','"Who logged into the core switch on Friday?" Nobody knows.'],
+    after:  ['Encrypted with its own key, inside a vault on your own server.','Engineers open a brokered session. Nobody sees the password.','Automatically, on the device itself, on a schedule.','Revoke their access in one place, then rotate everything they touched.','Replay the session. Every command, every user, in a tamper-evident log.']
+  };
+  const lifeEl = $('#life');
+  function showLife(v){
+    lifeEl.className = 'life '+v;
+    lifeEl.querySelectorAll('p').forEach((p,i) => p.textContent = life[v][i]);
+    document.querySelectorAll('.life-switch button').forEach(b => { const on = b.dataset.v===v; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); });
+  }
+  document.querySelector('.life-switch').addEventListener('click', e => { const b = e.target.closest('button'); if (b) showLife(b.dataset.v); });
+  showLife('before');
+
+  const vlines = [
+    '<span class="g">engineer@arxvault</span> open core-sw-01 --ssh',
+    '<span class="d">› checking role ............</span> <span class="g">network-admin ✓</span>',
+    '<span class="d">› checking 2FA .............</span> <span class="g">verified ✓</span>',
+    '<span class="d">› fetching credential ......</span> <span class="a">●●●●●●●●●●●● (never shown)</span>',
+    '<span class="d">› recording session ........</span> <span class="r">● REC</span>',
+    '',
+    '<span class="h">core-sw-01#</span> show running-config | section vlan',
+    '<span class="d">  … logged to the audit chain, entry #48213</span>',
+    '<span class="h">core-sw-01#</span> exit',
+    '',
+    '<span class="d">› session closed · recording saved</span>',
+    '<span class="d">› next rotation .............</span> <span class="g">tonight 02:00</span>'
+  ];
+  const vterm = $('#vterm'); let vStarted = false;
+  function playVault(){
+    if (vStarted) return; vStarted = true;
+    if (reduce){ vterm.innerHTML = vlines.join('\n'); return; }
+    let n = 0;
+    (function next(){ vterm.innerHTML = vlines.slice(0, ++n).join('\n'); if (n < vlines.length) setTimeout(next, n===1 ? 700 : 380); })();
+  }
+  new IntersectionObserver((es,o) => es.forEach(e => { if (e.isIntersecting){ playVault(); o.disconnect(); } }), {threshold:.4}).observe(vterm);
+
+  /* ---------------- threat card redaction ---------------- */
+  document.querySelectorAll('.redact').forEach(r => r.addEventListener('click', () => r.classList.toggle('show')));
+
+  /* ---------------- count-up ---------------- */
+  const fmt = n => n.toLocaleString('en-US');
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const el = e.target, to = +el.dataset.count, pre = el.dataset.prefix||'', suf = el.dataset.suffix||'';
+    if (reduce) return;
+    const t0 = performance.now(), dur = 1400;
+    (function step(now){
+      const k = Math.min(1,(now-t0)/dur), v = Math.round(to*(1-Math.pow(1-k,3)));
+      el.textContent = pre+fmt(v)+suf; if (k<1) requestAnimationFrame(step);
+    })(t0);
+  }), {threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  /* ---------------- lateral movement map ---------------- */
+  const lsvg = $('#latsvg');
+  const P = (lon,lat) => [20+(lon+12)/52*480, 400-lat/62*380];
+  const pins = {home:{ll:[7.49,9.06],label:'ABUJA · FMBN'}, ng:{ll:[3.38,6.52],label:'LAGOS · CUSTOMS'}, uk:{ll:[-0.13,51.5],label:'UK · ZEEKO'}, lv:{ll:[24.1,56.95],label:'RIGA · FOTBO'}};
+  let lhtml = '';
+  for (let x=28;x<512;x+=14) for (let y=24;y<408;y+=14) lhtml += '<circle cx="'+x+'" cy="'+y+'" r=".8" fill="rgba(127,165,160,.13)"/>';
+  [['NIGERIA',150,392],['UNITED KINGDOM',96,122],['LATVIA',350,88]].forEach(t => lhtml += '<text class="c" x="'+t[1]+'" y="'+t[2]+'">'+t[0]+'</text>');
+  const [hx2,hy2] = P(...pins.home.ll);
+  ['uk','lv','ng'].forEach(k => {
+    const [x,y] = P(...pins[k].ll), mx = (hx2+x)/2 + (k==='ng'? -30 : k==='uk' ? -70 : 60), my = (hy2+y)/2 - (k==='ng'? 30 : 10);
+    lhtml += '<path class="arc" data-k="'+k+'" d="M'+hx2+','+hy2+' Q'+mx+','+my+' '+x+','+y+'"/>';
+  });
+  Object.entries(pins).forEach(([k,p]) => {
+    const [x,y] = P(...p.ll), right = k!=='ng';
+    lhtml += '<g class="pin'+(k==='home'?' home':'')+'" data-k="'+k+'" tabindex="0"><circle cx="'+x+'" cy="'+y+'" r="'+(k==='home'?8:6)+'"/><text x="'+(right?x+12:x-12)+'" y="'+(k==='ng'?y+16:y+4)+'" text-anchor="'+(right?'start':'end')+'">'+p.label+'</text></g>';
+  });
+  lsvg.innerHTML = lhtml;
+  const moveCards = [...document.querySelectorAll('#moves .move')];
+  function lightMove(k){
+    lsvg.querySelectorAll('[data-k]').forEach(el => el.classList.toggle('on', el.dataset.k===k));
+    moveCards.forEach(c => c.classList.toggle('on', c.dataset.k===k));
+  }
+  lsvg.querySelectorAll('.pin').forEach(p => { p.addEventListener('mouseenter', () => lightMove(p.dataset.k)); p.addEventListener('focus', () => lightMove(p.dataset.k)); });
+  moveCards.forEach(c => c.addEventListener('mouseenter', () => lightMove(c.dataset.k)));
+
+  /* ---------------- email, assembled client-side ---------------- */
+  const mail = () => ['ogungbemigs','gmail.com'].join('@');
+  $('#mailBtn').addEventListener('click', async e => {
+    const b = e.currentTarget;
+    try { await navigator.clipboard.writeText(mail()); b.textContent = '✓ Copied: '+mail(); }
+    catch(err) { b.textContent = mail(); }
+  });
+
+  /* ---------------- ransomware drill ---------------- */
+  const pwnEl = $('#pwn'), pwnBox = $('#pwnBox');
+  let pwnTimers = [], pwnActive = false;
+  const clearPwn = () => { pwnTimers.forEach(t => { clearTimeout(t); clearInterval(t); }); pwnTimers = []; };
+  const files = [
+    ['~/career/fmbn_2018-present.log','ok'],
+    ['~/career/zeeko_uk.siem','ok'],
+    ['~/certs/CEH.pem','ok'],
+    ['~/certs/security-plus.pem','ok'],
+    ['~/lab/proxmox/vm-100.qcow2','ok'],
+    ['~/arxvault/src/','ok'],
+    ['~/firewalls/branch-estate.conf','ok'],
+    ['~/faith/psalm-127.txt','no'],
+    ['~/backups/offsite/','no']
+  ];
+  const LOCK = '   .--------.\n  / .------. \\\n / /        \\ \\\n | |        | |\n_| |________| |_\n.\' |_|    |_| \'.\n\'._____ ____ _.\'\n|     .\'____\'.     |\n\'.__.\'.\'    \'.\'.__.\'\n\'.__  | LOCKED |  __.\'\n|   \'.\'.____.\'.\'   |\n\'.____\'.____.\'____.\'\n\'.________________.\'';
+  function beep(){
+    if (!navigator.userActivation || !navigator.userActivation.hasBeenActive) return;
+    try {
+      const A = new (window.AudioContext||window.webkitAudioContext)(), g = A.createGain(); g.gain.value = .05; g.connect(A.destination);
+      [0, .45, .9].forEach(t => { const o = A.createOscillator(); o.type='square'; o.frequency.setValueAtTime(880, A.currentTime+t); o.frequency.linearRampToValueAtTime(440, A.currentTime+t+.35); o.connect(g); o.start(A.currentTime+t); o.stop(A.currentTime+t+.35); });
+      setTimeout(() => A.close(), 1600);
+    } catch(e) {}
+  }
+  function pwnNote(){
+    pwnEl.classList.remove('safe');
+    const vid = Array.from(crypto.getRandomValues(new Uint8Array(8))).map(b => b.toString(16).padStart(2,'0')).join('').toUpperCase();
+    pwnBox.innerHTML =
+      '<span class="pwn-esc">ESC</span>'+
+      '<div class="pwn-sev"><span><span class="blink">●</span> SEV-1 · RANSOMWARE DETECTED</span><span>HOST: gbenga-portfolio</span></div>'+
+      '<pre class="pwn-lock" aria-hidden="true">'+LOCK+'</pre>'+
+      '<h3 id="pwnTitle">Your network has been penetrated.</h3>'+
+      '<p>Every file in this portfolio is being encrypted with AES-256-GCM. Without the private key, fourteen years of experience can\'t be recovered.</p>'+
+      '<p class="small">(Envelope encryption with a key per file. We know. We built it.)</p>'+
+      '<div class="pwn-meta">VICTIM ID <b>'+vid+'</b> · CONTACT <b>gbenga-will-see-you-now.onion</b></div>'+
+      '<div class="pwn-count"><span>FILES ENCRYPTED: <b id="pwnN">0</b></span><span id="pwnPct">0%</span></div>'+
+      '<div class="pwn-bar"><i id="pwnBar"></i></div>'+
+      '<div class="pwn-log" id="pwnLog"></div>'+
+      '<div class="pwn-demand"><div><span class="k">RANSOM DEMAND</span><b id="pwnAsk">1 × interview with this analyst</b><span class="k" id="pwnWarn">PRICE DOUBLES WHEN THE CLOCK HITS ZERO</span></div><div style="text-align:right"><span class="k">TIME REMAINING</span><div class="clock" id="pwnClock">00:15</div></div></div>'+
+      '<div class="pwn-actions"><button id="pwnPay">💸 Pay ransom</button><button class="iso" id="pwnIso">⛔ Isolate host</button></div>';
+    beep();
+    const log = $('#pwnLog');
+    files.forEach((f,i) => pwnTimers.push(setTimeout(() => {
+      log.innerHTML += f[1]==='ok'
+        ? 'encrypting '+f[0].padEnd(30)+' <span class="ok">[LOCKED]</span>\n'
+        : 'encrypting '+f[0].padEnd(30)+' <span class="no">[DENIED]</span> '+(f[0].includes('faith') ? 'some things are out of reach' : 'tested backups, untouched')+'\n';
+      log.scrollTop = log.scrollHeight;
+    }, reduce ? 0 : 250 + i*380)));
+    let n = 0; const total = 48213;
+    pwnTimers.push(setInterval(() => {
+      n = Math.min(total, n + Math.floor(800 + Math.random()*1600));
+      const pct = Math.min(99, Math.floor(n/total*100));
+      const N = $('#pwnN'); if (!N) return;
+      N.textContent = n.toLocaleString('en-US'); $('#pwnPct').textContent = pct+'%'; $('#pwnBar').style.width = pct+'%';
+    }, 120));
+    let left = 15, doubled = false;
+    pwnTimers.push(setInterval(() => {
+      left--; const c = $('#pwnClock'); if (!c) return;
+      if (left <= 0 && !doubled){
+        doubled = true; left = 10; beep();
+        $('#pwnAsk').textContent = '2 × interviews with this analyst';
+        $('#pwnWarn').textContent = 'YOU HESITATED. THE PRICE HAS DOUBLED.';
+      } else if (left <= 0) return pwnSafe('timeout');
+      c.textContent = '00:'+String(left).padStart(2,'0');
+    }, 1000));
+    $('#pwnPay').addEventListener('click', () => pwnSafe('pay'));
+    $('#pwnIso').addEventListener('click', () => pwnSafe('isolate'));
+    $('#pwnIso').focus();
+  }
+  function pwnSafe(why){
+    clearPwn();
+    pwnEl.classList.add('safe');
+    const head = why==='isolate' ? 'Good call. Host isolated.' : why==='pay' ? 'Never pay the ransom.' : 'Clock ran out. Nothing happened.';
+    const sub = why==='isolate' ? 'That was the right first move, and most people don\'t make it.'
+              : why==='pay' ? 'Except this one, which only costs a conversation. In real life, paying funds the next attack and doesn\'t guarantee your data back.'
+              : 'Real ransomware isn\'t this polite. Its countdowns are there to make you panic.';
+    pwnBox.innerHTML =
+      '<span class="pwn-esc">ESC</span>'+
+      '<div class="pwn-sev" style="color:var(--cyber)"><span>● INCIDENT CONTAINED</span><span>THIS WAS A DRILL</span></div>'+
+      '<h3 id="pwnTitle">'+head+'</h3>'+
+      '<p>Relax: nothing was encrypted and nothing left your browser. '+sub+'</p>'+
+      '<p style="margin-top:14px;color:var(--dim);font-size:12px;letter-spacing:.1em">WHAT TO DO WHEN IT\'S REAL</p>'+
+      '<ol class="pwn-steps">'+
+        '<li><b>Isolate.</b> Pull the affected machines off the network before you start investigating.</li>'+
+        '<li><b>Don\'t pay.</b> Preserve the evidence and report it. In Nigeria, that includes ngCERT and your regulator.</li>'+
+        '<li><b>Restore from backups you\'ve actually tested.</b> Untested backups are only a hope.</li>'+
+        '<li><b>Find the way in</b>, close it, and rotate every privileged credential. (ArxVault does that last part.)</li>'+
+        '<li><b>Call an incident responder.</b> Conveniently, you\'re on his website.</li>'+
+      '</ol>'+
+      '<div class="pwn-actions"><button class="iso" id="pwnBack">← Back to the page</button><a href="#contact" id="pwnHire">Get an incident responder ↗</a></div>';
+    $('#pwnBack').addEventListener('click', closePwn);
+    $('#pwnHire').addEventListener('click', closePwn);
+    $('#pwnBack').focus();
+  }
+  let toastBox = null;
+  function toast(src, msg, cls){
+    if (!toastBox){ toastBox = document.createElement('div'); toastBox.className = 'toasts'; toastBox.setAttribute('aria-live','assertive'); document.body.appendChild(toastBox); }
+    const t = document.createElement('div'); t.className = 'toast '+(cls||'');
+    t.innerHTML = '<div class="src"><span>'+src+'</span><span>'+new Date().toLocaleTimeString('en-GB')+'</span></div>'+msg;
+    toastBox.appendChild(t);
+  }
+  const glyphs = '█▓▒░#@$%&*!?<>/\\|01';
+  let scrambled = [];
+  function scramble(){
+    document.querySelectorAll('h1, h2, h3, .lede, .role').forEach(el => {
+      const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+      const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      let nd; while ((nd = w.nextNode())) scrambled.push([nd, nd.nodeValue]);
+    });
+    let k = 0;
+    const iv = setInterval(() => {
+      scrambled.forEach(([nd, orig]) => { nd.nodeValue = orig.replace(/\S/g, ch => Math.random() < .2 + k*.08 ? glyphs[Math.floor(Math.random()*glyphs.length)] : ch); });
+      if (++k > 9) clearInterval(iv);
+    }, 90);
+    pwnTimers.push(iv);
+  }
+  function unscramble(){ scrambled.forEach(([nd, orig]) => nd.nodeValue = orig); scrambled = []; }
+  function pwn(){
+    if (pwnActive) return; pwnActive = true;
+    try { sessionStorage.setItem('pwned','1'); } catch(e) {}
+    if (typeof closeTerm === 'function') closeTerm();
+    if (reduce){ pwnEl.classList.add('open'); pwnNote(); return; }
+    const T = (ms, fn) => pwnTimers.push(setTimeout(fn, ms));
+    T(0,    () => toast('SIEM · RULE 5712', 'Brute force: 214 failed logins against <b>admin</b> from 203.0.113.47', 'warn'));
+    T(700,  () => toast('SIEM · RULE 92213', 'Successful login after brute force. Session opened on <b>WS-14</b>'));
+    T(1400, () => toast('EDR · LATERAL MOVEMENT', 'WS-14 → <b>DC-01</b> via PsExec. Domain admin token in use'));
+    T(2100, () => toast('EDR · ANTI-RANSOMWARE', '<b>Troj/Ransom-GBX</b> mass file encryption in progress. 9,000 files/sec'));
+    T(2600, () => { document.body.classList.add('shaking'); scramble(); });
+    T(3300, () => { document.body.classList.remove('shaking'); document.body.classList.add('glitching'); });
+    T(4100, () => {
+      document.body.classList.remove('glitching'); unscramble();
+      if (toastBox){ toastBox.remove(); toastBox = null; }
+      const f = document.createElement('div'); f.className = 'redflash'; document.body.appendChild(f); setTimeout(() => f.remove(), 800);
+      pwnEl.classList.add('open'); pwnNote();
+    });
+  }
+  function closePwn(){ clearPwn(); unscramble(); if (toastBox){ toastBox.remove(); toastBox = null; } pwnEl.classList.remove('open','safe'); document.body.classList.remove('glitching','shaking'); pwnActive = false; }
+  window.addEventListener('keydown', e => { if (e.key==='Escape' && pwnActive) closePwn(); });
+  $('#pwnBtn').addEventListener('click', pwn);
+  document.querySelectorAll('[data-pwn]').forEach(b => b.addEventListener('click', pwn));
+
+  /* ---------------- risk register accordion ---------------- */
+  document.querySelectorAll('#reg .item button').forEach(b => b.addEventListener('click', () => {
+    const it = b.parentElement, open = !it.classList.contains('open');
+    it.classList.toggle('open', open); b.setAttribute('aria-expanded', open);
+  }));
+  document.querySelector('#reg .item button').click();
+
+  /* ---------------- replay ---------------- */
+  $('#replay').addEventListener('click', () => { setStep(0); window.scrollTo({top:0, behavior: reduce?'auto':'smooth'}); });
+
+  /* ---------------- terminal ---------------- */
+  const term = $('#term'), out = $('#tout'), tin = $('#tin');
+  const hist = []; let hi = 0;
+  const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const print = (html, cls) => { const d = document.createElement('div'); if (cls) d.className = cls; d.innerHTML = html; out.appendChild(d); out.scrollTop = out.scrollHeight; };
+  const go = id => { closeTerm(); setTimeout(() => document.getElementById(id).scrollIntoView({behavior: reduce?'auto':'smooth'}), 120); };
+  const cmds = {
+    help: () => print(
+`<span class="h">available commands</span>
+  <span class="p">whoami</span>       who runs this box
+  <span class="p">ls</span>           list projects
+  <span class="p">solutions</span>    systems built in-house
+  <span class="p">ai</span>           how AI automation is done here
+  <span class="p">arxvault</span>     what I'm building now
+  <span class="p">cv</span>           download the CV
+  <span class="p">ttps</span>         the attack chain, mapped to sections
+  <span class="p">nmap</span>         scan the target
+  <span class="p">cat</span> <span class="d">&lt;file&gt;</span>   principles | certs | faith
+  <span class="p">audit</span>        the honest self-assessment
+  <span class="p">play</span>         jump to the simulations
+  <span class="p">contact</span>      how to reach me
+  <span class="p">history</span>      what you've typed
+  <span class="p">clear</span> / <span class="p">exit</span>`),
+    whoami: () => print(
+`<span class="h">Ogungbemi Samuel Oluwagbenga</span>
+Manager, Cybersecurity &amp; Network Infrastructure, FMBN (since 2018)
+Founder/CEO, ARX AMANI Technologies
+Alongside: Zeeko Technologies (UK), Fotbo (Latvia), Nigeria Customs modernisation
+Physicist → security leader. Abuja / Lagos.`),
+    ls: () => print(
+`<span class="a">arxvault/</span>          <span class="d">now building · v1.0 early access</span>
+<span class="p">cyberstart/</span>        <span class="d">running · live</span>
+<span class="p">security-suite/</span>    <span class="d">public</span>
+<span class="p">seccontext/</span>        <span class="d">v0.1</span>
+<span class="p">sacred-architecture/</span> <span class="d">published</span>
+<span class="a">explainable-soc/</span>   <span class="d">paused</span>
+<span class="a">naija-breach-db/</span>   <span class="d">queued</span>
+<span class="a">cyberscore-ng/</span>     <span class="d">queued</span>
+principles  certs  faith  hobbies.txt  <span class="a">flag.txt</span>`),
+    cat: a => {
+      const f = {
+        principles: 'I walk into vacuums and install structure.\nFaith is the architecture underneath the work.\nTruth over comfort.',
+        certs: 'CEH · CompTIA Security+ · CC (ISC²) · CCNA CyberOps · CNSP · ITIL 4 · Google IT Support\n<span class="a">CompTIA SecAI+ (expected)</span>\n<span class="e">AWS Cloud Practitioner (lapsed, on the renewal list)</span>',
+        'flag.txt': '<span class="g">FLAG{y0u_r3c0nn3d_th3_r1ght_analyst}</span>\n<span class="d">you found it. mention this flag when you reach out and I\'ll know you read everything.</span>',
+        'hobbies.txt': 'reading       always one book in progress\nguitar        badly, then better\nphotography   seeing what others walk past\nmandarin      学习中文 (learning Chinese), one character at a time\ntravel        new places, new perspectives',
+        faith: '<span class="a">"Except the LORD build the house, they labour in vain that build it."</span>\n<span class="d">— Psalm 127:1</span>'
+      }[a[0]];
+      print(f || (a[0] ? 'cat: '+esc(a[0])+': No such file or directory' : 'usage: cat principles | certs | faith'), f ? '' : 'e');
+    },
+    arxvault: () => { print('ArxVault: self-hosted privileged access management. opening ...', 'a'); go('arxvault'); },
+    solutions: () => { print('opening solutions ...', 'p'); go('solutions'); },
+    ai: () => { print('AI proposes. Humans approve. opening pipeline ...', 'p'); go('ai'); },
+    audit: () => { print('running audit --honest ... 4 issues, every one with an owner and a fix. opening tracker.', 'a'); go('audit'); },
+    play: () => { print('loading simulations ...', 'p'); go('play'); },
+    contact: () => print('Email     '+mail()+'\nLinkedIn  <a href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">linkedin.com/in/oluwagbengasamuel</a>\nGitHub    <a href="https://github.com/TheSecuredAnalyst" target="_blank" rel="noopener">github.com/TheSecuredAnalyst</a>\nARX AMANI <a href="https://arxamani.com" target="_blank" rel="noopener">arxamani.com</a>'),
+    history: () => print(hist.map((h,i) => String(i+1).padStart(4)+'  '+esc(h)).join('\n') || '(empty)', 'd'),
+    sudo: a => print(a.join(' ').startsWith('hire') ? '<span class="g">[sudo] request accepted.</span> Fastest privilege escalation on this box: <span class="p">contact</span>' : 'permission denied. least privilege applies to guests too. (try: sudo hire gbenga)', a.join(' ').startsWith('hire') ? '' : 'e'),
+    nmap: () => print('Starting Nmap scan against gbenga ...\n<span class="h">PORT      STATE  SERVICE</span>\n22/tcp    open   network-engineering\n443/tcp   open   security-leadership\n514/udp   open   siem   <span class="d">(listening, always)</span>\n1337/tcp  open   ai-automation\n3389/tcp  <span class="g">filtered</span>  <span class="d">brokered through ArxVault, obviously</span>\n23/tcp    <span class="e">closed</span> telnet <span class="d">(it\'s not 1995)</span>\n\nHost is up. Has been since 2011.', 'd'),
+    ttps: () => print([['TA0043','Reconnaissance','top'],['TA0001','Initial Access','access'],['TA0003','Persistence','story'],['TA0004','Privilege Escalation','privesc'],['TA0008','Lateral Movement','lateral'],['TA0002','Execution','solutions'],['TA0011','Command &amp; Control','ai'],['TA0042','Resource Development','arxvault'],['TA0010','Exfiltration','writing'],['TA0040','Impact','impact'],['TA0009','Collection','toolbox'],['TA0005','Defense Evasion: none','audit']].map(t => '<span class="a">'+t[0]+'</span>  '+t[1].padEnd(24)+'<span class="d">#'+t[2]+'</span>').join('\n')),
+    cv: () => { print('downloading Oluwagbenga_Ogungbemi_CV.pdf ...', 'p'); const a = document.createElement('a'); a.href = 'gbenga/Oluwagbenga_Ogungbemi_CV.pdf'; a.download = ''; a.click(); },
+    hack: () => { print('initiating ... wait. that\'s not how this works.', 'e'); setTimeout(pwn, 600); },
+    rm: a => { if (a.join(' ').includes('-rf')) { print('rm: removing everything ...', 'e'); setTimeout(pwn, 600); } else print('rm: permission denied', 'e'); },
+    clear: () => { out.innerHTML = ''; },
+    exit: () => closeTerm(),
+    date: () => print(new Date().toString(), 'd'),
+    echo: a => print(esc(a.join(' ')))
+  };
+  function run(line){
+    print('<span class="p">guest@arxamani:~$</span> '+esc(line));
+    const [c, ...a] = line.trim().split(/\s+/);
+    if (!c) return;
+    hist.push(line); hi = hist.length;
+    (cmds[c.toLowerCase()] || (() => print(esc(c)+': command not found. try <span class="p">help</span>', 'e')))(a);
+  }
+  function openTerm(){
+    term.classList.add('open'); term.setAttribute('aria-hidden','false');
+    if (!out.childElementCount) print('ARX AMANI shell, guest session. Type <span class="p">help</span> to begin.', 'd');
+    setTimeout(() => tin.focus(), 30);
+  }
+  function closeTerm(){ term.classList.remove('open'); term.setAttribute('aria-hidden','true'); }
+  $('#termBtn').addEventListener('click', openTerm);
+  $('#termClose').addEventListener('click', closeTerm);
+  term.addEventListener('click', e => { if (e.target === term) closeTerm(); });
+  tin.addEventListener('keydown', e => {
+    if (e.key === 'Enter'){ run(tin.value); tin.value = ''; }
+    else if (e.key === 'ArrowUp'){ if (hi>0){ hi--; tin.value = hist[hi]; } e.preventDefault(); }
+    else if (e.key === 'ArrowDown'){ hi = Math.min(hist.length, hi+1); tin.value = hist[hi] || ''; e.preventDefault(); }
+    else if (e.key === 'Tab'){ e.preventDefault(); const m = Object.keys(cmds).filter(k => k.startsWith(tin.value)); if (m.length===1) tin.value = m[0]+' '; }
+  });
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && term.classList.contains('open')) return closeTerm();
+    if (e.key === '`' && !boot.classList.contains('done')) return;
+    if (e.key === '`' && document.activeElement !== tin){ e.preventDefault(); term.classList.contains('open') ? closeTerm() : openTerm(); }
+  });
+})();
+</script>
 </body>
 </html>

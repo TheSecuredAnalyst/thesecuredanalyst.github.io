@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oluwagbenga Ogungbemi · The Secured Analyst</title>
+<meta name="description" content="Cybersecurity professional &amp; builder — securing systems, automating defense, and shipping tools that protect organizations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b0f;
+    --bg2:#0c1219;
+    --panel:#0f1620;
+    --line:rgba(0,255,170,0.14);
+    --green:#00ffaa;
+    --cyan:#48dbfb;
+    --amber:#ffb84d;
+    --text:#d7e3ec;
+    --muted:#8fa3b3;
+    --mono:'JetBrains Mono', monospace;
+    --sans:'Space Grotesk', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  /* ── background grid + scanlines ── */
+  .bg-grid{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(0,255,170,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,170,0.05) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 90%);
+  }
+  .bg-glow{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(600px 400px at 15% 10%, rgba(0,255,170,0.10), transparent 60%),
+      radial-gradient(700px 500px at 90% 20%, rgba(72,219,251,0.08), transparent 60%),
+      radial-gradient(800px 600px at 50% 100%, rgba(255,184,77,0.05), transparent 60%);
+  }
+  .bg-scan{
+    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.35;
+    background:repeating-linear-gradient(
+      to bottom, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px,
+      transparent 1px, transparent 3px
+    );
+  }
+
+  section, header, footer{ position:relative; z-index:2; }
+
+  /* ── nav ── */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px clamp(20px,6vw,72px);
+    background:rgba(7,11,15,0.7);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{
+    font-family:var(--mono); font-weight:700; font-size:17px; letter-spacing:0.5px;
+    color:var(--text); text-decoration:none; display:flex; align-items:center; gap:10px;
+  }
+  .brand .dot{ width:9px; height:9px; border-radius:50%; background:var(--green); box-shadow:0 0 14px var(--green); animation:pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.45; transform:scale(0.78);} }
+  .brand .accent{ color:var(--green); }
+  .navlinks{ display:flex; gap:clamp(14px,2.6vw,34px); align-items:center; }
+  .navlinks a{
+    color:var(--muted); text-decoration:none; font-family:var(--mono); font-size:13.5px;
+    letter-spacing:0.3px; transition:color .2s;
+  }
+  .navlinks a:hover{ color:var(--green); }
+  .navlinks a.cta{
+    color:var(--bg); background:var(--green); padding:9px 18px; border-radius:7px;
+    font-weight:700; box-shadow:0 8px 26px rgba(0,255,170,0.25);
+  }
+  .navlinks a.cta:hover{ filter:brightness(1.1); color:var(--bg); }
+  @media(max-width:720px){ .navlinks a:not(.cta){ display:none; } }
+
+  /* ── hero ── */
+  .hero{
+    min-height:92vh; display:flex; flex-direction:column; justify-content:center;
+    padding:80px clamp(20px,6vw,72px) 60px;
+    max-width:1180px; margin:0 auto;
+  }
+  .term-tag{
+    display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:13px;
+    color:var(--green); border:1px solid var(--line); background:rgba(0,255,170,0.05);
+    padding:8px 16px; border-radius:999px; width:fit-content; margin-bottom:28px;
+  }
+  .term-tag .blink{ animation:blink 1.1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  h1{
+    font-size:clamp(38px, 7vw, 76px); font-weight:700; line-height:1.06; letter-spacing:-1.5px;
+    max-width:920px;
+  }
+  h1 .grad{
+    background:linear-gradient(120deg, var(--green), var(--cyan) 60%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{
+    margin-top:24px; font-size:clamp(16px,2.1vw,19px); color:var(--muted); max-width:640px;
+  }
+  .hero p.lead span{ color:var(--text); font-weight:600; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-top:38px; }
+  .btn{
+    font-family:var(--mono); font-weight:700; font-size:14px; letter-spacing:0.3px;
+    padding:14px 28px; border-radius:9px; text-decoration:none; display:inline-flex;
+    align-items:center; gap:10px; transition:transform .2s, box-shadow .2s, filter .2s;
+  }
+  .btn-primary{ background:var(--green); color:#04140e; box-shadow:0 14px 40px rgba(0,255,170,0.22); }
+  .btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.08); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--text); background:rgba(255,255,255,0.02); }
+  .btn-ghost:hover{ border-color:var(--green); color:var(--green); transform:translateY(-2px); }
+
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:34px; margin-top:64px;
+    font-family:var(--mono); font-size:13px; color:var(--muted);
+  }
+  .hero-meta b{ color:var(--green); font-size:22px; display:block; font-family:var(--sans); }
+
+  /* ── section shell ── */
+  .wrap{ max-width:1180px; margin:0 auto; padding:90px clamp(20px,6vw,72px); }
+  .kicker{
+    font-family:var(--mono); font-size:13px; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--green); margin-bottom:14px; display:flex; align-items:center; gap:12px;
+  }
+  .kicker::before{ content:''; width:28px; height:1px; background:var(--green); display:inline-block; }
+  h2{ font-size:clamp(28px,4.4vw,42px); font-weight:700; letter-spacing:-1px; max-width:640px; }
+  .sub{ color:var(--muted); margin-top:14px; max-width:600px; font-size:15.5px; }
+
+  /* ── about ── */
+  .about-grid{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:56px; margin-top:54px; align-items:start;
+  }
+  @media(max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ color:var(--muted); margin-bottom:16px; font-size:15.5px; }
+  .about-grid p span{ color:var(--text); font-weight:600; }
+  .panel{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:26px;
+  }
+  .panel-title{ font-family:var(--mono); font-size:13px; color:var(--green); margin-bottom:18px; letter-spacing:0.5px; }
+  .focus-list{ display:flex; flex-direction:column; gap:14px; }
+  .focus-item{ display:flex; gap:14px; align-items:flex-start; }
+  .focus-item .ic{
+    width:34px; height:34px; border-radius:8px; flex-shrink:0; display:flex; align-items:center;
+    justify-content:center; background:rgba(0,255,170,0.08); border:1px solid var(--line);
+    font-size:16px;
+  }
+  .focus-item h4{ font-size:15px; font-weight:600; }
+  .focus-item p{ font-size:13.5px; color:var(--muted); margin:2px 0 0; }
+
+  /* ── skills ── */
+  .skill-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:18px; margin-top:50px; }
+  .skill-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px;
+    transition:transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .skill-card:hover{ transform:translateY(-4px); border-color:rgba(0,255,170,0.4); box-shadow:0 16px 50px rgba(0,255,170,0.08); }
+  .skill-card .head{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .skill-card .head .ic{ font-size:22px; }
+  .skill-card h3{ font-size:16.5px; font-weight:700; }
+  .skill-card ul{ list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .skill-card li{
+    font-family:var(--mono); font-size:12.5px; color:var(--muted); display:flex; gap:8px; align-items:center;
+  }
+  .skill-card li::before{ content:'›'; color:var(--green); font-weight:700; }
+
+  /* ── projects ── */
+  .proj-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:22px; margin-top:50px; }
+  .proj-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:28px;
+    display:flex; flex-direction:column; gap:14px; position:relative; overflow:hidden;
+    transition:transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .proj-card::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, var(--green), var(--cyan)); opacity:0; transition:opacity .25s;
+  }
+  .proj-card:hover{ transform:translateY(-5px); border-color:rgba(0,255,170,0.35); box-shadow:0 20px 60px rgba(0,0,0,0.35); }
+  .proj-card:hover::before{ opacity:1; }
+  .proj-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+  .proj-tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase;
+    color:var(--green); background:rgba(0,255,170,0.08); border:1px solid var(--line);
+    padding:5px 11px; border-radius:999px; white-space:nowrap;
+  }
+  .proj-card h3{ font-size:19px; font-weight:700; }
+  .proj-card p{ color:var(--muted); font-size:14px; }
+  .proj-stack{ display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:6px; }
+  .proj-stack span{
+    font-family:var(--mono); font-size:11.5px; color:var(--cyan); border:1px solid rgba(72,219,251,0.25);
+    background:rgba(72,219,251,0.06); padding:4px 10px; border-radius:6px;
+  }
+  .proj-tags{ display:flex; flex-direction:column; gap:6px; align-items:flex-end; flex-shrink:0; }
+  .proj-tag.alt{ color:var(--amber); background:rgba(255,184,77,0.08); border-color:rgba(255,184,77,0.22); }
+  .proj-card h3 a{ color:inherit; text-decoration:none; transition:color .2s; }
+  .proj-card h3 a:hover{ color:var(--green); }
+  .proj-card h3 .ext{ font-size:0.7em; color:var(--muted); vertical-align:super; margin-left:2px; }
+
+  /* ── terminal/contact ── */
+  .term{
+    background:#03070a; border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,0.5);
+  }
+  .term-bar{
+    display:flex; align-items:center; gap:8px; padding:14px 18px; background:#0a1118; border-bottom:1px solid var(--line);
+  }
+  .term-bar i{ width:11px; height:11px; border-radius:50%; display:inline-block; }
+  .term-bar i:nth-child(1){ background:#ff5f57; }
+  .term-bar i:nth-child(2){ background:#febc2e; }
+  .term-bar i:nth-child(3){ background:#28c840; }
+  .term-bar span{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-left:8px; }
+  .term-body{ padding:28px clamp(20px,4vw,40px); font-family:var(--mono); font-size:14px; }
+  .term-body .ln{ margin-bottom:12px; color:var(--muted); }
+  .term-body .ln .prompt{ color:var(--green); }
+  .term-body .ln .path{ color:var(--cyan); }
+  .term-body .out{ color:var(--text); padding-left:20px; }
+  .term-body a{ color:var(--green); text-decoration:none; border-bottom:1px dashed rgba(0,255,170,0.4); }
+  .term-body a:hover{ color:var(--cyan); border-color:rgba(72,219,251,0.5); }
+  .cursor{ display:inline-block; width:8px; height:16px; background:var(--green); vertical-align:text-bottom; animation:blink 1s steps(1) infinite; }
+
+  /* ── experience timeline ── */
+  .timeline{ display:flex; flex-direction:column; gap:2px; margin-top:50px; }
+  .tl-item{
+    display:grid; grid-template-columns:170px 1fr; gap:28px; padding:28px 0;
+    border-top:1px solid var(--line);
+  }
+  .tl-item:last-child{ border-bottom:1px solid var(--line); }
+  @media(max-width:720px){ .tl-item{ grid-template-columns:1fr; gap:8px; } }
+  .tl-period{ font-family:var(--mono); font-size:13px; color:var(--green); }
+  .tl-period .now{
+    display:inline-block; margin-top:8px; font-size:10.5px; letter-spacing:1px; text-transform:uppercase;
+    color:var(--green); background:rgba(0,255,170,0.08); border:1px solid var(--line);
+    padding:3px 9px; border-radius:999px;
+  }
+  .tl-role h3{ font-size:19px; font-weight:700; }
+  .tl-role .org{ font-family:var(--mono); font-size:13px; color:var(--cyan); margin-top:3px; }
+  .tl-role ul{ list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:9px; }
+  .tl-role li{ font-size:14px; color:var(--muted); display:flex; gap:10px; align-items:flex-start; }
+  .tl-role li::before{ content:'▸'; color:var(--green); flex-shrink:0; margin-top:1px; }
+
+  /* ── certifications ── */
+  .cert-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:50px; }
+  .cert-card{
+    display:flex; align-items:center; gap:16px; background:var(--panel); border:1px solid var(--line);
+    border-radius:12px; padding:20px; transition:transform .25s, border-color .25s;
+  }
+  .cert-card:hover{ transform:translateY(-3px); border-color:rgba(0,255,170,0.4); }
+  .cert-card .badge{
+    width:46px; height:46px; border-radius:10px; flex-shrink:0; display:flex; align-items:center;
+    justify-content:center; font-family:var(--mono); font-weight:800; font-size:13px;
+    background:rgba(0,255,170,0.08); border:1px solid var(--line); color:var(--green);
+  }
+  .cert-card h4{ font-size:15px; font-weight:700; }
+  .cert-card p{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* ── education ── */
+  .edu-list{ display:flex; flex-direction:column; gap:0; margin-top:50px; }
+  .edu-item{
+    display:flex; gap:20px; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .edu-item:first-child{ border-top:1px solid var(--line); }
+  .edu-item .yr{ font-family:var(--mono); font-size:13px; color:var(--green); width:54px; flex-shrink:0; }
+  .edu-item .what b{ color:var(--text); }
+  .edu-item .what{ color:var(--muted); }
+
+  /* ── footer ── */
+  footer{
+    border-top:1px solid var(--line); padding:34px clamp(20px,6vw,72px);
+    display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;
+    font-family:var(--mono); font-size:12.5px; color:var(--muted);
+  }
+  footer a{ color:var(--muted); text-decoration:none; }
+  footer a:hover{ color:var(--green); }
+  footer .links{ display:flex; gap:22px; }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="bg-scan"></div>
+
+<nav>
+  <a href="#top" class="brand"><span class="dot"></span>The<span class="accent">Secured</span>Analyst</a>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#stack">Stack</a>
+    <a href="#certs">Certs</a>
+    <a href="#work">Work</a>
+    <a href="#contact" class="cta">Hire me</a>
+  </div>
+</nav>
+
+<header id="top" class="hero">
+  <div class="term-tag">
+    <span class="blink">●</span> securing 40+ branches by day · building security products by night
+  </div>
+  <h1>I secure banks.<br>Then I <span class="grad">build the tools</span> that scale that work.</h1>
+  <p class="lead">
+    I'm <span>Oluwagbenga Ogungbemi</span> — Manager, Cybersecurity &amp; Network Infrastructure at a
+    CBN-regulated Nigerian bank, where I run security and network operations across <span>40+ branches</span>
+    and <span>~1,300 staff</span>. Outside that mandate, I design and ship the products I wish existed —
+    secrets vaults, AI-assisted VAPT suites, and compliance automation — through my own company, ARX AMANI Technologies.
+  </p>
+  <div class="hero-actions">
+    <a href="#work" class="btn btn-primary">▸ See what I've shipped</a>
+    <a href="#contact" class="btn btn-ghost">Let's talk →</a>
+  </div>
+  <div class="hero-meta">
+    <div><b>7+ yrs</b>in cybersecurity (14+ yrs in IT)</div>
+    <div><b>40+ branches</b>secured at a federal financial institution</div>
+    <div><b>5 certs</b>CEH · Security+ · CC (ISC²) · CNSP · Google IT Support</div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="kicker">Who I am</div>
+    <h2>Defense-minded. Build-driven.</h2>
+    <div class="about-grid">
+      <div>
+        <p>I lead Cybersecurity &amp; Network Infrastructure at the <span>Federal Mortgage Bank of Nigeria</span> —
+          a CBN-regulated institution — where I own the firewall estate, endpoint protection, SIEM, and
+          network operations across <span>40+ branches</span> and roughly <span>1,300 staff</span>. I've held
+          that mandate since September 2018, through real incidents, real audits, and real scale.</p>
+        <p>Outside of that mandate, I design and ship the products I wish existed, through my own company,
+          <span>ARX AMANI Technologies</span> — including an enterprise secrets vault and IT asset
+          management platform built for Nigerian financial institutions, plus a suite of AI-assisted
+          vulnerability assessment and penetration testing tools.</p>
+        <p>My background is unconventional — I came to security through <span>physics</span>, not a
+          bootcamp — and that shows up as a habit of reasoning from first principles rather than
+          following playbooks. I blend <span>offensive thinking</span> (how systems actually get broken)
+          with <span>practical engineering</span> (how to ship something that closes the gap), because the
+          best defenses are the ones that get deployed, not just designed.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">// current focus</div>
+        <div class="focus-list">
+          <div class="focus-item">
+            <div class="ic">🔐</div>
+            <div><h4>Enterprise Secrets Vault</h4><p>NDPR-compliant PAM &amp; asset management for Nigerian financial institutions, with 2FA, OAuth, LDAP, and AI-driven compliance reporting.</p></div>
+          </div>
+          <div class="focus-item">
+            <div class="ic">🛰️</div>
+            <div><h4>AI-Powered VAPT</h4><p>Automated vulnerability scanning that pairs Nmap + CVE lookups with local LLM analysis and 0–100 risk scoring.</p></div>
+          </div>
+          <div class="focus-item">
+            <div class="ic">🧩</div>
+            <div><h4>Enterprise Connectors</h4><p>SDK that syncs LDAP/AD, RMM, and SIEM platforms (Wazuh, Nessus, Intune) directly into the security vault.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker">Job history</div>
+    <h2>Where I've put in the work</h2>
+    <p class="sub">Real mandates, real scale, real accountability — not side-project security.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-period">Sep 2018 — Present<span class="now">current</span></div>
+        <div class="tl-role">
+          <h3>Manager, Cybersecurity &amp; Network Infrastructure</h3>
+          <div class="org">Federal Mortgage Bank of Nigeria · CBN-regulated · Abuja, NG</div>
+          <ul>
+            <li>Own end-to-end security &amp; network operations across 40+ branches and ~1,300 staff</li>
+            <li>Run the firewall estate, endpoint protection (Sophos Central), SIEM (Splunk), and RMM (Action1)</li>
+            <li>Lead incident response, threat detection, and internal hardening for a regulated financial institution</li>
+            <li>Translate compliance frameworks (CBN IT risk, NDPR) into operational controls that actually hold up to audit</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">Ongoing<span class="now">building</span></div>
+        <div class="tl-role">
+          <h3>Founder &amp; CEO</h3>
+          <div class="org">ARX AMANI Technologies Ltd · arxamani.com</div>
+          <ul>
+            <li>Building managed cybersecurity services and products for Nigerian SMEs and financial institutions</li>
+            <li>Designed and shipped arxVault — an NDPR-compliant secrets &amp; PAM platform with automated credential rotation</li>
+            <li>Published Security Suite — an open-source security toolkit with ~90★ on GitHub — plus MCP servers exposing 255+ security tools to AI assistants</li>
+            <li>Taking products from "I saw the gap" to production — not portfolios of demos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="kicker">Tech stack</div>
+    <h2>What I actually run — in production and in the lab</h2>
+    <p class="sub">Tools I use to secure a 40-branch bank by day, and the stack I use to prototype the next thing by night.</p>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="head"><span class="ic">🛡️</span><h3>Security Platforms (Production)</h3></div>
+        <ul>
+          <li>Sophos Central (endpoint &amp; EDR)</li>
+          <li>Splunk (SIEM &amp; log analysis)</li>
+          <li>Action1 (RMM &amp; patch management)</li>
+          <li>Enterprise firewall estate (40+ branches)</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="head"><span class="ic">🎯</span><h3>Offensive Security</h3></div>
+        <ul>
+          <li>Penetration testing &amp; VAPT</li>
+          <li>OSINT (theHarvester, Photon)</li>
+          <li>Impacket &amp; exploitation tooling</li>
+          <li>Nmap + CVE-driven assessments</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="head"><span class="ic">📡</span><h3>Infrastructure &amp; Observability (Lab)</h3></div>
+        <ul>
+          <li>Proxmox (virtualization)</li>
+          <li>ELK Stack &amp; Zabbix</li>
+          <li>Prometheus + Grafana</li>
+          <li>GNS3 / Wireshark labs</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="head"><span class="ic">⚙️</span><h3>Engineering</h3></div>
+        <ul>
+          <li>Laravel / PHP (production apps)</li>
+          <li>Python (security automation)</li>
+          <li>Node.js &amp; process management</li>
+          <li>Android development</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="head"><span class="ic">🤖</span><h3>AI &amp; Automation</h3></div>
+        <ul>
+          <li>Local LLMs (Ollama) for analysis</li>
+          <li>RAG pipelines (FAISS + embeddings)</li>
+          <li>AI-driven compliance reporting</li>
+          <li>Risk scoring &amp; report generation</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="head"><span class="ic">🌐</span><h3>Networking &amp; Identity</h3></div>
+        <ul>
+          <li>Cisco switch &amp; VLAN management</li>
+          <li>LDAP / Active Directory</li>
+          <li>Network segmentation &amp; hardening</li>
+          <li>Telnet/SSH estate management</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="head"><span class="ic">📋</span><h3>Compliance &amp; Frameworks</h3></div>
+        <ul>
+          <li>NDPR (Nigeria Data Protection Reg.)</li>
+          <li>CBN IT risk framework</li>
+          <li>OWASP Top 10 / CIS benchmarks</li>
+          <li>Audit-ready documentation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="kicker">Credentials</div>
+    <h2>Certified, not just self-taught</h2>
+    <p class="sub">Verified credentials that back up the hands-on experience above.</p>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="badge">CEH</div><div><h4>Certified Ethical Hacker</h4><p>EC-Council</p></div></div>
+      <div class="cert-card"><div class="badge">SEC+</div><div><h4>CompTIA Security+</h4><p>CompTIA</p></div></div>
+      <div class="cert-card"><div class="badge">CC</div><div><h4>Certified in Cybersecurity</h4><p>(ISC)²</p></div></div>
+      <div class="cert-card"><div class="badge">CNSP</div><div><h4>Certified Network Security Practitioner</h4><p>The SecOps Group</p></div></div>
+      <div class="cert-card"><div class="badge">GIT</div><div><h4>IT Support Professional</h4><p>Google (Coursera)</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="kicker">Selected work</div>
+    <h2>Tools I've designed &amp; shipped</h2>
+    <p class="sub">Products and platforms I've built — from open-source tools anyone can run to proprietary systems in production. Most were born from real gaps in enterprise security tooling for the Nigerian market.</p>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-top"><h3>arxVault — Secrets Vault &amp; PAM</h3><div class="proj-tags"><span class="proj-tag">Flagship</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>Enterprise secrets vault &amp; IT asset management — self-hosted, NDPR/CBN-aligned. AES-256-GCM envelope encryption (a unique key per secret), a hash-chained tamper-evident audit log, 2FA + Azure/Google OAuth + LDAP, and a crash-safe two-phase-commit engine that automatically rotates privileged credentials. Built for Nigerian financial institutions.</p>
+        <div class="proj-stack"><span>Laravel 12</span><span>AES-256-GCM</span><span>Livewire</span><span>OAuth/LDAP</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>NEXUS-AD</h3><div class="proj-tags"><span class="proj-tag">AI · Network</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>A self-sustaining Active Directory / NAC / VPN platform spanning 40+ branches. Enforces network access control without 802.1X, keeps branches authenticating through VPN outages via an HMAC "dead-man's-switch", predicts tunnel degradation with EWMA scoring, and runs incident response on a local LLM — every action written to a SHA-256 hash-chained audit trail.</p>
+        <div class="proj-stack"><span>Python</span><span>PowerShell</span><span>Ollama</span><span>Splunk</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>NHF Reconciler</h3><div class="proj-tags"><span class="proj-tag">Data Engineering</span><span class="proj-tag alt">Internal</span></div></div>
+        <p>A record-matching engine that reconciles legacy payment schedules against a 9-million-record master database — phonetic, order-insensitive name matching fused with identifier signals and a multi-generation ID resolver. Replaced a manual spreadsheet process, taking auto-match to 96% and cutting manual review from ~69% to ~4%.</p>
+        <div class="proj-stack"><span>Laravel</span><span>Livewire</span><span>openspout</span><span>SQLite/MySQL</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3><a href="https://github.com/TheSecuredAnalyst/security-suite" target="_blank" rel="noopener">Security Suite<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Open Source ★</span></div></div>
+        <p>An open-source security toolkit (~90★ on GitHub): OSINT, web &amp; API scanning, an exploit engine, and multi-framework compliance checks — unified in one CLI + REST API with AI-powered analysis, all gated behind a deny-by-default guardrail that enforces rules-of-engagement.</p>
+        <div class="proj-stack"><span>Python</span><span>Typer</span><span>FastAPI</span><span>CodeQL / CI</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3><a href="https://www.npmjs.com/package/sophos-central-mcp-server" target="_blank" rel="noopener">Sophos Central MCP<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Open Source</span><span class="proj-tag">npm</span></div></div>
+        <p>A Model Context Protocol server exposing <b>255 Sophos Central API tools</b> across 14 namespaces to AI assistants — with partner / organisation / tenant auth and automatic region routing. Manage a Sophos estate conversationally from Claude Desktop. Published on npm.</p>
+        <div class="proj-stack"><span>TypeScript</span><span>Python</span><span>MCP</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>AI Security MCP Servers</h3><div class="proj-tags"><span class="proj-tag">AI · Security</span></div></div>
+        <p>MCP servers that put a SOC inside an AI assistant: PRTG + Sophos monitoring and alerting on one side; guardrailed red-team (nmap+CVE VAPT reports, MITRE ATT&amp;CK tagging, an autonomous red-blue loop) and blue-team (multi-source threat intel, IOC reports) tooling on the other — every engagement scoped and audit-logged.</p>
+        <div class="proj-stack"><span>Python</span><span>MCP</span><span>PRTG</span><span>Threat Intel</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>SwitchAI</h3><div class="proj-tags"><span class="proj-tag">AI · Network</span><span class="proj-tag alt">Internal</span></div></div>
+        <p>Natural-language management for a bank's HQ Cisco switch estate — plain English is translated to Cisco CLI, with the management VLAN protected in two independent layers so no AI mistake can touch it. Double-hop telnet access, runtime-resolved credentials (never stored in plaintext), and a full audit log.</p>
+        <div class="proj-stack"><span>Flask</span><span>Claude API</span><span>Cisco IOS</span><span>pexpect</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>Sentinel One — VAPT Suite</h3><div class="proj-tags"><span class="proj-tag">AI · Security</span></div></div>
+        <p>AI-assisted vulnerability assessment: Nmap discovery + CVE lookups + local-LLM analysis with 0–100 risk scoring, producing HTML / JSON / Markdown reports and tracking scan history over time.</p>
+        <div class="proj-stack"><span>Python</span><span>Nmap</span><span>Ollama</span><span>SQLite</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>Enterprise Connectors</h3><div class="proj-tags"><span class="proj-tag">SDK</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>A Python SDK that reconciles asset inventory from external systems into arxVault — Action1 RMM and AD/LDAP live, Wazuh / Nessus / Intune next — the foundation for CAASM-style coverage-gap detection ("what's on my network but not under management?").</p>
+        <div class="proj-stack"><span>Python</span><span>REST</span><span>LDAP/AD</span><span>RMM</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>Arx Governance Hub</h3><div class="proj-tags"><span class="proj-tag">GRC</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>A governance, risk &amp; compliance platform — a guided compliance wizard, a NIST RMF workflow, and a live risk register — built for the Nigerian financial-sector regulatory context.</p>
+        <div class="proj-stack"><span>Laravel</span><span>NIST RMF</span><span>Livewire</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3><a href="https://cyberstart.arxamani.com" target="_blank" rel="noopener">CyberStart Africa<span class="ext">↗</span></a></h3><div class="proj-tags"><span class="proj-tag">Platform · Live</span></div></div>
+        <p>Entry infrastructure for cybersecurity talent in Africa — constraint-aware guidance that moves beginners from confusion to direction to demonstrable proof. Live MVP evolving along a seven-phase product roadmap.</p>
+        <div class="proj-stack"><span>Laravel</span><span>Tailwind</span><span>Alpine.js</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>Arx Amani Learn</h3><div class="proj-tags"><span class="proj-tag">LMS</span><span class="proj-tag alt">Proprietary</span></div></div>
+        <p>A gamified learning platform — courses, modules and learning paths wrapped in a quiz-duel and matchmaking layer, with certificates and compliance analytics.</p>
+        <div class="proj-stack"><span>Laravel</span><span>Livewire</span><span>Chart.js</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="kicker">Foundation</div>
+    <h2>From physics to security architecture</h2>
+    <p class="sub">An unconventional path that brings rigorous, first-principles thinking to how I approach systems and risk.</p>
+    <div class="edu-list">
+      <div class="edu-item"><span class="yr">2010</span><span class="what"><b>BSc Physics</b> — Ekiti State University</span></div>
+      <div class="edu-item"><span class="yr">2015</span><span class="what"><b>MSc Physics</b> — University of Lagos</span></div>
+      <div class="edu-item"><span class="yr">active</span><span class="what"><b>PhD, Materials Science</b> — in progress</span></div>
+      <div class="edu-item"><span class="yr">active</span><span class="what"><b>MSc International Affairs &amp; Diplomacy</b> — thesis stage</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="kicker">Let's talk</div>
+    <h2>Building, defending, and shipping — let's talk</h2>
+    <p class="sub">Whether it's a security leadership conversation, a tooling build, or a problem you think I'd be the right person to take on — I'm always glad to hear from people doing serious work in this space.</p>
+    <div class="term" style="margin-top:46px;">
+      <div class="term-bar"><i></i><i></i><i></i><span>thesecuredanalyst — bash</span></div>
+      <div class="term-body">
+        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ whoami</div>
+        <div class="out">Oluwagbenga Ogungbemi — Manager, Cybersecurity &amp; Network Infrastructure · Builder · Abuja, Nigeria</div>
+        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ cat focus.txt</div>
+        <div class="out">
+          strengths&nbsp;: security operations · SIEM/EDR · network defense at scale · AI-assisted tooling<br>
+          building&nbsp;&nbsp;&nbsp;: ARX AMANI Technologies — security products for African enterprises<br>
+          based&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abuja, Nigeria · WAT (UTC+1)
+        </div>
+        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ cat contact.txt</div>
+        <div class="out">
+          email&nbsp;&nbsp;&nbsp;&nbsp;: <a href="mailto:ogungbemigs@gmail.com">ogungbemigs@gmail.com</a><br>
+          company&nbsp;&nbsp;: <a href="https://arxamani.com" target="_blank" rel="noopener">ARX AMANI Technologies Ltd</a><br>
+          linkedin&nbsp;&nbsp;: <a href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">linkedin.com/in/oluwagbengasamuel</a><br>
+          github&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="https://github.com/TheSecuredAnalyst" target="_blank" rel="noopener">github.com/TheSecuredAnalyst</a>
+        </div>
+        <div class="ln"><span class="prompt">analyst@fmbn</span>:<span class="path">~</span>$ <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© <span id="yr"></span> Oluwagbenga Ogungbemi · The Secured Analyst</div>
+  <div class="links">
+    <a href="mailto:ogungbemigs@gmail.com">Email</a>
+    <a href="https://github.com/TheSecuredAnalyst" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://linkedin.com/in/oluwagbengasamuel" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://arxamani.com" target="_blank" rel="noopener">ARX AMANI</a>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
