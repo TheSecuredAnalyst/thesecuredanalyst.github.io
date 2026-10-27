@@ -1764,6 +1764,11 @@
   window.addEventListener('keydown', e => { if (e.key==='Escape' && pwnActive) closePwn(); });
   $('#pwnBtn').addEventListener('click', pwn);
   document.querySelectorAll('[data-pwn]').forEach(b => b.addEventListener('click', pwn));
+  // fires on its own once per session, as the visitor nears the end of the page
+  let pwnedBefore = false; try { pwnedBefore = sessionStorage.getItem('pwned')==='1'; } catch(e) {}
+  if (!pwnedBefore) new IntersectionObserver((es,o) => es.forEach(e => {
+    if (e.isIntersecting){ o.disconnect(); pwnTimers.push(setTimeout(() => { if (!pwnActive && !term.classList.contains('open')) pwn(); }, 1200)); }
+  }), {threshold:.5}).observe($('#reg'));
 
   /* ---------------- risk register accordion ---------------- */
   document.querySelectorAll('#reg .item button').forEach(b => b.addEventListener('click', () => {
