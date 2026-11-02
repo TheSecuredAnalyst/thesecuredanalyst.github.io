@@ -8,7 +8,7 @@ Run by .github/workflows/devotion-reminders.yml. Standard library only.
   GMAIL_ADDRESS        the Gmail account that sends
   GMAIL_APP_PASSWORD   a Gmail app password for that account (not the login password)
   DEVOTION_RECIPIENTS  comma-separated list of addresses
-  DEVOTION_DATE        optional, e.g. "13 Oct" — send that day instead of today
+  DEVOTION_DATE        optional, e.g. "13 Nov" — send that day instead of today
   DRY_RUN              optional, "1" writes the email to devotion-preview.html and sends nothing
 """
 
@@ -23,14 +23,12 @@ from email.utils import formataddr, make_msgid
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / "map" / "october2026.json"
 PLANNER = "https://thesecuredanalyst.github.io/map/"
-EXAM = dt.date(2026, 10, 13)
 
 E = html.escape
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-THEME_COLOUR = {"mind": "#0d9488", "womb": "#be185d", "lead": "#1e3a8a", "encounter": "#7c3aed"}
+MONTH_NAMES = ["january", "february", "march", "april", "may", "june", "july",
+               "august", "september", "october", "november", "december"]
 
 
 def lagos_today() -> dt.date:
@@ -42,15 +40,9 @@ def key(d: dt.date) -> str:
     return f"{d.day} {MONTHS[d.month - 1]}"
 
 
-def countdown(today: dt.date) -> str:
-    left = (EXAM - today).days
-    if left > 1:
-        return f"SecAI+ exam in {left} days"
-    if left == 1:
-        return "SecAI+ exam is tomorrow"
-    if left == 0:
-        return "SecAI+ exam today"
-    return ""
+def data_file(month: int, year: int) -> Path:
+    # One file per month, e.g. map/november2026.json
+    return ROOT / "map" / f"{MONTH_NAMES[month - 1]}{year}.json"
 
 
 # ── building blocks (inline styles only — Gmail and Outlook strip <style>) ──
@@ -68,7 +60,7 @@ def box(inner, bg, border, pad="18px 20px"):
             f'<tr><td style="background:{bg};border-left:4px solid {border};padding:{pad};">{inner}</td></tr></table>')
 
 
-def shell(preheader, header_html, body_html):
+def shell(preheader, header_html, body_html, month):
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light only"><title>Encounter</title></head>
@@ -80,7 +72,7 @@ def shell(preheader, header_html, body_html):
 {header_html}
 <tr><td style="padding:28px 28px 8px;font-family:Georgia,'Times New Roman',serif;">{body_html}</td></tr>
 <tr><td style="padding:18px 28px 26px;border-top:1px solid #e5ddd0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#94a3b8;">
-Encounter · October 2026 · Gbenga Ogungbemi<br>
+Encounter · {E(month)} · Gbenga Ogungbemi<br>
 Faith · Growth · Work · Excellence · Family<br>
 <a href="{PLANNER}" style="color:#b45309;">Open the planner</a></td></tr>
 </table></td></tr></table></body></html>"""
@@ -114,8 +106,8 @@ def subject_tag(d):
 
 
 # ── the two editions ──
-def morning(d, themes, today):
-    chip = countdown(today)
+def morning(d, themes, month):
+    chip = ""
     head = header(f"☀ Morning · {E(d['dow'])} {E(d['date'])} · {day_name(d)} · {E(themes[d['theme']])}",
                   d["title"], d["verse"], chip, "linear-gradient(135deg,#0d1526,#1e2d4a)")
     body = box(label("Today's focus") + p(E(d["focus"]), "margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;"),
@@ -135,10 +127,10 @@ def morning(d, themes, today):
     pre = f"{d['verse']} · {d['focus']}"
     text = (f"{day_name(d)} · {d['dow']} {d['date']}\n{d['title']}\n\n{d['verse']}\n{d['verseText']}\n\n"
             f"TODAY'S FOCUS\n{d['focus']}\n\n{d['reflection']}\n\nDECLARATION\n{d['declaration']}\n\n{PLANNER}\n")
-    return subject, shell(pre, head, body), text
+    return subject, shell(pre, head, body, month), text
 
 
-def evening(d, nxt, themes, today):
+def evening(d, nxt, month):
     head = header(f"🌙 Evening · 9pm Prayer · {E(d['dow'])} {E(d['date'])} · {day_name(d)}",
                   d["title"], "Close the day the same way, whatever it delivered.", "", "linear-gradient(135deg,#1a0635,#0d1526)")
     qs = "".join(f'<li style="margin:0 0 10px;font-size:16px;line-height:1.55;color:#1f2937;">{E(q)}</li>' for q in d["questions"])
@@ -161,13 +153,11 @@ def evening(d, nxt, themes, today):
     text = (f"{day_name(d)} · {d['dow']} {d['date']} · 9pm\n{d['title']}\n\nSTUDY QUESTIONS\n" +
             "\n".join(f"{i}. {q}" for i, q in enumerate(d["questions"], 1)) +
             f"\n\nPRAYER\n{d['prayer']}\n\n" + (f"TOMORROW\n{nxt['title']} — {nxt['verse']}\n\n" if nxt else "") + PLANNER + "\n")
-    return subject, shell(pre, head, body), text
+    return subject, shell(pre, head, body, month), text
 
 
 def main():
     edition = os.environ.get("EDITION", "morning").strip().lower()
-    data = json.loads(DATA.read_text(encoding="utf-8"))
-    days = data["days"]
     today = lagos_today()
     # GitHub often starts scheduled runs hours late. An evening run that slips
     # past midnight still belongs to the day it was scheduled for.
@@ -176,17 +166,28 @@ def main():
         today -= dt.timedelta(days=1)
     want = os.environ.get("DEVOTION_DATE", "").strip() or key(today)
 
+    try:
+        month = MONTHS.index(want.split()[1]) + 1
+    except (IndexError, ValueError):
+        sys.exit(f'DEVOTION_DATE should look like "13 Nov", not {want!r}')
+    path = data_file(month, today.year)
+    data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"days": []}
+    days = data["days"]
     idx = next((i for i, d in enumerate(days) if d["date"] == want), None)
     if idx is None:
-        print(f"No devotion for {want} in {DATA.name} — nothing to send.")
+        print(f"No devotion for {want} in {path.name} — nothing to send.")
         return
     d = days[idx]
     nxt = days[idx + 1] if idx + 1 < len(days) else None
+    if nxt is None:   # last day of the month: preview the first day of the next one
+        nm = data_file(month % 12 + 1, today.year + (month == 12))
+        if nm.exists():
+            nxt = json.loads(nm.read_text(encoding="utf-8"))["days"][0]
 
     if edition == "evening":
-        subject, body_html, body_text = evening(d, nxt, data["themes"], today)
+        subject, body_html, body_text = evening(d, nxt, data["month"])
     else:
-        subject, body_html, body_text = morning(d, data["themes"], today)
+        subject, body_html, body_text = morning(d, data["themes"], data["month"])
 
     if os.environ.get("DRY_RUN") == "1":
         out = Path(os.environ.get("PREVIEW_PATH", "devotion-preview.html"))

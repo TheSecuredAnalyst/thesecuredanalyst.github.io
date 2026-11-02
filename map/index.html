@@ -123,7 +123,6 @@ body { background:var(--ink); color:var(--ink); font-family:'DM Sans',sans-serif
 .home-progress { max-width:760px; width:100%; }
 .today-card { max-width:760px; width:100%; margin:0 0 26px; text-align:left; padding:22px 24px; border:1px solid rgba(245,158,11,0.35); background:linear-gradient(135deg,rgba(245,158,11,0.10),rgba(13,21,38,0.9) 60%); position:relative; overflow:hidden; }
 .today-card.special { border-color:rgba(249,115,22,0.6); background:linear-gradient(135deg,rgba(249,115,22,0.18),rgba(26,6,53,0.9) 65%); }
-.today-card.exam { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent), 0 0 40px rgba(249,115,22,0.25); }
 .today-top { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
 .today-label { font-family:'DM Mono',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--gold); }
 .today-count { font-family:'DM Mono',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:#fff; background:var(--accent); padding:3px 9px; border-radius:20px; }
@@ -352,6 +351,8 @@ body { background:var(--ink); color:var(--ink); font-family:'DM Sans',sans-serif
 .day-header.theme-womb { background:linear-gradient(135deg,#4c0519,#881337); }
 .day-header.theme-lead { background:linear-gradient(135deg,#0c1a40,#1e3a8a); }
 .day-header.theme-encounter { background:linear-gradient(135deg,#022c22,#065f46); }
+.day-header.theme-transform { background:linear-gradient(135deg,#3b0764,#6d28d9); }
+.day-header.theme-faith { background:linear-gradient(135deg,#450a0a,#991b1b); }
 .dev-body { padding:24px 20px; max-width:680px; margin:0 auto; }
 .scripture-block { background:var(--parchment); border-left:4px solid var(--gold); padding:18px 20px; margin-bottom:24px; box-shadow:0 2px 14px rgba(245,158,11,0.1); }
 .scripture-block .ref { font-family:'DM Mono',monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold-d); margin-bottom:8px; display:block; }
@@ -1205,7 +1206,7 @@ function updateGlobalProgress() {
   const tPct = allItems.length > 0 ? Math.round((doneItems.length / allItems.length) * 100) : 0;
 
   // Devotional progress
-  const devState = JSON.parse(localStorage.getItem('october2026_devotional_state') || '{}');
+  const devState = JSON.parse(localStorage.getItem(DEV_STATE_KEY) || '{}');
   const devDone = Object.values(devState).filter(Boolean).length;
   const dPct = Math.round((devDone / DEV_TOTAL) * 100);
 
@@ -1238,6 +1239,12 @@ const sb = supabase.createClient(
   'sb_publishable_tDwFEpFb9xSikJ46Mt2ZUQ_nQfaXD5i'
 );
 const STATE_ID = 'october2026';
+// The devotional follows the calendar (Abuja time): October's until 31 Oct,
+// November's from 1 Nov, even while the rest of the planner is still October.
+// Its ticks live in localStorage '<month>_devotional_state' and in the
+// Supabase row of that month.
+const DEV_MONTH = Date.now() + 3600000 >= Date.UTC(2026, 10, 1) ? 'november2026' : 'october2026';
+const DEV_STATE_KEY = DEV_MONTH + '_devotional_state';
 
 async function sbRead() {
   try {
@@ -1296,7 +1303,7 @@ async function saveProgress() {
   });
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   showToast('Saving…');
-  const devData = JSON.parse(localStorage.getItem('october2026_devotional_state') || '{}');
+  const devData = JSON.parse(localStorage.getItem(STATE_ID + '_devotional_state') || '{}');
   const ok = await sbWrite({ tracker: state, devotional: devData });
   showToast(ok ? 'Synced ✓' : 'Saved locally ✓');
   updateGlobalProgress();
@@ -1322,10 +1329,33 @@ async function loadProgress() {
     });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(ghData.tracker));
     if (ghData.devotional) {
-      localStorage.setItem('october2026_devotional_state', JSON.stringify(ghData.devotional));
+      localStorage.setItem(STATE_ID + '_devotional_state', JSON.stringify(ghData.devotional));
     }
     updateScore();
   }
+
+  // 3 — a devotional month ahead of the planner syncs through its own row
+  if (DEV_MONTH !== STATE_ID) {
+    try {
+      const { data } = await sb.from('state').select('devotional').eq('id', DEV_MONTH).maybeSingle();
+      const local = JSON.parse(localStorage.getItem(DEV_STATE_KEY) || '{}');
+      const merged = Object.assign({}, (data && data.devotional) || {}, local);
+      localStorage.setItem(DEV_STATE_KEY, JSON.stringify(merged));
+      devState = merged;
+      renderList();
+      updateGlobalProgress();
+    } catch {}
+  }
+}
+
+async function sbWriteDev(dev) {
+  try {
+    const { error } = await sb.from('state').upsert({
+      id: DEV_MONTH, tracker: {}, devotional: dev, updated_at: new Date().toISOString()
+    });
+    if (error) console.error('sbWriteDev error:', error);
+    return !error;
+  } catch(e) { console.error('sbWriteDev exception:', e); return false; }
 }
 
 function resetAll() {
@@ -1361,8 +1391,7 @@ loadProgress();
 updateScore();
 
 
-const DKEY = 'october2026_devotional';
-const DEV_TOTAL = 32;   // 30 September threshold day + 31 October days
+let DEV_TOTAL = DEV_MONTH === 'october2026' ? 32 : 30;   // October: 30 Sep threshold + 31 days
 
 const THEMES = {
   mind: { label: 'Mind & Spirit', color: 'theme-mind' },
@@ -1371,12 +1400,18 @@ const THEMES = {
   encounter: { label: 'Encounter with Jesus', color: 'theme-encounter' }
 };
 
-// The devotions live in october2026.json so the morning/evening emails
+// The devotions live in <month>.json so the morning/evening emails
 // read exactly the same words as this page.
 let days = [];
-const daysReady = fetch('october2026.json', { cache: 'no-cache' })
+const daysReady = fetch(DEV_MONTH + '.json', { cache: 'no-cache' })
   .then(r => r.json())
-  .then(j => { days = j.days; renderList(); updateProgress(); renderToday(); })
+  .then(j => {
+    days = j.days;
+    DEV_TOTAL = days.length;
+    Object.entries(j.themes).forEach(([k, label]) => { THEMES[k] = { label, color: 'theme-' + k }; });
+    if (DEV_MONTH !== 'october2026') dressCover(j);
+    renderList(); updateProgress(); renderToday();
+  })
   .catch(e => console.error('devotional load failed', e));
 
 // Abuja is UTC+1 all year
@@ -1387,20 +1422,29 @@ function lagosToday() {
 }
 function todayEntry() { return days.find(d => d.date === lagosToday()); }
 
+// Cover, list header and week labels for a month other than October
+function dressCover(j) {
+  const name = j.month.split(' ')[0];
+  document.querySelector('#devCoverPage h1 span').textContent = j.month;
+  document.querySelector('#devCoverPage .tagline').innerHTML =
+    'A ' + j.days.length + '-Day Personal Devotional<br>for Gbenga Ogungbemi';
+  document.querySelector('#devCoverPage .themes').innerHTML =
+    Object.values(j.themes).map(t => '<span class="theme-tag">' + t + '</span>').join('');
+  document.querySelector('#devListView .logo').textContent = '✝ Encounter ' + name;
+  const wk = document.querySelectorAll('.week-btn span');
+  const last = j.days[j.days.length - 1].day;
+  if (wk.length === 5) { wk[0].textContent = '1–7'; wk[4].textContent = '29–' + last; }
+}
+
 function renderToday() {
   const d = todayEntry();
   const card = document.getElementById('todayCard');
   if (!card || !d) return;
-  const examMs = Date.parse('2026-10-13T00:00:00+01:00') - Date.now();
-  const left = Math.ceil(examMs / 86400000);
   card.hidden = false;
   card.classList.toggle('special', d.day === 0);
-  card.classList.toggle('exam', d.date === '13 Oct');
   document.getElementById('todayLabel').textContent =
     d.day === 0 ? 'Special · Tonight · 30 September' : 'Today · ' + d.dow + ' ' + d.date + ' · Day ' + d.day;
-  document.getElementById('todayCount').textContent =
-    d.date === '13 Oct' ? '🎯 Exam today' : left > 0 ? 'SecAI+ in ' + left + (left === 1 ? ' day' : ' days') : '';
-  document.getElementById('todayCount').hidden = !document.getElementById('todayCount').textContent;
+  document.getElementById('todayCount').hidden = true;
   document.getElementById('todayTitle').textContent = d.title;
   document.getElementById('todayVerse').textContent = d.verse + ' — ' + d.verseText;
   document.getElementById('todayFocus').textContent = d.focus;
@@ -1415,12 +1459,12 @@ function openToday() {
 let devState = {};
 
 function loadState() {
-  const raw = localStorage.getItem('october2026_devotional_state');
+  const raw = localStorage.getItem(DEV_STATE_KEY);
   devState = raw ? JSON.parse(raw) : {};
 }
 
 function saveState() {
-  localStorage.setItem('october2026_devotional_state', JSON.stringify(devState));
+  localStorage.setItem(DEV_STATE_KEY, JSON.stringify(devState));
 }
 
 function markDone(dayNum) {
@@ -1491,7 +1535,7 @@ function openDay(num) {
 
   const theme = THEMES[d.theme];
   const done = isDone(d.day);
-  const nextDay = d.day < 31 ? d.day + 1 : null;
+  const nextDay = days.some(x => x.day === d.day + 1) ? d.day + 1 : null;
 
   const reflLines = d.reflection.split('\n\n').map(p => `<p>${p}</p>`).join('');
   const qLines = d.questions.map((q,i) => `<li>${q}</li>`).join('');
@@ -1554,9 +1598,9 @@ loadState();
 // Patch devotional to update global + sync to GitHub
 const _origDevSave = saveState;
 function saveState() {
-  localStorage.setItem('october2026_devotional_state', JSON.stringify(devState));
-  const trackerData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-  sbWrite({ tracker: trackerData, devotional: devState });
+  localStorage.setItem(DEV_STATE_KEY, JSON.stringify(devState));
+  if (DEV_MONTH !== STATE_ID) sbWriteDev(devState);
+  else sbWrite({ tracker: JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'), devotional: devState });
   updateGlobalProgress();
 }
 
