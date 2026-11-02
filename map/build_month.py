@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Turn the planner (map/index.html) into a new month.
+"""Scripture on the page is NKJV.
+
+Turn the planner (map/index.html) into a new month.
 
 Rewrites the title, Home, Map (rhythm, calendar, goals) and Tracker sections and the
 month constants in the script. The Devotional section is month-aware already: it loads
@@ -23,8 +25,8 @@ PAGE = Path(__file__).resolve().parent / "index.html"
 YEAR, MONTH = 2026, 11
 NAME = calendar.month_name[MONTH]                       # "November"
 STATE_ID = f"{NAME.lower()}{YEAR}"                      # "november2026"
-POSTURE = ("Romans 12:2", "Do not conform to the pattern of this world, but be transformed by the renewing of your mind.")
-MANDATE = "“Few things are needed—or indeed only one.” Luke 10:42"
+POSTURE = ("Romans 12:2", "And do not be conformed to this world, but be transformed by the renewing of your mind.")
+MANDATE = "\u201cOne thing is needed.\u201d Luke 10:42"
 HOME_TITLE = "Faith First.<br><span>One Thing.</span>"
 
 EXAM = dt.date(2026, 11, 14)          # SecAI+
@@ -232,7 +234,7 @@ def map_section() -> str:
     {anchor("📚", "Family Reading — Thu & Sat", "Thursday 7–9pm. Saturday 3–5pm. Protected, exam week included.")}
     {anchor("📊", "Goal Review — Sat 9:30am", "45 minutes. Spiritual, learning, PhD, MSc, family, work. Score it honestly.")}
     {anchor("🎬", "Movie Night — Friday", "It stays. A rested mind learns more than a crammed one.")}
-    {anchor("😴", "Lights Out — 11pm", "He grants sleep to those He loves. Rest is part of the race, not a break from it.")}
+    {anchor("😴", "Lights Out — 11pm", "He gives His beloved sleep. Rest is part of the race, not a break from it.")}
   </div>
 
   <div class="section-label">{NAME} {YEAR} — Full Month</div>
